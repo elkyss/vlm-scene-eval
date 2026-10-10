@@ -1,21 +1,19 @@
 """Paired comparison of two scene-level runs (two VLMs or two prompts) on the same scenes.
 
 With ~10 scenes, intervals are wide: the report gives a bootstrap CI over scenes, paired
-per-scene win counts and McNemar's exact test on paired item-level decisions, and says a
+per-scene win counts and an exact paired sign-flip test over scenes, and says a
 difference is inconclusive when the interval crosses zero.
 """
 
 from __future__ import annotations
 
 import json
-from collections.abc import Callable
 from pathlib import Path
 
 from vlm_eval.evaluation.report import fmt, md_table
 from vlm_eval.evaluation.scene_metrics import DescriptionScore, SceneEvaluation, aggregate
 from vlm_eval.evaluation.scene_report import SCENE_METRICS
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, mcnemar_exact
-from vlm_eval.judge import SUPPORTED
+from vlm_eval.evaluation.stats import cluster_bootstrap_ci, sign_flip_p
 
 Pair = tuple[DescriptionScore, DescriptionScore]
 METRICS = (  # (label, key, lower is better)
@@ -51,12 +49,17 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
 
         lo, hi = cluster_bootstrap_ci([[p] for p in pairs], diff, seed=seed)
         wins = losses = 0
+        scene_diffs = []
         for x, y in pairs:
             rx, ry = x.rates()[key], y.rates()[key]
-            if rx is None or ry is None or rx == ry:
+            if rx is None or ry is None:
+                continue
+            scene_diffs.append(ry - rx)
+            if rx == ry:
                 continue
             better = ry < rx if lower_better else ry > rx
             wins, losses = wins + better, losses + (not better)
+        p_value = sign_flip_p(scene_diffs)
         verdict = (
             "inconclusive"
             if lo is None or hi is None or lo <= 0 <= hi
@@ -73,6 +76,7 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
             "ci_high": hi,
             "b_wins": wins,
             "b_losses": losses,
+            "sign_flip_p": p_value,
             "verdict": verdict,
         }
         records.append(record)
@@ -84,21 +88,10 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
                 fmt(record["diff"]),
                 f"[{fmt(lo)}, {fmt(hi)}]",
                 f"{wins} / {losses}",
+                "–" if p_value is None else f"{p_value:.3f}",
                 verdict,
             ]
         )
-
-    def mcnemar(items: Callable[[DescriptionScore], dict[str, bool]]) -> tuple[int, int, float]:
-        a_only = b_only = 0
-        for x, y in pairs:
-            ix, iy = items(x), items(y)
-            for k in ix.keys() & iy.keys():
-                a_only += ix[k] and not iy[k]
-                b_only += iy[k] and not ix[k]
-        return a_only, b_only, mcnemar_exact(a_only, b_only)
-
-    human = mcnemar(lambda s: {c.text: c.label == SUPPORTED for c in s.human_items})
-    objects = mcnemar(lambda s: {c: c in s.covered for c in s.labelled})
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "compare.json").write_text(
@@ -108,12 +101,6 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
                 "b": f"{b.model} / {b.prompt_version}",
                 "scenes": len(pairs),
                 "metrics": records,
-                "mcnemar_human_items": {"a_only": human[0], "b_only": human[1], "p": human[2]},
-                "mcnemar_object_coverage": {
-                    "a_only": objects[0],
-                    "b_only": objects[1],
-                    "p": objects[2],
-                },
             },
             indent=2,
         )
@@ -125,21 +112,22 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
             f"- **B**: `{b.model} / {b.prompt_version}`\n"
             f"- {len(pairs)} shared scenes",
             "Δ = B − A. The 95% CI comes from a bootstrap over scenes. Wins/losses count scenes "
-            f"where B is better/worse on that scene's own rate. With {len(pairs)} scenes, a "
+            "where B is better/worse on that scene's own rate. The p-value is an exact paired "
+            "sign-flip test on the per-scene differences (items within a scene are not "
+            f"independent, so nothing is tested at item level). With {len(pairs)} scenes, a "
             "difference whose CI crosses 0 is reported as inconclusive.",
-            md_table(["Metric", "A", "B", "Δ", "95% CI of Δ", "B wins / losses", "Verdict"], table),
-            "**McNemar (paired item decisions)**\n\n"
-            + md_table(
-                ["Items", "Only A right", "Only B right", "p"],
+            md_table(
                 [
-                    ["Human-sentence items covered", human[0], human[1], f"{human[2]:.3f}"],
-                    [
-                        "Visible object classes mentioned",
-                        objects[0],
-                        objects[1],
-                        f"{objects[2]:.3f}",
-                    ],
+                    "Metric",
+                    "A",
+                    "B",
+                    "Δ",
+                    "95% CI of Δ",
+                    "B wins / losses",
+                    "Sign-flip p",
+                    "Verdict",
                 ],
+                table,
             ),
         ]
     )

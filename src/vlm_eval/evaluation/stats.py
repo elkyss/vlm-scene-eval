@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import math
+import itertools
 from collections import Counter
 from collections.abc import Callable, Sequence
 from typing import TypeVar
@@ -73,14 +73,24 @@ def spearman(x: Sequence[float], y: Sequence[float]) -> float | None:
     return pearson(average_ranks(x), average_ranks(y)) if len(x) >= 3 else None
 
 
-def mcnemar_exact(b: int, c: int) -> float:
-    """Two-sided exact McNemar p-value from the discordant counts b (A right, B wrong), c."""
-    n = b + c
-    if n == 0:
-        return 1.0
-    k = min(b, c)
-    p = sum(math.comb(n, i) for i in range(k + 1)) / 2**n
-    return min(1.0, 2 * p)
+def sign_flip_p(diffs: Sequence[float], n_mc: int = 20000, seed: int = 0) -> float | None:
+    """Two-sided paired permutation (sign-flip) test on per-cluster differences.
+
+    Under "no difference between A and B" each scene's difference is equally likely to have
+    either sign. Testing at the scene level respects that frames/items of one scene are
+    correlated (an item-level McNemar test would treat them as independent and overstate
+    confidence). Exact for <= 16 clusters, Monte Carlo above.
+    """
+    d = np.asarray([x for x in diffs if x is not None], dtype=float)
+    if len(d) == 0:
+        return None
+    observed = abs(d.mean())
+    if len(d) <= 16:
+        signs = np.array(list(itertools.product((1.0, -1.0), repeat=len(d))))
+    else:
+        signs = np.random.default_rng(seed).choice((1.0, -1.0), size=(n_mc, len(d)))
+    means = np.abs((signs * d).mean(axis=1))
+    return float((means >= observed - 1e-12).mean())
 
 
 def cluster_bootstrap_ci(

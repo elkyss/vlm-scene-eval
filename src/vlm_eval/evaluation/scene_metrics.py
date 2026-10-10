@@ -349,6 +349,12 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
     shuffled = [r.shuffled for r in rows if r.shuffled is not None]
     if shuffled:
         summary.update({f"shuffled_{k}": v for k, v in aggregate(shuffled).items()})
+        # Scene specificity: how much better the description fits its own scene than another.
+        # A generic description ("a car on a street") is "supported" almost anywhere, so only
+        # the difference to the shuffled control shows that the content is about this scene.
+        for key in ("claims_supported", "object_coverage", "human_coverage"):
+            own, other = summary.get(key), summary.get(f"shuffled_{key}")
+            summary[f"specific_{key}"] = None if own is None or other is None else own - other
 
     summary["view_agreement"] = _mean([r.view_agreement for r in rows])
     summary["empty_rate"] = safe_div(sum(not r.description for r in rows), len(rows))

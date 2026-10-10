@@ -3,8 +3,8 @@ import pytest
 from vlm_eval.evaluation.stats import (
     balanced_accuracy,
     cluster_bootstrap_ci,
-    mcnemar_exact,
     prf,
+    sign_flip_p,
     spearman,
 )
 
@@ -19,10 +19,12 @@ def test_balanced_accuracy() -> None:
     assert balanced_accuracy(["a", "a", "b"], ["a", "a", "a"]) == 0.5
 
 
-def test_mcnemar() -> None:
-    assert mcnemar_exact(0, 0) == 1.0
-    assert mcnemar_exact(5, 5) == 1.0
-    assert mcnemar_exact(0, 10) == pytest.approx(2 / 1024)
+def test_sign_flip_exact() -> None:
+    assert sign_flip_p([1.0] * 10) == pytest.approx(2 / 1024)  # all 10 scenes favour B
+    assert sign_flip_p([1.0, -1.0]) == 1.0
+    assert sign_flip_p([0.0, 0.0, 0.0]) == 1.0
+    assert sign_flip_p([]) is None
+    assert sign_flip_p([1.0, None, 1.0]) == pytest.approx(0.5)  # type: ignore[list-item]
 
 
 def test_spearman_monotonic() -> None:

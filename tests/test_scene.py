@@ -321,7 +321,7 @@ def test_compare_scene_runs(tmp_path: Path) -> None:
     a = run_fake(tmp_path, MockBackend("fixed", fixed_response="There are cars."), "a")
     b = run_fake(tmp_path, MockBackend("fixed", fixed_response="A bus."), "b")
     text = compare_scene_runs(a, b, tmp_path / "cmp").read_text()
-    assert "Object coverage" in text and "McNemar" in text
+    assert "Object coverage" in text and "Sign-flip p" in text
 
 
 def test_scene_prompts_render() -> None:

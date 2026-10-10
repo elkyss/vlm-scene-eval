@@ -89,7 +89,7 @@ def test_saved_run_reloads_and_compares(fake_loader: FakeLoader, tmp_path: Path)
     report = compare_runs(tmp_path / "a", tmp_path / "b", tmp_path / "cmp", TAX)
     text = report.read_text()
     assert "Object micro F1" in text
-    assert "McNemar" in text
+    assert "sign-flip" in text
 
 
 class ExplodingBackend(MockBackend):

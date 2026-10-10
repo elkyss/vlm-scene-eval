@@ -13,11 +13,23 @@ from vlm_eval.evaluation.metrics.base import METRICS, EvalPair
 from vlm_eval.evaluation.stats import safe_div
 from vlm_eval.taxonomy import Taxonomy
 
+_ORDINALS = re.compile(
+    r"\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last|next|"
+    r"one|two|three|four|five|six|seven|eight|nine|ten|\d+(st|nd|rd|th)?)\b"
+)
+
+
+def _sentence_template(sentence: str) -> str:
+    """Sentence with ordinals and numbers blanked, so "The first image shows a car" and
+    "The second image shows a car" count as the same sentence."""
+    return re.sub(r"\s+", " ", _ORDINALS.sub("#", sentence.strip().lower()))
+
 
 def has_repetition_loop(text: str, min_repeats: int = 3) -> bool:
-    """A sentence repeated ``min_repeats`` times: the decoder got stuck in a loop."""
-    sentences = [s.strip().lower() for s in re.split(r"[.!?]\s*", text) if len(s.strip()) > 10]
-    return any(n >= min_repeats for n in Counter(sentences).values())
+    """The same sentence (up to ordinals and numbers) ``min_repeats`` times: the decoder is
+    stuck in a loop, e.g. "The first image shows… The second image shows… The third…"."""
+    sentences = [s for s in re.split(r"[.!?]\s*", text) if len(s.strip()) > 10]
+    return any(n >= min_repeats for n in Counter(map(_sentence_template, sentences)).values())
 
 
 @METRICS.register("format")

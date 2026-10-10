@@ -2,7 +2,7 @@
 
 Frames of one scene are strongly correlated, so confidence intervals come from a
 bootstrap that resamples whole scenes, and binary per-frame outcomes are compared
-with McNemar's exact test.
+with an exact paired sign-flip test over scenes.
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ import numpy as np
 from vlm_eval.evaluation.evaluator import join
 from vlm_eval.evaluation.metrics import EvalPair, frame_f1, frame_outcomes
 from vlm_eval.evaluation.report import fmt, md_table
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, mcnemar_exact, prf
+from vlm_eval.evaluation.stats import cluster_bootstrap_ci, prf, sign_flip_p
 from vlm_eval.run_store import RunArtifacts
 from vlm_eval.taxonomy import Taxonomy
 
@@ -91,7 +91,6 @@ def compare_runs(
     def add_row(
         label: str,
         stat: Callable[[list[EvalPair]], float | None],
-        correct: Callable[[EvalPair], bool] | None = None,
     ) -> None:
         va, vb = stat([x for x, _ in paired]), stat([y for _, y in paired])
         lo, hi = cluster_bootstrap_ci(clusters, diff(stat), seed=seed)
@@ -102,23 +101,19 @@ def compare_runs(
             "diff": None if va is None or vb is None else vb - va,
             "ci_low": lo,
             "ci_high": hi,
-            "mcnemar_p": None,
+            "sign_flip_p": sign_flip_p([d for c in clusters if (d := diff(stat)(c)) is not None]),
         }
-        if correct is not None:
-            b_only = sum(correct(y) and not correct(x) for x, y in paired)
-            a_only = sum(correct(x) and not correct(y) for x, y in paired)
-            row["mcnemar_p"] = mcnemar_exact(a_only, b_only)
         rows.append(row)
 
     add_row("Object micro F1", partial(_micro_f1, classes=classes))
     add_row("Mean frame object F1", _mean_of(f1))
     for cls in classes:
         correct = partial(_presence_correct, cls=cls)
-        add_row(f"Presence accuracy: {cls}", _mean_of(correct), correct)
+        add_row(f"Presence accuracy: {cls}", _mean_of(correct))
     for attr in taxonomy.attribute_names:
         correct = partial(_attr_correct, attr=attr)
-        add_row(f"Accuracy: {attr}", _mean_of(correct), correct)
-    add_row("Valid structured output", _mean_of(_parse_ok), _parse_ok)
+        add_row(f"Accuracy: {attr}", _mean_of(correct))
+    add_row("Valid structured output", _mean_of(_parse_ok))
     add_row("Mean latency (s)", _mean_of(lambda p: p.pred.latency_s))
 
     disagreements = sorted(
@@ -149,7 +144,7 @@ def compare_runs(
             fmt(r["b"]),
             fmt(r["diff"]),
             f"[{fmt(r['ci_low'])}, {fmt(r['ci_high'])}]",
-            "–" if r["mcnemar_p"] is None else f"{r['mcnemar_p']:.3f}",
+            "–" if r["sign_flip_p"] is None else f"{r['sign_flip_p']:.3f}",
         ]
         for r in rows
     ]
@@ -171,9 +166,11 @@ def compare_runs(
             f"{len(clusters)} scenes",
             "Δ = B − A. 95% CI from a bootstrap over scenes "
             "(frames within a scene are correlated). "
-            "McNemar p-value on paired per-frame correctness. With only 10 scenes, CIs are wide: "
-            "treat differences whose CI crosses 0 as inconclusive.",
-            md_table(["Metric", "A", "B", "Δ", "95% CI of Δ", "McNemar p"], table),
+            "The p-value is an exact paired sign-flip test on per-scene differences "
+            "(frames of a scene are not independent, so testing happens at scene level). "
+            "With only 10 scenes, CIs are wide: treat differences whose CI crosses 0 as "
+            "inconclusive.",
+            md_table(["Metric", "A", "B", "Δ", "95% CI of Δ", "Scene sign-flip p"], table),
             "## Largest disagreements",
             *examples,
         ]

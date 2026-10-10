@@ -86,6 +86,12 @@ def test_repetition_loop_detector() -> None:
     loop = "There are two people on the sidewalk. " * 3
     assert has_repetition_loop(loop)
     assert not has_repetition_loop("A car. A bus. A truck on the road.")
+    per_image = (
+        "The first image shows a car on the road. The second image shows a car on the "
+        "road. The third image shows a car on the road."
+    )
+    assert has_repetition_loop(per_image)  # only the ordinal changes
+    assert not has_repetition_loop("The first image shows a car. The second shows a bus stop.")
 
 
 def test_explicit_zero_count_is_not_a_claim() -> None:

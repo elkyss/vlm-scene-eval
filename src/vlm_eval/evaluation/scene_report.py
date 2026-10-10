@@ -16,16 +16,28 @@ HEADLINE: tuple[tuple[str, str, bool], ...] = (
     ("CHAIR_s: descriptions with an invented object", "chair_s", True),
     ("Object coverage: clearly visible classes mentioned", "object_coverage", False),
     ("Claims supported by the facts", "claims_supported", False),
-    ("Claims contradicted by the facts", "claims_contradicted", True),
     ("Claims that cannot be verified (no annotation covers them)", "claims_unverifiable", False),
     ("Claims supported by annotation-based facts", "claims_supported_by_annotations", False),
     ("Human-sentence items covered", "human_coverage", False),
+)
+SPECIFIC: tuple[tuple[str, str], ...] = (
+    ("Claims supported: own scene minus shuffled scene", "specific_claims_supported"),
+    ("Object coverage: own scene minus shuffled scene", "specific_object_coverage"),
+    ("Human-sentence coverage: own scene minus shuffled scene", "specific_human_coverage"),
 )
 
 
 def _ci(summary: dict[str, float | None], key: str) -> str:
     lo, hi = summary.get(f"{key}_ci_low"), summary.get(f"{key}_ci_high")
     return "" if lo is None or hi is None else f" [{fmt(lo)}, {fmt(hi)}]"
+
+
+def _evidence_note(label: str, evidence: str | None) -> str:
+    if label == SUPPORTED and evidence:
+        return f"  \n  ↳ supporting fact: _{evidence}_"
+    if label == CONTRADICTED:
+        return "  \n  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)"
+    return ""
 
 
 def _scene_errors(row: SceneRow) -> str:
@@ -37,7 +49,7 @@ def _scene_errors(row: SceneRow) -> str:
         parts.append("missed: " + ", ".join(missed))
     n_contra = row.final.count("claims", CONTRADICTED)
     if n_contra:
-        parts.append(f"{n_contra} contradicted claim(s)")
+        parts.append(f"{n_contra} contradicted claim(s), indicative")
     return "; ".join(parts) or "none"
 
 
@@ -70,8 +82,7 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
     for r in rows:
         claims = (
             "\n".join(
-                f"- **{c.label}**: {c.text}"
-                + (f"  \n  ↳ fact: _{c.evidence}_" if c.evidence else "")
+                f"- **{c.label}**: {c.text}" + _evidence_note(c.label, c.evidence)
                 for c in r.final.claims
             )
             or "- (no claims)"
@@ -98,6 +109,42 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
         md_table(
             ["Metric", "Final", "Macro", "View A", "Mean of views", "Spread", "Shuffled"], headline
         ),
+        "## Is the description about this scene?\n\n"
+        'A generic description ("a car on a street in daylight") is supported in almost any '
+        "scene. The difference between the own scene and the shuffled control shows how much "
+        "of the content is specific to this scene. Zero or below means the description is "
+        "no better than a generic one. For reference, the oracle control (fact sheet as "
+        "description) scores about +40 points on claims supported.\n\n"
+        + md_table(
+            ["Metric", "Own − shuffled"], [[label, fmt(s.get(key))] for label, key in SPECIFIC]
+        ),
+        "## Contradictions (indicative only)\n\n"
+        "A claim counts as contradicted when the NLI judge reads the whole fact sheet as "
+        "contradicting it. The automatic check below shows this verdict is much less reliable "
+        'than "supported", so contradiction rates are reported but not used for conclusions.\n\n'
+        + md_table(
+            ["Metric", "Value"],
+            [
+                [
+                    "Claims contradicted",
+                    fmt(s.get("claims_contradicted")) + _ci(s, "claims_contradicted"),
+                ],
+                [
+                    "Shuffled control: claims contradicted",
+                    fmt(s.get("shuffled_claims_contradicted")),
+                ],
+                [
+                    "Judge check: 'supported' object claims whose object is in view "
+                    f"(n={int(s.get('judge_support_n') or 0)})",
+                    fmt(s.get("judge_support_precision")),
+                ],
+                [
+                    "Judge check: 'contradicted' object claims whose object is absent "
+                    f"(n={int(s.get('judge_contradiction_n') or 0)})",
+                    fmt(s.get("judge_contradiction_precision")),
+                ],
+            ],
+        ),
         "## Output quality\n\n"
         + md_table(
             ["Metric", "Value"],
@@ -110,16 +157,6 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
                 ["Repetition loops", fmt(s.get("repetition_loop_rate"))],
                 ["Mean words per description", fmt(s.get("mean_words"), False)],
                 ["Mean latency per call (s)", fmt(s.get("mean_latency_s_per_call"), False)],
-                [
-                    "Judge check: 'supported' object claims whose object is in view "
-                    f"(n={int(s.get('judge_support_n') or 0)})",
-                    fmt(s.get("judge_support_precision")),
-                ],
-                [
-                    "Judge check: 'contradicted' object claims whose object is absent "
-                    f"(n={int(s.get('judge_contradiction_n') or 0)})",
-                    fmt(s.get("judge_contradiction_precision")),
-                ],
             ],
         ),
         "## Similarity to the human sentence (secondary)\n\n"
@@ -157,37 +194,26 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
 
 
 def scene_leaderboard(run_dirs: list[Path]) -> str:
+    columns = (  # (header, summary key, is percentage)
+        ("CHAIR_i", "chair_i", True),
+        ("CHAIR_s", "chair_s", True),
+        ("Obj. coverage", "object_coverage", True),
+        ("Supported", "claims_supported", True),
+        ("Specific support (own − shuffled)", "specific_claims_supported", True),
+        ("Unverifiable", "claims_unverifiable", True),
+        ("Human coverage", "human_coverage", True),
+        ("Repetition loops", "repetition_loop_rate", True),
+        ("View agreement", "view_agreement", True),
+        ("s / call", "mean_latency_s_per_call", False),
+    )
     rows = []
     for run_dir in run_dirs:
         path = run_dir / SCENE_METRICS
         if not path.exists():
             continue
         ev = SceneEvaluation.model_validate_json(path.read_text())
-        s = ev.summary
         rows.append(
-            [
-                run_dir.name,
-                ev.model,
-                ev.prompt_version.split("@")[0],
-                *(fmt(s.get(k)) for _, k, _ in HEADLINE if k != "claims_supported_by_annotations"),
-                fmt(s.get("shuffled_claims_supported")),
-                fmt(s.get("view_agreement")),
-                fmt(s.get("mean_latency_s_per_call"), False),
-            ]
+            [run_dir.name, ev.model, ev.prompt_version.split("@")[0]]
+            + [fmt(ev.summary.get(key), pct) for _, key, pct in columns]
         )
-    headers = [
-        "Run",
-        "Model",
-        "Prompt",
-        "CHAIR_i",
-        "CHAIR_s",
-        "Obj. coverage",
-        "Supported",
-        "Contradicted",
-        "Unverifiable",
-        "Human coverage",
-        "Shuffled: supported",
-        "View agreement",
-        "s / call",
-    ]
-    return md_table(headers, rows)
+    return md_table(["Run", "Model", "Prompt", *(c[0] for c in columns)], rows)
