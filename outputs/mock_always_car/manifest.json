@@ -1,0 +1,60 @@
+{
+  "created_utc": "2026-10-10T18:37:30+00:00",
+  "git_commit": "0efae21ec3d7d88b84c6ea671f0b77357937806d",
+  "git_dirty": true,
+  "config_sha256": "a863414d08b8d1b9",
+  "config": {
+    "run_id": "mock_always_car",
+    "loader": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "cameras": [
+          "CAM_FRONT"
+        ],
+        "frames_per_scene": 5,
+        "scenes": null
+      }
+    },
+    "ground_truth": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "camera": "CAM_FRONT",
+        "min_visibility": 2,
+        "max_distance_m": 50
+      }
+    },
+    "vlm": {
+      "name": "mock",
+      "params": {
+        "mode": "always_car"
+      }
+    },
+    "taxonomy": "driving",
+    "prompt": "v2_structured",
+    "writers": [
+      "jsonl",
+      "csv"
+    ],
+    "metrics": [],
+    "output_dir": "outputs",
+    "cache_dir": ".cache/vlm",
+    "seed": 0
+  },
+  "python": "3.13.0",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "vlm-eval": "0.1.0",
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "sentence-transformers": "6.1.0",
+    "nuscenes-devkit": "1.2.0",
+    "numpy": "1.26.4",
+    "pydantic": "2.14.0"
+  },
+  "model_signature": "mock-always_car|",
+  "model_revision": null
+}

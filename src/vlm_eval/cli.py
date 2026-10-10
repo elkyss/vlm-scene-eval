@@ -19,6 +19,7 @@ from vlm_eval.evaluation.gate import evaluate_gate, load_gate
 from vlm_eval.evaluation.gt_audit import agreement, export_sheet
 from vlm_eval.evaluation.leaderboard import leaderboard as render_leaderboard
 from vlm_eval.evaluation.report import MarkdownReport
+from vlm_eval.manifest import write_manifest
 from vlm_eval.pipeline import build_pipeline
 from vlm_eval.run_store import RunArtifacts, load_metrics, save_metrics
 from vlm_eval.taxonomy import load_taxonomy
@@ -59,7 +60,17 @@ def run(
     np.random.seed(cfg.seed)
     cfg.run_dir.mkdir(parents=True, exist_ok=True)
     (cfg.run_dir / "config.yaml").write_text(yaml.safe_dump(cfg.model_dump(mode="json")))
-    _, results = build_pipeline(cfg).run(cfg.run_dir)
+    pipeline = build_pipeline(cfg)
+    _, results = pipeline.run(cfg.run_dir)
+    inner = getattr(pipeline.backend, "backend", pipeline.backend)
+    write_manifest(
+        cfg.run_dir,
+        cfg,
+        {
+            "model_signature": pipeline.backend.signature,
+            "model_revision": getattr(inner, "resolved_revision", None),
+        },
+    )
     typer.echo(f"Done. Report: {cfg.run_dir / 'report.md'}")
     headline = next((r for r in results if r.name == "object_presence"), None)
     if headline:

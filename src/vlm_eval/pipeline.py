@@ -11,8 +11,6 @@ import logging
 from collections.abc import Sequence
 from pathlib import Path
 
-from PIL import Image
-
 from vlm_eval.config import RunConfig
 from vlm_eval.domain import GroundTruth, MetricResult, Prediction, Sample
 from vlm_eval.evaluation.evaluator import Evaluator
@@ -22,7 +20,7 @@ from vlm_eval.loaders import LOADERS, SceneLoader
 from vlm_eval.prompting import PromptStrategy, load_strategy
 from vlm_eval.run_store import RunArtifacts, save_metrics
 from vlm_eval.taxonomy import load_taxonomy
-from vlm_eval.vlm import BACKENDS, CachedBackend, VLMBackend
+from vlm_eval.vlm import BACKENDS, CachedBackend, ImageSet, VLMBackend
 from vlm_eval.writers import WRITERS, ResultWriter
 
 log = logging.getLogger(__name__)
@@ -56,7 +54,10 @@ class Pipeline:
         return samples, [self.gt_provider.get(s) for s in samples]
 
     def describe(self, sample: Sample) -> Prediction:
-        images = [Image.open(p).convert("RGB") for p in sample.image_paths.values()]
+        images = ImageSet.from_paths(
+            [f"{sample.sample_token}:{cam}" for cam in sample.image_paths],
+            list(sample.image_paths.values()),
+        )
         out = self.strategy.run(self.backend, sample.sample_token, images)
         parsed = out.parsed
         return Prediction(

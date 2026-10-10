@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-10-10T18:36:30+00:00",
+  "git_commit": "0efae21ec3d7d88b84c6ea671f0b77357937806d",
+  "git_dirty": true,
+  "config_sha256": "2f6bc682775d34fb",
+  "config": {
+    "run_id": "smolvlm_v2",
+    "loader": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "cameras": [
+          "CAM_FRONT"
+        ],
+        "frames_per_scene": 5,
+        "scenes": null
+      }
+    },
+    "ground_truth": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "camera": "CAM_FRONT",
+        "min_visibility": 2,
+        "max_distance_m": 50
+      }
+    },
+    "vlm": {
+      "name": "hf",
+      "params": {
+        "model_id": "HuggingFaceTB/SmolVLM-500M-Instruct",
+        "max_new_tokens": 256
+      }
+    },
+    "taxonomy": "driving",
+    "prompt": "v2_structured",
+    "writers": [
+      "jsonl",
+      "csv"
+    ],
+    "metrics": [],
+    "output_dir": "outputs",
+    "cache_dir": ".cache/vlm",
+    "seed": 0
+  },
+  "python": "3.13.0",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "vlm-eval": "0.1.0",
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "sentence-transformers": "6.1.0",
+    "nuscenes-devkit": "1.2.0",
+    "numpy": "1.26.4",
+    "pydantic": "2.14.0"
+  },
+  "model_signature": "HuggingFaceTB/SmolVLM-500M-Instruct@default|max_new_tokens=256|max_image_side=768|greedy",
+  "model_revision": "a7da5b986cb59b408707209984f360a5f4ad7e47"
+}

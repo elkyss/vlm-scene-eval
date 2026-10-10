@@ -130,9 +130,13 @@ class SceneFactSheet(BaseModel):
     location: str
     reference_text: str
     attributes: dict[str, str] = Field(default_factory=dict)  # from scene.description + log
-    objects: dict[str, int] = Field(default_factory=dict)  # class -> distinct clearly-visible instances
+    objects: dict[str, int] = Field(
+        default_factory=dict
+    )  # class -> distinct clearly-visible instances
     loosely_present: list[str] = Field(default_factory=list)  # classes with any box in the frames
-    object_states: dict[str, dict[str, int]] = Field(default_factory=dict)  # class -> attribute counts
+    object_states: dict[str, dict[str, int]] = Field(
+        default_factory=dict
+    )  # class -> attribute counts
     ego: EgoMotion | None = None
     sentences: list[str] = Field(default_factory=list)  # plain-text rendering (NLI premise)
 

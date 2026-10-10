@@ -20,18 +20,6 @@
 | Valid structured output | 100.0% |
 | Mean latency per frame (s) | 0.00 |
 
-## How far to trust the ground truth
-
-A sample of frames was labelled by eye and compared with the automatic GT. Metrics on a field cannot be trusted beyond its agreement: treat low-agreement fields as indicative only.
-
-| Field | Labels checked | Auto vs. manual agreement |
-|---|---|---|
-| all | 130 | 86.9% |
-| objects | 91 | 89.0% |
-| road_condition | 13 | 92.3% |
-| scene_type | 13 | 53.8% |
-| time_of_day | 13 | 100.0% |
-
 ## Objects: hallucination vs. omission
 
 Per frame and class: claimed vs. present (≥40% visible, ≤50 m). `FP` = claimed but no box of that class anywhere in the image (hallucination); `FP far` = a box exists but is far or mostly occluded (excused in *precision*, counted in *precision strict*).

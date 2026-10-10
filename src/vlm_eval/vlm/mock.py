@@ -68,6 +68,10 @@ class MockBackend:
     def name(self) -> str:
         return f"mock-{self.mode}"
 
+    @property
+    def signature(self) -> str:
+        return f"{self.name}|{self.fixed_response}"
+
     def generate(self, request: VLMRequest) -> VLMResponse:
         return VLMResponse(self._answer(request))
 

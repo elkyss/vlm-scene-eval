@@ -1,12 +1,11 @@
 import json
 
 import pytest
-from PIL import Image
 
 from tests.conftest import TAX
 from vlm_eval.parsing.answers import bucket_from_answer
 from vlm_eval.prompting import QuestionnaireStrategy, SinglePromptStrategy, load_strategy
-from vlm_eval.vlm import VLMRequest, VLMResponse
+from vlm_eval.vlm import ImageSet, VLMRequest, VLMResponse
 
 
 @pytest.mark.parametrize(
@@ -48,6 +47,7 @@ class ScriptedBackend:
     """Answers each question from a lookup on a keyword of the prompt."""
 
     name = "scripted"
+    signature = "scripted"
 
     def __init__(self, script: dict[str, str]) -> None:
         self.script = script
@@ -82,7 +82,7 @@ def test_questionnaire_builds_facts_from_answers() -> None:
             "parking": "hmm",
         }
     )
-    out = strategy.run(backend, "tok", [Image.new("RGB", (4, 4))])
+    out = strategy.run(backend, "tok", ImageSet.from_paths(["img"], ["unused.jpg"]))
     facts = out.parsed.facts
     assert facts.objects == {"car": "3-5"}
     assert facts.attribute("time_of_day") == "night"

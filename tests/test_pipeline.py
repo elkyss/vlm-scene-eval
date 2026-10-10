@@ -135,3 +135,38 @@ def test_leaderboard_lists_runs(fake_loader: FakeLoader, tmp_path: Path) -> None
     table = leaderboard([tmp_path / "a", tmp_path / "b", tmp_path / "missing"])
     assert "mock-oracle" in table and "mock-always_car" in table
     assert table.count("\n") == 3  # header, separator, 2 rows
+
+
+def test_cache_key_depends_on_frames_prompt_and_settings(tmp_path: Path) -> None:
+    from vlm_eval.vlm import ImageSet, VLMRequest
+
+    cached = CachedBackend(MockBackend("always_car"), tmp_path)
+    a = VLMRequest("tok", ImageSet.from_paths(["f1", "f2"], ["a.jpg", "b.jpg"]), "p")
+    b = VLMRequest("tok", ImageSet.from_paths(["f1", "f3"], ["a.jpg", "c.jpg"]), "p")
+    c = VLMRequest("tok", ImageSet.from_paths(["f1", "f2"], ["a.jpg", "b.jpg"]), "q")
+    assert len({cached.path_for(a), cached.path_for(b), cached.path_for(c)}) == 3
+    other = CachedBackend(MockBackend("fixed", fixed_response="x"), tmp_path)
+    assert other.path_for(a) != cached.path_for(a)  # backend settings are part of the key
+
+
+def test_images_are_not_decoded_on_cache_hit(tmp_path: Path) -> None:
+    from vlm_eval.vlm import ImageSet, VLMRequest
+
+    cached = CachedBackend(MockBackend("always_car"), tmp_path)
+    request = VLMRequest("tok", ImageSet.from_paths(["f1"], [tmp_path / "missing.jpg"]), "p")
+    cached.generate(request)  # mock never opens images
+    assert cached.generate(request).text  # served from disk; the missing file is never read
+
+
+def test_manifest_records_config_and_versions(tmp_path: Path) -> None:
+    import json
+
+    from vlm_eval.manifest import write_manifest
+
+    root = Path(__file__).resolve().parents[1]
+    cfg = load_config(root / "configs" / "mock_oracle.yaml")
+    data = json.loads(write_manifest(tmp_path, cfg, {"model_revision": "abc"}).read_text())
+    assert data["config"]["run_id"] == "mock_oracle"
+    assert data["model_revision"] == "abc"
+    assert len(data["config_sha256"]) == 16
+    assert "transformers" in data["packages"]

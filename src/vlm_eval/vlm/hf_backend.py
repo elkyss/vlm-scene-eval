@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import time
+from pathlib import Path
 from typing import Any
 
 from vlm_eval.vlm.base import BACKENDS, VLMRequest, VLMResponse
@@ -25,8 +26,10 @@ class HFVisionChatBackend:
         max_new_tokens: int = 256,
         device: str = "auto",
         max_image_side: int | None = 768,
+        revision: str | None = None,
     ) -> None:
         self.model_id = model_id
+        self.revision = revision  # pin a Hugging Face commit for reproducibility
         self.max_new_tokens = max_new_tokens
         self.max_image_side = max_image_side
         self._device = device
@@ -36,6 +39,32 @@ class HFVisionChatBackend:
     @property
     def name(self) -> str:
         return self.model_id.split("/")[-1]
+
+    @property
+    def signature(self) -> str:
+        return (
+            f"{self.model_id}@{self.revision or 'default'}|max_new_tokens={self.max_new_tokens}"
+            f"|max_image_side={self.max_image_side}|greedy"
+        )
+
+    @property
+    def resolved_revision(self) -> str | None:
+        """The Hugging Face commit used (for the run manifest), even if nothing was loaded."""
+        if self._model is not None:
+            loaded = getattr(self._model.config, "_commit_hash", None)
+            if loaded:
+                return str(loaded)
+        try:
+            from huggingface_hub import constants
+        except ImportError:
+            return self.revision
+        ref = (
+            Path(constants.HF_HUB_CACHE)
+            / f"models--{self.model_id.replace('/', '--')}"
+            / "refs"
+            / (self.revision or "main")
+        )
+        return ref.read_text().strip() if ref.exists() else self.revision
 
     def _load(self) -> None:
         import torch
@@ -52,9 +81,11 @@ class HFVisionChatBackend:
             )
         dtype = torch.float32 if device == "cpu" else torch.float16
         log.info("Loading %s on %s", self.model_id, device)
-        self._processor = AutoProcessor.from_pretrained(self.model_id)
+        self._processor = AutoProcessor.from_pretrained(self.model_id, revision=self.revision)
         model_cls: Any = AutoModelForImageTextToText
-        self._model = model_cls.from_pretrained(self.model_id, dtype=dtype).to(device)
+        self._model = model_cls.from_pretrained(
+            self.model_id, revision=self.revision, dtype=dtype
+        ).to(device)
         self._model.eval()
         self._device = device
 
@@ -64,7 +95,7 @@ class HFVisionChatBackend:
         if self._model is None:
             self._load()
         start = time.perf_counter()
-        images = [self._resize(img) for img in request.images]
+        images = [self._resize(img) for img in request.images.load()]
         messages = [
             {
                 "role": "user",

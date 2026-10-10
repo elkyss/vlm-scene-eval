@@ -9,8 +9,14 @@ from pathlib import Path
 from vlm_eval.vlm.base import VLMBackend, VLMRequest, VLMResponse
 
 
+def cache_key(signature: str, prompt: str, image_ids: tuple[str, ...]) -> str:
+    """Content key: model + generation settings + prompt + the exact frames sent."""
+    payload = json.dumps({"backend": signature, "prompt": prompt, "images": list(image_ids)})
+    return hashlib.sha256(payload.encode()).hexdigest()[:24]
+
+
 class CachedBackend:
-    """Wraps a ``VLMBackend``; responses are stored per (model, prompt, sample).
+    """Wraps a ``VLMBackend``; responses are stored under a content key.
 
     The original latency is stored too, so reports stay meaningful on cached reruns.
     """
@@ -23,13 +29,16 @@ class CachedBackend:
     def name(self) -> str:
         return self.backend.name
 
-    def _path(self, request: VLMRequest) -> Path:
-        key = f"{request.prompt}\x00{len(request.images)}"
-        digest = hashlib.sha256(key.encode()).hexdigest()[:16]
-        return self.root / self.name / request.sample_token / f"{digest}.json"
+    @property
+    def signature(self) -> str:
+        return self.backend.signature
+
+    def path_for(self, request: VLMRequest) -> Path:
+        key = cache_key(self.signature, request.prompt, request.images.ids)
+        return self.root / self.name / request.sample_token / f"{key}.json"
 
     def generate(self, request: VLMRequest) -> VLMResponse:
-        path = self._path(request)
+        path = self.path_for(request)
         if path.exists():
             data = json.loads(path.read_text())
             return VLMResponse(data["text"], data["latency_s"])

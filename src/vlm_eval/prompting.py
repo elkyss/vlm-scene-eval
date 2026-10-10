@@ -23,12 +23,11 @@ from pathlib import Path
 from typing import Protocol
 
 import yaml
-from PIL import Image
 
 from vlm_eval.domain import SceneFacts
 from vlm_eval.parsing import OutputParser, ParsedOutput, bucket_from_answer, extract_facts
 from vlm_eval.taxonomy import Taxonomy
-from vlm_eval.vlm.base import VLMBackend, VLMRequest
+from vlm_eval.vlm.base import ImageSet, VLMBackend, VLMRequest
 
 PROMPT_DIR = Path(__file__).parent / "prompts"
 
@@ -47,9 +46,7 @@ class PromptStrategy(Protocol):
     @property
     def version(self) -> str: ...
 
-    def run(
-        self, backend: VLMBackend, sample_token: str, images: list[Image.Image]
-    ) -> StrategyOutput: ...
+    def run(self, backend: VLMBackend, sample_token: str, images: ImageSet) -> StrategyOutput: ...
 
 
 def _hash(text: str) -> str:
@@ -92,9 +89,7 @@ class SinglePromptStrategy:
     def expects_json(self) -> bool:
         return "JSON" in self.text
 
-    def run(
-        self, backend: VLMBackend, sample_token: str, images: list[Image.Image]
-    ) -> StrategyOutput:
+    def run(self, backend: VLMBackend, sample_token: str, images: ImageSet) -> StrategyOutput:
         response = backend.generate(VLMRequest(sample_token, images, self.text))
         parsed = OutputParser(self.taxonomy, self.expects_json).parse(response.text)
         return StrategyOutput(response.text, parsed, response.latency_s)
@@ -124,9 +119,7 @@ class QuestionnaireStrategy:
     def version(self) -> str:
         return f"{self.name}@{_hash(self.description_prompt + json.dumps(self.questions))}"
 
-    def run(
-        self, backend: VLMBackend, sample_token: str, images: list[Image.Image]
-    ) -> StrategyOutput:
+    def run(self, backend: VLMBackend, sample_token: str, images: ImageSet) -> StrategyOutput:
         desc = backend.generate(VLMRequest(sample_token, images, self.description_prompt))
         latency = desc.latency_s
         answers: dict[str, str] = {}

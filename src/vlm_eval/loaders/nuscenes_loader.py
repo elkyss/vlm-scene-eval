@@ -8,7 +8,7 @@ import numpy as np
 
 from vlm_eval.domain import Sample
 from vlm_eval.loaders.base import LOADERS
-from vlm_eval.nuscenes_db import get_nuscenes
+from vlm_eval.nuscenes_db import get_nuscenes, scene_sample_tokens
 
 
 def evenly_spaced(n_items: int, k: int | None) -> list[int]:
@@ -51,7 +51,7 @@ class NuScenesLoader:
         for scene in sorted(nusc.scene, key=lambda s: s["name"]):
             if self.scenes and scene["name"] not in self.scenes:
                 continue
-            tokens = self._scene_sample_tokens(scene)
+            tokens = scene_sample_tokens(nusc, scene)
             for idx in evenly_spaced(len(tokens), self.frames_per_scene):
                 sample = nusc.get("sample", tokens[idx])
                 yield Sample(
@@ -65,11 +65,3 @@ class NuScenesLoader:
                         for cam in self.cameras
                     },
                 )
-
-    def _scene_sample_tokens(self, scene: dict[str, Any]) -> list[str]:
-        tokens = []
-        token = scene["first_sample_token"]
-        while token:
-            tokens.append(token)
-            token = self._nusc.get("sample", token)["next"]
-        return tokens
