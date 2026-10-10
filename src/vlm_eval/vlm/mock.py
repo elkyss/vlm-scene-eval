@@ -41,7 +41,6 @@ def facts_to_response(gt: GroundTruth) -> str:
 class MockBackend:
     """Modes:
 
-    * ``oracle``: answers exactly the ground truth (metrics must come out perfect).
     * ``empty``: answers nothing (recall must be 0, format failures 100%).
     * ``always_car``: always claims a car and a pedestrian on a sunny road.
     * ``fixed``: returns ``fixed_response`` for every frame.
@@ -52,21 +51,19 @@ class MockBackend:
         self,
         mode: str = "always_car",
         fixed_response: str = "",
-        ground_truth: Mapping[str, GroundTruth] | None = None,
         responses: Mapping[str, str] | None = None,
+        label: str | None = None,
     ) -> None:
-        if mode == "oracle" and ground_truth is None:
-            raise ValueError("oracle mode needs ground_truth")
         if mode == "table" and responses is None:
             raise ValueError("table mode needs responses")
         self.mode = mode
         self.fixed_response = fixed_response
-        self._gt = ground_truth or {}
+        self.label = label or mode
         self._responses = responses or {}
 
     @property
     def name(self) -> str:
-        return f"mock-{self.mode}"
+        return f"mock-{self.label}"
 
     @property
     def signature(self) -> str:
@@ -76,8 +73,6 @@ class MockBackend:
         return VLMResponse(self._answer(request))
 
     def _answer(self, request: VLMRequest) -> str:
-        if self.mode == "oracle":
-            return facts_to_response(self._gt[request.sample_token])
         if self.mode == "empty":
             return ""
         if self.mode == "always_car":

@@ -49,8 +49,9 @@ class PromptStrategy(Protocol):
     def run(self, backend: VLMBackend, sample_token: str, images: ImageSet) -> StrategyOutput: ...
 
 
-def _hash(text: str) -> str:
-    return hashlib.sha256(text.encode()).hexdigest()[:8]
+def content_version(name: str, text: str) -> str:
+    """Prompt name plus a content hash: editing a prompt file changes its recorded version."""
+    return f"{name}@{hashlib.sha256(text.encode()).hexdigest()[:8]}"
 
 
 def render_template(template: str, taxonomy: Taxonomy) -> str:
@@ -83,7 +84,7 @@ class SinglePromptStrategy:
 
     @property
     def version(self) -> str:
-        return f"{self.name}@{_hash(self.text)}"
+        return content_version(self.name, self.text)
 
     @property
     def expects_json(self) -> bool:
@@ -117,7 +118,7 @@ class QuestionnaireStrategy:
 
     @property
     def version(self) -> str:
-        return f"{self.name}@{_hash(self.description_prompt + json.dumps(self.questions))}"
+        return content_version(self.name, self.description_prompt + json.dumps(self.questions))
 
     def run(self, backend: VLMBackend, sample_token: str, images: ImageSet) -> StrategyOutput:
         desc = backend.generate(VLMRequest(sample_token, images, self.description_prompt))
@@ -171,3 +172,27 @@ def load_strategy(name: str, taxonomy: Taxonomy) -> PromptStrategy:
         return QuestionnaireStrategy.from_spec(name, yaml.safe_load(yml.read_text()), taxonomy)
     available = sorted(p.stem for p in PROMPT_DIR.glob("*.*") if p.suffix in {".txt", ".yaml"})
     raise KeyError(f"Unknown prompt {name!r}. Available: {available}")
+
+
+@dataclass(frozen=True)
+class ScenePrompt:
+    """Prompt for one multi-frame scene call; ``{n_frames}`` and ``{spacing}`` are filled in."""
+
+    name: str
+    template: str
+
+    def render(self, n_frames: int, span_s: float) -> str:
+        spacing = max(1, round(span_s / max(1, n_frames - 1)))
+        return self.template.format(n_frames=n_frames, spacing=spacing)
+
+    @property
+    def version(self) -> str:
+        return content_version(self.name, self.template)
+
+
+def load_scene_prompt(name: str) -> ScenePrompt:
+    path = PROMPT_DIR / f"{name}.txt"
+    if not path.exists():
+        available = sorted(p.stem for p in PROMPT_DIR.glob("scene_*.txt"))
+        raise KeyError(f"Unknown scene prompt {name!r}. Available: {available}")
+    return ScenePrompt(name, path.read_text().strip())

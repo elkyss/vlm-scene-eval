@@ -18,16 +18,21 @@ from tests.conftest import TAX, FakeGTProvider, FakeLoader  # noqa: E402
 from vlm_eval.evaluation import Evaluator  # noqa: E402
 from vlm_eval.pipeline import Pipeline  # noqa: E402
 from vlm_eval.prompting import load_strategy  # noqa: E402
-from vlm_eval.vlm import MockBackend  # noqa: E402
+from vlm_eval.vlm import MockBackend, facts_to_response  # noqa: E402
 from vlm_eval.writers import JsonlWriter  # noqa: E402
 
 
 def make_run(tmp: Path, mode: str) -> Path:
     loader, gt = FakeLoader(tmp), FakeGTProvider()
-    truth = {s.sample_token: gt.get(s) for s in loader} if mode == "oracle" else None
+    backend = (
+        MockBackend("table", responses={s.sample_token: facts_to_response(gt.get(s)) for s in loader},
+                    label="oracle")
+        if mode == "oracle"
+        else MockBackend(mode)
+    )
     evaluator = Evaluator.from_config([], TAX)
     evaluator.metrics = [m for m in evaluator.metrics if m.name != "similarity"]
-    pipeline = Pipeline(loader, gt, MockBackend(mode, ground_truth=truth),
+    pipeline = Pipeline(loader, gt, backend,
                         load_strategy("v2_structured", TAX), [JsonlWriter()], evaluator)
     pipeline.run(tmp / mode)
     return tmp / mode

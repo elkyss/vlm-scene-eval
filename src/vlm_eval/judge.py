@@ -46,15 +46,17 @@ def judge_against(
 ) -> list[Verdict]:
     """Check hypotheses against a set of premise sentences.
 
-    supported    if at least one single sentence entails the hypothesis (evidence: that sentence);
-    contradicted if the whole premise, read together, contradicts it (evidence: the sentence
-                 with the highest contradiction score);
+    supported    if one sentence, or the whole premise read together, entails the hypothesis
+                 (evidence: the best single sentence);
+    contradicted if the whole premise contradicts it (evidence: the sentence with the highest
+                 contradiction score, indicative only);
     neutral      otherwise.
 
-    Why the asymmetry: small NLI models flag unrelated sentence pairs as contradictions
-    ("There are cars." vs "There are no buses."), while a long premise dilutes entailment.
-    Measured on the oracle control (claims = fact sentences verbatim) this rule gives 100%
-    supported / 0% contradicted; per-sentence-only gave 29-40% supported.
+    Why: small NLI models flag unrelated sentence pairs as contradictions ("There are cars."
+    vs "There are no buses."), so contradiction is only taken from the whole premise. A
+    compound claim ("turns left, passing cones") needs several facts at once, so whole-premise
+    entailment also counts as support. Measured on the controls: oracle 100% supported / 0%
+    contradicted; without whole-premise support, detailed Qwen descriptions scored 0%.
     """
     if not hypotheses:
         return []
@@ -68,7 +70,10 @@ def judge_against(
         rows = per[i * len(premises) : (i + 1) * len(premises)]
         best_s = max(range(len(premises)), key=lambda j: rows[j].get(SUPPORTED, 0.0))
         best_c = max(range(len(premises)), key=lambda j: rows[j].get(CONTRADICTED, 0.0))
-        if rows[best_s].get(SUPPORTED, 0.0) >= threshold:
+        if (
+            rows[best_s].get(SUPPORTED, 0.0) >= threshold
+            or together[i].get(SUPPORTED, 0.0) >= threshold
+        ):
             verdicts.append(Verdict(SUPPORTED, rows[best_s], premises[best_s]))
         elif together[i].get(CONTRADICTED, 0.0) >= threshold:
             verdicts.append(Verdict(CONTRADICTED, together[i], premises[best_c]))

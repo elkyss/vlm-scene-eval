@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 import random
-import shutil
 from pathlib import Path
 from typing import Annotated, Any
 
@@ -19,7 +18,7 @@ from vlm_eval.evaluation.gate import evaluate_gate, load_gate
 from vlm_eval.evaluation.gt_audit import agreement, export_sheet
 from vlm_eval.evaluation.leaderboard import leaderboard as render_leaderboard
 from vlm_eval.evaluation.report import MarkdownReport
-from vlm_eval.manifest import write_manifest
+from vlm_eval.manifest import save_run_metadata
 from vlm_eval.pipeline import build_pipeline
 from vlm_eval.run_store import RunArtifacts, load_metrics, save_metrics
 from vlm_eval.taxonomy import load_taxonomy
@@ -58,19 +57,9 @@ def run(
     cfg = load_config(config, _parse_overrides(set_))
     random.seed(cfg.seed)
     np.random.seed(cfg.seed)
-    cfg.run_dir.mkdir(parents=True, exist_ok=True)
-    (cfg.run_dir / "config.yaml").write_text(yaml.safe_dump(cfg.model_dump(mode="json")))
     pipeline = build_pipeline(cfg)
+    save_run_metadata(cfg.run_dir, cfg, pipeline.backend)
     _, results = pipeline.run(cfg.run_dir)
-    inner = getattr(pipeline.backend, "backend", pipeline.backend)
-    write_manifest(
-        cfg.run_dir,
-        cfg,
-        {
-            "model_signature": pipeline.backend.signature,
-            "model_revision": getattr(inner, "resolved_revision", None),
-        },
-    )
     typer.echo(f"Done. Report: {cfg.run_dir / 'report.md'}")
     headline = next((r for r in results if r.name == "object_presence"), None)
     if headline:
@@ -101,8 +90,6 @@ def compare(
 ) -> None:
     """Paired comparison of two runs (two VLMs or two prompts) on their shared frames."""
     _setup_logging(False)
-    if out.exists():
-        shutil.rmtree(out)
     taxonomy = load_taxonomy(load_config(run_a / "config.yaml").taxonomy)
     typer.echo(f"Comparison: {compare_runs(run_a, run_b, out, taxonomy)}")
 
@@ -173,12 +160,12 @@ def run_scenes(
     verbose: bool = False,
 ) -> None:
     """One description per scene (N frames x K views per scene), then evaluate it."""
-    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline, save_run_metadata
+    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline
 
     _setup_logging(verbose)
     cfg = load_scene_config(config, _parse_overrides(set_))
     pipeline = build_scene_pipeline(cfg)
-    save_run_metadata(cfg, pipeline.backend, build_judge(cfg))
+    save_run_metadata(cfg.run_dir, cfg, pipeline.backend, {"judge": build_judge(cfg).name})
     pipeline.run(cfg.run_dir)
     typer.echo(
         f"Done. Scenes: {cfg.run_dir / 'scenes.jsonl'}  Report: {_evaluate_scene_run(cfg.run_dir)}"

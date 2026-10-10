@@ -10,25 +10,20 @@ how much the model's answer depends on which frames it happened to see.
 from __future__ import annotations
 
 import csv
-import hashlib
 import logging
 from collections import Counter
 from collections.abc import Sequence
-from dataclasses import dataclass
 from pathlib import Path
-
-import yaml
 
 from vlm_eval.config import SceneRunConfig
 from vlm_eval.domain import SceneDescription, SceneFactSheet, SceneSample, ViewOutput
 from vlm_eval.gt.scene_facts import SceneFactBuilder
 from vlm_eval.judge import JUDGES, TextJudge
 from vlm_eval.loaders.scene_loader import NuScenesSceneLoader
-from vlm_eval.manifest import write_manifest
 from vlm_eval.parsing.text_claims import extract_objects
-from vlm_eval.prompting import PROMPT_DIR
+from vlm_eval.prompting import ScenePrompt, load_scene_prompt
 from vlm_eval.taxonomy import Taxonomy, load_taxonomy
-from vlm_eval.vlm import BACKENDS, CachedBackend, ImageSet, MockBackend, VLMBackend, VLMRequest
+from vlm_eval.vlm import ImageSet, VLMBackend, VLMRequest, build_backend
 from vlm_eval.writers import write_jsonl
 
 log = logging.getLogger(__name__)
@@ -37,28 +32,6 @@ SCENES = "scenes.jsonl"
 SCENES_CSV = "scenes.csv"
 FACT_SHEETS = "fact_sheets.jsonl"
 KEYFRAME_SECONDS = 0.5  # nuScenes keyframes are annotated at 2 Hz
-
-
-@dataclass(frozen=True)
-class ScenePrompt:
-    name: str
-    template: str
-
-    def render(self, n_frames: int, span_s: float) -> str:
-        spacing = max(1, round(span_s / max(1, n_frames - 1)))
-        return self.template.format(n_frames=n_frames, spacing=spacing)
-
-    @property
-    def version(self) -> str:
-        return f"{self.name}@{hashlib.sha256(self.template.encode()).hexdigest()[:8]}"
-
-
-def load_scene_prompt(name: str) -> ScenePrompt:
-    path = PROMPT_DIR / f"{name}.txt"
-    if not path.exists():
-        available = sorted(p.stem for p in PROMPT_DIR.glob("scene_*.txt"))
-        raise KeyError(f"Unknown scene prompt {name!r}. Available: {available}")
-    return ScenePrompt(name, path.read_text().strip())
 
 
 def view_output(
@@ -209,16 +182,6 @@ def write_scene_outputs(
             )
 
 
-def oracle_backend(scenes: Sequence[SceneSample], facts: SceneFactBuilder) -> VLMBackend:
-    """Upper-bound 'model' that answers with each view's own fact sheet."""
-    responses = {
-        f"{s.scene_token}-v{v.view_id}": " ".join(facts.build(s, v).premise_sentences)
-        for s in scenes
-        for v in s.views
-    }
-    return MockBackend(mode="table", responses=responses)
-
-
 def build_scene_pipeline(cfg: SceneRunConfig) -> ScenePipeline:
     taxonomy = load_taxonomy(cfg.taxonomy)
     loader = NuScenesSceneLoader(
@@ -228,29 +191,18 @@ def build_scene_pipeline(cfg: SceneRunConfig) -> ScenePipeline:
         cfg.dataroot, cfg.version, cfg.camera, cfg.min_visibility, cfg.max_distance_m, taxonomy
     )
     scenes = list(loader)
-    if cfg.vlm.name == "oracle":
-        backend = oracle_backend(scenes, facts)
-    else:
-        backend = BACKENDS.build(cfg.vlm.name, **cfg.vlm.params)
-        if cfg.cache_dir is not None and cfg.vlm.name != "mock":
-            backend = CachedBackend(backend, cfg.cache_dir)
+    backend = build_backend(
+        cfg.vlm,
+        cfg.cache_dir,
+        # Scene oracle: answers each view with its own fact sheet (upper bound).
+        lambda: {
+            f"{s.scene_token}-v{v.view_id}": " ".join(facts.build(s, v).premise_sentences)
+            for s in scenes
+            for v in s.views
+        },
+    )
     return ScenePipeline(scenes, facts, backend, load_scene_prompt(cfg.prompt), taxonomy)
 
 
 def build_judge(cfg: SceneRunConfig) -> TextJudge:
     return JUDGES.build(cfg.judge.name, **cfg.judge.params)
-
-
-def save_run_metadata(cfg: SceneRunConfig, backend: VLMBackend, judge: TextJudge) -> None:
-    cfg.run_dir.mkdir(parents=True, exist_ok=True)
-    (cfg.run_dir / "config.yaml").write_text(yaml.safe_dump(cfg.model_dump(mode="json")))
-    inner = getattr(backend, "backend", backend)
-    write_manifest(
-        cfg.run_dir,
-        cfg,
-        {
-            "model_signature": backend.signature,
-            "model_revision": getattr(inner, "resolved_revision", None),
-            "judge": judge.name,
-        },
-    )

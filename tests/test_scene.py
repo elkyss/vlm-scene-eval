@@ -156,14 +156,19 @@ def test_combine_views_tie_goes_to_first_view() -> None:
 # --- claims and judge -----------------------------------------------------------------------
 
 
-def test_split_claims_keeps_subjectless_phrases_attached() -> None:
+def test_split_claims_splits_phrases_and_wraps_subjectless_parts() -> None:
     text = (
         "A busy street at night, with cars parked on the side. The road is wet; pedestrians cross."
     )
     assert split_claims(text) == [
-        "A busy street at night, with cars parked on the side.",
+        "A busy street at night.",
+        "The scene shows: with cars parked on the side.",
         "The road is wet.",
         "Pedestrians cross.",
+    ]
+    assert split_claims("The car turns left, passing orange traffic cones.") == [
+        "The car turns left.",
+        "The scene shows: passing orange traffic cones.",
     ]
     assert split_claims("Cars wait, and the light turns green.") == [
         "Cars wait.",

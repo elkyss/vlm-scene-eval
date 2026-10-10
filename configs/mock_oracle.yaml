@@ -17,8 +17,8 @@ ground_truth:
     min_visibility: 2        # nuScenes level 2 = 40-60% visible
     max_distance_m: 50
 vlm:
-  name: mock
-  params: {mode: oracle}
+  name: oracle
+  params: {}
 prompt: v2_structured
 writers: [jsonl, csv]
 metrics: []                  # empty = all default metrics

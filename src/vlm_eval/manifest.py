@@ -56,3 +56,23 @@ def write_manifest(run_dir: Path, config: BaseModel, extra: dict[str, Any] | Non
     path = run_dir / "manifest.json"
     path.write_text(json.dumps(manifest, indent=2, default=str))
     return path
+
+
+def save_run_metadata(
+    run_dir: Path, config: BaseModel, backend: Any, extra: dict[str, Any] | None = None
+) -> Path:
+    """Write ``config.yaml`` and ``manifest.json`` for a run (frame or scene level)."""
+    import yaml
+
+    run_dir.mkdir(parents=True, exist_ok=True)
+    (run_dir / "config.yaml").write_text(yaml.safe_dump(config.model_dump(mode="json")))
+    inner = getattr(backend, "backend", backend)  # unwrap CachedBackend
+    return write_manifest(
+        run_dir,
+        config,
+        {
+            "model_signature": backend.signature,
+            "model_revision": getattr(inner, "resolved_revision", None),
+            **(extra or {}),
+        },
+    )

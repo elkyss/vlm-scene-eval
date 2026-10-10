@@ -13,7 +13,7 @@ from vlm_eval.pipeline import Pipeline
 from vlm_eval.prompting import load_strategy
 from vlm_eval.registry import Registry
 from vlm_eval.run_store import RunArtifacts
-from vlm_eval.vlm import CachedBackend, MockBackend, VLMBackend
+from vlm_eval.vlm import CachedBackend, MockBackend, VLMBackend, facts_to_response
 from vlm_eval.writers import CsvWriter, JsonlWriter
 
 FAST_METRICS = [
@@ -29,13 +29,18 @@ FAST_METRICS = [
 
 def build(loader: FakeLoader, mode: str, backend: VLMBackend | None = None) -> Pipeline:
     gt_provider = FakeGTProvider()
-    gt = {s.sample_token: gt_provider.get(s) for s in loader} if mode == "oracle" else None
+    if mode == "oracle":  # same oracle as the real factory: answers rendered from the GT
+        oracle = MockBackend(
+            "table",
+            responses={s.sample_token: facts_to_response(gt_provider.get(s)) for s in loader},
+            label="oracle",
+        )
     evaluator = Evaluator.from_config([], TAX)
     evaluator.metrics = [m for m in evaluator.metrics if m.name in FAST_METRICS]
     return Pipeline(
         loader=loader,
         gt_provider=gt_provider,
-        backend=backend or MockBackend(mode, ground_truth=gt),
+        backend=backend or (oracle if mode == "oracle" else MockBackend(mode)),
         strategy=load_strategy("v2_structured", TAX),
         writers=[JsonlWriter(), CsvWriter(TAX)],
         evaluator=evaluator,
@@ -170,3 +175,13 @@ def test_manifest_records_config_and_versions(tmp_path: Path) -> None:
     assert data["model_revision"] == "abc"
     assert len(data["config_sha256"]) == 16
     assert "transformers" in data["packages"]
+
+
+def test_compare_never_deletes_existing_files(fake_loader: FakeLoader, tmp_path: Path) -> None:
+    build(fake_loader, "oracle").run(tmp_path / "a")
+    build(fake_loader, "always_car").run(tmp_path / "b")
+    out = tmp_path / "shared"
+    out.mkdir()
+    (out / "keep.txt").write_text("not ours")
+    compare_runs(tmp_path / "a", tmp_path / "b", out, TAX)
+    assert (out / "keep.txt").exists()  # only compare.json / compare_report.md are written

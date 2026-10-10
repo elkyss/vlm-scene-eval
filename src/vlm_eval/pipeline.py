@@ -20,7 +20,7 @@ from vlm_eval.loaders import LOADERS, SceneLoader
 from vlm_eval.prompting import PromptStrategy, load_strategy
 from vlm_eval.run_store import RunArtifacts, save_metrics
 from vlm_eval.taxonomy import load_taxonomy
-from vlm_eval.vlm import BACKENDS, CachedBackend, ImageSet, VLMBackend
+from vlm_eval.vlm import ImageSet, VLMBackend, build_backend, facts_to_response
 from vlm_eval.writers import WRITERS, ResultWriter
 
 log = logging.getLogger(__name__)
@@ -103,12 +103,11 @@ def build_pipeline(cfg: RunConfig) -> Pipeline:
     gt_provider = GT_PROVIDERS.build(
         cfg.ground_truth.name, taxonomy=taxonomy, **cfg.ground_truth.params
     )
-    vlm_params = dict(cfg.vlm.params)
-    if cfg.vlm.name == "mock" and vlm_params.get("mode") == "oracle":
-        vlm_params["ground_truth"] = {s.sample_token: gt_provider.get(s) for s in loader}
-    backend: VLMBackend = BACKENDS.build(cfg.vlm.name, **vlm_params)
-    if cfg.cache_dir is not None and cfg.vlm.name != "mock":
-        backend = CachedBackend(backend, cfg.cache_dir)
+    backend = build_backend(
+        cfg.vlm,
+        cfg.cache_dir,
+        lambda: {s.sample_token: facts_to_response(gt_provider.get(s)) for s in loader},
+    )
     return Pipeline(
         loader=loader,
         gt_provider=gt_provider,

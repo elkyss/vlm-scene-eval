@@ -11,6 +11,12 @@ _CLAUSE = re.compile(
     r";\s*|,\s+(?:and|while|but|whereas)\s+"
     r"(?=(?:the|a|an|there|it|our|we|they|[a-z]+s)\b)"
 )
+# Participle / "with" phrases add a separate fact ("..., passing a construction site").
+# They are split off and wrapped like reference items, because they have no subject.
+_PHRASE = re.compile(
+    r",\s+(?=(?:passing|with|adding|showing|creating|leading|indicating|suggesting|"
+    r"followed)\b)"
+)
 _MIN_WORDS = 2  # "Pedestrians cross." is a real claim
 
 
@@ -19,13 +25,25 @@ def split_sentences(text: str) -> list[str]:
 
 
 def split_claims(text: str) -> list[str]:
-    """Model description -> claims: sentences, further split at clause boundaries."""
+    """Model description -> short claims.
+
+    Sentences are split at clause boundaries (", and the ...", ";") and at participle or
+    "with" phrases; a subject-less phrase becomes "The scene shows: <phrase>." so the judge
+    can read it as a statement. Short claims are what NLI can check: a compound sentence is
+    almost never entailed by any single fact, which would penalise detailed descriptions.
+    """
     claims: list[str] = []
     for sentence in split_sentences(text):
         for clause in _CLAUSE.split(sentence):
-            clause = clause.strip(" ,.;")
-            if len(clause.split()) >= _MIN_WORDS:
-                claims.append(clause[0].upper() + clause[1:] + ".")
+            head, *phrases = _PHRASE.split(clause.strip(" ,.;"))
+            head = head.strip(" ,.;")
+            if len(head.split()) >= _MIN_WORDS:
+                claims.append(head[0].upper() + head[1:] + ".")
+            claims += [
+                reference_hypothesis(p.strip(" ,.;"))
+                for p in phrases
+                if len(p.split()) >= _MIN_WORDS
+            ]
     return claims
 
 
