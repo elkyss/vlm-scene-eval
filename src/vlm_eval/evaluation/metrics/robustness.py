@@ -11,6 +11,7 @@ import numpy as np
 from vlm_eval.domain import MetricResult, SceneFacts
 from vlm_eval.evaluation.metrics.base import METRICS, EvalPair
 from vlm_eval.evaluation.stats import safe_div
+from vlm_eval.parsing.claims import split_sentences
 from vlm_eval.taxonomy import Taxonomy
 
 _ORDINALS = re.compile(
@@ -22,13 +23,13 @@ _ORDINALS = re.compile(
 def _sentence_template(sentence: str) -> str:
     """Sentence with ordinals and numbers blanked, so "The first image shows a car" and
     "The second image shows a car" count as the same sentence."""
-    return re.sub(r"\s+", " ", _ORDINALS.sub("#", sentence.strip().lower()))
+    return re.sub(r"\s+", " ", _ORDINALS.sub("#", sentence.strip(" .!?").lower()))
 
 
 def has_repetition_loop(text: str, min_repeats: int = 3) -> bool:
     """The same sentence (up to ordinals and numbers) ``min_repeats`` times: the decoder is
     stuck in a loop, e.g. "The first image shows… The second image shows… The third…"."""
-    sentences = [s for s in re.split(r"[.!?]\s*", text) if len(s.strip()) > 10]
+    sentences = [s for s in split_sentences(text) if len(s.strip()) > 10]
     return any(n >= min_repeats for n in Counter(map(_sentence_template, sentences)).values())
 
 

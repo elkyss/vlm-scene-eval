@@ -20,6 +20,7 @@ from typing import Any
 import numpy as np
 
 from vlm_eval.domain import EgoMotion, FactSentence, SceneFactSheet, SceneSample, SceneView
+from vlm_eval.gt.base import FACT_BUILDERS
 from vlm_eval.gt.nuscenes_gt import NuScenesGTProvider, facts_from_description
 from vlm_eval.nuscenes_db import get_nuscenes, scene_sample_tokens
 from vlm_eval.taxonomy import Taxonomy, load_taxonomy
@@ -136,6 +137,7 @@ def render_sentences(sheet: SceneFactSheet, taxonomy: Taxonomy) -> list[FactSent
     return out
 
 
+@FACT_BUILDERS.register("nuscenes")
 class SceneFactBuilder:
     def __init__(
         self,
@@ -152,11 +154,19 @@ class SceneFactBuilder:
         self.min_visibility = min_visibility
         self.max_distance_m = max_distance_m
         self._nusc = nusc or get_nuscenes(dataroot, version)
+        self._built: dict[tuple[str, int], SceneFactSheet] = {}
         self._frames = NuScenesGTProvider(
             dataroot, version, camera, min_visibility, max_distance_m, self.taxonomy, self._nusc
         )
 
     def build(self, scene: SceneSample, view: SceneView) -> SceneFactSheet:
+        """Fact sheet of one view (memoised: the oracle and the pipeline both ask for it)."""
+        key = (scene.scene_token, view.view_id)
+        if key not in self._built:
+            self._built[key] = self._build(scene, view)
+        return self._built[key]
+
+    def _build(self, scene: SceneSample, view: SceneView) -> SceneFactSheet:
         nusc = self._nusc
         record = nusc.get("scene", scene.scene_token)
         location = nusc.get("log", record["log_token"])["location"]

@@ -13,12 +13,10 @@ from collections.abc import Callable
 from functools import partial
 from pathlib import Path
 
-import numpy as np
-
 from vlm_eval.evaluation.evaluator import join
 from vlm_eval.evaluation.metrics import EvalPair, frame_f1, frame_outcomes
 from vlm_eval.evaluation.report import fmt, md_table
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, prf, sign_flip_p
+from vlm_eval.evaluation.stats import mean_or_none, paired_comparison, prf
 from vlm_eval.run_store import RunArtifacts
 from vlm_eval.taxonomy import Taxonomy
 
@@ -49,7 +47,7 @@ def _parse_ok(p: EvalPair) -> bool:
 
 def _mean_of(value: Callable[[EvalPair], float]) -> Callable[[list[EvalPair]], float | None]:
     def stat(pairs: list[EvalPair]) -> float | None:
-        return float(np.mean([value(p) for p in pairs])) if pairs else None
+        return mean_or_none([value(p) for p in pairs])
 
     return stat
 
@@ -77,33 +75,26 @@ def compare_runs(
     name_a = f"{a.predictions[0].model} / {a.predictions[0].prompt_version}"
     name_b = f"{b.predictions[0].model} / {b.predictions[0].prompt_version}"
 
-    def diff(
-        stat: Callable[[list[EvalPair]], float | None],
-    ) -> Callable[[list[Paired]], float | None]:
-        def inner(items: list[Paired]) -> float | None:
-            sa, sb = stat([x for x, _ in items]), stat([y for _, y in items])
-            return None if sa is None or sb is None else sb - sa
-
-        return inner
-
     rows: list[dict[str, object]] = []
 
     def add_row(
         label: str,
         stat: Callable[[list[EvalPair]], float | None],
+        lower_is_better: bool = False,
     ) -> None:
-        va, vb = stat([x for x, _ in paired]), stat([y for _, y in paired])
-        lo, hi = cluster_bootstrap_ci(clusters, diff(stat), seed=seed)
-        row: dict[str, object] = {
-            "metric": label,
-            "a": va,
-            "b": vb,
-            "diff": None if va is None or vb is None else vb - va,
-            "ci_low": lo,
-            "ci_high": hi,
-            "sign_flip_p": sign_flip_p([d for c in clusters if (d := diff(stat)(c)) is not None]),
-        }
-        rows.append(row)
+        c = paired_comparison(clusters, stat, lower_is_better, seed)
+        rows.append(
+            {
+                "metric": label,
+                "a": c.a,
+                "b": c.b,
+                "diff": c.diff,
+                "ci_low": c.ci_low,
+                "ci_high": c.ci_high,
+                "sign_flip_p": c.p_value,
+                "verdict": c.verdict,
+            }
+        )
 
     add_row("Object micro F1", partial(_micro_f1, classes=classes))
     add_row("Mean frame object F1", _mean_of(f1))
@@ -114,7 +105,7 @@ def compare_runs(
         correct = partial(_attr_correct, attr=attr)
         add_row(f"Accuracy: {attr}", _mean_of(correct))
     add_row("Valid structured output", _mean_of(_parse_ok))
-    add_row("Mean latency (s)", _mean_of(lambda p: p.pred.latency_s))
+    add_row("Mean latency (s)", _mean_of(lambda p: p.pred.latency_s), lower_is_better=True)
 
     disagreements = sorted(
         paired,
@@ -145,6 +136,7 @@ def compare_runs(
             fmt(r["diff"]),
             f"[{fmt(r['ci_low'])}, {fmt(r['ci_high'])}]",
             "–" if r["sign_flip_p"] is None else f"{r['sign_flip_p']:.3f}",
+            str(r["verdict"]),
         ]
         for r in rows
     ]
@@ -170,7 +162,9 @@ def compare_runs(
             "(frames of a scene are not independent, so testing happens at scene level). "
             "With only 10 scenes, CIs are wide: treat differences whose CI crosses 0 as "
             "inconclusive.",
-            md_table(["Metric", "A", "B", "Δ", "95% CI of Δ", "Scene sign-flip p"], table),
+            md_table(
+                ["Metric", "A", "B", "Δ", "95% CI of Δ", "Scene sign-flip p", "Verdict"], table
+            ),
             "## Largest disagreements",
             *examples,
         ]

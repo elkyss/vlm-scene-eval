@@ -8,12 +8,13 @@ difference is inconclusive when the interval crosses zero.
 from __future__ import annotations
 
 import json
+from functools import partial
 from pathlib import Path
 
 from vlm_eval.evaluation.report import fmt, md_table
 from vlm_eval.evaluation.scene_metrics import DescriptionScore, SceneEvaluation, aggregate
 from vlm_eval.evaluation.scene_report import SCENE_METRICS
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, sign_flip_p
+from vlm_eval.evaluation.stats import paired_comparison
 
 Pair = tuple[DescriptionScore, DescriptionScore]
 METRICS = (  # (label, key, lower is better)
@@ -23,6 +24,10 @@ METRICS = (  # (label, key, lower is better)
     ("Claims contradicted", "claims_contradicted", True),
     ("Human-sentence coverage", "human_coverage", False),
 )
+
+
+def _rate(scores: list[DescriptionScore], key: str) -> float | None:
+    return aggregate(scores)[key]
 
 
 def _load(run_dir: Path) -> SceneEvaluation:
@@ -40,56 +45,38 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
 
     table, records = [], []
     for label, key, lower_better in METRICS:
-        va = aggregate([x for x, _ in pairs])[key]
-        vb = aggregate([y for _, y in pairs])[key]
-
-        def diff(items: list[Pair], k: str = key) -> float | None:
-            sa, sb = aggregate([x for x, _ in items])[k], aggregate([y for _, y in items])[k]
-            return None if sa is None or sb is None else sb - sa
-
-        lo, hi = cluster_bootstrap_ci([[p] for p in pairs], diff, seed=seed)
+        c = paired_comparison([[p] for p in pairs], partial(_rate, key=key), lower_better, seed)
         wins = losses = 0
-        scene_diffs = []
         for x, y in pairs:
             rx, ry = x.rates()[key], y.rates()[key]
-            if rx is None or ry is None:
-                continue
-            scene_diffs.append(ry - rx)
-            if rx == ry:
+            if rx is None or ry is None or rx == ry:
                 continue
             better = ry < rx if lower_better else ry > rx
             wins, losses = wins + better, losses + (not better)
-        p_value = sign_flip_p(scene_diffs)
-        verdict = (
-            "inconclusive"
-            if lo is None or hi is None or lo <= 0 <= hi
-            else "B better"
-            if (hi < 0) == lower_better
-            else "A better"
+        records.append(
+            {
+                "metric": label,
+                "a": c.a,
+                "b": c.b,
+                "diff": c.diff,
+                "ci_low": c.ci_low,
+                "ci_high": c.ci_high,
+                "b_wins": wins,
+                "b_losses": losses,
+                "sign_flip_p": c.p_value,
+                "verdict": c.verdict,
+            }
         )
-        record = {
-            "metric": label,
-            "a": va,
-            "b": vb,
-            "diff": None if va is None or vb is None else vb - va,
-            "ci_low": lo,
-            "ci_high": hi,
-            "b_wins": wins,
-            "b_losses": losses,
-            "sign_flip_p": p_value,
-            "verdict": verdict,
-        }
-        records.append(record)
         table.append(
             [
                 label,
-                fmt(va),
-                fmt(vb),
-                fmt(record["diff"]),
-                f"[{fmt(lo)}, {fmt(hi)}]",
+                fmt(c.a),
+                fmt(c.b),
+                fmt(c.diff),
+                f"[{fmt(c.ci_low)}, {fmt(c.ci_high)}]",
                 f"{wins} / {losses}",
-                "–" if p_value is None else f"{p_value:.3f}",
-                verdict,
+                "–" if c.p_value is None else f"{c.p_value:.3f}",
+                c.verdict,
             ]
         )
 

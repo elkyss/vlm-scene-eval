@@ -30,7 +30,7 @@ from pydantic import BaseModel, Field
 
 from vlm_eval.domain import SceneDescription, SceneFactSheet
 from vlm_eval.evaluation.metrics.robustness import has_repetition_loop
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, safe_div
+from vlm_eval.evaluation.stats import cluster_bootstrap_ci, mean_or_none, safe_div
 from vlm_eval.judge import CONTRADICTED, NEUTRAL, SUPPORTED, TextJudge, judge_against
 from vlm_eval.parsing.claims import (
     reference_hypothesis,
@@ -231,7 +231,7 @@ def macro(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
     per_scene = [s.rates() for s in scores]
     out: dict[str, float | None] = {}
     for key in KEYS:
-        out[key] = _mean([r[key] for r in per_scene])
+        out[key] = mean_or_none([r[key] for r in per_scene])
     return out
 
 
@@ -264,11 +264,6 @@ def embedding_scores(rows: Sequence[SceneRow], model_id: str | None) -> None:
     for i, row in enumerate(rows):
         row.embedding_cosine = float(sims[i, i])
         row.own_scene_rank = int((sims[i] > sims[i, i]).sum()) + 1
-
-
-def _mean(values: Sequence[float | None]) -> float | None:
-    clean = [v for v in values if v is not None]
-    return float(np.mean(clean)) if clean else None
 
 
 def evaluate_scenes(
@@ -305,7 +300,7 @@ def evaluate_scenes(
                 fact_sentences=sheet.premise_sentences,
                 words=len(d.description.split()),
                 repetition_loop=has_repetition_loop(d.description),
-                latency_s=_mean([v.latency_s for v in d.views]) or 0.0,
+                latency_s=mean_or_none([v.latency_s for v in d.views]) or 0.0,
             )
         )
 
@@ -344,7 +339,7 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
     per_view = [aggregate([r.per_view[v] for r in rows]) for v in range(n_views)]
     for key in KEYS:
         summary[f"view_a_{key}"] = view_a.get(key)
-        summary[f"views_mean_{key}"] = _mean([p[key] for p in per_view])
+        summary[f"views_mean_{key}"] = mean_or_none([p[key] for p in per_view])
         summary[f"within_scene_spread_{key}"] = within_scene_spread(rows, key)
     shuffled = [r.shuffled for r in rows if r.shuffled is not None]
     if shuffled:
@@ -356,12 +351,12 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
             own, other = summary.get(key), summary.get(f"shuffled_{key}")
             summary[f"specific_{key}"] = None if own is None or other is None else own - other
 
-    summary["view_agreement"] = _mean([r.view_agreement for r in rows])
+    summary["view_agreement"] = mean_or_none([r.view_agreement for r in rows])
     summary["empty_rate"] = safe_div(sum(not r.description for r in rows), len(rows))
     summary["repetition_loop_rate"] = safe_div(sum(r.repetition_loop for r in rows), len(rows))
-    summary["mean_words"] = _mean([float(r.words) for r in rows])
-    summary["mean_latency_s_per_call"] = _mean([r.latency_s for r in rows])
-    summary["embedding_cosine"] = _mean([r.embedding_cosine for r in rows])
+    summary["mean_words"] = mean_or_none([float(r.words) for r in rows])
+    summary["mean_latency_s_per_call"] = mean_or_none([r.latency_s for r in rows])
+    summary["embedding_cosine"] = mean_or_none([r.embedding_cosine for r in rows])
     ranks = [r.own_scene_rank for r in rows if r.own_scene_rank is not None]
     summary["own_scene_rank_1_rate"] = safe_div(sum(k == 1 for k in ranks), len(ranks))
     summary.update(

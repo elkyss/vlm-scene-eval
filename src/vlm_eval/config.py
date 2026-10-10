@@ -36,14 +36,8 @@ class SceneRunConfig(BaseModel):
     """Scene-level run: N frames per view, K views per scene, one description per scene."""
 
     run_id: str
-    dataroot: str = "data/nuscenes"
-    version: str = "v1.0-mini"
-    camera: str = "CAM_FRONT"
-    frames_per_view: int = 6
-    n_views: int = 3
-    scenes: list[str] | None = None
-    min_visibility: int = 2  # nuScenes level 2 = 40-60% visible
-    max_distance_m: float = 50.0
+    loader: ComponentConfig  # SCENE_LOADERS: which scenes, cameras, frames per view, views
+    ground_truth: ComponentConfig  # FACT_BUILDERS: how the fact sheet is built
     taxonomy: str = "driving"
     vlm: ComponentConfig
     prompt: str = "scene_open"

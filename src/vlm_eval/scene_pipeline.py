@@ -17,9 +17,9 @@ from pathlib import Path
 
 from vlm_eval.config import SceneRunConfig
 from vlm_eval.domain import SceneDescription, SceneFactSheet, SceneSample, ViewOutput
-from vlm_eval.gt.scene_facts import SceneFactBuilder
+from vlm_eval.gt import FACT_BUILDERS, FactSheetBuilder
 from vlm_eval.judge import JUDGES, TextJudge
-from vlm_eval.loaders.scene_loader import NuScenesSceneLoader
+from vlm_eval.loaders import SCENE_LOADERS
 from vlm_eval.parsing.text_claims import extract_objects
 from vlm_eval.prompting import ScenePrompt, load_scene_prompt
 from vlm_eval.taxonomy import Taxonomy, load_taxonomy
@@ -88,7 +88,7 @@ class ScenePipeline:
     def __init__(
         self,
         scenes: Sequence[SceneSample],
-        facts: SceneFactBuilder,
+        facts: FactSheetBuilder,
         backend: VLMBackend,
         prompt: ScenePrompt,
         taxonomy: Taxonomy,
@@ -184,12 +184,8 @@ def write_scene_outputs(
 
 def build_scene_pipeline(cfg: SceneRunConfig) -> ScenePipeline:
     taxonomy = load_taxonomy(cfg.taxonomy)
-    loader = NuScenesSceneLoader(
-        cfg.dataroot, cfg.version, cfg.camera, cfg.frames_per_view, cfg.n_views, cfg.scenes
-    )
-    facts = SceneFactBuilder(
-        cfg.dataroot, cfg.version, cfg.camera, cfg.min_visibility, cfg.max_distance_m, taxonomy
-    )
+    loader = SCENE_LOADERS.build(cfg.loader.name, **cfg.loader.params)
+    facts = FACT_BUILDERS.build(cfg.ground_truth.name, taxonomy=taxonomy, **cfg.ground_truth.params)
     scenes = list(loader)
     backend = build_backend(
         cfg.vlm,

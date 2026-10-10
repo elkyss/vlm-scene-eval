@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from vlm_eval.domain import SceneSample, SceneView
+from vlm_eval.loaders.base import SCENE_LOADERS
 from vlm_eval.nuscenes_db import get_nuscenes, scene_sample_tokens
 
 
@@ -29,6 +30,7 @@ def view_frame_indices(n_frames: int, n_segments: int, n_views: int) -> list[lis
     return views
 
 
+@SCENE_LOADERS.register("nuscenes")
 class NuScenesSceneLoader:
     def __init__(
         self,

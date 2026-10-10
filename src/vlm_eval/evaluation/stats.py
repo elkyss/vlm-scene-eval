@@ -5,6 +5,7 @@ from __future__ import annotations
 import itertools
 from collections import Counter
 from collections.abc import Callable, Sequence
+from dataclasses import dataclass
 from typing import TypeVar
 
 import numpy as np
@@ -112,3 +113,44 @@ def cluster_bootstrap_ci(
     if not stats:
         return None, None
     return float(np.quantile(stats, alpha / 2)), float(np.quantile(stats, 1 - alpha / 2))
+
+
+@dataclass(frozen=True)
+class PairedComparison:
+    a: float | None
+    b: float | None
+    diff: float | None  # b - a
+    ci_low: float | None
+    ci_high: float | None
+    p_value: float | None  # exact sign-flip test on per-cluster differences
+    verdict: str  # "A better" | "B better" | "inconclusive"
+
+
+def paired_comparison(
+    clusters: Sequence[Sequence[tuple[T, T]]],
+    stat: Callable[[list[T]], float | None],
+    lower_is_better: bool = False,
+    seed: int = 0,
+) -> PairedComparison:
+    """Compare paired runs A and B on a statistic, respecting clusters (scenes).
+
+    CI of B - A from a bootstrap over clusters, p-value from a sign-flip test on per-cluster
+    differences; the verdict is "inconclusive" whenever the CI includes 0.
+    """
+    items = [pair for cluster in clusters for pair in cluster]
+    va, vb = stat([x for x, _ in items]), stat([y for _, y in items])
+
+    def diff(pairs: list[tuple[T, T]]) -> float | None:
+        sa, sb = stat([x for x, _ in pairs]), stat([y for _, y in pairs])
+        return None if sa is None or sb is None else sb - sa
+
+    lo, hi = cluster_bootstrap_ci(clusters, diff, seed=seed)
+    p = sign_flip_p([d for c in clusters if (d := diff(list(c))) is not None])
+    if lo is None or hi is None or lo <= 0 <= hi:
+        verdict = "inconclusive"
+    else:
+        b_higher = lo > 0
+        verdict = "B better" if b_higher != lower_is_better else "A better"
+    return PairedComparison(
+        va, vb, None if va is None or vb is None else vb - va, lo, hi, p, verdict
+    )

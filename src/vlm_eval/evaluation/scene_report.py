@@ -191,29 +191,3 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
     path = run_dir / "report.md"
     path.write_text("\n\n".join(parts) + "\n")
     return path
-
-
-def scene_leaderboard(run_dirs: list[Path]) -> str:
-    columns = (  # (header, summary key, is percentage)
-        ("CHAIR_i", "chair_i", True),
-        ("CHAIR_s", "chair_s", True),
-        ("Obj. coverage", "object_coverage", True),
-        ("Supported", "claims_supported", True),
-        ("Specific support (own − shuffled)", "specific_claims_supported", True),
-        ("Unverifiable", "claims_unverifiable", True),
-        ("Human coverage", "human_coverage", True),
-        ("Repetition loops", "repetition_loop_rate", True),
-        ("View agreement", "view_agreement", True),
-        ("s / call", "mean_latency_s_per_call", False),
-    )
-    rows = []
-    for run_dir in run_dirs:
-        path = run_dir / SCENE_METRICS
-        if not path.exists():
-            continue
-        ev = SceneEvaluation.model_validate_json(path.read_text())
-        rows.append(
-            [run_dir.name, ev.model, ev.prompt_version.split("@")[0]]
-            + [fmt(ev.summary.get(key), pct) for _, key, pct in columns]
-        )
-    return md_table(["Run", "Model", "Prompt", *(c[0] for c in columns)], rows)

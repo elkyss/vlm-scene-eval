@@ -135,8 +135,9 @@ def _evaluate_scene_run(run_dir: Path) -> Path:
     from vlm_eval.writers import read_jsonl
 
     cfg = load_scene_config(run_dir / "config.yaml")
+    descriptions = read_jsonl(run_dir / SCENES, SceneDescription)
     evaluation = evaluate_scenes(
-        read_jsonl(run_dir / SCENES, SceneDescription),
+        descriptions,
         read_jsonl(run_dir / FACT_SHEETS, SceneFactSheet),
         build_judge(cfg),
         load_taxonomy(cfg.taxonomy),
@@ -144,9 +145,11 @@ def _evaluate_scene_run(run_dir: Path) -> Path:
         cfg.seed,
     )
     (run_dir / SCENE_METRICS).write_text(evaluation.model_dump_json(indent=2))
+    views = descriptions[0].views if descriptions else []
     protocol = (
-        f"Each scene is shown as {cfg.n_views} views of {cfg.frames_per_view} {cfg.camera} "
-        "frames (one call per view); the final description is the most consistent view."
+        f"Each scene is shown as {len(views)} views of "
+        f"{len(views[0].frame_indices) if views else 0} frames (one VLM call per view); "
+        "the final description is the view most consistent with the others."
     )
     return render_scene_report(evaluation, run_dir, protocol)
 
@@ -200,7 +203,7 @@ def scene_leaderboard_cmd(
     ),
 ) -> None:
     """Headline scene-level metrics of several runs side by side."""
-    from vlm_eval.evaluation.scene_report import scene_leaderboard
+    from vlm_eval.evaluation.leaderboard import scene_leaderboard
 
     table = scene_leaderboard(run_dirs)
     out.parent.mkdir(parents=True, exist_ok=True)
