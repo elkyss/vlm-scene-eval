@@ -359,3 +359,26 @@ def test_scene_descriptions_model_roundtrip() -> None:
         view_agreement=1.0,
     )
     assert SceneDescription.model_validate_json(d.model_dump_json()) == d
+
+
+def test_judge_box_check_precisions() -> None:
+    from vlm_eval.evaluation.scene_metrics import CheckedText, judge_box_check
+
+    claims = [
+        CheckedText(text="A bus.", label=SUPPORTED, object_class="bus", box_present=True),
+        CheckedText(text="A truck.", label=SUPPORTED, object_class="truck", box_present=False),
+        CheckedText(
+            text="No cones.", label=CONTRADICTED, object_class="traffic_cone", box_present=False
+        ),
+        CheckedText(text="A dog.", label=NEUTRAL, object_class="car", box_present=True),
+        CheckedText(text="It is night.", label=SUPPORTED),
+        CheckedText(
+            text="A long claim about a bus that goes on and on.",
+            label=SUPPORTED,
+            object_class="bus",
+            box_present=False,
+        ),
+    ]
+    check = judge_box_check([DescriptionScore(claims=claims)])
+    assert check["judge_support_n"] == 2 and check["judge_support_precision"] == 0.5
+    assert check["judge_contradiction_n"] == 1 and check["judge_contradiction_precision"] == 1.0

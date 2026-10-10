@@ -54,6 +54,7 @@ KEYS = (
     "human_coverage",
     "human_contradicted",
 )
+_MAX_OBJECT_CLAIM_WORDS = 6  # "A bus waits at the stop." is about the bus; longer claims mix facts
 CI_KEYS = (
     "chair_i",
     "object_coverage",
@@ -68,6 +69,10 @@ class CheckedText(BaseModel):
     label: str  # supported | contradicted | neutral
     evidence: str | None = None
     evidence_source: str | None = None
+    # For claims naming exactly one object class: is there a box of it in the frames shown?
+    # Lets the NLI verdict be cross-checked against the annotations without a human.
+    object_class: str | None = None
+    box_present: bool | None = None
 
 
 class DescriptionScore(BaseModel):
@@ -135,12 +140,7 @@ def score_description(
         labelled=labelled,
         covered=[c for c in labelled if c in mentioned],
         claims=[
-            CheckedText(
-                text=c,
-                label=v.label,
-                evidence=v.evidence,
-                evidence_source=sources.get(v.evidence or ""),
-            )
+            _checked_claim(c, v.label, v.evidence, sources, sheet, taxonomy)
             for c, v in zip(claims, claim_verdicts, strict=True)
         ],
         human_items=[
@@ -148,6 +148,53 @@ def score_description(
             for i, v in zip(items, item_verdicts, strict=True)
         ],
     )
+
+
+def _checked_claim(
+    claim: str,
+    label: str,
+    evidence: str | None,
+    sources: dict[str, str],
+    sheet: SceneFactSheet,
+    taxonomy: Taxonomy,
+) -> CheckedText:
+    classes = list(extract_objects(claim, taxonomy))
+    cls = classes[0] if len(classes) == 1 else None
+    return CheckedText(
+        text=claim,
+        label=label,
+        evidence=evidence,
+        evidence_source=sources.get(evidence or ""),
+        object_class=cls,
+        box_present=None if cls is None else cls in sheet.loosely_present,
+    )
+
+
+def judge_box_check(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
+    """Automatic check of the judge against the boxes, on short claims about one object class
+    (at most ``_MAX_OBJECT_CLAIM_WORDS`` words):
+
+    * support precision: when the judge says "supported", is the object really in view?
+    * contradiction precision: when it says "contradicted", is the object really absent?
+    """
+    short = [
+        c
+        for s in scores
+        for c in s.claims
+        if c.object_class is not None and len(c.text.split()) <= _MAX_OBJECT_CLAIM_WORDS
+    ]
+    supported = [c for c in short if c.label == SUPPORTED]
+    contradicted = [c for c in short if c.label == CONTRADICTED]
+    return {
+        "judge_support_precision": safe_div(
+            sum(bool(c.box_present) for c in supported), len(supported)
+        ),
+        "judge_support_n": float(len(supported)),
+        "judge_contradiction_precision": safe_div(
+            sum(not c.box_present for c in contradicted), len(contradicted)
+        ),
+        "judge_contradiction_n": float(len(contradicted)),
+    }
 
 
 def aggregate(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
@@ -311,5 +358,10 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
     summary["embedding_cosine"] = _mean([r.embedding_cosine for r in rows])
     ranks = [r.own_scene_rank for r in rows if r.own_scene_rank is not None]
     summary["own_scene_rank_1_rate"] = safe_div(sum(k == 1 for k in ranks), len(ranks))
+    summary.update(
+        judge_box_check(
+            [s for r in rows for s in r.per_view] + [r.shuffled for r in rows if r.shuffled]
+        )
+    )
     summary["n_scenes"] = float(len(rows))
     return summary

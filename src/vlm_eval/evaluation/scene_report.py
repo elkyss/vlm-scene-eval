@@ -110,6 +110,16 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
                 ["Repetition loops", fmt(s.get("repetition_loop_rate"))],
                 ["Mean words per description", fmt(s.get("mean_words"), False)],
                 ["Mean latency per call (s)", fmt(s.get("mean_latency_s_per_call"), False)],
+                [
+                    "Judge check: 'supported' object claims whose object is in view "
+                    f"(n={int(s.get('judge_support_n') or 0)})",
+                    fmt(s.get("judge_support_precision")),
+                ],
+                [
+                    "Judge check: 'contradicted' object claims whose object is absent "
+                    f"(n={int(s.get('judge_contradiction_n') or 0)})",
+                    fmt(s.get("judge_contradiction_precision")),
+                ],
             ],
         ),
         "## Similarity to the human sentence (secondary)\n\n"
