@@ -387,3 +387,48 @@ def test_judge_box_check_precisions() -> None:
     check = judge_box_check([DescriptionScore(claims=claims)])
     assert check["judge_support_n"] == 2 and check["judge_support_precision"] == 0.5
     assert check["judge_contradiction_n"] == 1 and check["judge_contradiction_precision"] == 1.0
+
+
+def test_judge_validation_probes_have_known_truth() -> None:
+    from vlm_eval.evaluation.judge_validation import (
+        probe_claims,
+        summarize_probes,
+        validate_judge,
+    )
+
+    sheet = make_sheet(objects={"car": 2}, loose=["truck"], night=True)
+    probes = probe_claims(sheet, TAX)
+    texts = {p.claim: p.truth for p in probes}
+    assert texts["Some cars can be seen in the scene."] is True
+    assert texts["A bus is clearly visible in the scene."] is False
+    assert "A truck is clearly visible in the scene." not in texts  # far box: truth unknown
+    assert texts["The drive takes place at night."] is True
+    assert texts["The vehicle carrying the camera is not moving."] is True  # sheet: stopped
+
+    def rule(premise: str, hyp: str) -> str:  # a judge that supports everything
+        return SUPPORTED
+
+    summary = summarize_probes(validate_judge([sheet], FakeJudge(rule), TAX))
+    assert summary["all"]["true_supported"] == 1.0
+    assert summary["all"]["false_supported"] == 1.0  # the validation exposes such a judge
+
+
+def test_specificity_verdict_wording() -> None:
+    from vlm_eval.evaluation.scene_report import specificity_verdict
+
+    generic = specificity_verdict(
+        {
+            "specific_claims_supported": -0.15,
+            "specific_object_coverage": 0.0,
+            "specific_human_coverage": 0.02,
+        }
+    )
+    assert "no evidence" in generic
+    specific = specificity_verdict(
+        {
+            "specific_claims_supported": 0.4,
+            "specific_object_coverage": 0.1,
+            "specific_human_coverage": 0.0,
+        }
+    )
+    assert "specific to their own scene on claims, objects" in specific

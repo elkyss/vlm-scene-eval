@@ -32,6 +32,31 @@ def _ci(summary: dict[str, float | None], key: str) -> str:
     return "" if lo is None or hi is None else f" [{fmt(lo)}, {fmt(hi)}]"
 
 
+def specificity_verdict(s: dict[str, float | None], margin: float = 0.05) -> str:
+    """Plain-language conclusion of the shuffled-scene control."""
+    values = {key: s.get(key) for _, key in SPECIFIC}
+    known = {k: v for k, v in values.items() if v is not None}
+    if not known:
+        return "**Conclusion:** no shuffled control (fewer than two scenes)."
+    specific = [k for k, v in known.items() if v > margin]
+    if not specific:
+        return (
+            "**Conclusion:** the descriptions fit other scenes as well as (or better than) "
+            "their own. There is no evidence that they describe this particular scene; "
+            "treat the other scores of this run as reflecting generic text."
+        )
+    names = {
+        "specific_claims_supported": "claims",
+        "specific_object_coverage": "objects",
+        "specific_human_coverage": "the human sentence",
+    }
+    return (
+        "**Conclusion:** the descriptions are measurably specific to their own scene on "
+        + ", ".join(names[k] for k in specific)
+        + f" (more than {margin:.0%} better than on a shuffled scene)."
+    )
+
+
 def _evidence_note(label: str, evidence: str | None) -> str:
     if label == SUPPORTED and evidence:
         return f"  \n  ↳ supporting fact: _{evidence}_"
@@ -117,7 +142,9 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
         "description) scores about +40 points on claims supported.\n\n"
         + md_table(
             ["Metric", "Own − shuffled"], [[label, fmt(s.get(key))] for label, key in SPECIFIC]
-        ),
+        )
+        + "\n\n"
+        + specificity_verdict(s),
         "## Contradictions (indicative only)\n\n"
         "A claim counts as contradicted when the NLI judge reads the whole fact sheet as "
         "contradicting it. The automatic check below shows this verdict is much less reliable "

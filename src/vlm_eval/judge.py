@@ -42,7 +42,11 @@ JUDGES: Registry[TextJudge] = Registry("judge")
 
 
 def judge_against(
-    judge: TextJudge, premises: Sequence[str], hypotheses: Sequence[str], threshold: float = 0.5
+    judge: TextJudge,
+    premises: Sequence[str],
+    hypotheses: Sequence[str],
+    threshold: float = 0.5,
+    whole_premise_support: bool = True,
 ) -> list[Verdict]:
     """Check hypotheses against a set of premise sentences.
 
@@ -70,9 +74,8 @@ def judge_against(
         rows = per[i * len(premises) : (i + 1) * len(premises)]
         best_s = max(range(len(premises)), key=lambda j: rows[j].get(SUPPORTED, 0.0))
         best_c = max(range(len(premises)), key=lambda j: rows[j].get(CONTRADICTED, 0.0))
-        if (
-            rows[best_s].get(SUPPORTED, 0.0) >= threshold
-            or together[i].get(SUPPORTED, 0.0) >= threshold
+        if rows[best_s].get(SUPPORTED, 0.0) >= threshold or (
+            whole_premise_support and together[i].get(SUPPORTED, 0.0) >= threshold
         ):
             verdicts.append(Verdict(SUPPORTED, rows[best_s], premises[best_s]))
         elif together[i].get(CONTRADICTED, 0.0) >= threshold:

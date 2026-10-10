@@ -195,6 +195,28 @@ def compare_scenes(
     typer.echo(f"Comparison: {compare_scene_runs(run_a, run_b, out)}")
 
 
+@app.command("validate-judge")
+def validate_judge_cmd(
+    run_dir: Annotated[Path, typer.Argument(help="A scene run (its fact sheets are used)")],
+    out: Annotated[Path, typer.Option(help="Output directory")] = Path(
+        "outputs/scenes/judge_validation"
+    ),
+) -> None:
+    """Check the claim judge on paraphrased claims with known truth (no human labels)."""
+    from vlm_eval.domain import SceneFactSheet
+    from vlm_eval.evaluation.judge_validation import validate_judge, write_judge_validation
+    from vlm_eval.scene_pipeline import FACT_SHEETS, build_judge
+    from vlm_eval.writers import read_jsonl
+
+    _setup_logging(False)
+    cfg = load_scene_config(run_dir / "config.yaml")
+    judge = build_judge(cfg)
+    probes = validate_judge(
+        read_jsonl(run_dir / FACT_SHEETS, SceneFactSheet), judge, load_taxonomy(cfg.taxonomy)
+    )
+    typer.echo(f"Judge validation: {write_judge_validation(probes, judge.name, out)}")
+
+
 @app.command("scene-leaderboard")
 def scene_leaderboard_cmd(
     run_dirs: list[Path],
