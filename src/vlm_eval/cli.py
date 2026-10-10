@@ -12,7 +12,7 @@ import numpy as np
 import typer
 import yaml
 
-from vlm_eval.config import load_config
+from vlm_eval.config import load_config, load_scene_config
 from vlm_eval.evaluation.compare import compare_runs
 from vlm_eval.evaluation.evaluator import Evaluator
 from vlm_eval.evaluation.gate import evaluate_gate, load_gate
@@ -135,6 +135,90 @@ def gate(
     failed = sum(not c.passed for c in checks)
     typer.echo(f"{len(checks) - failed}/{len(checks)} checks passed")
     raise typer.Exit(code=1 if failed else 0)
+
+
+# --- scene level (main deliverable) --------------------------------------------------------
+
+
+def _evaluate_scene_run(run_dir: Path) -> Path:
+    from vlm_eval.domain import SceneDescription, SceneFactSheet
+    from vlm_eval.evaluation.scene_metrics import evaluate_scenes
+    from vlm_eval.evaluation.scene_report import SCENE_METRICS, render_scene_report
+    from vlm_eval.scene_pipeline import FACT_SHEETS, SCENES, build_judge
+    from vlm_eval.writers import read_jsonl
+
+    cfg = load_scene_config(run_dir / "config.yaml")
+    evaluation = evaluate_scenes(
+        read_jsonl(run_dir / SCENES, SceneDescription),
+        read_jsonl(run_dir / FACT_SHEETS, SceneFactSheet),
+        build_judge(cfg),
+        load_taxonomy(cfg.taxonomy),
+        cfg.embedding_model,
+        cfg.seed,
+    )
+    (run_dir / SCENE_METRICS).write_text(evaluation.model_dump_json(indent=2))
+    protocol = (
+        f"Each scene is shown as {cfg.n_views} views of {cfg.frames_per_view} {cfg.camera} "
+        "frames (one call per view); the final description is the most consistent view."
+    )
+    return render_scene_report(evaluation, run_dir, protocol)
+
+
+@app.command("run-scenes")
+def run_scenes(
+    config: Annotated[Path, typer.Option("--config", "-c", help="Scene run YAML")],
+    set_: Annotated[
+        list[str], typer.Option("--set", help="Override, e.g. scenes=[scene-0061]")
+    ] = [],  # noqa: B006
+    verbose: bool = False,
+) -> None:
+    """One description per scene (N frames x K views per scene), then evaluate it."""
+    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline, save_run_metadata
+
+    _setup_logging(verbose)
+    cfg = load_scene_config(config, _parse_overrides(set_))
+    pipeline = build_scene_pipeline(cfg)
+    save_run_metadata(cfg, pipeline.backend, build_judge(cfg))
+    pipeline.run(cfg.run_dir)
+    typer.echo(
+        f"Done. Scenes: {cfg.run_dir / 'scenes.jsonl'}  Report: {_evaluate_scene_run(cfg.run_dir)}"
+    )
+
+
+@app.command("evaluate-scenes")
+def evaluate_scenes_cmd(run_dir: Path, verbose: bool = False) -> None:
+    """Re-score a saved scene run (no inference)."""
+    _setup_logging(verbose)
+    typer.echo(f"Report: {_evaluate_scene_run(run_dir)}")
+
+
+@app.command("compare-scenes")
+def compare_scenes(
+    run_a: Path,
+    run_b: Path,
+    out: Annotated[Path, typer.Option(help="Output directory")] = Path("outputs/scenes/compare"),
+) -> None:
+    """Paired comparison of two scene runs on their shared scenes."""
+    from vlm_eval.evaluation.scene_compare import compare_scene_runs
+
+    _setup_logging(False)
+    typer.echo(f"Comparison: {compare_scene_runs(run_a, run_b, out)}")
+
+
+@app.command("scene-leaderboard")
+def scene_leaderboard_cmd(
+    run_dirs: list[Path],
+    out: Annotated[Path, typer.Option(help="Markdown output")] = Path(
+        "outputs/scenes/leaderboard.md"
+    ),
+) -> None:
+    """Headline scene-level metrics of several runs side by side."""
+    from vlm_eval.evaluation.scene_report import scene_leaderboard
+
+    table = scene_leaderboard(run_dirs)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("# Scene-level leaderboard\n\n" + table + "\n")
+    typer.echo(table)
 
 
 @app.command("gt-export")

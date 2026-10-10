@@ -1,0 +1,22 @@
+# Scene-level run: qwen2vl_guided
+run_id: qwen2vl_guided
+dataroot: data/nuscenes
+version: v1.0-mini
+camera: CAM_FRONT
+frames_per_view: 6          # frames per VLM call (fits SmolVLM's ~8-image context)
+n_views: 3                  # label-blind, non-overlapping frame subsets per scene
+scenes: null                # e.g. [scene-0061, scene-1094]
+min_visibility: 2           # nuScenes level 2 = 40-60% visible
+max_distance_m: 50
+taxonomy: driving
+vlm:
+  name: hf
+  params: {model_id: Qwen/Qwen2-VL-2B-Instruct, max_new_tokens: 200}
+prompt: scene_guided
+judge:
+  name: nli
+  params: {model_id: cross-encoder/nli-deberta-v3-small}
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+output_dir: outputs/scenes
+cache_dir: .cache/vlm
+seed: 0

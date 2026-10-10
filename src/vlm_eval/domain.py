@@ -122,6 +122,14 @@ class EgoMotion(BaseModel):
     turn: str  # "left" | "right" | "straight"
 
 
+class FactSentence(BaseModel):
+    """One plain-text fact. ``source`` says where it comes from, so claims supported only by
+    facts taken from the human sentence are not double-counted with human coverage."""
+
+    text: str
+    source: str  # "annotations" | "ego_pose" | "log" | "description"
+
+
 class SceneFactSheet(BaseModel):
     """Ground truth for one view of a scene, built automatically from the annotations."""
 
@@ -130,15 +138,16 @@ class SceneFactSheet(BaseModel):
     location: str
     reference_text: str
     attributes: dict[str, str] = Field(default_factory=dict)  # from scene.description + log
-    objects: dict[str, int] = Field(
-        default_factory=dict
-    )  # class -> distinct clearly-visible instances
-    loosely_present: list[str] = Field(default_factory=list)  # classes with any box in the frames
-    object_states: dict[str, dict[str, int]] = Field(
-        default_factory=dict
-    )  # class -> attribute counts
+    # class -> number of distinct clearly-visible instances (informational; facts are presence)
+    objects: dict[str, int] = Field(default_factory=dict)
+    loosely_present: list[str] = Field(default_factory=list)  # classes with any box in view
+    object_states: dict[str, dict[str, int]] = Field(default_factory=dict)  # class -> states
     ego: EgoMotion | None = None
-    sentences: list[str] = Field(default_factory=list)  # plain-text rendering (NLI premise)
+    sentences: list[FactSentence] = Field(default_factory=list)  # premise for the judge
+
+    @property
+    def premise_sentences(self) -> list[str]:
+        return [s.text for s in self.sentences]
 
 
 class ViewOutput(BaseModel):
