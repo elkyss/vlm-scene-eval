@@ -23,9 +23,8 @@ run_id: mock_oracle
 seed: 0
 taxonomy: driving
 vlm:
-  name: mock
-  params:
-    mode: oracle
+  name: oracle
+  params: {}
 writers:
 - jsonl
 - csv

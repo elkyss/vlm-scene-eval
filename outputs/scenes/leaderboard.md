@@ -1,6 +1,10 @@
 # Scene-level leaderboard
 
-| Run | Model | Prompt | CHAIR_i | CHAIR_s | Obj. coverage | Supported | Contradicted | Unverifiable | Human coverage | Shuffled: supported | View agreement | s / call |
+| Run | Model | Prompt | CHAIR_i | CHAIR_s | Obj. coverage | Supported | Specific support (own − shuffled) | Unverifiable | Human coverage | Repetition loops | View agreement | s / call |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| mock_oracle | mock-table | scene_open | 0.0% | 0.0% | 100.0% | 100.0% | 0.0% | 0.0% | 54.2% | 57.3% | 89.8% | 0.00 |
-| mock_always_car | mock-fixed | scene_open | 10.0% | 20.0% | 41.9% | 0.0% | 45.0% | 55.0% | 11.9% | 0.0% | 100.0% | 0.00 |
+| mock_oracle | mock-oracle | scene_open | 0.0% | 0.0% | 100.0% | 100.0% | 41.2% | 0.0% | 62.7% | 0.0% | 89.8% | 0.00 |
+| mock_always_car | mock-fixed | scene_open | 10.0% | 20.0% | 41.9% | 20.0% | 0.0% | 45.0% | 16.9% | 0.0% | 100.0% | 0.00 |
+| smolvlm_open | SmolVLM-500M-Instruct | scene_open | 0.0% | 0.0% | 23.8% | 26.7% | -6.7% | 53.3% | 11.9% | 60.0% | 70.0% | 13.30 |
+| smolvlm_guided | SmolVLM-500M-Instruct | scene_guided | 7.1% | 10.0% | 29.5% | 32.1% | 5.4% | 44.6% | 22.0% | 10.0% | 43.2% | 10.99 |
+| qwen2vl_open | Qwen2-VL-2B-Instruct | scene_open | 4.3% | 10.0% | 51.2% | 21.0% | 9.0% | 53.0% | 35.6% | 20.0% | 51.0% | 10.19 |
+| qwen2vl_guided | Qwen2-VL-2B-Instruct | scene_guided | 4.0% | 10.0% | 55.8% | 38.0% | 8.3% | 43.5% | 44.1% | 0.0% | 52.1% | 10.37 |

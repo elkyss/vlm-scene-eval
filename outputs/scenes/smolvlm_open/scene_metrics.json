@@ -1,0 +1,5420 @@
+{
+  "model": "SmolVLM-500M-Instruct",
+  "prompt_version": "scene_open@c03d290e",
+  "judge": "nli-deberta-v3-base",
+  "rows": [
+    {
+      "scene_name": "scene-0061",
+      "reference_text": "Parked truck, construction, intersection, turn left, following a van",
+      "description": "The car is driving down the street.",
+      "chosen_view": 0,
+      "view_agreement": 0.6666666666666666,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The car is driving down the street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parked truck",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "construction",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "intersection",
+            "label": "supported",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "turn left",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "following a van",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "intersection",
+              "label": "supported",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "turn left",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "following a van",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "traffic_cone"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "traffic_cone"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a white car driving down a street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The second image shows a white car parked on the side of the street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The third image shows a white car parked on the side of the street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The fourth image shows a white car parked on the side of the street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The fifth image shows a white car parked on the side of the street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The sixth image shows a white car parked on the side of the street with a traffic cone in front of it.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "The first image shows a white car driving down a street with a traffic cone in front of it.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "turn left",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "following a van",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a white car parked on the side of the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "The first image shows a white car parked on the side of the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "intersection",
+              "label": "contradicted",
+              "evidence": "The fifth image shows a white car parked on the side of the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "turn left",
+              "label": "contradicted",
+              "evidence": "The third image shows a white car parked on the side of the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "following a van",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The car is driving down the street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the right side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Many peds right",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "wait for turning car",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "long bike rack left",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cyclist",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is driving.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are stopped.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are parked.",
+        "There are traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 7,
+      "repetition_loop": false,
+      "latency_s": 10.580271555615278,
+      "embedding_cosine": 0.24772022664546967,
+      "own_scene_rank": 2
+    },
+    {
+      "scene_name": "scene-0103",
+      "reference_text": "Many peds right, wait for turning car, long bike rack left, cyclist",
+      "description": "The drive is on a street with cars parked on both sides. There are buildings on both sides of the street.",
+      "chosen_view": 1,
+      "view_agreement": 0.5,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The drive is on a street with cars parked on both sides.",
+            "label": "contradicted",
+            "evidence": "Most pedestrians are walking.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "There are buildings on both sides of the street.",
+            "label": "contradicted",
+            "evidence": "There are no road barriers.",
+            "evidence_source": "annotations",
+            "object_class": null,
+            "box_present": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Many peds right",
+            "label": "supported",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "wait for turning car",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "long bike rack left",
+            "label": "contradicted",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cyclist",
+            "label": "contradicted",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "truck"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "truck"
+          ],
+          "claims": [
+            {
+              "text": "The drive is through a city street.",
+              "label": "supported",
+              "evidence": "There are bicycles or motorcycles.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "There are cars, a truck.",
+              "label": "supported",
+              "evidence": "Most trucks are parked.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "A van.",
+              "label": "contradicted",
+              "evidence": "Most pedestrians are walking.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "There are buildings on both sides of the street.",
+              "label": "contradicted",
+              "evidence": "There are no road barriers.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "supported",
+              "evidence": "There are buildings on both sides of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cyclist",
+              "label": "contradicted",
+              "evidence": "There are cars, a truck, and a van.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The drive is on a street with cars parked on both sides.",
+              "label": "contradicted",
+              "evidence": "Most pedestrians are walking.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "There are buildings on both sides of the street.",
+              "label": "contradicted",
+              "evidence": "There are no road barriers.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "supported",
+              "evidence": "The drive is on a street with cars parked on both sides.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "contradicted",
+              "evidence": "The drive is on a street with cars parked on both sides.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cyclist",
+              "label": "contradicted",
+              "evidence": "The drive is on a street with cars parked on both sides.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "two_wheeler"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "two_wheeler"
+          ],
+          "claims": [
+            {
+              "text": "The drive is through a city street.",
+              "label": "contradicted",
+              "evidence": "Most cars are parked.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "There are cars, a bicycle.",
+              "label": "contradicted",
+              "evidence": "There are trucks.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "A sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "supported",
+              "evidence": "There are cars, a bicycle, and a sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "contradicted",
+              "evidence": "There are cars, a bicycle, and a sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cyclist",
+              "label": "supported",
+              "evidence": "There are cars, a bicycle, and a sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "bus",
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The drive is on a street with cars parked on both sides.",
+            "label": "contradicted",
+            "evidence": "Most pedestrians are walking.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "There are buildings on both sides of the street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Wait at intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "large truck",
+            "label": "contradicted",
+            "evidence": "There are buildings on both sides of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds crossing crosswalk",
+            "label": "contradicted",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "ped with stroller",
+            "label": "contradicted",
+            "evidence": "The drive is on a street with cars parked on both sides.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "Vehicles drive on the right side of the road.",
+        "The drive is in Boston.",
+        "Our car is driving.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are no buses.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 21,
+      "repetition_loop": false,
+      "latency_s": 11.619702194623338,
+      "embedding_cosine": 0.2645697593688965,
+      "own_scene_rank": 6
+    },
+    {
+      "scene_name": "scene-0553",
+      "reference_text": "Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",
+      "description": "The first image shows a person walking across the street in front of a crosswalk. The second image shows a person walking across the street in front of a traffic light. The third image shows a person walking across the street in front of a traffic light. The fourth image shows a person walking across the street in front of a traffic light. The fifth image shows a person walking across the street in front of a traffic light. The sixth image shows a person walking across the street in front of a traffic light.",
+      "chosen_view": 1,
+      "view_agreement": 0.6666666666666666,
+      "final": {
+        "mentioned": [
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "bus",
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a person walking across the street in front of a crosswalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Wait at intersection",
+            "label": "supported",
+            "evidence": "The third image shows a person walking across the street in front of a traffic light.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "large truck",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds crossing crosswalk",
+            "label": "supported",
+            "evidence": "The first image shows a person walking across the street in front of a crosswalk.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "ped with stroller",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving past a traffic light.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a person walking across a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a person walking across a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a person walking across a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a person walking across a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a person walking across a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving past a traffic light.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "large truck",
+              "label": "contradicted",
+              "evidence": "The third image shows a person walking across a crosswalk.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "supported",
+              "evidence": "The third image shows a person walking across a crosswalk.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving past a traffic light.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a person walking across the street in front of a crosswalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a person walking across the street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a person walking across the street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a person walking across the street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a person walking across the street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a person walking across the street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "supported",
+              "evidence": "The third image shows a person walking across the street in front of a traffic light.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "large truck",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "supported",
+              "evidence": "The first image shows a person walking across the street in front of a crosswalk.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a person walking across a street in front of a traffic light.",
+              "label": "supported",
+              "evidence": "It is daytime.",
+              "evidence_source": "description",
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a person walking across a street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a person walking across a street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a person walking across a street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a person walking across a street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a person walking across a street in front of a traffic light.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "pedestrian",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "supported",
+              "evidence": "The third image shows a person walking across a street in front of a traffic light.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "large truck",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck"
+        ],
+        "covered": [
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a person walking across the street in front of a crosswalk.",
+            "label": "contradicted",
+            "evidence": "The scene is in a parking lot.",
+            "evidence_source": "description",
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a person walking across the street in front of a traffic light.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "pedestrian",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked cars",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bendy bus",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "gardening vehicles",
+            "label": "contradicted",
+            "evidence": "The first image shows a person walking across the street in front of a crosswalk.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "Vehicles drive on the right side of the road.",
+        "The drive is in Boston.",
+        "Our car is stopped.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are buses.",
+        "Most buses are moving.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are no bicycles or motorcycles.",
+        "There are no traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 95,
+      "repetition_loop": true,
+      "latency_s": 18.43881527800113,
+      "embedding_cosine": 0.41694602370262146,
+      "own_scene_rank": 2
+    },
+    {
+      "scene_name": "scene-0655",
+      "reference_text": "Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",
+      "description": "The first image shows a street with a car driving away from the camera. The second image shows a car driving towards the camera. The third image shows a car driving away from the camera. The fourth image shows a car driving towards the camera. The fifth image shows a car driving away from the camera. The sixth image shows a car driving towards the camera.",
+      "chosen_view": 0,
+      "view_agreement": 0.6666666666666666,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street with a car driving away from the camera.",
+            "label": "contradicted",
+            "evidence": "Most trucks are parked.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked cars",
+            "label": "contradicted",
+            "evidence": "The fifth image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bendy bus",
+            "label": "contradicted",
+            "evidence": "The third image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "gardening vehicles",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a street with a car driving away from the camera.",
+              "label": "contradicted",
+              "evidence": "Most trucks are parked.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked cars",
+              "label": "contradicted",
+              "evidence": "The fifth image shows a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "The third image shows a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "truck"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "truck"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a street with a car driving away from the camera.",
+              "label": "contradicted",
+              "evidence": "Most trucks are parked.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a truck parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "truck",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a truck parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "truck",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked cars",
+              "label": "supported",
+              "evidence": "The third image shows a truck parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "The second image shows a truck parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down the street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the right side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked cars",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street with a car driving away from the camera.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving towards the camera.",
+            "label": "contradicted",
+            "evidence": "There are trucks.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving away from the camera.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving towards the camera.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving away from the camera.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving towards the camera.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Arrive at busy intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "The third image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "wait at intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The scene is in a parking lot.",
+        "Vehicles drive on the right side of the road.",
+        "The drive is in Boston.",
+        "Our car is driving.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are buses.",
+        "Most buses are stopped.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are no bicycles or motorcycles.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 66,
+      "repetition_loop": true,
+      "latency_s": 14.438233486337898,
+      "embedding_cosine": 0.2730046808719635,
+      "own_scene_rank": 5
+    },
+    {
+      "scene_name": "scene-0757",
+      "reference_text": "Arrive at busy intersection, bus, wait at intersection, bicycle, peds",
+      "description": "The first image shows a street scene with a car driving past a street sign. The second image shows a car driving past a street sign. The third image shows a car driving past a street sign. The fourth image shows a car driving past a street sign. The fifth image shows a car driving past a street sign. The sixth image shows a car driving past a street sign.",
+      "chosen_view": 0,
+      "view_agreement": 0.5,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street scene with a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving past a street sign.",
+            "label": "contradicted",
+            "evidence": "There are buses.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Arrive at busy intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "wait at intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a street scene with a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving past a street sign.",
+              "label": "contradicted",
+              "evidence": "There are buses.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [],
+          "claims": [
+            {
+              "text": "The drive is through a street with a lot of buildings and scaffolding.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "contradicted",
+              "evidence": "The drive is through a street with a lot of buildings and scaffolding.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The drive is through a street with a lot of buildings and scaffolding.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds",
+              "label": "supported",
+              "evidence": "The drive is through a street with a lot of buildings and scaffolding.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street scene with a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving past a street sign.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Scooter",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds on sidewalk",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cars",
+            "label": "supported",
+            "evidence": "The third image shows a car driving past a street sign.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "truck",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "fake construction worker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cross intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "car overtaking us",
+            "label": "supported",
+            "evidence": "The second image shows a car driving past a street sign.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "Vehicles drive on the right side of the road.",
+        "The drive is in Boston.",
+        "Our car is moving slowly.",
+        "Our car stops for part of the drive.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "There are buses.",
+        "Most buses are moving.",
+        "There are no pedestrians.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 70,
+      "repetition_loop": true,
+      "latency_s": 12.208321569681479,
+      "embedding_cosine": 0.2518603205680847,
+      "own_scene_rank": 7
+    },
+    {
+      "scene_name": "scene-0796",
+      "reference_text": "Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",
+      "description": "The first image shows a street with a car driving away from the camera. The second image shows a car driving towards the camera. The third image shows a car driving away from the camera. The fourth image shows a car driving towards the camera. The fifth image shows a car driving away from the camera. The sixth image shows a car driving towards the camera.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street with a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Scooter",
+            "label": "contradicted",
+            "evidence": "The third image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds on sidewalk",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "The third image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cars",
+            "label": "supported",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "fake construction worker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "cross intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "car overtaking us",
+            "label": "supported",
+            "evidence": "The fourth image shows a car driving towards the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a street with a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving away from the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving towards the camera.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "The third image shows a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The third image shows a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The first image shows a street with a car driving away from the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "supported",
+              "evidence": "The fourth image shows a car driving towards the camera.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "The third image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "The drive passes an intersection.",
+              "evidence_source": "description",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "The third image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a street with a car driving away from the camera.",
+            "label": "contradicted",
+            "evidence": "Most trucks are parked.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving towards the camera.",
+            "label": "supported",
+            "evidence": "Our car turns right.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving towards the camera.",
+            "label": "supported",
+            "evidence": "Our car turns right.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving away from the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving towards the camera.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle rack",
+            "label": "contradicted",
+            "evidence": "The first image shows a street with a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked bicycles",
+            "label": "contradicted",
+            "evidence": "The sixth image shows a car driving towards the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "The third image shows a car driving away from the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "many peds",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked scooters",
+            "label": "contradicted",
+            "evidence": "The sixth image shows a car driving towards the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked motorcycle",
+            "label": "contradicted",
+            "evidence": "The sixth image shows a car driving towards the camera.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is driving fast.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 66,
+      "repetition_loop": true,
+      "latency_s": 12.705206583680896,
+      "embedding_cosine": 0.2840491831302643,
+      "own_scene_rank": 3
+    },
+    {
+      "scene_name": "scene-0916",
+      "reference_text": "Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",
+      "description": "The drive is from the front camera of a car. The car is driving on a street. There are trees, bushes, and houses in the background. There are cars parked on the side of the street.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The drive is from the front camera of a car.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The car is driving on a street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the left side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "There are trees, bushes.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "Houses in the background.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "There are cars parked on the side of the street.",
+            "label": "supported",
+            "evidence": "Most cars are parked.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "supported",
+            "evidence": "There are cars parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bicycle rack",
+            "label": "contradicted",
+            "evidence": "There are cars parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked bicycles",
+            "label": "contradicted",
+            "evidence": "There are cars parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "There are trees, bushes, and houses in the background.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "The car is driving on a street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked scooters",
+            "label": "contradicted",
+            "evidence": "The drive is from the front camera of a car.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "parked motorcycle",
+            "label": "contradicted",
+            "evidence": "The drive is from the front camera of a car.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The drive is from the front camera of a car.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The car is driving on a street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "There are trees, bushes.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "Houses in the background.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "There are cars parked on the side of the street.",
+              "label": "supported",
+              "evidence": "Most cars are parked.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "supported",
+              "evidence": "There are cars parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "There are cars parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "There are cars parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "There are trees, bushes, and houses in the background.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "The car is driving on a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "The drive is from the front camera of a car.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "The drive is from the front camera of a car.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down the street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "supported",
+              "evidence": "The second image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "The sixth image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "The fourth image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The drive is from the front camera of a car.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The car is driving on a street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the left side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "There are trees, bushes.",
+            "label": "supported",
+            "evidence": "It is night.",
+            "evidence_source": "description",
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "Houses in the background.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "There are cars parked on the side of the street.",
+            "label": "contradicted",
+            "evidence": "Most cars are moving.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "There are trees, bushes, and houses in the background.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "big street",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus stop",
+            "label": "contradicted",
+            "evidence": "There are trees, bushes, and houses in the background.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "high speed",
+            "label": "contradicted",
+            "evidence": "There are cars parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "construction vehicle",
+            "label": "contradicted",
+            "evidence": "There are trees, bushes, and houses in the background.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The scene is in a parking lot.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is driving.",
+        "Our car turns right.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are no buses.",
+        "There are pedestrians.",
+        "Most pedestrians are standing.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are parked.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 36,
+      "repetition_loop": false,
+      "latency_s": 17.34185512503609,
+      "embedding_cosine": 0.3100427985191345,
+      "own_scene_rank": 4
+    },
+    {
+      "scene_name": "scene-1077",
+      "reference_text": "Night, big street, bus stop, high speed, construction vehicle",
+      "description": "The first image shows a car driving down a road. The second image shows a car driving down the road. The third image shows a car driving down the road. The fourth image shows a car driving down the road. The fifth image shows a car driving down the road. The sixth image shows a car driving down the road.",
+      "chosen_view": 0,
+      "view_agreement": 0.0,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a car driving down a road.",
+            "label": "supported",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car turns left.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving down the road.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "big street",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "bus stop",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "high speed",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "construction vehicle",
+            "label": "contradicted",
+            "evidence": "The first image shows a car driving down a road.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a road.",
+              "label": "supported",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the road.",
+              "label": "supported",
+              "evidence": "Our car turns left.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down the road.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "big street",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus stop",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "high speed",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "truck"
+          ],
+          "covered": [],
+          "claims": [
+            {
+              "text": "The drive is long and straight.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "The scene shows: with a few trees on either side.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "There are no cars visible in the image.",
+              "label": "contradicted",
+              "evidence": "Most cars are moving.",
+              "evidence_source": "annotations",
+              "object_class": null,
+              "box_present": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "The drive is long and straight, with a few trees on either side.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "big street",
+              "label": "supported",
+              "evidence": "The drive is long and straight, with a few trees on either side.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus stop",
+              "label": "contradicted",
+              "evidence": "The drive is long and straight, with a few trees on either side.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "high speed",
+              "label": "contradicted",
+              "evidence": "There are no cars visible in the image.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "The drive is long and straight, with a few trees on either side.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down the road.",
+              "label": "supported",
+              "evidence": "Our car drives straight ahead.",
+              "evidence_source": "ego_pose",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "big street",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "bus stop",
+              "label": "contradicted",
+              "evidence": "The car is driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "high speed",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "The car is driving down the road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a car driving down a road.",
+            "label": "supported",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving down the road.",
+            "label": "supported",
+            "evidence": "Our car turns left.",
+            "evidence_source": "ego_pose",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving down the road.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving down the road.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "after rain",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "many peds",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "The first image shows a car driving down a road.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "ped with bag",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "The first image shows a car driving down a road.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "The fifth image shows a car driving down the road.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is driving fast.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are no pedestrians.",
+        "There are no traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 60,
+      "repetition_loop": true,
+      "latency_s": 13.866818263622312,
+      "embedding_cosine": 0.3165973126888275,
+      "own_scene_rank": 2
+    },
+    {
+      "scene_name": "scene-1094",
+      "reference_text": "Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",
+      "description": "The car is driving down the street.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The car is driving down the street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the left side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "after rain",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "ped with bag",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down the street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "after rain",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The car is driving down the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down a street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "after rain",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down a road.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "after rain",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The car is driving down a road.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The car is driving down the street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the left side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds in sidewalk",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds cross crosswalk",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "The car is driving down the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "difficult lighting",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "The road is wet.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is driving.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are stopped.",
+        "There are no trucks.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 7,
+      "repetition_loop": false,
+      "latency_s": 11.546963541652076,
+      "embedding_cosine": 0.11009248346090317,
+      "own_scene_rank": 5
+    },
+    {
+      "scene_name": "scene-1100",
+      "reference_text": "Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",
+      "description": "The first image shows a car driving down a street. The second image shows a car parked on the side of the street. The third image shows a car driving down the street. The fourth image shows a car driving down the street. The fifth image shows a car driving down the street. The sixth image shows a car driving down the street.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a car driving down a street.",
+            "label": "supported",
+            "evidence": "Vehicles drive on the left side of the road.",
+            "evidence_source": "log",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car parked on the side of the street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "Most cars are moving.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "Most cars are moving.",
+            "evidence_source": "annotations",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving down the street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving down the street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds in sidewalk",
+            "label": "contradicted",
+            "evidence": "The first image shows a car driving down a street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "peds cross crosswalk",
+            "label": "contradicted",
+            "evidence": "The second image shows a car parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "The second image shows a car parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "The second image shows a car parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "difficult lighting",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car parked on the side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "Most cars are moving.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down the street.",
+              "label": "supported",
+              "evidence": "Most cars are moving.",
+              "evidence_source": "annotations",
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "contradicted",
+              "evidence": "The second image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The second image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The second image shows a car parked on the side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The car is driving down a street.",
+              "label": "supported",
+              "evidence": "Vehicles drive on the left side of the road.",
+              "evidence_source": "log",
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The car is driving down a street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "The first image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The second image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The third image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fourth image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The fifth image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            },
+            {
+              "text": "The sixth image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": "car",
+              "box_present": true
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "The first image shows a car driving down a street with a blue and white sign on the right side of the street.",
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null,
+              "object_class": null,
+              "box_present": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "The first image shows a car driving down a street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The second image shows a car parked on the side of the street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The third image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fourth image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The fifth image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          },
+          {
+            "text": "The sixth image shows a car driving down the street.",
+            "label": "supported",
+            "evidence": "The drive passes an intersection.",
+            "evidence_source": "description",
+            "object_class": "car",
+            "box_present": true
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parked truck",
+            "label": "contradicted",
+            "evidence": "The first image shows a car driving down a street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "construction",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "intersection",
+            "label": "contradicted",
+            "evidence": "The second image shows a car parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "turn left",
+            "label": "contradicted",
+            "evidence": "The second image shows a car parked on the side of the street.",
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          },
+          {
+            "text": "following a van",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null,
+            "object_class": null,
+            "box_present": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "Vehicles drive on the left side of the road.",
+        "The drive is in Singapore.",
+        "Our car is stopped.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are no trucks.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 63,
+      "repetition_loop": true,
+      "latency_s": 10.289870944650223,
+      "embedding_cosine": 0.25258898735046387,
+      "own_scene_rank": 7
+    }
+  ],
+  "summary": {
+    "chair_i": 0.0,
+    "chair_s": 0.0,
+    "object_coverage": 0.23809523809523808,
+    "claims_supported": 0.26666666666666666,
+    "claims_contradicted": 0.2,
+    "claims_unverifiable": 0.5333333333333333,
+    "claims_supported_by_annotations": 0.24444444444444444,
+    "human_coverage": 0.11864406779661017,
+    "human_contradicted": 0.5423728813559322,
+    "macro_chair_i": 0.0,
+    "macro_chair_s": 0.0,
+    "macro_object_coverage": 0.255,
+    "macro_claims_supported": 0.37333333333333335,
+    "macro_claims_contradicted": 0.2166666666666667,
+    "macro_claims_unverifiable": 0.41,
+    "macro_claims_supported_by_annotations": 0.2733333333333333,
+    "macro_human_coverage": 0.12150793650793652,
+    "macro_human_contradicted": 0.512936507936508,
+    "chair_i_ci_low": 0.0,
+    "chair_i_ci_high": 0.0,
+    "object_coverage_ci_low": 0.20408163265306123,
+    "object_coverage_ci_high": 0.2857142857142857,
+    "claims_supported_ci_low": 0.0726332288401254,
+    "claims_supported_ci_high": 0.5121951219512195,
+    "claims_contradicted_ci_low": 0.0,
+    "claims_contradicted_ci_high": 0.5,
+    "human_coverage_ci_low": 0.040776310524209686,
+    "human_coverage_ci_high": 0.2,
+    "view_a_chair_i": 0.0,
+    "views_mean_chair_i": 0.0,
+    "within_scene_spread_chair_i": 0.0,
+    "view_a_chair_s": 0.0,
+    "views_mean_chair_s": 0.0,
+    "within_scene_spread_chair_s": 0.0,
+    "view_a_object_coverage": 0.27906976744186046,
+    "views_mean_object_coverage": 0.2582117258804723,
+    "within_scene_spread_object_coverage": 0.16166666666666665,
+    "view_a_claims_supported": 0.3191489361702128,
+    "views_mean_claims_supported": 0.33221270455313007,
+    "within_scene_spread_claims_supported": 0.75,
+    "view_a_claims_contradicted": 0.19148936170212766,
+    "views_mean_claims_contradicted": 0.12010684351109883,
+    "within_scene_spread_claims_contradicted": 0.2,
+    "view_a_claims_unverifiable": 0.48936170212765956,
+    "views_mean_claims_unverifiable": 0.5476804519357711,
+    "within_scene_spread_claims_unverifiable": 0.6833333333333333,
+    "view_a_claims_supported_by_annotations": 0.2765957446808511,
+    "views_mean_claims_supported_by_annotations": 0.15424764360934573,
+    "within_scene_spread_claims_supported_by_annotations": 0.4333333333333334,
+    "view_a_human_coverage": 0.1016949152542373,
+    "views_mean_human_coverage": 0.1016949152542373,
+    "within_scene_spread_human_coverage": 0.1503968253968254,
+    "view_a_human_contradicted": 0.576271186440678,
+    "views_mean_human_contradicted": 0.576271186440678,
+    "within_scene_spread_human_contradicted": 0.37357142857142855,
+    "shuffled_chair_i": 0.0,
+    "shuffled_chair_s": 0.0,
+    "shuffled_object_coverage": 0.23809523809523808,
+    "shuffled_claims_supported": 0.3333333333333333,
+    "shuffled_claims_contradicted": 0.2222222222222222,
+    "shuffled_claims_unverifiable": 0.4444444444444444,
+    "shuffled_claims_supported_by_annotations": 0.2,
+    "shuffled_human_coverage": 0.03389830508474576,
+    "shuffled_human_contradicted": 0.5254237288135594,
+    "specific_claims_supported": -0.06666666666666665,
+    "specific_object_coverage": 0.0,
+    "specific_human_coverage": 0.0847457627118644,
+    "view_agreement": 0.7,
+    "empty_rate": 0.0,
+    "repetition_loop_rate": 0.6,
+    "mean_words": 49.1,
+    "mean_latency_s_per_call": 13.303605854290073,
+    "embedding_cosine": 0.2727471776306629,
+    "own_scene_rank_1_rate": 0.0,
+    "judge_support_precision": null,
+    "judge_support_n": 0.0,
+    "judge_contradiction_precision": 0.0,
+    "judge_contradiction_n": 1.0,
+    "n_scenes": 10.0
+  }
+}

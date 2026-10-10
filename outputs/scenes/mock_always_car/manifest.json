@@ -1,18 +1,31 @@
 {
-  "created_utc": "2026-10-10T18:50:46+00:00",
-  "git_commit": "8243df7676016a7072c542a34e6e291a6c1acc43",
+  "created_utc": "2026-10-10T19:40:46+00:00",
+  "git_commit": "08bb3a6f51dd8bf74b9d4c355fa2935299ed3a6d",
   "git_dirty": true,
-  "config_sha256": "7f646a22f59a8802",
+  "config_sha256": "25cbe903d66f8bfd",
   "config": {
     "run_id": "mock_always_car",
-    "dataroot": "data/nuscenes",
-    "version": "v1.0-mini",
-    "camera": "CAM_FRONT",
-    "frames_per_view": 6,
-    "n_views": 3,
-    "scenes": null,
-    "min_visibility": 2,
-    "max_distance_m": 50.0,
+    "loader": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "camera": "CAM_FRONT",
+        "frames_per_view": 6,
+        "n_views": 3,
+        "scenes": null
+      }
+    },
+    "ground_truth": {
+      "name": "nuscenes",
+      "params": {
+        "dataroot": "data/nuscenes",
+        "version": "v1.0-mini",
+        "camera": "CAM_FRONT",
+        "min_visibility": 2,
+        "max_distance_m": 50
+      }
+    },
     "taxonomy": "driving",
     "vlm": {
       "name": "mock",

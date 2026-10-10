@@ -1,6 +1,6 @@
 # Scene-level evaluation: `mock-fixed` with prompt `scene_open@c03d290e`
 
-10 scenes. Each scene is shown as 3 views of 6 CAM_FRONT frames (one call per view); the final description is the most consistent view. Claims are judged by `nli-deberta-v3-base` against the fact sheet; objects are checked against the 3D boxes (CHAIR) without a judge.
+10 scenes. Each scene is shown as 3 views of 6 frames (one VLM call per view); the final description is the view most consistent with the others. Claims are judged by `nli-deberta-v3-base` against the fact sheet; objects are checked against the 3D boxes (CHAIR) without a judge.
 
 ## Headline
 
@@ -11,11 +11,33 @@
 | CHAIR_i: invented object mentions / all object mentions | 10.0% [0.0%, 25.0%] | 10.0% | 10.0% | 10.0% | 0.0% | 10.0% |
 | CHAIR_s: descriptions with an invented object | 20.0% | 20.0% | 20.0% | 20.0% | 0.0% | 20.0% |
 | Object coverage: clearly visible classes mentioned | 41.9% [34.0%, 51.5%] | 45.0% | 41.9% | 42.2% | 7.0% | 41.9% |
-| Claims supported by the facts | 0.0% [0.0%, 0.0%] | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
-| Claims contradicted by the facts | 45.0% [25.0%, 65.0%] | 45.0% | 45.0% | 43.3% | 10.0% | 45.0% |
-| Claims that cannot be verified (no annotation covers them) | 55.0% | 55.0% | 55.0% | 56.7% | 10.0% | 55.0% |
-| Claims supported by annotation-based facts | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
-| Human-sentence items covered | 11.9% [4.8%, 19.6%] | 11.6% | 11.9% | 11.9% | 0.0% | 11.9% |
+| Claims supported by the facts | 20.0% [5.0%, 35.0%] | 20.0% | 20.0% | 16.7% | 10.0% | 20.0% |
+| Claims that cannot be verified (no annotation covers them) | 45.0% | 45.0% | 45.0% | 50.0% | 10.0% | 45.0% |
+| Claims supported by annotation-based facts | 20.0% | 20.0% | 20.0% | 16.7% | 10.0% | 20.0% |
+| Human-sentence items covered | 16.9% [7.7%, 25.9%] | 16.7% | 16.9% | 16.9% | 0.0% | 16.9% |
+
+## Is the description about this scene?
+
+A generic description ("a car on a street in daylight") is supported in almost any scene. The difference between the own scene and the shuffled control shows how much of the content is specific to this scene. Zero or below means the description is no better than a generic one. For reference, the oracle control (fact sheet as description) scores about +40 points on claims supported.
+
+| Metric | Own − shuffled |
+|---|---|
+| Claims supported: own scene minus shuffled scene | 0.0% |
+| Object coverage: own scene minus shuffled scene | 0.0% |
+| Human-sentence coverage: own scene minus shuffled scene | 0.0% |
+
+**Conclusion:** the descriptions fit other scenes as well as (or better than) their own. There is no evidence that they describe this particular scene; treat the other scores of this run as reflecting generic text.
+
+## Contradictions (indicative only)
+
+A claim counts as contradicted when the NLI judge reads the whole fact sheet as contradicting it. The automatic check below shows this verdict is much less reliable than "supported", so contradiction rates are reported but not used for conclusions.
+
+| Metric | Value |
+|---|---|
+| Claims contradicted | 35.0% [15.0%, 55.0%] |
+| Shuffled control: claims contradicted | 35.0% |
+| Judge check: 'supported' object claims whose object is in view (n=0) | – |
+| Judge check: 'contradicted' object claims whose object is absent (n=15) | 53.3% |
 
 ## Output quality
 
@@ -41,15 +63,15 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 | Scene | Human sentence | Model description (final) | Human items covered | Errors |
 |---|---|---|---|---|
 | scene-0061 | Parked truck, construction, intersection, turn left, following a van | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 1/5 | missed: barrier, traffic_cone, truck, two_wheeler |
-| scene-0103 | Many peds right, wait for turning car, long bike rack left, cyclist | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/4 | missed: traffic_cone, truck, two_wheeler; 1 contradicted claim(s) |
-| scene-0553 | Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 1/5 | missed: barrier, bus, truck, two_wheeler; 2 contradicted claim(s) |
-| scene-0655 | Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/5 | missed: bus, traffic_cone, truck; 1 contradicted claim(s) |
-| scene-0757 | Arrive at busy intersection, bus, wait at intersection, bicycle, peds | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 1/5 | invented: pedestrian; missed: bus, traffic_cone, truck, two_wheeler; 1 contradicted claim(s) |
-| scene-0796 | Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 2/9 | missed: truck |
+| scene-0103 | Many peds right, wait for turning car, long bike rack left, cyclist | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/4 | missed: traffic_cone, truck, two_wheeler; 1 contradicted claim(s), indicative |
+| scene-0553 | Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 1/5 | missed: barrier, bus, truck, two_wheeler; 1 contradicted claim(s), indicative |
+| scene-0655 | Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/5 | missed: bus, traffic_cone, truck |
+| scene-0757 | Arrive at busy intersection, bus, wait at intersection, bicycle, peds | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 1/5 | invented: pedestrian; missed: bus, traffic_cone, truck, two_wheeler; 1 contradicted claim(s), indicative |
+| scene-0796 | Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 3/9 | missed: truck |
 | scene-0916 | Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/7 | missed: truck, two_wheeler |
-| scene-1077 | Night, big street, bus stop, high speed, construction vehicle | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/5 | invented: pedestrian; missed: barrier, truck; 2 contradicted claim(s) |
-| scene-1094 | Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/8 | missed: two_wheeler; 1 contradicted claim(s) |
-| scene-1100 | Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 2/6 | missed: two_wheeler; 1 contradicted claim(s) |
+| scene-1077 | Night, big street, bus stop, high speed, construction vehicle | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 2/5 | invented: pedestrian; missed: barrier, truck; 2 contradicted claim(s), indicative |
+| scene-1094 | Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 0/8 | missed: two_wheeler; 1 contradicted claim(s), indicative |
+| scene-1100 | Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting | A car drives along a sunny street. A pedestrian walks on the sidewalk. | 2/6 | missed: two_wheeler; 1 contradicted claim(s), indicative |
 
 ## Details per scene
 
@@ -59,7 +81,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The drive passes an intersection.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is driving.
 - Our car turns left.
 - There are cars.
@@ -93,7 +116,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Fact sheet (reference)**
 
 - It is daytime.
-- The drive is in Boston, where vehicles drive on the right.
+- Vehicles drive on the right side of the road.
+- The drive is in Boston.
 - Our car is driving.
 - Our car drives straight ahead.
 - There are cars.
@@ -109,9 +133,10 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 **Claims of the description**
 
-- **neutral**: A car drives along a sunny street.
+- **supported**: A car drives along a sunny street.  
+  ↳ supporting fact: _There are cars._
 - **contradicted**: A pedestrian walks on the sidewalk.  
-  ↳ fact: _Our car is driving._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 
 **Human sentence items**
 
@@ -128,7 +153,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The drive passes an intersection.
-- The drive is in Boston, where vehicles drive on the right.
+- Vehicles drive on the right side of the road.
+- The drive is in Boston.
 - Our car is stopped.
 - There are cars.
 - Most cars are moving.
@@ -145,10 +171,9 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 **Claims of the description**
 
-- **contradicted**: A car drives along a sunny street.  
-  ↳ fact: _Most pedestrians are walking._
+- **neutral**: A car drives along a sunny street.
 - **contradicted**: A pedestrian walks on the sidewalk.  
-  ↳ fact: _There are cars._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 
 **Human sentence items**
 
@@ -166,7 +191,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The scene is in a parking lot.
-- The drive is in Boston, where vehicles drive on the right.
+- Vehicles drive on the right side of the road.
+- The drive is in Boston.
 - Our car is driving.
 - Our car drives straight ahead.
 - There are cars.
@@ -183,9 +209,9 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 **Claims of the description**
 
-- **neutral**: A car drives along a sunny street.
-- **contradicted**: A pedestrian walks on the sidewalk.  
-  ↳ fact: _Our car is driving._
+- **supported**: A car drives along a sunny street.  
+  ↳ supporting fact: _There are cars._
+- **neutral**: A pedestrian walks on the sidewalk.
 
 **Human sentence items**
 
@@ -203,7 +229,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The drive passes an intersection.
-- The drive is in Boston, where vehicles drive on the right.
+- Vehicles drive on the right side of the road.
+- The drive is in Boston.
 - Our car is moving slowly.
 - Our car stops for part of the drive.
 - Our car drives straight ahead.
@@ -222,7 +249,7 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - **neutral**: A car drives along a sunny street.
 - **contradicted**: A pedestrian walks on the sidewalk.  
-  ↳ fact: _Our car is moving slowly._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 
 **Human sentence items**
 
@@ -240,7 +267,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The drive passes an intersection.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is driving fast.
 - Our car drives straight ahead.
 - There are cars.
@@ -254,7 +282,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 **Claims of the description**
 
-- **neutral**: A car drives along a sunny street.
+- **supported**: A car drives along a sunny street.  
+  ↳ supporting fact: _There are cars._
 - **neutral**: A pedestrian walks on the sidewalk.
 
 **Human sentence items**
@@ -267,7 +296,7 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 - **neutral**: fake construction worker
 - **contradicted**: bicycle
 - **contradicted**: cross intersection
-- **neutral**: car overtaking us
+- **supported**: car overtaking us
 
 </details>
 
@@ -277,7 +306,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is daytime.
 - The scene is in a parking lot.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is driving.
 - Our car turns right.
 - There are cars.
@@ -294,7 +324,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 **Claims of the description**
 
-- **neutral**: A car drives along a sunny street.
+- **supported**: A car drives along a sunny street.  
+  ↳ supporting fact: _There are cars._
 - **neutral**: A pedestrian walks on the sidewalk.
 
 **Human sentence items**
@@ -314,7 +345,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Fact sheet (reference)**
 
 - It is night.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is driving fast.
 - Our car turns left.
 - There are cars.
@@ -328,16 +360,16 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Claims of the description**
 
 - **contradicted**: A car drives along a sunny street.  
-  ↳ fact: _It is night._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 - **contradicted**: A pedestrian walks on the sidewalk.  
-  ↳ fact: _Our car is driving fast._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 
 **Human sentence items**
 
 - **contradicted**: Night
-- **neutral**: big street
+- **supported**: big street
 - **contradicted**: bus stop
-- **neutral**: high speed
+- **supported**: high speed
 - **contradicted**: construction vehicle
 
 </details>
@@ -348,7 +380,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 
 - It is night.
 - The road is wet.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is driving.
 - Our car turns left.
 - There are cars.
@@ -364,7 +397,7 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Claims of the description**
 
 - **contradicted**: A car drives along a sunny street.  
-  ↳ fact: _It is night._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 - **neutral**: A pedestrian walks on the sidewalk.
 
 **Human sentence items**
@@ -385,7 +418,8 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Fact sheet (reference)**
 
 - It is night.
-- The drive is in Singapore, where vehicles drive on the left.
+- Vehicles drive on the left side of the road.
+- The drive is in Singapore.
 - Our car is stopped.
 - There are cars.
 - Most cars are moving.
@@ -400,7 +434,7 @@ Whole-text similarity is reported for completeness. It rewards topical overlap, 
 **Claims of the description**
 
 - **contradicted**: A car drives along a sunny street.  
-  ↳ fact: _It is night._
+  ↳ contradicted by the fact sheet as a whole (indicative, see reliability)
 - **neutral**: A pedestrian walks on the sidewalk.
 
 **Human sentence items**

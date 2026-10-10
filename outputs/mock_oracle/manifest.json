@@ -1,8 +1,8 @@
 {
-  "created_utc": "2026-10-10T18:37:21+00:00",
-  "git_commit": "0efae21ec3d7d88b84c6ea671f0b77357937806d",
+  "created_utc": "2026-10-10T19:44:42+00:00",
+  "git_commit": "08bb3a6f51dd8bf74b9d4c355fa2935299ed3a6d",
   "git_dirty": true,
-  "config_sha256": "71458be2a600fa27",
+  "config_sha256": "b69a17c09cf013bb",
   "config": {
     "run_id": "mock_oracle",
     "loader": {
@@ -28,10 +28,8 @@
       }
     },
     "vlm": {
-      "name": "mock",
-      "params": {
-        "mode": "oracle"
-      }
+      "name": "oracle",
+      "params": {}
     },
     "taxonomy": "driving",
     "prompt": "v2_structured",

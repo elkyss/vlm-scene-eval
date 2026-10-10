@@ -4,25 +4,25 @@
 - **B**: `SmolVLM-500M-Instruct / v1_open@14073038`
 - 50 shared frames, 10 scenes
 
-Δ = B − A. 95% CI from a bootstrap over scenes (frames within a scene are correlated). McNemar p-value on paired per-frame correctness. With only 10 scenes, CIs are wide: treat differences whose CI crosses 0 as inconclusive.
+Δ = B − A. 95% CI from a bootstrap over scenes (frames within a scene are correlated). The p-value is an exact paired sign-flip test on per-scene differences (frames of a scene are not independent, so testing happens at scene level). With only 10 scenes, CIs are wide: treat differences whose CI crosses 0 as inconclusive.
 
-| Metric | A | B | Δ | 95% CI of Δ | McNemar p |
-|---|---|---|---|---|---|
-| Object micro F1 | 64.1% | 67.8% | 3.7% | [-3.9%, 11.9%] | – |
-| Mean frame object F1 | 64.0% | 68.2% | 4.2% | [-4.7%, 13.0%] | – |
-| Presence accuracy: car | 94.0% | 94.0% | 0.0% | [0.0%, 0.0%] | 1.000 |
-| Presence accuracy: truck | 76.0% | 78.0% | 2.0% | [-4.0%, 8.0%] | 1.000 |
-| Presence accuracy: bus | 86.0% | 88.0% | 2.0% | [-4.0%, 8.0%] | 1.000 |
-| Presence accuracy: pedestrian | 54.0% | 74.0% | 20.0% | [-12.0%, 50.0%] | 0.121 |
-| Presence accuracy: two_wheeler | 76.0% | 76.0% | 0.0% | [-6.0%, 6.0%] | 1.000 |
-| Presence accuracy: traffic_cone | 84.0% | 88.0% | 4.0% | [0.0%, 12.0%] | 0.500 |
-| Presence accuracy: barrier | 82.0% | 84.0% | 2.0% | [0.0%, 6.0%] | 1.000 |
-| Accuracy: time_of_day | 70.0% | 2.0% | -68.0% | [-90.0%, -36.0%] | 0.000 |
-| Accuracy: road_condition | 90.0% | 0.0% | -90.0% | [-100.0%, -70.0%] | 0.000 |
-| Accuracy: scene_type | 40.0% | 56.0% | 16.0% | [-4.0%, 38.0%] | 0.039 |
-| Accuracy: traffic_side | 40.0% | 6.0% | -34.0% | [-62.0%, -6.0%] | 0.000 |
-| Valid structured output | 100.0% | 100.0% | 0.0% | [0.0%, 0.0%] | 1.000 |
-| Mean latency (s) | 0.00 | 1.74 | 1.74 | [1.70, 1.80] | – |
+| Metric | A | B | Δ | 95% CI of Δ | Scene sign-flip p | Verdict |
+|---|---|---|---|---|---|---|
+| Object micro F1 | 64.1% | 67.8% | 3.7% | [-3.9%, 11.9%] | 0.311 | inconclusive |
+| Mean frame object F1 | 64.0% | 68.2% | 4.2% | [-4.7%, 13.0%] | 0.406 | inconclusive |
+| Presence accuracy: car | 94.0% | 94.0% | 0.0% | [0.0%, 0.0%] | 1.000 | inconclusive |
+| Presence accuracy: truck | 76.0% | 78.0% | 2.0% | [-4.0%, 8.0%] | 1.000 | inconclusive |
+| Presence accuracy: bus | 86.0% | 88.0% | 2.0% | [-4.0%, 8.0%] | 1.000 | inconclusive |
+| Presence accuracy: pedestrian | 54.0% | 74.0% | 20.0% | [-12.0%, 50.0%] | 0.324 | inconclusive |
+| Presence accuracy: two_wheeler | 76.0% | 76.0% | 0.0% | [-6.0%, 6.0%] | 1.000 | inconclusive |
+| Presence accuracy: traffic_cone | 84.0% | 88.0% | 4.0% | [0.0%, 12.0%] | 1.000 | inconclusive |
+| Presence accuracy: barrier | 82.0% | 84.0% | 2.0% | [0.0%, 6.0%] | 1.000 | inconclusive |
+| Accuracy: time_of_day | 70.0% | 2.0% | -68.0% | [-90.0%, -36.0%] | 0.016 | A better |
+| Accuracy: road_condition | 90.0% | 0.0% | -90.0% | [-100.0%, -70.0%] | 0.004 | A better |
+| Accuracy: scene_type | 40.0% | 56.0% | 16.0% | [-4.0%, 38.0%] | 0.312 | inconclusive |
+| Accuracy: traffic_side | 40.0% | 6.0% | -34.0% | [-62.0%, -6.0%] | 0.125 | A better |
+| Valid structured output | 100.0% | 100.0% | 0.0% | [0.0%, 0.0%] | 1.000 | inconclusive |
+| Mean latency (s) | 0.00 | 1.74 | 1.74 | [1.70, 1.80] | 0.002 | A better |
 
 ## Largest disagreements
 

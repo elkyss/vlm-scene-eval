@@ -1,0 +1,2546 @@
+{
+  "judge": "nli-deberta-v3-base",
+  "summary": {
+    "objects": {
+      "n_true": 128.0,
+      "n_false": 65.0,
+      "true_supported": 1.0,
+      "false_supported": 0.18461538461538463,
+      "false_contradicted": 0.8153846153846154,
+      "true_contradicted": 0.0
+    },
+    "all": {
+      "n_true": 198.0,
+      "n_false": 135.0,
+      "true_supported": 1.0,
+      "false_supported": 0.15555555555555556,
+      "false_contradicted": 0.7555555555555555,
+      "true_contradicted": 0.0
+    },
+    "time_of_day": {
+      "n_true": 30.0,
+      "n_false": 30.0,
+      "true_supported": 1.0,
+      "false_supported": 0.0,
+      "false_contradicted": 1.0,
+      "true_contradicted": 0.0
+    },
+    "ego_motion": {
+      "n_true": 30.0,
+      "n_false": 30.0,
+      "true_supported": 1.0,
+      "false_supported": 0.3,
+      "false_contradicted": 0.3,
+      "true_contradicted": 0.0
+    },
+    "turn": {
+      "n_true": 10.0,
+      "n_false": 10.0,
+      "true_supported": 1.0,
+      "false_supported": 0.0,
+      "false_contradicted": 1.0,
+      "true_contradicted": 0.0
+    }
+  },
+  "probes": [
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0061",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0103",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "A bicycle or motorcycle is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "A bicycle or motorcycle is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0553",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A bicycle or motorcycle is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A bicycle or motorcycle is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A bicycle or motorcycle is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0655",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some traffic cones can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0757",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0796",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A bus is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-0916",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some trucks can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A pedestrian is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "objects",
+      "claim": "Some road barriers can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1077",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some buses can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a left turn.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "turn",
+      "claim": "The vehicle carrying the camera makes a right turn.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1094",
+      "kind": "ambiguous_car",
+      "claim": "The car is stopped.",
+      "truth": null,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "neutral"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some cars can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A truck is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some pedestrians can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "Some bicycles or motorcycles can be seen in the scene.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A traffic cone is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "objects",
+      "claim": "A road barrier is clearly visible in the scene.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place at night.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "time_of_day",
+      "claim": "The drive takes place in daylight.",
+      "truth": false,
+      "verdict": "contradicted"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is not moving.",
+      "truth": true,
+      "verdict": "supported"
+    },
+    {
+      "scene_name": "scene-1100",
+      "kind": "ego_motion",
+      "claim": "The vehicle carrying the camera is moving.",
+      "truth": false,
+      "verdict": "neutral"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "a": "SmolVLM-500M-Instruct / scene_open@c03d290e",
+  "b": "SmolVLM-500M-Instruct / scene_guided@97a6fd64",
+  "scenes": 10,
+  "metrics": [
+    {
+      "metric": "CHAIR_i",
+      "a": 0.0,
+      "b": 0.07142857142857142,
+      "diff": 0.07142857142857142,
+      "ci_low": 0.0,
+      "ci_high": 0.21428571428571427,
+      "b_wins": 0,
+      "b_losses": 1,
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
+    },
+    {
+      "metric": "Object coverage",
+      "a": 0.23809523809523808,
+      "b": 0.29545454545454547,
+      "diff": 0.05735930735930739,
+      "ci_low": -0.01464048635101269,
+      "ci_high": 0.12499999999999997,
+      "b_wins": 3,
+      "b_losses": 2,
+      "sign_flip_p": 0.375,
+      "verdict": "inconclusive"
+    },
+    {
+      "metric": "Claims supported",
+      "a": 0.26666666666666666,
+      "b": 0.32142857142857145,
+      "diff": 0.05476190476190479,
+      "ci_low": -0.24247474747474745,
+      "ci_high": 0.31736866749602594,
+      "b_wins": 5,
+      "b_losses": 4,
+      "sign_flip_p": 0.703125,
+      "verdict": "inconclusive"
+    },
+    {
+      "metric": "Claims contradicted",
+      "a": 0.2,
+      "b": 0.23214285714285715,
+      "diff": 0.03214285714285714,
+      "ci_low": -0.32326565085493664,
+      "ci_high": 0.2748893257334911,
+      "b_wins": 2,
+      "b_losses": 5,
+      "sign_flip_p": 0.90625,
+      "verdict": "inconclusive"
+    },
+    {
+      "metric": "Human-sentence coverage",
+      "a": 0.11864406779661017,
+      "b": 0.22033898305084745,
+      "diff": 0.10169491525423728,
+      "ci_low": -0.02942273924495172,
+      "ci_high": 0.23442471590909064,
+      "b_wins": 4,
+      "b_losses": 2,
+      "sign_flip_p": 0.1875,
+      "verdict": "inconclusive"
+    }
+  ]
+}

@@ -11,7 +11,8 @@
       "diff": 0.03681892938617426,
       "ci_low": -0.03854573588876926,
       "ci_high": 0.11904655256869767,
-      "mcnemar_p": null
+      "sign_flip_p": 0.310546875,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Mean frame object F1",
@@ -20,7 +21,8 @@
       "diff": 0.04190476190476189,
       "ci_low": -0.047335714285714175,
       "ci_high": 0.13028809523809518,
-      "mcnemar_p": null
+      "sign_flip_p": 0.40625,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: car",
@@ -29,7 +31,8 @@
       "diff": 0.0,
       "ci_low": 0.0,
       "ci_high": 0.0,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: truck",
@@ -38,7 +41,8 @@
       "diff": 0.020000000000000018,
       "ci_low": -0.040000000000000036,
       "ci_high": 0.08000000000000007,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: bus",
@@ -47,7 +51,8 @@
       "diff": 0.020000000000000018,
       "ci_low": -0.040000000000000036,
       "ci_high": 0.08000000000000007,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: pedestrian",
@@ -56,7 +61,8 @@
       "diff": 0.19999999999999996,
       "ci_low": -0.12,
       "ci_high": 0.49999999999999994,
-      "mcnemar_p": 0.12144948495551944
+      "sign_flip_p": 0.32421875,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: two_wheeler",
@@ -65,7 +71,8 @@
       "diff": 0.0,
       "ci_low": -0.06000000000000005,
       "ci_high": 0.05999999999999994,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: traffic_cone",
@@ -74,7 +81,8 @@
       "diff": 0.040000000000000036,
       "ci_low": 0.0,
       "ci_high": 0.12,
-      "mcnemar_p": 0.5
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Presence accuracy: barrier",
@@ -83,7 +91,8 @@
       "diff": 0.020000000000000018,
       "ci_low": 0.0,
       "ci_high": 0.06000000000000005,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Accuracy: time_of_day",
@@ -92,7 +101,8 @@
       "diff": -0.6799999999999999,
       "ci_low": -0.9,
       "ci_high": -0.36000000000000004,
-      "mcnemar_p": 1.076841726899147e-09
+      "sign_flip_p": 0.015625,
+      "verdict": "A better"
     },
     {
       "metric": "Accuracy: road_condition",
@@ -101,7 +111,8 @@
       "diff": -0.9,
       "ci_low": -1.0,
       "ci_high": -0.7,
-      "mcnemar_p": 5.684341886080802e-14
+      "sign_flip_p": 0.00390625,
+      "verdict": "A better"
     },
     {
       "metric": "Accuracy: scene_type",
@@ -110,7 +121,8 @@
       "diff": 0.16000000000000003,
       "ci_low": -0.039999999999999925,
       "ci_high": 0.38000000000000006,
-      "mcnemar_p": 0.03857421875
+      "sign_flip_p": 0.3125,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Accuracy: traffic_side",
@@ -119,7 +131,8 @@
       "diff": -0.34,
       "ci_low": -0.62,
       "ci_high": -0.060000000000000005,
-      "mcnemar_p": 7.62939453125e-05
+      "sign_flip_p": 0.125,
+      "verdict": "A better"
     },
     {
       "metric": "Valid structured output",
@@ -128,7 +141,8 @@
       "diff": 0.0,
       "ci_low": 0.0,
       "ci_high": 0.0,
-      "mcnemar_p": 1.0
+      "sign_flip_p": 1.0,
+      "verdict": "inconclusive"
     },
     {
       "metric": "Mean latency (s)",
@@ -137,7 +151,8 @@
       "diff": 1.743660521695856,
       "ci_low": 1.7000172093314467,
       "ci_high": 1.797668786929862,
-      "mcnemar_p": null
+      "sign_flip_p": 0.001953125,
+      "verdict": "A better"
     }
   ]
 }

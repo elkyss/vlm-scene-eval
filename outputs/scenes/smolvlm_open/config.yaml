@@ -1,0 +1,33 @@
+cache_dir: .cache/vlm
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+ground_truth:
+  name: nuscenes
+  params:
+    camera: CAM_FRONT
+    dataroot: data/nuscenes
+    max_distance_m: 50
+    min_visibility: 2
+    version: v1.0-mini
+judge:
+  name: nli
+  params:
+    model_id: cross-encoder/nli-deberta-v3-base
+loader:
+  name: nuscenes
+  params:
+    camera: CAM_FRONT
+    dataroot: data/nuscenes
+    frames_per_view: 6
+    n_views: 3
+    scenes: null
+    version: v1.0-mini
+output_dir: outputs/scenes
+prompt: scene_open
+run_id: smolvlm_open
+seed: 0
+taxonomy: driving
+vlm:
+  name: hf
+  params:
+    max_new_tokens: 200
+    model_id: HuggingFaceTB/SmolVLM-500M-Instruct
