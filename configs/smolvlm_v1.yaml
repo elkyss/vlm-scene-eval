@@ -1,0 +1,27 @@
+# Run config: smolvlm_v1
+run_id: smolvlm_v1
+loader:
+  name: nuscenes
+  params:
+    dataroot: data/nuscenes
+    version: v1.0-mini
+    cameras: [CAM_FRONT]
+    frames_per_scene: 5      # null = all ~40 keyframes per scene
+    scenes: null             # e.g. [scene-0061, scene-1094]
+ground_truth:
+  name: nuscenes
+  params:
+    dataroot: data/nuscenes
+    version: v1.0-mini
+    camera: CAM_FRONT
+    min_visibility: 2        # nuScenes level 2 = 40-60% visible
+    max_distance_m: 50
+vlm:
+  name: hf
+  params: {model_id: HuggingFaceTB/SmolVLM-500M-Instruct, max_new_tokens: 160}
+prompt: v1_open
+writers: [jsonl, csv]
+metrics: []                  # empty = all default metrics
+output_dir: outputs
+cache_dir: .cache/vlm
+seed: 0

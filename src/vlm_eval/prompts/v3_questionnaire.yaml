@@ -1,0 +1,7 @@
+# Questionnaire (VQA) strategy: one open description + one short question per fact.
+# Small VLMs follow single questions far better than a JSON schema.
+# Attribute questions come from the taxonomy; object questions from this template.
+description: >-
+  Describe this image from the front camera of a car in 2-3 sentences. Say what kind of
+  place it is, the lighting and road conditions, and which road users and objects you can see.
+count_question: How many {display} are clearly visible? Answer with a number.

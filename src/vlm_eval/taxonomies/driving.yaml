@@ -1,0 +1,99 @@
+# Label vocabulary for driving-scene descriptions.
+#
+# Everything domain-specific lives here: which object classes and scene attributes are
+# evaluated, their allowed values, and the words that express them. Parsers, prompts
+# and metrics are generic and read this file, so a new domain (or a finer label set)
+# is a new taxonomy file, not a code change.
+#
+# Order matters: the first label whose cue matches wins (e.g. "night" before "day",
+# "parking_lot" before "road").
+name: driving
+
+count_buckets:            # label + inclusive upper bound (null = unbounded)
+  - {label: "0", max: 0}
+  - {label: "1-2", max: 2}
+  - {label: "3-5", max: 5}
+  - {label: "6+", max: null}
+
+objects:
+  car:
+    singular: car
+    plural: cars
+    display: cars or vans
+    synonyms: [car, cars, sedan, sedans, suv, suvs, taxi, taxis, van, vans, vehicle, vehicles,
+               automobile, automobiles, hatchback, jeep]
+  truck:
+    singular: truck
+    plural: trucks
+    display: trucks or construction vehicles
+    synonyms: [truck, trucks, lorry, lorries, trailer, trailers, pickup, excavator, bulldozer,
+               crane, construction vehicle, construction vehicles]
+  bus:
+    singular: bus
+    plural: buses
+    display: buses
+    synonyms: [bus, buses, busses, minibus, coach]
+  pedestrian:
+    singular: pedestrian
+    plural: pedestrians
+    display: pedestrians
+    synonyms: [pedestrian, pedestrians, people, person, persons, man, men, woman, women, walker,
+               walkers, peds, child, children, crowd, jaywalker, worker, workers, passerby,
+               passersby]
+  two_wheeler:
+    singular: bicycle or motorcycle
+    plural: bicycles or motorcycles
+    display: bicycles, motorcycles or scooters
+    synonyms: [bicycle, bicycles, bike, bikes, cyclist, cyclists, motorcycle, motorcycles,
+               motorbike, motorbikes, scooter, scooters, moped, mopeds, motorcyclist,
+               motorcyclists, two_wheeler, two-wheeler]
+  traffic_cone:
+    singular: traffic cone
+    plural: traffic cones
+    display: traffic cones
+    synonyms: [traffic cone, traffic cones, traffic_cone, cone, cones, pylon, pylons]
+  barrier:
+    singular: road barrier
+    plural: road barriers
+    display: road barriers
+    synonyms: [barrier, barriers, barricade, barricades, bollard, bollards]
+
+# Phrases that contain an object word but do not mean the object ("bus stop"), including
+# references to the ego vehicle carrying the camera ("taken from the front of a car").
+non_object_phrases: [front of a car, front of the car, from a car, from the car, inside a car,
+                     inside the car, of a moving car, dashboard camera, car's camera, car park, parking lot, parking area, parking space, bus stop, bus lane,
+                     bike lane, bike rack, bicycle lane, bicycle rack, pedestrian crossing,
+                     pedestrian crosswalk, pedestrian walkway, pedestrian path, truck stop]
+
+attributes:
+  time_of_day:
+    question: Was this photo taken during the day or at night? Answer with one word, day or night.
+    values:
+      night: [night, nighttime, night-time, evening, dusk, dark, darkness]
+      day: [day, daytime, day-time, morning, afternoon, daylight, sunny, sunlight]
+    text_cues:            # "a dark car" says nothing about the time of day
+      night: [night, nighttime, night-time, evening, dusk, darkness]
+      day: [day, daytime, day-time, daylight, sunny, sunlight]
+  road_condition:
+    question: Is the road surface wet or dry? Answer with one word, wet or dry.
+    values:
+      wet: [wet, rain, raining, rainy, puddle, puddles, damp]
+      dry: [dry]
+  scene_type:
+    question: Is the car on a normal road, at an intersection, or in a parking lot? Answer with one of road, intersection, parking lot.
+    values:
+      parking_lot: [parking_lot, parking lot, car park, parking area, parking garage, parking]
+      intersection: [intersection, junction, crossroad, crossroads]
+      road: [road, street, highway, avenue, boulevard, urban]
+    text_cues:            # in free text, "lane" or "traffic lights" are good hints too
+      parking_lot: [parking lot, car park, parking area, parking garage]
+      intersection: [intersection, junction, crossroad, crossroads, traffic light, traffic lights]
+      road: [road, street, highway, avenue, lane, boulevard]
+  traffic_side:
+    question: On which side of the road do vehicles drive here, left or right? Answer with one word.
+    values:
+      left: [left]
+      right: [right]
+    text_cues:            # a bare "left" in prose is not a claim about traffic side
+      left: [left-hand traffic, drive on the left, driving on the left, left side of the road]
+      right: [right-hand traffic, drive on the right, driving on the right, right side of the road]

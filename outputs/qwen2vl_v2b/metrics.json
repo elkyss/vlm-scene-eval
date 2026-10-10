@@ -1,0 +1,2014 @@
+{
+  "object_presence": {
+    "name": "object_presence",
+    "summary": {
+      "micro_precision": 0.7647058823529411,
+      "micro_recall": 0.22807017543859648,
+      "micro_f1": 0.35135135135135137,
+      "macro_f1": 0.3189256834809396,
+      "hallucination_rate": 0.21052631578947367,
+      "omission_rate": 0.7719298245614035,
+      "mean_frame_f1": 0.22901587301587298,
+      "blind_prior_micro_f1": 0.546583850931677,
+      "blind_prior_micro_precision": 0.9361702127659575,
+      "blind_prior_micro_recall": 0.38596491228070173
+    },
+    "tables": {
+      "per_class": {
+        "car": {
+          "tp": 9,
+          "fp": 0,
+          "fp_far": 1,
+          "fn": 35,
+          "tn": 5,
+          "gt_frames": 44,
+          "precision": 1.0,
+          "precision_strict": 0.9,
+          "recall": 0.20454545454545456,
+          "f1": 0.33962264150943394,
+          "hallucination_rate": 0.0
+        },
+        "truck": {
+          "tp": 7,
+          "fp": 3,
+          "fp_far": 1,
+          "fn": 5,
+          "tn": 34,
+          "gt_frames": 12,
+          "precision": 0.7,
+          "precision_strict": 0.6363636363636364,
+          "recall": 0.5833333333333334,
+          "f1": 0.6363636363636364,
+          "hallucination_rate": 0.2727272727272727
+        },
+        "bus": {
+          "tp": 1,
+          "fp": 0,
+          "fp_far": 1,
+          "fn": 6,
+          "tn": 42,
+          "gt_frames": 7,
+          "precision": 1.0,
+          "precision_strict": 0.5,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "hallucination_rate": 0.0
+        },
+        "pedestrian": {
+          "tp": 5,
+          "fp": 1,
+          "fp_far": 1,
+          "fn": 17,
+          "tn": 26,
+          "gt_frames": 22,
+          "precision": 0.8333333333333334,
+          "precision_strict": 0.7142857142857143,
+          "recall": 0.22727272727272727,
+          "f1": 0.35714285714285715,
+          "hallucination_rate": 0.14285714285714285
+        },
+        "two_wheeler": {
+          "tp": 2,
+          "fp": 0,
+          "fp_far": 0,
+          "fn": 10,
+          "tn": 38,
+          "gt_frames": 12,
+          "precision": 1.0,
+          "precision_strict": 1.0,
+          "recall": 0.16666666666666666,
+          "f1": 0.2857142857142857,
+          "hallucination_rate": 0.0
+        },
+        "traffic_cone": {
+          "tp": 2,
+          "fp": 1,
+          "fp_far": 0,
+          "fn": 6,
+          "tn": 41,
+          "gt_frames": 8,
+          "precision": 0.6666666666666666,
+          "precision_strict": 0.6666666666666666,
+          "recall": 0.25,
+          "f1": 0.36363636363636365,
+          "hallucination_rate": 0.3333333333333333
+        },
+        "barrier": {
+          "tp": 0,
+          "fp": 3,
+          "fp_far": 0,
+          "fn": 9,
+          "tn": 38,
+          "gt_frames": 9,
+          "precision": 0.0,
+          "precision_strict": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "hallucination_rate": 1.0
+        }
+      },
+      "recall_by_visibility": {
+        "0-40%": {
+          "objects": 165.0,
+          "recall": 0.23636363636363636
+        },
+        "40-60%": {
+          "objects": 69.0,
+          "recall": 0.30434782608695654
+        },
+        "60-80%": {
+          "objects": 63.0,
+          "recall": 0.25396825396825395
+        },
+        "80-100%": {
+          "objects": 322.0,
+          "recall": 0.22981366459627328
+        }
+      },
+      "recall_by_distance": {
+        "0-15m": {
+          "objects": 68.0,
+          "recall": 0.29411764705882354
+        },
+        "15-30m": {
+          "objects": 197.0,
+          "recall": 0.22842639593908629
+        },
+        "30-50m": {
+          "objects": 189.0,
+          "recall": 0.21164021164021163
+        },
+        "50m+": {
+          "objects": 165.0,
+          "recall": 0.2727272727272727
+        }
+      }
+    },
+    "per_sample": {
+      "ca9a282c9e77460f8360f564131a8af5": {
+        "object_f1": 0.4,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "023c4df2d451409881d8e6ea82f14704": {
+        "object_f1": 0.5714285714285714,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "b26e791522294bec90f86fd72226e35c": {
+        "object_f1": 0.3333333333333333,
+        "hallucinations": 0.0,
+        "omissions": 4.0
+      },
+      "0cd661df01aa40c3bb3a773ba86f753a": {
+        "object_f1": 0.4,
+        "hallucinations": 1.0,
+        "omissions": 2.0
+      },
+      "ed5fc18c31904f96a8f0dbb99ff069c0": {
+        "object_f1": 0.8571428571428571,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "3e8750f331d7499e9b5123e9eb70f2e2": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "5b03af7a953245b5a3b23191ed4da62a": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "6d9984d09d52479e837da2fd09e192cc": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 4.0
+      },
+      "281b92269fd648d4b52d06ac06ca6d65": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "8687ba92abd3406aa797115b874ebeba": {
+        "object_f1": 0.8,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "8bf071b1b92c4ff1bd5016bfb30de3f7": {
+        "object_f1": 0.8888888888888888,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "ecd49e3c38624c77b8aac8df445d49ba": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "d3c0bbf933594f7184e20d761b6416f4": {
+        "object_f1": 0.5,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "dcbe451d383e450786aaad04ab9d3790": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "5991fad3280c4f84b331536c32001a04": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "91d9058720eb4c25a172236e14e11085": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "0d7263a5b8264cad996582d6219ef1f2": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 4.0
+      },
+      "b2e2ffeabf91451cb31a79649bfd95df": {
+        "object_f1": 0.4,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "35833ae5808e4ef186d1fdebac3d9cf6": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "cd9964f8c3d34383b16e9c2997de1ed0": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "6b7487db4612438db7d446e2832a9e2e": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "73e2b7fb98ef41aface277a968d65941": {
+        "object_f1": 0.5,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "bad8a002637046178fe0f8216e5bc355": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "8fe9664cec514a58b1184c4fcefda6b5": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "c1676a2feac74eee8aa38ca3901787d6": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "f218a2b4fa6941f7ac3798adc72126e8": {
+        "object_f1": 0.3333333333333333,
+        "hallucinations": 3.0,
+        "omissions": 1.0
+      },
+      "4ee219c4638949de9d994bc792fd0a69": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "1dba6570f0774b5cb87de6694bb338c0": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "63c24b51feb94f14bec29022dae4975d": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "b5989651183643369174912bc5641d3b": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "048a45dd2cf54aa5808d8ccc85731d44": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "6ff9723a60bf4e14b328b3b19f04dc32": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "e63b83b436a0479db7362338cdfab118": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "b4ff30109dd14c89b24789dc5713cf8c": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "5998b71b64c146769bde1d5430741381": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
+        "object_f1": 0.0,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "083240c8c70b44e4ac6fc7f267b1518f": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "17a9388ec4b04e028b4d07af2cc3a45c": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "ee9b3f38dadd40588f43ba590c4751b9": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "e6b0b282aa174a978272dc2d0a89d560": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "d1136fce62f14400a069613e274f46f7": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 3.0
+      },
+      "0e837c21890a4515874247ceb3dbf5c3": {
+        "object_f1": 0.8,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "c18d3bcc9297454ba52112c079cb756e": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "4e1d1031fe9f45f981a2f598365fc645": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "a480496a5988410fbe3d8ed6c84da996": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "b902d29df24c4efda414a9a88ed57031": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "134ae8a8f5c340f9894a414fc0966af4": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "d61ef2ae3bd54793b8beec55061940f0": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "abf3d91d3c28407e80e3334fe89c03cb": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      }
+    },
+    "notes": [
+      "Recall by bin = share of annotated objects whose class the VLM mentioned (a class-level proxy: the VLM does not localise objects)."
+    ]
+  },
+  "counting": {
+    "name": "counting",
+    "summary": {
+      "exact_bucket_accuracy": 0.8076923076923077,
+      "within_one_bucket_accuracy": 1.0,
+      "n": 26.0
+    },
+    "tables": {
+      "per_class": {
+        "car": {
+          "n": 9.0,
+          "exact": 0.5555555555555556,
+          "within_one_bucket": 1.0
+        },
+        "truck": {
+          "n": 7.0,
+          "exact": 0.8571428571428571,
+          "within_one_bucket": 1.0
+        },
+        "bus": {
+          "n": 1.0,
+          "exact": 1.0,
+          "within_one_bucket": 1.0
+        },
+        "pedestrian": {
+          "n": 5.0,
+          "exact": 1.0,
+          "within_one_bucket": 1.0
+        },
+        "two_wheeler": {
+          "n": 2.0,
+          "exact": 1.0,
+          "within_one_bucket": 1.0
+        },
+        "traffic_cone": {
+          "n": 2.0,
+          "exact": 1.0,
+          "within_one_bucket": 1.0
+        },
+        "barrier": {
+          "n": 0.0,
+          "exact": null,
+          "within_one_bucket": null
+        }
+      }
+    },
+    "per_sample": {},
+    "notes": []
+  },
+  "attributes": {
+    "name": "attributes",
+    "summary": {
+      "time_of_day_accuracy": 1.0,
+      "time_of_day_balanced_accuracy": 1.0,
+      "road_condition_accuracy": 0.46,
+      "road_condition_balanced_accuracy": 0.7,
+      "scene_type_accuracy": 0.52,
+      "scene_type_balanced_accuracy": 0.5,
+      "traffic_side_accuracy": 0.54,
+      "traffic_side_balanced_accuracy": 0.6166666666666667,
+      "mean_balanced_accuracy": 0.7041666666666667
+    },
+    "tables": {
+      "time_of_day": {
+        "accuracy": 1.0,
+        "answered_accuracy": 1.0,
+        "coverage": 1.0,
+        "balanced_accuracy": 1.0,
+        "majority_baseline": 0.7,
+        "majority_label": "day",
+        "gt_distribution": {
+          "day": 35,
+          "night": 15
+        },
+        "confusion": {
+          "day": {
+            "day": 35
+          },
+          "night": {
+            "night": 15
+          }
+        }
+      },
+      "road_condition": {
+        "accuracy": 0.46,
+        "answered_accuracy": 0.46,
+        "coverage": 1.0,
+        "balanced_accuracy": 0.7,
+        "majority_baseline": 0.9,
+        "majority_label": "dry",
+        "gt_distribution": {
+          "dry": 45,
+          "wet": 5
+        },
+        "confusion": {
+          "dry": {
+            "wet": 27,
+            "dry": 18
+          },
+          "wet": {
+            "wet": 5
+          }
+        }
+      },
+      "scene_type": {
+        "accuracy": 0.52,
+        "answered_accuracy": 0.52,
+        "coverage": 1.0,
+        "balanced_accuracy": 0.5,
+        "majority_baseline": 0.4,
+        "majority_label": "intersection",
+        "gt_distribution": {
+          "intersection": 20,
+          "road": 20,
+          "parking_lot": 10
+        },
+        "confusion": {
+          "intersection": {
+            "intersection": 17,
+            "road": 3
+          },
+          "parking_lot": {
+            "intersection": 5,
+            "parking_lot": 4,
+            "road": 1
+          },
+          "road": {
+            "intersection": 14,
+            "road": 5,
+            "parking_lot": 1
+          }
+        }
+      },
+      "traffic_side": {
+        "accuracy": 0.54,
+        "answered_accuracy": 0.54,
+        "coverage": 1.0,
+        "balanced_accuracy": 0.6166666666666667,
+        "majority_baseline": 0.6,
+        "majority_label": "left",
+        "gt_distribution": {
+          "left": 30,
+          "right": 20
+        },
+        "confusion": {
+          "left": {
+            "right": 23,
+            "left": 7
+          },
+          "right": {
+            "right": 20
+          }
+        }
+      }
+    },
+    "per_sample": {
+      "ca9a282c9e77460f8360f564131a8af5": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "023c4df2d451409881d8e6ea82f14704": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "b26e791522294bec90f86fd72226e35c": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "0cd661df01aa40c3bb3a773ba86f753a": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "ed5fc18c31904f96a8f0dbb99ff069c0": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "3e8750f331d7499e9b5123e9eb70f2e2": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "5b03af7a953245b5a3b23191ed4da62a": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "6d9984d09d52479e837da2fd09e192cc": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "281b92269fd648d4b52d06ac06ca6d65": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "8687ba92abd3406aa797115b874ebeba": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "8bf071b1b92c4ff1bd5016bfb30de3f7": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "ecd49e3c38624c77b8aac8df445d49ba": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "d3c0bbf933594f7184e20d761b6416f4": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "dcbe451d383e450786aaad04ab9d3790": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "5991fad3280c4f84b331536c32001a04": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "91d9058720eb4c25a172236e14e11085": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "0d7263a5b8264cad996582d6219ef1f2": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "b2e2ffeabf91451cb31a79649bfd95df": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "35833ae5808e4ef186d1fdebac3d9cf6": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "cd9964f8c3d34383b16e9c2997de1ed0": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "6b7487db4612438db7d446e2832a9e2e": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "73e2b7fb98ef41aface277a968d65941": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "bad8a002637046178fe0f8216e5bc355": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "8fe9664cec514a58b1184c4fcefda6b5": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "c1676a2feac74eee8aa38ca3901787d6": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "f218a2b4fa6941f7ac3798adc72126e8": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "4ee219c4638949de9d994bc792fd0a69": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "1dba6570f0774b5cb87de6694bb338c0": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "63c24b51feb94f14bec29022dae4975d": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "b5989651183643369174912bc5641d3b": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "048a45dd2cf54aa5808d8ccc85731d44": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "6ff9723a60bf4e14b328b3b19f04dc32": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "e63b83b436a0479db7362338cdfab118": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "b4ff30109dd14c89b24789dc5713cf8c": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "5998b71b64c146769bde1d5430741381": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 1.0
+      },
+      "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "083240c8c70b44e4ac6fc7f267b1518f": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "17a9388ec4b04e028b4d07af2cc3a45c": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "ee9b3f38dadd40588f43ba590c4751b9": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 0.0
+      },
+      "e6b0b282aa174a978272dc2d0a89d560": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "d1136fce62f14400a069613e274f46f7": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "0e837c21890a4515874247ceb3dbf5c3": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 1.0,
+        "traffic_side_correct": 1.0
+      },
+      "c18d3bcc9297454ba52112c079cb756e": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "4e1d1031fe9f45f981a2f598365fc645": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 1.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "a480496a5988410fbe3d8ed6c84da996": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "b902d29df24c4efda414a9a88ed57031": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "134ae8a8f5c340f9894a414fc0966af4": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "d61ef2ae3bd54793b8beec55061940f0": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      },
+      "abf3d91d3c28407e80e3334fe89c03cb": {
+        "time_of_day_correct": 1.0,
+        "road_condition_correct": 0.0,
+        "scene_type_correct": 0.0,
+        "traffic_side_correct": 0.0
+      }
+    },
+    "notes": []
+  },
+  "text_faithfulness": {
+    "name": "text_faithfulness",
+    "summary": {
+      "micro_precision": 0.6666666666666666,
+      "micro_recall": 0.7543859649122807,
+      "micro_f1": 0.7078189300411523,
+      "macro_f1": 0.5689245939944423,
+      "hallucination_rate": 0.30714285714285716,
+      "omission_rate": 0.24561403508771928,
+      "mean_frame_f1": 0.6970476190476191,
+      "text_json_object_contradiction_rate": 0.7357142857142858,
+      "text_json_attribute_agreement": 0.8163265306122449
+    },
+    "tables": {
+      "per_class": {
+        "car": {
+          "tp": 42,
+          "fp": 2,
+          "fp_far": 2,
+          "fn": 2,
+          "tn": 2,
+          "gt_frames": 44,
+          "precision": 0.9545454545454546,
+          "precision_strict": 0.9130434782608695,
+          "recall": 0.9545454545454546,
+          "f1": 0.9545454545454546,
+          "hallucination_rate": 0.043478260869565216
+        },
+        "truck": {
+          "tp": 11,
+          "fp": 15,
+          "fp_far": 3,
+          "fn": 1,
+          "tn": 20,
+          "gt_frames": 12,
+          "precision": 0.4230769230769231,
+          "precision_strict": 0.3793103448275862,
+          "recall": 0.9166666666666666,
+          "f1": 0.5789473684210527,
+          "hallucination_rate": 0.5172413793103449
+        },
+        "bus": {
+          "tp": 4,
+          "fp": 6,
+          "fp_far": 4,
+          "fn": 3,
+          "tn": 33,
+          "gt_frames": 7,
+          "precision": 0.4,
+          "precision_strict": 0.2857142857142857,
+          "recall": 0.5714285714285714,
+          "f1": 0.47058823529411764,
+          "hallucination_rate": 0.42857142857142855
+        },
+        "pedestrian": {
+          "tp": 17,
+          "fp": 2,
+          "fp_far": 2,
+          "fn": 5,
+          "tn": 24,
+          "gt_frames": 22,
+          "precision": 0.8947368421052632,
+          "precision_strict": 0.8095238095238095,
+          "recall": 0.7727272727272727,
+          "f1": 0.8292682926829268,
+          "hallucination_rate": 0.09523809523809523
+        },
+        "two_wheeler": {
+          "tp": 2,
+          "fp": 2,
+          "fp_far": 0,
+          "fn": 10,
+          "tn": 36,
+          "gt_frames": 12,
+          "precision": 0.5,
+          "precision_strict": 0.5,
+          "recall": 0.16666666666666666,
+          "f1": 0.25,
+          "hallucination_rate": 0.5
+        },
+        "traffic_cone": {
+          "tp": 7,
+          "fp": 9,
+          "fp_far": 0,
+          "fn": 1,
+          "tn": 33,
+          "gt_frames": 8,
+          "precision": 0.4375,
+          "precision_strict": 0.4375,
+          "recall": 0.875,
+          "f1": 0.5833333333333334,
+          "hallucination_rate": 0.5625
+        },
+        "barrier": {
+          "tp": 3,
+          "fp": 7,
+          "fp_far": 0,
+          "fn": 6,
+          "tn": 34,
+          "gt_frames": 9,
+          "precision": 0.3,
+          "precision_strict": 0.3,
+          "recall": 0.3333333333333333,
+          "f1": 0.3157894736842105,
+          "hallucination_rate": 0.7
+        }
+      }
+    },
+    "per_sample": {
+      "ca9a282c9e77460f8360f564131a8af5": {
+        "object_f1": 0.75,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "023c4df2d451409881d8e6ea82f14704": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "b26e791522294bec90f86fd72226e35c": {
+        "object_f1": 0.8888888888888888,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "0cd661df01aa40c3bb3a773ba86f753a": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "ed5fc18c31904f96a8f0dbb99ff069c0": {
+        "object_f1": 0.8571428571428571,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "3e8750f331d7499e9b5123e9eb70f2e2": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
+        "object_f1": 0.8571428571428571,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "5b03af7a953245b5a3b23191ed4da62a": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "6d9984d09d52479e837da2fd09e192cc": {
+        "object_f1": 0.8571428571428571,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "281b92269fd648d4b52d06ac06ca6d65": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "8687ba92abd3406aa797115b874ebeba": {
+        "object_f1": 0.5,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "8bf071b1b92c4ff1bd5016bfb30de3f7": {
+        "object_f1": 0.8888888888888888,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "ecd49e3c38624c77b8aac8df445d49ba": {
+        "object_f1": 0.8,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "d3c0bbf933594f7184e20d761b6416f4": {
+        "object_f1": 0.8,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "dcbe451d383e450786aaad04ab9d3790": {
+        "object_f1": 0.5,
+        "hallucinations": 3.0,
+        "omissions": 1.0
+      },
+      "5991fad3280c4f84b331536c32001a04": {
+        "object_f1": 0.8,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "91d9058720eb4c25a172236e14e11085": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "0d7263a5b8264cad996582d6219ef1f2": {
+        "object_f1": 0.8888888888888888,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "b2e2ffeabf91451cb31a79649bfd95df": {
+        "object_f1": 0.75,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "35833ae5808e4ef186d1fdebac3d9cf6": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "cd9964f8c3d34383b16e9c2997de1ed0": {
+        "object_f1": 0.5,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "6b7487db4612438db7d446e2832a9e2e": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "73e2b7fb98ef41aface277a968d65941": {
+        "object_f1": 0.8,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "bad8a002637046178fe0f8216e5bc355": {
+        "object_f1": 0.5,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "8fe9664cec514a58b1184c4fcefda6b5": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "c1676a2feac74eee8aa38ca3901787d6": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "f218a2b4fa6941f7ac3798adc72126e8": {
+        "object_f1": 0.2857142857142857,
+        "hallucinations": 4.0,
+        "omissions": 1.0
+      },
+      "4ee219c4638949de9d994bc792fd0a69": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "1dba6570f0774b5cb87de6694bb338c0": {
+        "object_f1": 0.0,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "63c24b51feb94f14bec29022dae4975d": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "b5989651183643369174912bc5641d3b": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "048a45dd2cf54aa5808d8ccc85731d44": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "6ff9723a60bf4e14b328b3b19f04dc32": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "e63b83b436a0479db7362338cdfab118": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      },
+      "b4ff30109dd14c89b24789dc5713cf8c": {
+        "object_f1": 0.0,
+        "hallucinations": 2.0,
+        "omissions": 0.0
+      },
+      "5998b71b64c146769bde1d5430741381": {
+        "object_f1": 0.2857142857142857,
+        "hallucinations": 5.0,
+        "omissions": 0.0
+      },
+      "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
+        "object_f1": 0.5,
+        "hallucinations": 2.0,
+        "omissions": 0.0
+      },
+      "083240c8c70b44e4ac6fc7f267b1518f": {
+        "object_f1": 0.5,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "17a9388ec4b04e028b4d07af2cc3a45c": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "ee9b3f38dadd40588f43ba590c4751b9": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "e6b0b282aa174a978272dc2d0a89d560": {
+        "object_f1": 0.5,
+        "hallucinations": 0.0,
+        "omissions": 2.0
+      },
+      "d1136fce62f14400a069613e274f46f7": {
+        "object_f1": 0.5714285714285714,
+        "hallucinations": 2.0,
+        "omissions": 1.0
+      },
+      "0e837c21890a4515874247ceb3dbf5c3": {
+        "object_f1": 0.8,
+        "hallucinations": 1.0,
+        "omissions": 0.0
+      },
+      "c18d3bcc9297454ba52112c079cb756e": {
+        "object_f1": 0.5,
+        "hallucinations": 1.0,
+        "omissions": 1.0
+      },
+      "4e1d1031fe9f45f981a2f598365fc645": {
+        "object_f1": 0.5714285714285714,
+        "hallucinations": 3.0,
+        "omissions": 0.0
+      },
+      "a480496a5988410fbe3d8ed6c84da996": {
+        "object_f1": 0.4,
+        "hallucinations": 3.0,
+        "omissions": 0.0
+      },
+      "b902d29df24c4efda414a9a88ed57031": {
+        "object_f1": 0.6666666666666666,
+        "hallucinations": 0.0,
+        "omissions": 1.0
+      },
+      "134ae8a8f5c340f9894a414fc0966af4": {
+        "object_f1": 0.3333333333333333,
+        "hallucinations": 3.0,
+        "omissions": 1.0
+      },
+      "d61ef2ae3bd54793b8beec55061940f0": {
+        "object_f1": 0.0,
+        "hallucinations": 2.0,
+        "omissions": 2.0
+      },
+      "abf3d91d3c28407e80e3334fe89c03cb": {
+        "object_f1": 1.0,
+        "hallucinations": 0.0,
+        "omissions": 0.0
+      }
+    },
+    "notes": [
+      "Claims are extracted from the description with a rule-based lexicon (see parsing/text_claims.py). Agreement is computed for structured answers (JSON or questionnaire)."
+    ]
+  },
+  "consistency": {
+    "name": "consistency",
+    "summary": {
+      "attribute_flip_rate": 0.20625,
+      "gt_attribute_flip_rate": 0.0
+    },
+    "tables": {
+      "per_label": {
+        "time_of_day": {
+          "pred_flip_rate": 0.0,
+          "gt_flip_rate": 0.0
+        },
+        "road_condition": {
+          "pred_flip_rate": 0.375,
+          "gt_flip_rate": 0.0
+        },
+        "scene_type": {
+          "pred_flip_rate": 0.25,
+          "gt_flip_rate": 0.0
+        },
+        "traffic_side": {
+          "pred_flip_rate": 0.2,
+          "gt_flip_rate": 0.0
+        },
+        "obj:car": {
+          "pred_flip_rate": 0.375,
+          "gt_flip_rate": 0.2
+        },
+        "obj:truck": {
+          "pred_flip_rate": 0.35,
+          "gt_flip_rate": 0.375
+        },
+        "obj:bus": {
+          "pred_flip_rate": 0.1,
+          "gt_flip_rate": 0.15
+        },
+        "obj:pedestrian": {
+          "pred_flip_rate": 0.25,
+          "gt_flip_rate": 0.225
+        },
+        "obj:two_wheeler": {
+          "pred_flip_rate": 0.05,
+          "gt_flip_rate": 0.325
+        },
+        "obj:traffic_cone": {
+          "pred_flip_rate": 0.075,
+          "gt_flip_rate": 0.15
+        },
+        "obj:barrier": {
+          "pred_flip_rate": 0.075,
+          "gt_flip_rate": 0.1
+        }
+      }
+    },
+    "per_sample": {},
+    "notes": [
+      "Scene-level GT attributes never change within a scene, so any attribute flip by the model is an inconsistency."
+    ]
+  },
+  "format": {
+    "name": "format",
+    "summary": {
+      "parse_success_rate": 1.0,
+      "empty_description_rate": 0.0,
+      "repetition_loop_rate": 0.0,
+      "duplicate_description_rate": 0.0,
+      "mean_description_words": 29.5,
+      "mean_latency_s": 4.715981152488385,
+      "p95_latency_s": 5.258781856187852
+    },
+    "tables": {
+      "facts_source": {
+        "json": 50
+      }
+    },
+    "per_sample": {},
+    "notes": []
+  },
+  "errors": {
+    "name": "errors",
+    "summary": {
+      "frames_with_any_error": 1.0
+    },
+    "tables": {
+      "by_family": {
+        "omission": 88,
+        "attribute": 74,
+        "consistency": 43,
+        "hallucination": 8
+      },
+      "by_tag": {
+        "consistency:text_contradicts_json": 43,
+        "omission:car": 35,
+        "attribute:road_condition": 27,
+        "attribute:scene_type": 24,
+        "attribute:traffic_side": 23,
+        "omission:pedestrian": 17,
+        "omission:two_wheeler": 10,
+        "omission:barrier": 9,
+        "omission:traffic_cone": 6,
+        "omission:bus": 6,
+        "omission:truck": 5,
+        "hallucination:barrier": 3,
+        "hallucination:truck": 3,
+        "hallucination:traffic_cone": 1,
+        "hallucination:pedestrian": 1
+      },
+      "worst_examples": [
+        {
+          "sample_token": "b26e791522294bec90f86fd72226e35c",
+          "scene_name": "scene-0061",
+          "frame_index": 19,
+          "description": "A car is driving on a wet road with orange traffic cones and barriers, and a truck is parked on the side of the road.",
+          "errors": [
+            "omission:car",
+            "omission:pedestrian",
+            "omission:traffic_cone",
+            "omission:barrier",
+            "attribute:road_condition",
+            "attribute:traffic_side",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "truck": "3-5",
+            "traffic_cone": "6+",
+            "pedestrian": "1-2",
+            "barrier": "3-5",
+            "car": "1-2"
+          },
+          "pred_objects": {
+            "truck": "1-2"
+          }
+        },
+        {
+          "sample_token": "0d7263a5b8264cad996582d6219ef1f2",
+          "scene_name": "scene-0655",
+          "frame_index": 20,
+          "description": "The image shows a street with a few vehicles, including a car, a truck, and a bus. There are no pedestrians or bicycles visible. The road is wet, and there are traffic cones and barriers on the side of the road.",
+          "errors": [
+            "omission:car",
+            "omission:truck",
+            "omission:bus",
+            "omission:traffic_cone",
+            "attribute:road_condition",
+            "attribute:scene_type",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "car": "1-2",
+            "bus": "1-2",
+            "traffic_cone": "1-2",
+            "truck": "1-2"
+          },
+          "pred_objects": {}
+        },
+        {
+          "sample_token": "f218a2b4fa6941f7ac3798adc72126e8",
+          "scene_name": "scene-0796",
+          "frame_index": 10,
+          "description": "A busy intersection with multiple vehicles, including cars, trucks, and buses, driving on a wet road. There are barriers and traffic cones visible, and a pedestrian crossing the street.",
+          "errors": [
+            "hallucination:truck",
+            "omission:two_wheeler",
+            "hallucination:traffic_cone",
+            "hallucination:barrier",
+            "attribute:road_condition",
+            "attribute:traffic_side",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "car": "3-5",
+            "two_wheeler": "1-2"
+          },
+          "pred_objects": {
+            "car": "6+",
+            "truck": "6+",
+            "traffic_cone": "6+",
+            "barrier": "6+"
+          }
+        },
+        {
+          "sample_token": "ca9a282c9e77460f8360f564131a8af5",
+          "scene_name": "scene-0061",
+          "frame_index": 0,
+          "description": "A truck from Pokka Logistics is parked on the side of the road, with a pedestrian nearby. The road is wet, and there are orange traffic cones and barriers on the right side.",
+          "errors": [
+            "omission:car",
+            "omission:pedestrian",
+            "omission:barrier",
+            "attribute:road_condition",
+            "attribute:traffic_side",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "pedestrian": "3-5",
+            "barrier": "6+",
+            "car": "3-5",
+            "truck": "1-2"
+          },
+          "pred_objects": {
+            "truck": "1-2"
+          }
+        },
+        {
+          "sample_token": "b6b0d9f2f2e14a3aaa2c8aedeb1edb69",
+          "scene_name": "scene-0103",
+          "frame_index": 10,
+          "description": "A street scene with multiple cars, a truck, a bus, pedestrians, and traffic cones. The road is wet.",
+          "errors": [
+            "omission:car",
+            "omission:pedestrian",
+            "omission:traffic_cone",
+            "attribute:road_condition",
+            "attribute:scene_type",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "car": "6+",
+            "traffic_cone": "1-2",
+            "pedestrian": "3-5"
+          },
+          "pred_objects": {}
+        },
+        {
+          "sample_token": "6d9984d09d52479e837da2fd09e192cc",
+          "scene_name": "scene-0103",
+          "frame_index": 29,
+          "description": "A street scene with parked cars, a truck, and a pedestrian on the right side of the road.",
+          "errors": [
+            "omission:car",
+            "omission:truck",
+            "omission:pedestrian",
+            "omission:two_wheeler",
+            "attribute:scene_type",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "car": "6+",
+            "two_wheeler": "1-2",
+            "pedestrian": "1-2",
+            "truck": "1-2"
+          },
+          "pred_objects": {}
+        },
+        {
+          "sample_token": "b2e2ffeabf91451cb31a79649bfd95df",
+          "scene_name": "scene-0655",
+          "frame_index": 30,
+          "description": "A road with a truck and a bus, with traffic cones and a barrier. The road is wet.",
+          "errors": [
+            "omission:bus",
+            "omission:pedestrian",
+            "omission:traffic_cone",
+            "attribute:road_condition",
+            "attribute:scene_type",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "truck": "1-2",
+            "pedestrian": "1-2",
+            "traffic_cone": "3-5",
+            "bus": "1-2"
+          },
+          "pred_objects": {
+            "truck": "1-2"
+          }
+        },
+        {
+          "sample_token": "17a9388ec4b04e028b4d07af2cc3a45c",
+          "scene_name": "scene-1077",
+          "frame_index": 30,
+          "description": "The image shows a wet road with a car driving on it, surrounded by streetlights and a bus stop. The scene is likely a parking lot or an intersection.",
+          "errors": [
+            "omission:car",
+            "omission:barrier",
+            "attribute:road_condition",
+            "attribute:scene_type",
+            "attribute:traffic_side",
+            "consistency:text_contradicts_json"
+          ],
+          "gt_objects": {
+            "car": "1-2",
+            "barrier": "1-2"
+          },
+          "pred_objects": {}
+        }
+      ]
+    },
+    "per_sample": {
+      "ca9a282c9e77460f8360f564131a8af5": {
+        "n_errors": 6.0
+      },
+      "023c4df2d451409881d8e6ea82f14704": {
+        "n_errors": 5.0
+      },
+      "b26e791522294bec90f86fd72226e35c": {
+        "n_errors": 7.0
+      },
+      "0cd661df01aa40c3bb3a773ba86f753a": {
+        "n_errors": 5.0
+      },
+      "ed5fc18c31904f96a8f0dbb99ff069c0": {
+        "n_errors": 1.0
+      },
+      "3e8750f331d7499e9b5123e9eb70f2e2": {
+        "n_errors": 5.0
+      },
+      "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
+        "n_errors": 6.0
+      },
+      "5b03af7a953245b5a3b23191ed4da62a": {
+        "n_errors": 5.0
+      },
+      "6d9984d09d52479e837da2fd09e192cc": {
+        "n_errors": 6.0
+      },
+      "281b92269fd648d4b52d06ac06ca6d65": {
+        "n_errors": 2.0
+      },
+      "8687ba92abd3406aa797115b874ebeba": {
+        "n_errors": 1.0
+      },
+      "8bf071b1b92c4ff1bd5016bfb30de3f7": {
+        "n_errors": 2.0
+      },
+      "ecd49e3c38624c77b8aac8df445d49ba": {
+        "n_errors": 4.0
+      },
+      "d3c0bbf933594f7184e20d761b6416f4": {
+        "n_errors": 3.0
+      },
+      "dcbe451d383e450786aaad04ab9d3790": {
+        "n_errors": 5.0
+      },
+      "5991fad3280c4f84b331536c32001a04": {
+        "n_errors": 5.0
+      },
+      "91d9058720eb4c25a172236e14e11085": {
+        "n_errors": 2.0
+      },
+      "0d7263a5b8264cad996582d6219ef1f2": {
+        "n_errors": 7.0
+      },
+      "b2e2ffeabf91451cb31a79649bfd95df": {
+        "n_errors": 6.0
+      },
+      "35833ae5808e4ef186d1fdebac3d9cf6": {
+        "n_errors": 3.0
+      },
+      "cd9964f8c3d34383b16e9c2997de1ed0": {
+        "n_errors": 5.0
+      },
+      "6b7487db4612438db7d446e2832a9e2e": {
+        "n_errors": 3.0
+      },
+      "73e2b7fb98ef41aface277a968d65941": {
+        "n_errors": 4.0
+      },
+      "bad8a002637046178fe0f8216e5bc355": {
+        "n_errors": 3.0
+      },
+      "8fe9664cec514a58b1184c4fcefda6b5": {
+        "n_errors": 2.0
+      },
+      "c1676a2feac74eee8aa38ca3901787d6": {
+        "n_errors": 5.0
+      },
+      "f218a2b4fa6941f7ac3798adc72126e8": {
+        "n_errors": 7.0
+      },
+      "4ee219c4638949de9d994bc792fd0a69": {
+        "n_errors": 3.0
+      },
+      "1dba6570f0774b5cb87de6694bb338c0": {
+        "n_errors": 4.0
+      },
+      "63c24b51feb94f14bec29022dae4975d": {
+        "n_errors": 5.0
+      },
+      "b5989651183643369174912bc5641d3b": {
+        "n_errors": 2.0
+      },
+      "048a45dd2cf54aa5808d8ccc85731d44": {
+        "n_errors": 5.0
+      },
+      "6ff9723a60bf4e14b328b3b19f04dc32": {
+        "n_errors": 1.0
+      },
+      "e63b83b436a0479db7362338cdfab118": {
+        "n_errors": 4.0
+      },
+      "b4ff30109dd14c89b24789dc5713cf8c": {
+        "n_errors": 2.0
+      },
+      "5998b71b64c146769bde1d5430741381": {
+        "n_errors": 4.0
+      },
+      "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
+        "n_errors": 5.0
+      },
+      "083240c8c70b44e4ac6fc7f267b1518f": {
+        "n_errors": 4.0
+      },
+      "17a9388ec4b04e028b4d07af2cc3a45c": {
+        "n_errors": 6.0
+      },
+      "ee9b3f38dadd40588f43ba590c4751b9": {
+        "n_errors": 4.0
+      },
+      "e6b0b282aa174a978272dc2d0a89d560": {
+        "n_errors": 6.0
+      },
+      "d1136fce62f14400a069613e274f46f7": {
+        "n_errors": 6.0
+      },
+      "0e837c21890a4515874247ceb3dbf5c3": {
+        "n_errors": 1.0
+      },
+      "c18d3bcc9297454ba52112c079cb756e": {
+        "n_errors": 5.0
+      },
+      "4e1d1031fe9f45f981a2f598365fc645": {
+        "n_errors": 5.0
+      },
+      "a480496a5988410fbe3d8ed6c84da996": {
+        "n_errors": 5.0
+      },
+      "b902d29df24c4efda414a9a88ed57031": {
+        "n_errors": 6.0
+      },
+      "134ae8a8f5c340f9894a414fc0966af4": {
+        "n_errors": 6.0
+      },
+      "d61ef2ae3bd54793b8beec55061940f0": {
+        "n_errors": 6.0
+      },
+      "abf3d91d3c28407e80e3334fe89c03cb": {
+        "n_errors": 3.0
+      }
+    },
+    "notes": []
+  },
+  "slices": {
+    "name": "slices",
+    "summary": {
+      "worst_time_of_day_object_f1": 0.23529411764705882,
+      "worst_location_object_f1": 0.23529411764705882,
+      "worst_scene_type_object_f1": 0.17391304347826086
+    },
+    "tables": {
+      "time_of_day": {
+        "day": {
+          "frames": 35.0,
+          "object_f1": 0.38596491228070173,
+          "object_recall": 0.2558139534883721,
+          "hallucination_rate": 0.1875,
+          "attribute_accuracy": 0.7071428571428572
+        },
+        "night": {
+          "frames": 15.0,
+          "object_f1": 0.23529411764705882,
+          "object_recall": 0.14285714285714285,
+          "hallucination_rate": 0.3333333333333333,
+          "attribute_accuracy": 0.45
+        }
+      },
+      "location": {
+        "boston-seaport": {
+          "frames": 20.0,
+          "object_f1": 0.3492063492063492,
+          "object_recall": 0.21568627450980393,
+          "hallucination_rate": 0.0625,
+          "attribute_accuracy": 0.7375
+        },
+        "singapore-hollandvillage": {
+          "frames": 15.0,
+          "object_f1": 0.23529411764705882,
+          "object_recall": 0.14285714285714285,
+          "hallucination_rate": 0.3333333333333333,
+          "attribute_accuracy": 0.45
+        },
+        "singapore-onenorth": {
+          "frames": 5.0,
+          "object_f1": 0.5333333333333333,
+          "object_recall": 0.4,
+          "hallucination_rate": 0.2,
+          "attribute_accuracy": 0.7
+        },
+        "singapore-queenstown": {
+          "frames": 10.0,
+          "object_f1": 0.2857142857142857,
+          "object_recall": 0.2,
+          "hallucination_rate": 0.5,
+          "attribute_accuracy": 0.65
+        }
+      },
+      "scene_type": {
+        "intersection": {
+          "frames": 20.0,
+          "object_f1": 0.45569620253164556,
+          "object_recall": 0.32727272727272727,
+          "hallucination_rate": 0.24,
+          "attribute_accuracy": 0.75
+        },
+        "parking_lot": {
+          "frames": 10.0,
+          "object_f1": 0.34782608695652173,
+          "object_recall": 0.21052631578947367,
+          "hallucination_rate": 0.0,
+          "attribute_accuracy": 0.65
+        },
+        "road": {
+          "frames": 20.0,
+          "object_f1": 0.17391304347826086,
+          "object_recall": 0.1,
+          "hallucination_rate": 0.2857142857142857,
+          "attribute_accuracy": 0.5
+        }
+      }
+    },
+    "per_sample": {},
+    "notes": [
+      "Slices are defined on ground truth. Small slices have wide uncertainty; check the frame count before drawing conclusions."
+    ]
+  },
+  "similarity": {
+    "name": "similarity",
+    "summary": {
+      "mean_reference_keyword_recall": 0.4686666666666666,
+      "mean_embedding_cosine": 0.4105484312772751,
+      "pearson_cosine_vs_object_f1": 0.23298408584402577,
+      "spearman_cosine_vs_object_f1": 0.34422037571618075
+    },
+    "tables": {},
+    "per_sample": {
+      "ca9a282c9e77460f8360f564131a8af5": {
+        "object_f1": 0.4,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.5994019508361816
+      },
+      "023c4df2d451409881d8e6ea82f14704": {
+        "object_f1": 0.5714285714285714,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.5193545818328857
+      },
+      "b26e791522294bec90f86fd72226e35c": {
+        "object_f1": 0.3333333333333333,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.520156741142273
+      },
+      "0cd661df01aa40c3bb3a773ba86f753a": {
+        "object_f1": 0.4,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.6165176630020142
+      },
+      "ed5fc18c31904f96a8f0dbb99ff069c0": {
+        "object_f1": 0.8571428571428571,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.5459173321723938
+      },
+      "3e8750f331d7499e9b5123e9eb70f2e2": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.17494717240333557
+      },
+      "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.2554445266723633
+      },
+      "5b03af7a953245b5a3b23191ed4da62a": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.22087161242961884
+      },
+      "6d9984d09d52479e837da2fd09e192cc": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.3113844394683838
+      },
+      "281b92269fd648d4b52d06ac06ca6d65": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.26495474576950073
+      },
+      "8687ba92abd3406aa797115b874ebeba": {
+        "object_f1": 0.8,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.4658987522125244
+      },
+      "8bf071b1b92c4ff1bd5016bfb30de3f7": {
+        "object_f1": 0.8888888888888888,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.42951804399490356
+      },
+      "ecd49e3c38624c77b8aac8df445d49ba": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.5082933902740479
+      },
+      "d3c0bbf933594f7184e20d761b6416f4": {
+        "object_f1": 0.5,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.5177580118179321
+      },
+      "dcbe451d383e450786aaad04ab9d3790": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.45648086071014404
+      },
+      "5991fad3280c4f84b331536c32001a04": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.43646684288978577
+      },
+      "91d9058720eb4c25a172236e14e11085": {
+        "object_f1": 1.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.374422550201416
+      },
+      "0d7263a5b8264cad996582d6219ef1f2": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.40099865198135376
+      },
+      "b2e2ffeabf91451cb31a79649bfd95df": {
+        "object_f1": 0.4,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.38693925738334656
+      },
+      "35833ae5808e4ef186d1fdebac3d9cf6": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.2065877616405487
+      },
+      "cd9964f8c3d34383b16e9c2997de1ed0": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.2370021641254425
+      },
+      "6b7487db4612438db7d446e2832a9e2e": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.5626627206802368
+      },
+      "73e2b7fb98ef41aface277a968d65941": {
+        "object_f1": 0.5,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.5444415807723999
+      },
+      "bad8a002637046178fe0f8216e5bc355": {
+        "object_f1": 0.6666666666666666,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.5303527116775513
+      },
+      "8fe9664cec514a58b1184c4fcefda6b5": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.3687991499900818
+      },
+      "c1676a2feac74eee8aa38ca3901787d6": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.4,
+        "embedding_cosine": 0.33921223878860474
+      },
+      "f218a2b4fa6941f7ac3798adc72126e8": {
+        "object_f1": 0.3333333333333333,
+        "reference_keyword_recall": 0.6,
+        "embedding_cosine": 0.4155292212963104
+      },
+      "4ee219c4638949de9d994bc792fd0a69": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.2,
+        "embedding_cosine": 0.3233183026313782
+      },
+      "1dba6570f0774b5cb87de6694bb338c0": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.2,
+        "embedding_cosine": 0.32258009910583496
+      },
+      "63c24b51feb94f14bec29022dae4975d": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.2,
+        "embedding_cosine": 0.23011261224746704
+      },
+      "b5989651183643369174912bc5641d3b": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.44286268949508667
+      },
+      "048a45dd2cf54aa5808d8ccc85731d44": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.7235659956932068
+      },
+      "6ff9723a60bf4e14b328b3b19f04dc32": {
+        "object_f1": 1.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.533771276473999
+      },
+      "e63b83b436a0479db7362338cdfab118": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.5064780712127686
+      },
+      "b4ff30109dd14c89b24789dc5713cf8c": {
+        "object_f1": 1.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.25369730591773987
+      },
+      "5998b71b64c146769bde1d5430741381": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.4984537661075592
+      },
+      "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.36327826976776123
+      },
+      "083240c8c70b44e4ac6fc7f267b1518f": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.475744366645813
+      },
+      "17a9388ec4b04e028b4d07af2cc3a45c": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.49374982714653015
+      },
+      "ee9b3f38dadd40588f43ba590c4751b9": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 1.0,
+        "embedding_cosine": 0.3894614577293396
+      },
+      "e6b0b282aa174a978272dc2d0a89d560": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.24650318920612335
+      },
+      "d1136fce62f14400a069613e274f46f7": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.4137732982635498
+      },
+      "0e837c21890a4515874247ceb3dbf5c3": {
+        "object_f1": 0.8,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.4189622402191162
+      },
+      "c18d3bcc9297454ba52112c079cb756e": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.3333333333333333,
+        "embedding_cosine": 0.38386982679367065
+      },
+      "4e1d1031fe9f45f981a2f598365fc645": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.6666666666666666,
+        "embedding_cosine": 0.43435168266296387
+      },
+      "a480496a5988410fbe3d8ed6c84da996": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.3252081871032715
+      },
+      "b902d29df24c4efda414a9a88ed57031": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.0,
+        "embedding_cosine": 0.42273038625717163
+      },
+      "134ae8a8f5c340f9894a414fc0966af4": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.3938916325569153
+      },
+      "d61ef2ae3bd54793b8beec55061940f0": {
+        "object_f1": 0.0,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.3932141661643982
+      },
+      "abf3d91d3c28407e80e3334fe89c03cb": {
+        "object_f1": 1.0,
+        "reference_keyword_recall": 0.5,
+        "embedding_cosine": 0.3275282382965088
+      }
+    },
+    "notes": []
+  }
+}

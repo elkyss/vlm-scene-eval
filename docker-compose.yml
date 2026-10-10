@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    image: vlm-eval:latest
+    volumes:
+      - ./data:/app/data:ro
+      - ./outputs:/app/outputs
+      - ./.cache:/app/.cache          # cached VLM responses
+      - hf-cache:/cache/huggingface   # downloaded model weights
+volumes:
+  hf-cache:

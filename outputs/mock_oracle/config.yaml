@@ -1,0 +1,31 @@
+cache_dir: .cache/vlm
+ground_truth:
+  name: nuscenes
+  params:
+    camera: CAM_FRONT
+    dataroot: data/nuscenes
+    max_distance_m: 50
+    min_visibility: 2
+    version: v1.0-mini
+loader:
+  name: nuscenes
+  params:
+    cameras:
+    - CAM_FRONT
+    dataroot: data/nuscenes
+    frames_per_scene: 5
+    scenes: null
+    version: v1.0-mini
+metrics: []
+output_dir: outputs
+prompt: v2_structured
+run_id: mock_oracle
+seed: 0
+taxonomy: driving
+vlm:
+  name: mock
+  params:
+    mode: oracle
+writers:
+- jsonl
+- csv

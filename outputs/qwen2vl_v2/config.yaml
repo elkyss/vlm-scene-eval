@@ -1,0 +1,32 @@
+cache_dir: .cache/vlm
+ground_truth:
+  name: nuscenes
+  params:
+    camera: CAM_FRONT
+    dataroot: data/nuscenes
+    max_distance_m: 50
+    min_visibility: 2
+    version: v1.0-mini
+loader:
+  name: nuscenes
+  params:
+    cameras:
+    - CAM_FRONT
+    dataroot: data/nuscenes
+    frames_per_scene: 5
+    scenes: null
+    version: v1.0-mini
+metrics: []
+output_dir: outputs
+prompt: v2_structured
+run_id: qwen2vl_v2
+seed: 0
+taxonomy: driving
+vlm:
+  name: hf
+  params:
+    max_new_tokens: 256
+    model_id: Qwen/Qwen2-VL-2B-Instruct
+writers:
+- jsonl
+- csv

@@ -1,0 +1,11 @@
+# Release gate for a scene-description model (see src/vlm_eval/evaluation/gate.py).
+# Floors are deliberately modest: they encode "usable", not "state of the art".
+thresholds:
+  object_presence.micro_f1: {min: 0.5}
+  object_presence.hallucination_rate: {max: 0.3}
+  attributes.time_of_day_balanced_accuracy: {min: 0.8}
+  format.parse_success_rate: {min: 0.9}
+regression:
+  object_presence.micro_f1: {max_drop: 0.05}
+  object_presence.hallucination_rate: {max_rise: 0.05}
+  attributes.mean_balanced_accuracy: {max_drop: 0.05}

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vlm-eval"
+version = "0.1.0"
+description = "Run a VLM over nuScenes driving scenes and evaluate its scene descriptions against annotation-derived ground truth."
+requires-python = ">=3.11"
+dependencies = [
+    "nuscenes-devkit>=1.1.11",
+    "numpy>=1.24",
+    "pillow>=10",
+    "pydantic>=2.5",
+    "pyyaml>=6",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+vlm = ["torch>=2.6", "transformers>=5.0,<6", "accelerate>=1.0"]
+similarity = ["sentence-transformers>=3.0"]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.10", "types-PyYAML"]
+
+[project.scripts]
+vlm-eval = "vlm_eval.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+vlm_eval = ["prompts/*.txt", "prompts/*.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001"]  # en dashes / minus signs in report text are intentional
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+packages = ["vlm_eval"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["real_data: needs the nuScenes mini dataset under data/nuscenes"]

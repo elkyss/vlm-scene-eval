@@ -1,0 +1,12 @@
+data/
+.cache/
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# results are committed (reports, metrics, predictions); logs are not
+outputs/*.log
+# internal checks only (not part of the shared deliverable)
+internal/
