@@ -295,7 +295,7 @@ def evaluate_scenes(
                 description=d.description,
                 chosen_view=d.chosen_view,
                 view_agreement=d.view_agreement,
-                final=per_view[[v.view_id for v in d.views].index(d.chosen_view)],
+                final=dict(zip((v.view_id for v in d.views), per_view, strict=True))[d.chosen_view],
                 per_view=per_view,
                 fact_sentences=sheet.premise_sentences,
                 words=len(d.description.split()),

@@ -125,7 +125,7 @@ class ScenePipeline:
             scene_name=scene.scene_name,
             model=self.backend.name,
             prompt_version=self.prompt.version,
-            description=outputs[[o.view_id for o in outputs].index(chosen)].description,
+            description=next(o.description for o in outputs if o.view_id == chosen),
             chosen_view=chosen,
             consensus_objects=objects,
             consensus_attributes=attrs,

@@ -173,3 +173,6 @@ class SceneDescription(BaseModel):
     consensus_attributes: dict[str, str] = Field(default_factory=dict)
     view_agreement: float  # share of consensus facts that all views agree on
     views: list[ViewOutput] = Field(default_factory=list)
+
+    def view(self, view_id: int) -> ViewOutput:
+        return next(v for v in self.views if v.view_id == view_id)

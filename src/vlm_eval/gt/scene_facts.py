@@ -21,34 +21,30 @@ import numpy as np
 
 from vlm_eval.domain import EgoMotion, FactSentence, SceneFactSheet, SceneSample, SceneView
 from vlm_eval.gt.base import FACT_BUILDERS
-from vlm_eval.gt.nuscenes_gt import NuScenesGTProvider, facts_from_description
+from vlm_eval.gt.nuscenes_gt import (
+    STATE_WORDS,
+    NuScenesGTProvider,
+    city_and_side,
+    facts_from_description,
+)
 from vlm_eval.nuscenes_db import get_nuscenes, scene_sample_tokens
 from vlm_eval.taxonomy import Taxonomy, load_taxonomy
 
+# Default ego-motion thresholds (stated as assumptions; configurable on the builder).
 STOPPED_MPS = 0.5
 SLOW_MPS = 4.0  # ~15 km/h
 FAST_MPS = 11.0  # ~40 km/h
 TURN_DEG = 30.0
 
-STATE_WORDS = {
-    "vehicle.moving": "moving",
-    "vehicle.parked": "parked",
-    "vehicle.stopped": "stopped",
-    "pedestrian.moving": "walking",
-    "pedestrian.standing": "standing",
-    "pedestrian.sitting_lying_down": "sitting",
-    "cycle.with_rider": "ridden",
-    "cycle.without_rider": "parked",
-}
-
-PLACE_SENTENCES = {
-    "intersection": "The drive passes an intersection.",
-    "parking_lot": "The scene is in a parking lot.",
-}
-
 
 def ego_motion_from_poses(
-    timestamps_us: list[int], positions: list[list[float]], yaws_rad: list[float]
+    timestamps_us: list[int],
+    positions: list[list[float]],
+    yaws_rad: list[float],
+    stopped_mps: float = STOPPED_MPS,
+    slow_mps: float = SLOW_MPS,
+    fast_mps: float = FAST_MPS,
+    turn_deg: float = TURN_DEG,
 ) -> EgoMotion:
     """Classify our car's motion from a time-ordered pose track."""
     t = np.asarray(timestamps_us, dtype=float) / 1e6
@@ -60,80 +56,66 @@ def ego_motion_from_poses(
         float(np.degrees(np.sum(np.diff(np.unwrap(yaws_rad))))) if len(yaws_rad) > 1 else 0.0
     )
     mean = float(speeds.mean()) if len(speeds) else 0.0
-    if mean < STOPPED_MPS:
+    if mean < stopped_mps:
         state = "stopped"
-    elif mean < SLOW_MPS:
+    elif mean < slow_mps:
         state = "slow"
-    elif mean < FAST_MPS:
+    elif mean < fast_mps:
         state = "moving"
     else:
         state = "fast"
-    turn = "left" if yaw_change > TURN_DEG else "right" if yaw_change < -TURN_DEG else "straight"
+    turn = "left" if yaw_change > turn_deg else "right" if yaw_change < -turn_deg else "straight"
     return EgoMotion(
         mean_speed_mps=mean,
         max_speed_mps=float(speeds.max()) if len(speeds) else 0.0,
-        stopped_fraction=float((speeds < STOPPED_MPS).mean()) if len(speeds) else 1.0,
+        stopped_fraction=float((speeds < stopped_mps).mean()) if len(speeds) else 1.0,
         yaw_change_deg=yaw_change,
         state=state,
         turn=turn,
     )
 
 
-def render_sentences(sheet: SceneFactSheet, taxonomy: Taxonomy) -> list[FactSentence]:
-    """Plain-text rendering of a fact sheet, one fact per sentence.
+def render_sentences(
+    sheet: SceneFactSheet, taxonomy: Taxonomy, city: str | None = None
+) -> list[FactSentence]:
+    """Plain-text rendering of a fact sheet, one fact per sentence, worded by the taxonomy.
 
-    Objects are stated as presence only ("There are cars."): instance counts over a whole
-    view would contradict reasonable answers such as "a few cars" seen in six stills.
-    Absence is stated only when no box of the class is anywhere in the frames.
+    Objects are stated as presence only; absence only when no box of the class is anywhere
+    in the frames; nothing is stated for attribute values the taxonomy gives no sentence.
     """
     out: list[FactSentence] = []
 
-    def add(text: str, source: str) -> None:
-        out.append(FactSentence(text=text, source=source))
+    def add(text: str | None, source: str) -> None:
+        if text:
+            out.append(FactSentence(text=text, source=source))
 
-    attrs = sheet.attributes
-    if attrs.get("time_of_day") == "night":
-        add("It is night.", "description")
-    elif attrs.get("time_of_day") == "day":
-        add("It is daytime.", "description")
-    if attrs.get("road_condition") == "wet":
-        add("The road is wet.", "description")
-    if attrs.get("scene_type") in PLACE_SENTENCES:
-        add(PLACE_SENTENCES[attrs["scene_type"]], "description")
-    if attrs.get("traffic_side"):
-        city = "Singapore" if sheet.location.startswith("singapore") else "Boston"
-        add(f"The drive is in {city}, where vehicles drive on the {attrs['traffic_side']}.", "log")
+    for name, value in sheet.attributes.items():
+        source = "log" if name == "traffic_side" else "description"
+        add(taxonomy.fact_sentences.get(name, {}).get(value), source)
+    if city and taxonomy.location_sentence:
+        add(taxonomy.location_sentence.format(city=city), "log")
     if sheet.ego is not None:
-        add(
-            {
-                "stopped": "Our car is stopped.",
-                "slow": "Our car is moving slowly.",
-                "moving": "Our car is driving.",
-                "fast": "Our car is driving fast.",
-            }[sheet.ego.state],
-            "ego_pose",
-        )
-        if sheet.ego.state != "stopped" and 0.2 <= sheet.ego.stopped_fraction <= 0.8:
-            add("Our car stops for part of the drive.", "ego_pose")
+        ego = taxonomy.ego_sentences
+        add(ego.state.get(sheet.ego.state), "ego_pose")
         if sheet.ego.state != "stopped":
-            add(
-                "Our car drives straight ahead."
-                if sheet.ego.turn == "straight"
-                else f"Our car turns {sheet.ego.turn}.",
-                "ego_pose",
-            )
+            if 0.2 <= sheet.ego.stopped_fraction <= 0.8:
+                add(ego.partly_stopped, "ego_pose")
+            add(ego.turn.get(sheet.ego.turn), "ego_pose")
+    templates = taxonomy.object_sentences
     for cls, spec in taxonomy.objects.items():
         n = sheet.objects.get(cls, 0)
         plural = spec.name(2)
         if n:
-            add(f"There are {plural}.", "annotations")
+            add(templates.get("present", "").format(plural=plural), "annotations")
             states = sheet.object_states.get(cls, {})
             if states:
                 state, k = max(states.items(), key=lambda kv: kv[1])
                 if k > n / 2:
-                    add(f"Most {plural} are {state}.", "annotations")
+                    add(
+                        templates.get("state", "").format(plural=plural, state=state), "annotations"
+                    )
         elif cls not in sheet.loosely_present:
-            add(f"There are no {plural}.", "annotations")
+            add(templates.get("absent", "").format(plural=plural), "annotations")
     return out
 
 
@@ -148,8 +130,19 @@ class SceneFactBuilder:
         max_distance_m: float = 50.0,
         taxonomy: Taxonomy | None = None,
         nusc: Any | None = None,
+        stopped_mps: float = STOPPED_MPS,
+        slow_mps: float = SLOW_MPS,
+        fast_mps: float = FAST_MPS,
+        turn_deg: float = TURN_DEG,
     ) -> None:
         self.taxonomy = taxonomy or load_taxonomy("driving")
+        self.thresholds = {
+            "stopped_mps": stopped_mps,
+            "slow_mps": slow_mps,
+            "fast_mps": fast_mps,
+            "turn_deg": turn_deg,
+        }
+        self._scene_tokens: dict[str, list[str]] = {}
         self.camera = camera
         self.min_visibility = min_visibility
         self.max_distance_m = max_distance_m
@@ -170,7 +163,9 @@ class SceneFactBuilder:
         nusc = self._nusc
         record = nusc.get("scene", scene.scene_token)
         location = nusc.get("log", record["log_token"])["location"]
-        attributes = facts_from_description(record["description"], location).attributes
+        attributes = facts_from_description(
+            record["description"], location, self.taxonomy
+        ).attributes
 
         instances: dict[str, set[str]] = defaultdict(set)
         states: dict[str, Counter[str]] = defaultdict(Counter)
@@ -197,7 +192,7 @@ class SceneFactBuilder:
             object_states={cls: dict(c) for cls, c in states.items()},
             ego=self._ego_motion(scene, view),
         )
-        sheet.sentences = render_sentences(sheet, self.taxonomy)
+        sheet.sentences = render_sentences(sheet, self.taxonomy, city_and_side(location)[0])
         return sheet
 
     def _ego_motion(self, scene: SceneSample, view: SceneView) -> EgoMotion:
@@ -211,7 +206,9 @@ class SceneFactBuilder:
 
         nusc = self._nusc
         record = nusc.get("scene", scene.scene_token)
-        tokens = scene_sample_tokens(nusc, record)
+        if scene.scene_token not in self._scene_tokens:
+            self._scene_tokens[scene.scene_token] = scene_sample_tokens(nusc, record)
+        tokens = self._scene_tokens[scene.scene_token]
         first, last = min(view.frame_indices), max(view.frame_indices)
         times, positions, yaws = [], [], []
         for token in tokens[first : last + 1]:
@@ -222,4 +219,4 @@ class SceneFactBuilder:
             times.append(pose["timestamp"])
             positions.append(pose["translation"])
             yaws.append(Quaternion(pose["rotation"]).yaw_pitch_roll[0])
-        return ego_motion_from_poses(times, positions, yaws)
+        return ego_motion_from_poses(times, positions, yaws, **self.thresholds)

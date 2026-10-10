@@ -14,7 +14,6 @@ taxonomy (the defaults below target ``taxonomies/driving.yaml``).
 
 from __future__ import annotations
 
-import re
 from collections import Counter
 from typing import Any
 
@@ -50,22 +49,49 @@ def category_to_class(category: str) -> str | None:
     return None
 
 
-def facts_from_description(description: str, location: str) -> SceneFacts:
-    """Scene-level attributes from the free-text ``scene.description`` and log location."""
-    text = description.lower()
-    scene_type = "road"
-    if "parking lot" in text:
-        scene_type = "parking_lot"
-    elif "intersection" in text:
-        scene_type = "intersection"
-    return SceneFacts(
-        attributes={
-            "time_of_day": "night" if re.search(r"\bnight\b", text) else "day",
-            "road_condition": "wet" if "rain" in text else "dry",
-            "scene_type": scene_type,
-            "traffic_side": "left" if location.startswith("singapore") else "right",
-        }
-    )
+# nuScenes log locations -> (city, side of the road traffic drives on).
+LOCATIONS: tuple[tuple[str, str, str], ...] = (
+    ("singapore", "Singapore", "left"),
+    ("boston", "Boston", "right"),
+)
+
+# nuScenes annotation attributes -> plain words used in fact sentences.
+STATE_WORDS: dict[str, str] = {
+    "vehicle.moving": "moving",
+    "vehicle.parked": "parked",
+    "vehicle.stopped": "stopped",
+    "pedestrian.moving": "walking",
+    "pedestrian.standing": "standing",
+    "pedestrian.sitting_lying_down": "sitting",
+    "cycle.with_rider": "ridden",
+    "cycle.without_rider": "parked",
+}
+
+
+def city_and_side(location: str) -> tuple[str | None, str | None]:
+    for prefix, city, side in LOCATIONS:
+        if location.startswith(prefix):
+            return city, side
+    return None, None
+
+
+def facts_from_description(
+    description: str, location: str, taxonomy: Taxonomy | None = None
+) -> SceneFacts:
+    """Scene-level attributes from ``scene.description`` (the taxonomy's text cues, with its
+    defaults when the sentence names no value) and the traffic side from the log location."""
+    taxonomy = taxonomy or load_taxonomy("driving")
+    attributes = {}
+    for name in taxonomy.attribute_names:
+        if name == "traffic_side":
+            continue
+        value = taxonomy.value_in_text(name, description) or taxonomy.attribute_defaults.get(name)
+        if value is not None:
+            attributes[name] = value
+    _, side = city_and_side(location)
+    if side is not None:
+        attributes["traffic_side"] = side
+    return SceneFacts(attributes=attributes)
 
 
 @GT_PROVIDERS.register("nuscenes")
@@ -97,7 +123,7 @@ class NuScenesGTProvider:
             for o in objects
             if o.visibility >= self.min_visibility and o.distance_m <= self.max_distance_m
         )
-        facts = facts_from_description(scene["description"], location)
+        facts = facts_from_description(scene["description"], location, self.taxonomy)
         facts.objects = {cls: self.taxonomy.to_bucket(n) for cls, n in strict.items()}
 
         return GroundTruth(

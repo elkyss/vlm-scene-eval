@@ -97,3 +97,24 @@ attributes:
     text_cues:            # a bare "left" in prose is not a claim about traffic side
       left: [left-hand traffic, drive on the left, driving on the left, left side of the road]
       right: [right-hand traffic, drive on the right, driving on the right, right side of the road]
+
+# --- How facts are written in a scene fact sheet (the premise the judge reads) --------------
+# Attribute values used when a reference text names none.
+attribute_defaults: {time_of_day: day, road_condition: dry, scene_type: road}
+# One sentence per attribute value. Values without a sentence are not stated at all:
+# e.g. a missing "rain" keyword is no evidence of a dry road, so "dry" has no sentence.
+fact_sentences:
+  time_of_day: {night: It is night., day: It is daytime.}
+  road_condition: {wet: The road is wet.}
+  scene_type: {intersection: The drive passes an intersection., parking_lot: The scene is in a parking lot.}
+  traffic_side: {left: Vehicles drive on the left side of the road., right: Vehicles drive on the right side of the road.}
+location_sentence: The drive is in {city}.
+# Objects are stated as presence only (instance counts would contradict "a few cars").
+object_sentences:
+  present: There are {plural}.
+  absent: There are no {plural}.
+  state: Most {plural} are {state}.
+ego_sentences:
+  state: {stopped: Our car is stopped., slow: Our car is moving slowly., moving: Our car is driving., fast: Our car is driving fast.}
+  partly_stopped: Our car stops for part of the drive.
+  turn: {straight: Our car drives straight ahead., left: Our car turns left., right: Our car turns right.}

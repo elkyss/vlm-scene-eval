@@ -57,12 +57,24 @@ def _first_label(text: str, table: dict[str, list[str]]) -> str | None:
     return None
 
 
+class EgoSentences(BaseModel):
+    state: dict[str, str] = Field(default_factory=dict)
+    partly_stopped: str = ""
+    turn: dict[str, str] = Field(default_factory=dict)
+
+
 class Taxonomy(BaseModel):
     name: str
     count_buckets: list[CountBucket]
     objects: dict[str, ObjectSpec]
     attributes: dict[str, AttributeSpec]
     non_object_phrases: list[str] = Field(default_factory=list)
+    # Fact-sheet wording (scene level)
+    attribute_defaults: dict[str, str] = Field(default_factory=dict)
+    fact_sentences: dict[str, dict[str, str]] = Field(default_factory=dict)
+    location_sentence: str = ""
+    object_sentences: dict[str, str] = Field(default_factory=dict)
+    ego_sentences: EgoSentences = Field(default_factory=EgoSentences)
 
     @model_validator(mode="after")
     def _check(self) -> Taxonomy:
