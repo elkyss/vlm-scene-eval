@@ -22,6 +22,7 @@ plus the human ``scene.description``.
 from __future__ import annotations
 
 import logging
+import re
 from collections.abc import Callable, Sequence
 from typing import Any
 
@@ -73,6 +74,7 @@ class CheckedText(BaseModel):
     # Lets the NLI verdict be cross-checked against the annotations without a human.
     object_class: str | None = None
     box_present: bool | None = None
+    claim_type: str = "other"  # motion | objects | conditions | place | other
 
 
 class DescriptionScore(BaseModel):
@@ -150,6 +152,26 @@ def score_description(
     )
 
 
+CLAIM_TYPES = ("motion", "objects", "conditions", "place", "other")
+
+
+def claim_type(claim: str, taxonomy: Taxonomy) -> str:
+    """Group a claim by what it is about, because the judge's reliability differs by type
+    (validation: 30% false support on motion, 18.5% on objects, 0% on time of day)."""
+    words = set(re.findall(r"[a-z]+", claim.lower()))
+    if words & set(taxonomy.motion_cues):
+        return "motion"
+    if extract_objects(claim, taxonomy):
+        return "objects"
+    for attr in ("time_of_day", "road_condition"):
+        if attr in taxonomy.attributes and taxonomy.value_in_text(attr, claim):
+            return "conditions"
+    for attr in ("scene_type", "traffic_side"):
+        if attr in taxonomy.attributes and taxonomy.value_in_text(attr, claim):
+            return "place"
+    return "other"
+
+
 def _checked_claim(
     claim: str,
     label: str,
@@ -167,6 +189,7 @@ def _checked_claim(
         evidence_source=sources.get(evidence or ""),
         object_class=cls,
         box_present=None if cls is None else cls in sheet.loosely_present,
+        claim_type=claim_type(claim, taxonomy),
     )
 
 
@@ -223,6 +246,17 @@ def aggregate(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
         "human_contradicted": safe_div(
             sum(s.count("human_items", CONTRADICTED) for s in scores), items
         ),
+        **{
+            f"claims_supported_{kind}": safe_div(
+                sum(c.label == SUPPORTED for s in scores for c in s.claims if c.claim_type == kind),
+                sum(c.claim_type == kind for s in scores for c in s.claims),
+            )
+            for kind in CLAIM_TYPES
+        },
+        **{
+            f"claims_n_{kind}": float(sum(c.claim_type == kind for s in scores for c in s.claims))
+            for kind in CLAIM_TYPES
+        },
     }
 
 

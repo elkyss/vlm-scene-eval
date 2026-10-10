@@ -432,3 +432,20 @@ def test_specificity_verdict_wording() -> None:
         }
     )
     assert "specific to their own scene on claims, objects" in specific
+
+
+@pytest.mark.parametrize(
+    ("claim", "kind"),
+    [
+        ("The car turns left at the intersection.", "motion"),
+        ("Several pedestrians are on the sidewalk.", "objects"),
+        ("It is night and the road is wet.", "conditions"),
+        ("The scene is in a parking lot.", "place"),
+        ("Tall buildings line the street.", "place"),
+        ("The sky is cloudy.", "other"),
+    ],
+)
+def test_claim_type(claim: str, kind: str) -> None:
+    from vlm_eval.evaluation.scene_metrics import claim_type
+
+    assert claim_type(claim, TAX) == kind

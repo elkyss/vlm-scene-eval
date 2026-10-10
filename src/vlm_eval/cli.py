@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import random
 from pathlib import Path
@@ -151,7 +152,11 @@ def _evaluate_scene_run(run_dir: Path) -> Path:
         f"{len(views[0].frame_indices) if views else 0} frames (one VLM call per view); "
         "the final description is the view most consistent with the others."
     )
-    return render_scene_report(evaluation, run_dir, protocol)
+    validation_path = run_dir.parent / "judge_validation" / "judge_validation.json"
+    validation = (
+        json.loads(validation_path.read_text())["summary"] if validation_path.exists() else None
+    )
+    return render_scene_report(evaluation, run_dir, protocol, validation)
 
 
 @app.command("run-scenes")

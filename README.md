@@ -133,11 +133,20 @@ and claims within a scene are not independent.
 With 10 scenes, small differences cannot be resolved. The reports say so instead of
 picking a winner.
 
+**Which metrics carry a comparison.** The trustworthy ones are **object coverage** and
+**CHAIR** (checked directly against the 3D boxes), **human-sentence coverage**, and the
+**shuffled-scene gap**. These are what separate Qwen2-VL from SmolVLM (9 of 10 scenes
+with the guided prompt).
+
+"Claims supported" depends on the judge, and the judge's reliability differs by claim type
+(next section). Comparisons on it are mostly inconclusive. SmolVLM's open-prompt rate, for
+example, rests on motion claims (34 of its 45 claims), where the judge is least reliable.
+
 ## How did you test the code?
 
-- **141 tests** (`make test`, also run inside Docker and in CI):
+- **147 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
-    sentences, view combination, claim splitting, the judge rule, CHAIR and coverage
+    sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
     manifest, and that the results store ingests idempotently.
   - End-to-end runs on fake scenes with mock models.
@@ -150,8 +159,17 @@ picking a winner.
   - **Method:** claims with known truth are generated from each fact sheet, worded
     differently from it.
   - **Correct claims** are supported 100% of the time and never contradicted.
-  - **Wrong claims** are wrongly supported 15.6% of the time: 18.5% for objects, 30% for
-    our car's motion, 0% for time of day and turns.
+  - **Wrong claims** are wrongly supported 15.6% of the time:
+
+    | Claim type | False claims tested | Wrongly supported |
+    |---|---|---|
+    | Objects | 65 | 18.5% (mostly road barriers) |
+    | Our car's motion | 30 | 30% |
+    | Turns | 10 | 0%, weak evidence |
+    | Time of day | 30 | 0% |
+
+  - **How it is used:** every scene report breaks "claims supported" down by claim type,
+    next to these error rates. Motion claims are flagged as untrustworthy.
   - **How it was used:** the validation chose the judge rule. Supporting a claim from the
     whole fact sheet is needed: without it, paraphrased day/night claims get 0%, and it
     adds no false support.
@@ -176,8 +194,10 @@ picking a winner.
 shallow scene describer. With the guided prompt:
 - **Objects:** it mentions 56% of the visible object types and rarely invents one (4% of
   mentions).
-- **Claims:** 38% of its claims are confirmed by the annotations, about 18% contradict
-  them, and 44% are about things nobody annotated.
+- **Claims:** 38% of its claims are confirmed by the annotations, and 44% are about
+  things nobody annotated. By type, it gets 62% on time of day and road condition (a
+  reliable check), 52% on objects, and 29% on motion (a check the judge often gets
+  wrong).
 - **Human sentence:** it covers 44% of what the annotator wrote, against a ceiling of 63%.
 - **Scene-specific:** its descriptions are measurably about their own scene, but only
   modestly (+8 pts over a shuffled scene).
@@ -210,8 +230,9 @@ writes text that fits any scene equally well.
 
 ## Limitations
 
-- **"Claims supported" depends on how claims are split.** Splitting is rule-based, and
-  long compound claims are hard to verify. CHAIR and coverage do not have this problem.
+- **"Claims supported" depends on how claims are split and on the claim type.**
+  Splitting is rule-based, and the judge wrongly supports 30% of false motion claims and
+  18.5% of false object claims. CHAIR and coverage do not have this problem.
 - **The judge validation is optimistic:** the claims it uses are cleaner than real model
   text.
 - **About half of what the models say cannot be checked**, because nuScenes has no labels
@@ -319,7 +340,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/ for frame runs)
-tests/              141 tests
+tests/              147 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config

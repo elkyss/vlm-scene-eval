@@ -118,3 +118,9 @@ ego_sentences:
   state: {stopped: Our car is stopped., slow: Our car is moving slowly., moving: Our car is driving., fast: Our car is driving fast.}
   partly_stopped: Our car stops for part of the drive.
   turn: {straight: Our car drives straight ahead., left: Our car turns left., right: Our car turns right.}
+
+# Words that make a claim about how a vehicle moves (used to group claims by type, because
+# the judge is much less reliable on motion than on time of day; see judge validation).
+motion_cues: [drive, drives, driving, turn, turns, turning, stop, stops, stopped, wait, waits,
+              waiting, moving, moves, slow, slows, slowing, accelerate, accelerating, speed,
+              overtake, overtakes, overtaking]

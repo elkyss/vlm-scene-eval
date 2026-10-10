@@ -99,10 +99,13 @@ def compare_scene_runs(run_a: Path, run_b: Path, out_dir: Path, seed: int = 0) -
             f"- **B**: `{b.model} / {b.prompt_version}`\n"
             f"- {len(pairs)} shared scenes",
             "Δ = B − A. The 95% CI comes from a bootstrap over scenes. Wins/losses count scenes "
-            "where B is better/worse on that scene's own rate. The p-value is an exact paired "
+            "where B is better/worse on that scene's own rate (a metric undefined for a "
+            "scene, e.g. CHAIR_i with no object mentions, is skipped). The p-value is an exact "
+            "paired "
             "sign-flip test on the per-scene differences (items within a scene are not "
-            f"independent, so nothing is tested at item level). With {len(pairs)} scenes, a "
-            "difference whose CI crosses 0 is reported as inconclusive.",
+            "independent, so nothing is tested at item level); when only one scene or none "
+            "differs, p = 1 by construction. With "
+            f"{len(pairs)} scenes, a difference whose CI crosses 0 is reported as inconclusive.",
             md_table(
                 [
                     "Metric",

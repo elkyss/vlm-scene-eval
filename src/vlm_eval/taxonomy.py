@@ -75,6 +75,7 @@ class Taxonomy(BaseModel):
     location_sentence: str = ""
     object_sentences: dict[str, str] = Field(default_factory=dict)
     ego_sentences: EgoSentences = Field(default_factory=EgoSentences)
+    motion_cues: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def _check(self) -> Taxonomy:

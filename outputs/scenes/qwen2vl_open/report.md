@@ -16,6 +16,18 @@
 | Claims supported by annotation-based facts | 19.0% | 18.5% | 18.9% | 19.2% | 15.3% | 11.0% |
 | Human-sentence items covered | 35.6% [24.2%, 47.3%] | 36.3% | 37.3% | 37.3% | 20.5% | 30.5% |
 
+## Supported claims by type
+
+The judge is not equally reliable for every kind of claim. Its validation on claims with known truth (`validate-judge`) shows how often a *false* claim of each type is wrongly marked supported: read each row's supported rate with that error in mind. Small validation counts (e.g. 10 turn claims) are weak evidence.
+
+| Claims about | Claims | Supported | Judge validation: false claims wrongly supported |
+|---|---|---|---|
+| How vehicles move (our car or others) | 24 | 8.3% | ego motion 30.0% (n=30), turn 0.0% (n=10) |
+| Which objects are present | 25 | 48.0% | objects 18.5% (n=65) |
+| Time of day, road condition | 5 | 40.0% | time of day 0.0% (n=30) |
+| Kind of place, traffic side | 22 | 0.0% | not validated |
+| Anything else (buildings, signs, weather...) | 24 | 20.8% | not validated |
+
 ## Is the description about this scene?
 
 A generic description ("a car on a street in daylight") is supported in almost any scene. The difference between the own scene and the shuffled control shows how much of the content is specific to this scene. Zero or below means the description is no better than a generic one. For reference, the oracle control (fact sheet as description) scores about +40 points on claims supported.

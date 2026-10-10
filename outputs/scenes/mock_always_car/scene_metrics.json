@@ -34,7 +34,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -42,7 +43,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -52,7 +54,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "construction",
@@ -60,7 +63,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "intersection",
@@ -68,7 +72,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "turn left",
@@ -76,7 +81,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "following a van",
@@ -84,7 +90,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -114,7 +121,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -122,7 +130,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -132,7 +141,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction",
@@ -140,7 +150,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "intersection",
@@ -148,7 +159,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "turn left",
@@ -156,7 +168,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "following a van",
@@ -164,7 +177,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -193,7 +207,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -201,7 +216,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -211,7 +227,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction",
@@ -219,7 +236,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "intersection",
@@ -227,7 +245,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "turn left",
@@ -235,7 +254,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "following a van",
@@ -243,7 +263,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -272,7 +293,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -280,7 +302,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -290,7 +313,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction",
@@ -298,7 +322,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "intersection",
@@ -306,7 +331,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "turn left",
@@ -314,7 +340,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "following a van",
@@ -322,7 +349,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -351,7 +379,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -359,7 +388,8 @@
             "evidence": "Our car is driving.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -369,7 +399,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "wait for turning car",
@@ -377,7 +408,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "long bike rack left",
@@ -385,7 +417,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cyclist",
@@ -393,7 +426,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -451,7 +485,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -459,7 +494,8 @@
             "evidence": "Our car is driving.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -469,7 +505,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "wait for turning car",
@@ -477,7 +514,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "long bike rack left",
@@ -485,7 +523,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cyclist",
@@ -493,7 +532,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -522,7 +562,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -530,7 +571,8 @@
               "evidence": "Our car is driving.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -540,7 +582,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait for turning car",
@@ -548,7 +591,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "long bike rack left",
@@ -556,7 +600,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cyclist",
@@ -564,7 +609,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -592,7 +638,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -600,7 +647,8 @@
               "evidence": "Our car is driving.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -610,7 +658,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait for turning car",
@@ -618,7 +667,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "long bike rack left",
@@ -626,7 +676,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cyclist",
@@ -634,7 +685,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -662,7 +714,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -670,7 +723,8 @@
               "evidence": "Our car is driving.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -680,7 +734,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait for turning car",
@@ -688,7 +743,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "long bike rack left",
@@ -696,7 +752,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cyclist",
@@ -704,7 +761,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -734,7 +792,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -742,7 +801,8 @@
             "evidence": "Vehicles drive on the right side of the road.",
             "evidence_source": "log",
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -752,7 +812,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -760,7 +821,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "large truck",
@@ -768,7 +830,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds crossing crosswalk",
@@ -776,7 +839,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "ped with stroller",
@@ -784,7 +848,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -842,7 +907,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -850,7 +916,8 @@
             "evidence": "Vehicles drive on the right side of the road.",
             "evidence_source": "log",
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -860,7 +927,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -868,7 +936,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "large truck",
@@ -876,7 +945,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds crossing crosswalk",
@@ -884,7 +954,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "ped with stroller",
@@ -892,7 +963,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -922,7 +994,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -930,7 +1003,8 @@
               "evidence": "Vehicles drive on the right side of the road.",
               "evidence_source": "log",
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -940,7 +1014,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -948,7 +1023,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "large truck",
@@ -956,7 +1032,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds crossing crosswalk",
@@ -964,7 +1041,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with stroller",
@@ -972,7 +1050,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1000,7 +1079,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1008,7 +1088,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1018,7 +1099,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -1026,7 +1108,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "large truck",
@@ -1034,7 +1117,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds crossing crosswalk",
@@ -1042,7 +1126,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with stroller",
@@ -1050,7 +1135,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1078,7 +1164,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1086,7 +1173,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1096,7 +1184,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -1104,7 +1193,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "large truck",
@@ -1112,7 +1202,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds crossing crosswalk",
@@ -1120,7 +1211,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with stroller",
@@ -1128,7 +1220,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -1157,7 +1250,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -1165,7 +1259,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -1175,7 +1270,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked cars",
@@ -1183,7 +1279,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "jaywalker",
@@ -1191,7 +1288,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bendy bus",
@@ -1199,7 +1297,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "gardening vehicles",
@@ -1207,7 +1306,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -1266,7 +1366,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -1274,7 +1375,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -1284,7 +1386,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked cars",
@@ -1292,7 +1395,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "jaywalker",
@@ -1300,7 +1404,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bendy bus",
@@ -1308,7 +1413,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "gardening vehicles",
@@ -1316,7 +1422,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -1345,7 +1452,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1353,7 +1461,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1363,7 +1472,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked cars",
@@ -1371,7 +1481,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -1379,7 +1490,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bendy bus",
@@ -1387,7 +1499,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "gardening vehicles",
@@ -1395,7 +1508,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1423,7 +1537,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1431,7 +1546,8 @@
               "evidence": "Our car is driving.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1441,7 +1557,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked cars",
@@ -1449,7 +1566,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -1457,7 +1575,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bendy bus",
@@ -1465,7 +1584,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "gardening vehicles",
@@ -1473,7 +1593,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1501,7 +1622,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1509,7 +1631,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1519,7 +1642,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked cars",
@@ -1527,7 +1651,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -1535,7 +1660,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bendy bus",
@@ -1543,7 +1669,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "gardening vehicles",
@@ -1551,7 +1678,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -1581,7 +1709,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -1589,7 +1718,8 @@
             "evidence": "Our car is moving slowly.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": false
+            "box_present": false,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -1599,7 +1729,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -1607,7 +1738,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "wait at intersection",
@@ -1615,7 +1747,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -1623,7 +1756,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds",
@@ -1631,7 +1765,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -1691,7 +1826,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -1699,7 +1835,8 @@
             "evidence": "Our car is moving slowly.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": false
+            "box_present": false,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -1709,7 +1846,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -1717,7 +1855,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "wait at intersection",
@@ -1725,7 +1864,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -1733,7 +1873,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds",
@@ -1741,7 +1882,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -1771,7 +1913,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1779,7 +1922,8 @@
               "evidence": "Our car is moving slowly.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1789,7 +1933,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -1797,7 +1942,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait at intersection",
@@ -1805,7 +1951,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -1813,7 +1960,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds",
@@ -1821,7 +1969,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1849,7 +1998,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1857,7 +2007,8 @@
               "evidence": "Our car is moving slowly.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1867,7 +2018,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -1875,7 +2027,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait at intersection",
@@ -1883,7 +2036,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -1891,7 +2045,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds",
@@ -1899,7 +2054,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -1927,7 +2083,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -1935,7 +2092,8 @@
               "evidence": "Our car is moving slowly.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -1945,7 +2103,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -1953,7 +2112,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "wait at intersection",
@@ -1961,7 +2121,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -1969,7 +2130,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds",
@@ -1977,7 +2139,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -2004,7 +2167,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -2012,7 +2176,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -2022,7 +2187,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds on sidewalk",
@@ -2030,7 +2196,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -2038,7 +2205,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cars",
@@ -2046,7 +2214,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "truck",
@@ -2054,7 +2223,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "fake construction worker",
@@ -2062,7 +2232,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -2070,7 +2241,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cross intersection",
@@ -2078,7 +2250,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "car overtaking us",
@@ -2086,7 +2259,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -2143,7 +2317,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -2151,7 +2326,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -2161,7 +2337,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds on sidewalk",
@@ -2169,7 +2346,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -2177,7 +2355,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cars",
@@ -2185,7 +2364,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "truck",
@@ -2193,7 +2373,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "fake construction worker",
@@ -2201,7 +2382,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle",
@@ -2209,7 +2391,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "cross intersection",
@@ -2217,7 +2400,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "car overtaking us",
@@ -2225,7 +2409,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -2252,7 +2437,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2260,7 +2446,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2270,7 +2457,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds on sidewalk",
@@ -2278,7 +2466,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -2286,7 +2475,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cars",
@@ -2294,7 +2484,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -2302,7 +2493,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "fake construction worker",
@@ -2310,7 +2502,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -2318,7 +2511,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cross intersection",
@@ -2326,7 +2520,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "car overtaking us",
@@ -2334,7 +2529,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -2361,7 +2557,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2369,7 +2566,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2379,7 +2577,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds on sidewalk",
@@ -2387,7 +2586,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -2395,7 +2595,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cars",
@@ -2403,7 +2604,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -2411,7 +2613,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "fake construction worker",
@@ -2419,7 +2622,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -2427,7 +2631,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cross intersection",
@@ -2435,7 +2640,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "car overtaking us",
@@ -2443,7 +2649,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -2469,7 +2676,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2477,7 +2685,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2487,7 +2696,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds on sidewalk",
@@ -2495,7 +2705,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -2503,7 +2714,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cars",
@@ -2511,7 +2723,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -2519,7 +2732,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "fake construction worker",
@@ -2527,7 +2741,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle",
@@ -2535,7 +2750,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "cross intersection",
@@ -2543,7 +2759,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "car overtaking us",
@@ -2551,7 +2768,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -2579,7 +2797,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -2587,7 +2806,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -2597,7 +2817,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle rack",
@@ -2605,7 +2826,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked bicycles",
@@ -2613,7 +2835,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -2621,7 +2844,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "many peds",
@@ -2629,7 +2853,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked scooters",
@@ -2637,7 +2862,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked motorcycle",
@@ -2645,7 +2871,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -2700,7 +2927,8 @@
             "evidence": "There are cars.",
             "evidence_source": "annotations",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -2708,7 +2936,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -2718,7 +2947,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bicycle rack",
@@ -2726,7 +2956,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked bicycles",
@@ -2734,7 +2965,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus",
@@ -2742,7 +2974,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "many peds",
@@ -2750,7 +2983,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked scooters",
@@ -2758,7 +2992,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "parked motorcycle",
@@ -2766,7 +3001,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -2794,7 +3030,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2802,7 +3039,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2812,7 +3050,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle rack",
@@ -2820,7 +3059,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked bicycles",
@@ -2828,7 +3068,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -2836,7 +3077,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -2844,7 +3086,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked scooters",
@@ -2852,7 +3095,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked motorcycle",
@@ -2860,7 +3104,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -2887,7 +3132,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2895,7 +3141,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2905,7 +3152,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle rack",
@@ -2913,7 +3161,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked bicycles",
@@ -2921,7 +3170,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -2929,7 +3179,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -2937,7 +3188,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked scooters",
@@ -2945,7 +3197,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked motorcycle",
@@ -2953,7 +3206,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -2980,7 +3234,8 @@
               "evidence": "There are cars.",
               "evidence_source": "annotations",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -2988,7 +3243,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -2998,7 +3254,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bicycle rack",
@@ -3006,7 +3263,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked bicycles",
@@ -3014,7 +3272,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus",
@@ -3022,7 +3281,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -3030,7 +3290,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked scooters",
@@ -3038,7 +3299,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "parked motorcycle",
@@ -3046,7 +3308,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -3074,7 +3337,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -3082,7 +3346,8 @@
             "evidence": "Our car is driving fast.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": false
+            "box_present": false,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -3092,7 +3357,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "big street",
@@ -3100,7 +3366,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus stop",
@@ -3108,7 +3375,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "high speed",
@@ -3116,7 +3384,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "construction vehicle",
@@ -3124,7 +3393,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -3182,7 +3452,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -3190,7 +3461,8 @@
             "evidence": "Our car is driving fast.",
             "evidence_source": "ego_pose",
             "object_class": "pedestrian",
-            "box_present": false
+            "box_present": false,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -3200,7 +3472,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "big street",
@@ -3208,7 +3481,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "bus stop",
@@ -3216,7 +3490,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "high speed",
@@ -3224,7 +3499,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "construction vehicle",
@@ -3232,7 +3508,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -3260,7 +3537,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3268,7 +3546,8 @@
               "evidence": "Our car is driving fast.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3278,7 +3557,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "big street",
@@ -3286,7 +3566,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus stop",
@@ -3294,7 +3575,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "high speed",
@@ -3302,7 +3584,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction vehicle",
@@ -3310,7 +3593,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -3338,7 +3622,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3346,7 +3631,8 @@
               "evidence": "Our car is driving fast.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3356,7 +3642,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "big street",
@@ -3364,7 +3651,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus stop",
@@ -3372,7 +3660,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "high speed",
@@ -3380,7 +3669,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction vehicle",
@@ -3388,7 +3678,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -3414,7 +3705,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3422,7 +3714,8 @@
               "evidence": "Our car is driving fast.",
               "evidence_source": "ego_pose",
               "object_class": "pedestrian",
-              "box_present": false
+              "box_present": false,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3432,7 +3725,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "big street",
@@ -3440,7 +3734,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "bus stop",
@@ -3448,7 +3743,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "high speed",
@@ -3456,7 +3752,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "construction vehicle",
@@ -3464,7 +3761,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -3491,7 +3789,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -3499,7 +3798,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -3509,7 +3809,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "after rain",
@@ -3517,7 +3818,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "many peds",
@@ -3525,7 +3827,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "PMD",
@@ -3533,7 +3836,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "ped with bag",
@@ -3541,7 +3845,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "jaywalker",
@@ -3549,7 +3854,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "truck",
@@ -3557,7 +3863,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "scooter",
@@ -3565,7 +3872,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -3617,7 +3925,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -3625,7 +3934,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -3635,7 +3945,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "after rain",
@@ -3643,7 +3954,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "many peds",
@@ -3651,7 +3963,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "PMD",
@@ -3659,7 +3972,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "ped with bag",
@@ -3667,7 +3981,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "jaywalker",
@@ -3675,7 +3990,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "truck",
@@ -3683,7 +3999,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "scooter",
@@ -3691,7 +4008,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -3718,7 +4036,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3726,7 +4045,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3736,7 +4056,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "after rain",
@@ -3744,7 +4065,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -3752,7 +4074,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -3760,7 +4083,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with bag",
@@ -3768,7 +4092,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -3776,7 +4101,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -3784,7 +4110,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -3792,7 +4119,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -3819,7 +4147,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3827,7 +4156,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3837,7 +4167,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "after rain",
@@ -3845,7 +4176,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -3853,7 +4185,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -3861,7 +4194,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with bag",
@@ -3869,7 +4203,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -3877,7 +4212,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -3885,7 +4221,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -3893,7 +4230,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -3920,7 +4258,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -3928,7 +4267,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -3938,7 +4278,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "after rain",
@@ -3946,7 +4287,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "many peds",
@@ -3954,7 +4296,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -3962,7 +4305,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "ped with bag",
@@ -3970,7 +4314,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "jaywalker",
@@ -3978,7 +4323,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "truck",
@@ -3986,7 +4332,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -3994,7 +4341,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -4021,7 +4369,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -4029,7 +4378,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -4039,7 +4389,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds in sidewalk",
@@ -4047,7 +4398,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds cross crosswalk",
@@ -4055,7 +4407,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "scooter",
@@ -4063,7 +4416,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "PMD",
@@ -4071,7 +4425,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "difficult lighting",
@@ -4079,7 +4434,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -4134,7 +4490,8 @@
             "evidence": "It is night.",
             "evidence_source": "description",
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -4142,7 +4499,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -4152,7 +4510,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds in sidewalk",
@@ -4160,7 +4519,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "peds cross crosswalk",
@@ -4168,7 +4528,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "scooter",
@@ -4176,7 +4537,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "PMD",
@@ -4184,7 +4546,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "difficult lighting",
@@ -4192,7 +4555,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -4219,7 +4583,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -4227,7 +4592,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -4237,7 +4603,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds in sidewalk",
@@ -4245,7 +4612,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds cross crosswalk",
@@ -4253,7 +4621,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -4261,7 +4630,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -4269,7 +4639,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "difficult lighting",
@@ -4277,7 +4648,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -4303,7 +4675,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -4311,7 +4684,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -4321,7 +4695,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds in sidewalk",
@@ -4329,7 +4704,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds cross crosswalk",
@@ -4337,7 +4713,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -4345,7 +4722,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -4353,7 +4731,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "difficult lighting",
@@ -4361,7 +4740,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         },
@@ -4387,7 +4767,8 @@
               "evidence": "It is night.",
               "evidence_source": "description",
               "object_class": "car",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "motion"
             },
             {
               "text": "A pedestrian walks on the sidewalk.",
@@ -4395,7 +4776,8 @@
               "evidence": null,
               "evidence_source": null,
               "object_class": "pedestrian",
-              "box_present": true
+              "box_present": true,
+              "claim_type": "objects"
             }
           ],
           "human_items": [
@@ -4405,7 +4787,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds in sidewalk",
@@ -4413,7 +4796,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "peds cross crosswalk",
@@ -4421,7 +4805,8 @@
               "evidence": "A pedestrian walks on the sidewalk.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "scooter",
@@ -4429,7 +4814,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "PMD",
@@ -4437,7 +4823,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             },
             {
               "text": "difficult lighting",
@@ -4445,7 +4832,8 @@
               "evidence": "A car drives along a sunny street.",
               "evidence_source": null,
               "object_class": null,
-              "box_present": null
+              "box_present": null,
+              "claim_type": "other"
             }
           ]
         }
@@ -4475,7 +4863,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "car",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "motion"
           },
           {
             "text": "A pedestrian walks on the sidewalk.",
@@ -4483,7 +4872,8 @@
             "evidence": null,
             "evidence_source": null,
             "object_class": "pedestrian",
-            "box_present": true
+            "box_present": true,
+            "claim_type": "objects"
           }
         ],
         "human_items": [
@@ -4493,7 +4883,8 @@
             "evidence": "A car drives along a sunny street.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "construction",
@@ -4501,7 +4892,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "intersection",
@@ -4509,7 +4901,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "turn left",
@@ -4517,7 +4910,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           },
           {
             "text": "following a van",
@@ -4525,7 +4919,8 @@
             "evidence": "A pedestrian walks on the sidewalk.",
             "evidence_source": null,
             "object_class": null,
-            "box_present": null
+            "box_present": null,
+            "claim_type": "other"
           }
         ]
       },
@@ -4561,6 +4956,16 @@
     "claims_supported_by_annotations": 0.2,
     "human_coverage": 0.1694915254237288,
     "human_contradicted": 0.711864406779661,
+    "claims_supported_motion": 0.4,
+    "claims_supported_objects": 0.0,
+    "claims_supported_conditions": null,
+    "claims_supported_place": null,
+    "claims_supported_other": null,
+    "claims_n_motion": 10.0,
+    "claims_n_objects": 10.0,
+    "claims_n_conditions": 0.0,
+    "claims_n_place": 0.0,
+    "claims_n_other": 0.0,
     "macro_chair_i": 0.1,
     "macro_chair_s": 0.2,
     "macro_object_coverage": 0.45,
@@ -4616,6 +5021,16 @@
     "shuffled_claims_supported_by_annotations": 0.2,
     "shuffled_human_coverage": 0.1694915254237288,
     "shuffled_human_contradicted": 0.711864406779661,
+    "shuffled_claims_supported_motion": 0.4,
+    "shuffled_claims_supported_objects": 0.0,
+    "shuffled_claims_supported_conditions": null,
+    "shuffled_claims_supported_place": null,
+    "shuffled_claims_supported_other": null,
+    "shuffled_claims_n_motion": 10.0,
+    "shuffled_claims_n_objects": 10.0,
+    "shuffled_claims_n_conditions": 0.0,
+    "shuffled_claims_n_place": 0.0,
+    "shuffled_claims_n_other": 0.0,
     "specific_claims_supported": 0.0,
     "specific_object_coverage": 0.0,
     "specific_human_coverage": 0.0,

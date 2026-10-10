@@ -78,7 +78,49 @@ def _scene_errors(row: SceneRow) -> str:
     return "; ".join(parts) or "none"
 
 
-def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: str) -> Path:
+CLAIM_TYPE_LABELS = {
+    "motion": ("How vehicles move (our car or others)", ("ego_motion", "turn")),
+    "objects": ("Which objects are present", ("objects",)),
+    "conditions": ("Time of day, road condition", ("time_of_day",)),
+    "place": ("Kind of place, traffic side", ()),
+    "other": ("Anything else (buildings, signs, weather...)", ()),
+}
+
+
+def _validation_note(kinds: tuple[str, ...], validation: dict | None) -> str:
+    if not kinds:
+        return "not validated"
+    if validation is None:
+        return "run validate-judge"
+    parts = []
+    for kind in kinds:
+        v = validation.get(kind)
+        if v and v.get("false_supported") is not None:
+            parts.append(
+                f"{kind.replace('_', ' ')} {fmt(v['false_supported'])} (n={int(v['n_false'] or 0)})"
+            )
+    return ", ".join(parts) or "–"
+
+
+def claim_type_table(s: dict[str, float | None], validation: dict | None) -> str:
+    rows = [
+        [
+            label,
+            int(s.get(f"claims_n_{kind}") or 0),
+            fmt(s.get(f"claims_supported_{kind}")),
+            _validation_note(kinds, validation),
+        ]
+        for kind, (label, kinds) in CLAIM_TYPE_LABELS.items()
+    ]
+    return md_table(
+        ["Claims about", "Claims", "Supported", "Judge validation: false claims wrongly supported"],
+        rows,
+    )
+
+
+def render_scene_report(
+    evaluation: SceneEvaluation, run_dir: Path, protocol: str, validation: dict | None = None
+) -> Path:
     s = evaluation.summary
     rows = evaluation.rows
     headline = [
@@ -134,6 +176,12 @@ def render_scene_report(evaluation: SceneEvaluation, run_dir: Path, protocol: st
         md_table(
             ["Metric", "Final", "Macro", "View A", "Mean of views", "Spread", "Shuffled"], headline
         ),
+        "## Supported claims by type\n\n"
+        "The judge is not equally reliable for every kind of claim. Its validation on claims "
+        "with known truth (`validate-judge`) shows how often a *false* claim of each type is "
+        "wrongly marked supported: read each row's supported rate with that error in mind. "
+        "Small validation counts (e.g. 10 turn claims) are weak evidence.\n\n"
+        + claim_type_table(s, validation),
         "## Is the description about this scene?\n\n"
         'A generic description ("a car on a street in daylight") is supported in almost any '
         "scene. The difference between the own scene and the shuffled control shows how much "
