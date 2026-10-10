@@ -135,11 +135,11 @@ picking a winner.
 
 ## How did you test the code?
 
-- **139 tests** (`make test`, also run inside Docker and in CI):
+- **141 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting, the judge rule, CHAIR and coverage
-    against hand-computed examples, the sign-flip test, the cache key and the run
-    manifest.
+    against hand-computed examples, the sign-flip test, the cache key, the run
+    manifest, and that the results store ingests idempotently.
   - End-to-end runs on fake scenes with mock models.
   - Real-data tests that are skipped if `data/` is missing. One of them checks that the
     fact sheet recovers "turn left" and "wait at intersection".
@@ -277,6 +277,7 @@ without `docker compose run --rm app`.
 | `vlm-eval validate-judge RUN_DIR` | Check the claim judge on claims with known truth |
 | `vlm-eval scene-leaderboard RUN_DIR...` | All runs side by side |
 | `vlm-eval run` / `evaluate` / `compare` / `leaderboard` / `gate` | Frame-level equivalents and the quality gate |
+| `vlm-eval ingest RUN_DIR...` / `vlm-eval query --example NAME` | Load runs into the DuckDB results store / run a saved SQL question |
 | `./scripts/run_all.sh` | Reproduce every result in this README |
 
 **Runtime.** About 10–13 s per 6-image call on an Apple M1 GPU, so 5–7 minutes per scene
@@ -284,6 +285,22 @@ run (30 calls). On CPU in Docker, expect several times longer. Use
 `--set 'loader.params.scenes=[scene-1094]'` (3 calls) for a quick check. VLM answers are
 cached under a key built from the model, its settings, the prompt and the exact frames, so
 re-running a config only re-scores.
+
+## Results store (DuckDB)
+
+`vlm-eval ingest` loads run folders into `outputs/results.duckdb`. The tables are `runs`,
+`run_metrics`, `scenes`, `views`, `scene_metrics`, `claims` and `frame_predictions`.
+
+- **Questions across runs become SQL.** Saved examples live in
+  `src/vlm_eval/sql/examples.sql`. For instance, `vlm-eval query --example
+  missed_by_every_model` shows that in scene-0553 every real model misses the bus, the
+  truck and the barrier.
+- **The run folders remain the source of truth.** The database is derived from them and is
+  not committed.
+- **Ingestion is idempotent.** A run is replaced as a unit in one transaction, so loading it
+  twice never duplicates rows.
+- **Runs never overwrite each other.** IDs include the level (`scene:mock_oracle` and
+  `frame:mock_oracle` are different runs).
 
 ## Code structure
 
@@ -300,8 +317,9 @@ src/vlm_eval/
                     frame metrics/, compare, leaderboard, gate, stats
   taxonomies/       driving.yaml: object types, values, synonyms, fact-sentence wording
   manifest.py       run manifest
+  store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/ for frame runs)
-tests/              139 tests
+tests/              141 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config
@@ -313,5 +331,6 @@ new label set needs a taxonomy YAML. A new model is usually just a different `mo
   Production data has no labels, so it would be monitored with label-free signals such as
   agreement between views.
 - Model answers would go in the same content-keyed cache, moved to an object store.
-- Results would be ingested into a queryable store for analysis across runs.
+- The DuckDB store here would become a shared warehouse table, with the same per-run
+  replace semantics.
 - A model or prompt change would be gated in CI against the current baseline.

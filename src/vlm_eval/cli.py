@@ -233,6 +233,40 @@ def scene_leaderboard_cmd(
     typer.echo(table)
 
 
+@app.command()
+def ingest(
+    run_dirs: list[Path],
+    db: Annotated[Path, typer.Option(help="DuckDB file")] = Path("outputs/results.duckdb"),
+) -> None:
+    """Load run folders into the DuckDB results store (idempotent: a run is replaced)."""
+    from vlm_eval.store import ingest as ingest_runs
+
+    counts = ingest_runs(run_dirs, db)
+    typer.echo(f"{db}: " + ", ".join(f"{t}={n}" for t, n in counts.items()))
+
+
+@app.command()
+def query(
+    sql: Annotated[str | None, typer.Argument(help="SQL to run")] = None,
+    example: Annotated[str | None, typer.Option(help="Named query from sql/examples.sql")] = None,
+    db: Annotated[Path, typer.Option(help="DuckDB file")] = Path("outputs/results.duckdb"),
+) -> None:
+    """Run SQL (or a named example) against the results store."""
+    from vlm_eval.evaluation.report import md_table
+    from vlm_eval.store import example_queries
+    from vlm_eval.store import query as run_query
+
+    examples = example_queries()
+    if example is not None:
+        if example not in examples:
+            raise typer.BadParameter(f"unknown example; available: {sorted(examples)}")
+        sql = examples[example]
+    if not sql:
+        raise typer.BadParameter(f"give SQL or --example (one of {sorted(examples)})")
+    columns, rows = run_query(db, sql)
+    typer.echo(md_table(columns, [list(r) for r in rows]))
+
+
 @app.command("gt-export")
 def gt_export(
     run_dir: Annotated[Path, typer.Argument(help="Run whose frames to audit")],

@@ -32,3 +32,7 @@ vlm-eval compare outputs/qwen2vl_v2 outputs/qwen2vl_v3 --out outputs/compare_qwe
 vlm-eval compare outputs/smolvlm_v3 outputs/qwen2vl_v3 --out outputs/compare_smolvlm_vs_qwen2vl_v3
 vlm-eval leaderboard outputs/mock_oracle outputs/mock_always_car outputs/smolvlm_v1 outputs/smolvlm_v2 \
   outputs/smolvlm_v2b outputs/smolvlm_v3 outputs/qwen2vl_v2 outputs/qwen2vl_v2b outputs/qwen2vl_v3
+
+# --- Results store: every run in one DuckDB file (derived; safe to rebuild) -------------------
+vlm-eval ingest outputs/scenes/{mock_oracle,mock_always_car,smolvlm_open,smolvlm_guided,qwen2vl_open,qwen2vl_guided} \
+  outputs/{mock_oracle,mock_always_car,smolvlm_v1,smolvlm_v2,smolvlm_v2b,smolvlm_v3,qwen2vl_v2,qwen2vl_v2b,qwen2vl_v3}

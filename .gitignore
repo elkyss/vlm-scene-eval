@@ -10,3 +10,6 @@ __pycache__/
 outputs/**/*.log
 # internal checks only (not part of the shared deliverable)
 internal/
+# derived results store (rebuild with vlm-eval ingest)
+outputs/*.duckdb
+outputs/*.duckdb.wal
