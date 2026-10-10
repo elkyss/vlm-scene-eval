@@ -15,7 +15,7 @@ vlm:
 prompt: scene_guided
 judge:
   name: nli
-  params: {model_id: cross-encoder/nli-deberta-v3-small}
+  params: {model_id: cross-encoder/nli-deberta-v3-base}
 embedding_model: sentence-transformers/all-MiniLM-L6-v2
 output_dir: outputs/scenes
 cache_dir: .cache/vlm

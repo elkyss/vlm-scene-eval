@@ -1,0 +1,3828 @@
+{
+  "model": "mock-fixed",
+  "prompt_version": "scene_open@c03d290e",
+  "judge": "nli-deberta-v3-base",
+  "rows": [
+    {
+      "scene_name": "scene-0061",
+      "reference_text": "Parked truck, construction, intersection, turn left, following a van",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parked truck",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "construction",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "intersection",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "turn left",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "following a van",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "construction",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "intersection",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "turn left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "following a van",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "construction",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "intersection",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "turn left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "following a van",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car turns left.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parked truck",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "construction",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "intersection",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "turn left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "following a van",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Many peds right",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "wait for turning car",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "long bike rack left",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "cyclist",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is driving.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are stopped.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are parked.",
+        "There are traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.3408498764038086,
+      "own_scene_rank": 1
+    },
+    {
+      "scene_name": "scene-0103",
+      "reference_text": "Many peds right, wait for turning car, long bike rack left, cyclist",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Many peds right",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "wait for turning car",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "long bike rack left",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "cyclist",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cyclist",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cyclist",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Many peds right",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait for turning car",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "long bike rack left",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cyclist",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "bus",
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "Most pedestrians are walking.",
+            "evidence_source": "annotations"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "There are cars.",
+            "evidence_source": "annotations"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Wait at intersection",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "large truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds crossing crosswalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "ped with stroller",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive is in Boston, where vehicles drive on the right.",
+        "Our car is driving.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are no buses.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.1630389392375946,
+      "own_scene_rank": 10
+    },
+    {
+      "scene_name": "scene-0553",
+      "reference_text": "Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "bus",
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "Most pedestrians are walking.",
+            "evidence_source": "annotations"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "There are cars.",
+            "evidence_source": "annotations"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Wait at intersection",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "large truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds crossing crosswalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "ped with stroller",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "Most pedestrians are walking.",
+              "evidence_source": "annotations"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "There are cars.",
+              "evidence_source": "annotations"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "large truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "There are cars.",
+              "evidence_source": "annotations"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "large truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "There are cars.",
+              "evidence_source": "annotations"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "large truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds crossing crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with stroller",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked cars",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bendy bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "gardening vehicles",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "The drive is in Boston, where vehicles drive on the right.",
+        "Our car is stopped.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are buses.",
+        "Most buses are moving.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are no traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.24863214790821075,
+      "own_scene_rank": 5
+    },
+    {
+      "scene_name": "scene-0655",
+      "reference_text": "Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "bus",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked cars",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bendy bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "gardening vehicles",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked cars",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked cars",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "traffic_cone",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked cars",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bendy bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "gardening vehicles",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [
+          "pedestrian"
+        ],
+        "labelled": [
+          "bus",
+          "car",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is moving slowly.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Arrive at busy intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "wait at intersection",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The scene is in a parking lot.",
+        "The drive is in Boston, where vehicles drive on the right.",
+        "Our car is driving.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are buses.",
+        "Most buses are stopped.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are no bicycles or motorcycles.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.2901252508163452,
+      "own_scene_rank": 3
+    },
+    {
+      "scene_name": "scene-0757",
+      "reference_text": "Arrive at busy intersection, bus, wait at intersection, bicycle, peds",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [
+          "pedestrian"
+        ],
+        "labelled": [
+          "bus",
+          "car",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is moving slowly.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Arrive at busy intersection",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "wait at intersection",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "bus",
+            "car",
+            "traffic_cone",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is moving slowly.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "bus",
+            "car",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is moving slowly.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "bus",
+            "car",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is moving slowly.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Arrive at busy intersection",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "wait at intersection",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds on sidewalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "cars",
+            "label": "supported",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "fake construction worker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "cross intersection",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "car overtaking us",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "The drive is in Boston, where vehicles drive on the right.",
+        "Our car is moving slowly.",
+        "Our car stops for part of the drive.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "There are buses.",
+        "Most buses are moving.",
+        "There are no pedestrians.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.2031737118959427,
+      "own_scene_rank": 6
+    },
+    {
+      "scene_name": "scene-0796",
+      "reference_text": "Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds on sidewalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "cars",
+            "label": "supported",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "fake construction worker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "cross intersection",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "car overtaking us",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds on sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "cars",
+              "label": "supported",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "fake construction worker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "cross intersection",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "car overtaking us",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle rack",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked bicycles",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked scooters",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked motorcycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The drive passes an intersection.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is driving fast.",
+        "Our car drives straight ahead.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.20183123648166656,
+      "own_scene_rank": 7
+    },
+    {
+      "scene_name": "scene-0916",
+      "reference_text": "Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parking lot",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bicycle rack",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked bicycles",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "bus",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked scooters",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "parked motorcycle",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "truck",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Parking lot",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bicycle rack",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked bicycles",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "bus",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked scooters",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "parked motorcycle",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [
+          "pedestrian"
+        ],
+        "labelled": [
+          "barrier",
+          "car",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "big street",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bus stop",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "high speed",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "construction vehicle",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is daytime.",
+        "The scene is in a parking lot.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is driving.",
+        "Our car turns right.",
+        "There are cars.",
+        "Most cars are parked.",
+        "There are trucks.",
+        "Most trucks are parked.",
+        "There are no buses.",
+        "There are pedestrians.",
+        "Most pedestrians are standing.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are parked.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.1864374727010727,
+      "own_scene_rank": 9
+    },
+    {
+      "scene_name": "scene-1077",
+      "reference_text": "Night, big street, bus stop, high speed, construction vehicle",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [
+          "pedestrian"
+        ],
+        "labelled": [
+          "barrier",
+          "car",
+          "truck"
+        ],
+        "covered": [
+          "car"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "contradicted",
+            "evidence": "Our car is driving fast.",
+            "evidence_source": "ego_pose"
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "big street",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "bus stop",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "high speed",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "construction vehicle",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "barrier",
+            "car",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "big street",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus stop",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "high speed",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "barrier",
+            "bus",
+            "car",
+            "truck"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "big street",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus stop",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "high speed",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [
+            "pedestrian"
+          ],
+          "labelled": [
+            "barrier",
+            "car"
+          ],
+          "covered": [
+            "car"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "contradicted",
+              "evidence": "Our car is driving fast.",
+              "evidence_source": "ego_pose"
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "big street",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "bus stop",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "high speed",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "construction vehicle",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "after rain",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "ped with bag",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is driving fast.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are trucks.",
+        "Most trucks are moving.",
+        "There are no pedestrians.",
+        "There are no traffic cones.",
+        "There are road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.3150208294391632,
+      "own_scene_rank": 2
+    },
+    {
+      "scene_name": "scene-1094",
+      "reference_text": "Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "after rain",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "many peds",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "ped with bag",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "jaywalker",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "truck",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "after rain",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "after rain",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "bus",
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "after rain",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "many peds",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "ped with bag",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "jaywalker",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            },
+            {
+              "text": "truck",
+              "label": "contradicted",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds in sidewalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds cross crosswalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "difficult lighting",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "The road is wet.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is driving.",
+        "Our car turns left.",
+        "There are cars.",
+        "Most cars are stopped.",
+        "There are no trucks.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.1964353322982788,
+      "own_scene_rank": 8
+    },
+    {
+      "scene_name": "scene-1100",
+      "reference_text": "Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",
+      "description": "A car drives along a sunny street. A pedestrian walks on the sidewalk.",
+      "chosen_view": 0,
+      "view_agreement": 1.0,
+      "final": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "car",
+          "pedestrian",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "contradicted",
+            "evidence": "It is night.",
+            "evidence_source": "description"
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Night",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds in sidewalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "peds cross crosswalk",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "scooter",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "PMD",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "difficult lighting",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "per_view": [
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        },
+        {
+          "mentioned": [
+            "car",
+            "pedestrian"
+          ],
+          "hallucinated": [],
+          "labelled": [
+            "car",
+            "pedestrian",
+            "two_wheeler"
+          ],
+          "covered": [
+            "car",
+            "pedestrian"
+          ],
+          "claims": [
+            {
+              "text": "A car drives along a sunny street.",
+              "label": "contradicted",
+              "evidence": "It is night.",
+              "evidence_source": "description"
+            },
+            {
+              "text": "A pedestrian walks on the sidewalk.",
+              "label": "neutral",
+              "evidence": null,
+              "evidence_source": null
+            }
+          ],
+          "human_items": [
+            {
+              "text": "Night",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds in sidewalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "peds cross crosswalk",
+              "label": "supported",
+              "evidence": "A pedestrian walks on the sidewalk.",
+              "evidence_source": null
+            },
+            {
+              "text": "scooter",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "PMD",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            },
+            {
+              "text": "difficult lighting",
+              "label": "contradicted",
+              "evidence": "A car drives along a sunny street.",
+              "evidence_source": null
+            }
+          ]
+        }
+      ],
+      "shuffled": {
+        "mentioned": [
+          "car",
+          "pedestrian"
+        ],
+        "hallucinated": [],
+        "labelled": [
+          "barrier",
+          "car",
+          "pedestrian",
+          "traffic_cone",
+          "truck",
+          "two_wheeler"
+        ],
+        "covered": [
+          "car",
+          "pedestrian"
+        ],
+        "claims": [
+          {
+            "text": "A car drives along a sunny street.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          },
+          {
+            "text": "A pedestrian walks on the sidewalk.",
+            "label": "neutral",
+            "evidence": null,
+            "evidence_source": null
+          }
+        ],
+        "human_items": [
+          {
+            "text": "Parked truck",
+            "label": "contradicted",
+            "evidence": "A car drives along a sunny street.",
+            "evidence_source": null
+          },
+          {
+            "text": "construction",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "intersection",
+            "label": "supported",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "turn left",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          },
+          {
+            "text": "following a van",
+            "label": "contradicted",
+            "evidence": "A pedestrian walks on the sidewalk.",
+            "evidence_source": null
+          }
+        ]
+      },
+      "fact_sentences": [
+        "It is night.",
+        "The drive is in Singapore, where vehicles drive on the left.",
+        "Our car is stopped.",
+        "There are cars.",
+        "Most cars are moving.",
+        "There are no trucks.",
+        "There are pedestrians.",
+        "Most pedestrians are walking.",
+        "There are bicycles or motorcycles.",
+        "Most bicycles or motorcycles are ridden.",
+        "There are no traffic cones.",
+        "There are no road barriers."
+      ],
+      "words": 13,
+      "repetition_loop": false,
+      "latency_s": 0.0,
+      "embedding_cosine": 0.27224475145339966,
+      "own_scene_rank": 4
+    }
+  ],
+  "summary": {
+    "chair_i": 0.1,
+    "chair_s": 0.2,
+    "object_coverage": 0.4186046511627907,
+    "claims_supported": 0.0,
+    "claims_contradicted": 0.45,
+    "claims_unverifiable": 0.55,
+    "claims_supported_by_annotations": 0.0,
+    "human_coverage": 0.11864406779661017,
+    "human_contradicted": 0.711864406779661,
+    "macro_chair_i": 0.1,
+    "macro_chair_s": 0.2,
+    "macro_object_coverage": 0.45,
+    "macro_claims_supported": 0.0,
+    "macro_claims_contradicted": 0.45,
+    "macro_claims_unverifiable": 0.55,
+    "macro_claims_supported_by_annotations": 0.0,
+    "macro_human_coverage": 0.11555555555555555,
+    "macro_human_contradicted": 0.7122222222222223,
+    "chair_i_ci_low": 0.0,
+    "chair_i_ci_high": 0.25,
+    "object_coverage_ci_low": 0.3404255319148936,
+    "object_coverage_ci_high": 0.5151515151515151,
+    "claims_supported_ci_low": 0.0,
+    "claims_supported_ci_high": 0.0,
+    "claims_contradicted_ci_low": 0.25,
+    "claims_contradicted_ci_high": 0.65,
+    "human_coverage_ci_low": 0.04838709677419355,
+    "human_coverage_ci_high": 0.19608718487394952,
+    "view_a_chair_i": 0.1,
+    "views_mean_chair_i": 0.10000000000000002,
+    "within_scene_spread_chair_i": 0.0,
+    "view_a_chair_s": 0.2,
+    "views_mean_chair_s": 0.20000000000000004,
+    "within_scene_spread_chair_s": 0.0,
+    "view_a_object_coverage": 0.4186046511627907,
+    "views_mean_object_coverage": 0.4222399834992008,
+    "within_scene_spread_object_coverage": 0.06999999999999999,
+    "view_a_claims_supported": 0.0,
+    "views_mean_claims_supported": 0.0,
+    "within_scene_spread_claims_supported": 0.0,
+    "view_a_claims_contradicted": 0.45,
+    "views_mean_claims_contradicted": 0.43333333333333335,
+    "within_scene_spread_claims_contradicted": 0.1,
+    "view_a_claims_unverifiable": 0.55,
+    "views_mean_claims_unverifiable": 0.5666666666666667,
+    "within_scene_spread_claims_unverifiable": 0.1,
+    "view_a_claims_supported_by_annotations": 0.0,
+    "views_mean_claims_supported_by_annotations": 0.0,
+    "within_scene_spread_claims_supported_by_annotations": 0.0,
+    "view_a_human_coverage": 0.11864406779661017,
+    "views_mean_human_coverage": 0.11864406779661017,
+    "within_scene_spread_human_coverage": 0.0,
+    "view_a_human_contradicted": 0.711864406779661,
+    "views_mean_human_contradicted": 0.711864406779661,
+    "within_scene_spread_human_contradicted": 0.0,
+    "shuffled_chair_i": 0.1,
+    "shuffled_chair_s": 0.2,
+    "shuffled_object_coverage": 0.4186046511627907,
+    "shuffled_claims_supported": 0.0,
+    "shuffled_claims_contradicted": 0.45,
+    "shuffled_claims_unverifiable": 0.55,
+    "shuffled_claims_supported_by_annotations": 0.0,
+    "shuffled_human_coverage": 0.11864406779661017,
+    "shuffled_human_contradicted": 0.711864406779661,
+    "view_agreement": 1.0,
+    "empty_rate": 0.0,
+    "repetition_loop_rate": 0.0,
+    "mean_words": 13.0,
+    "mean_latency_s_per_call": 0.0,
+    "embedding_cosine": 0.24177895486354828,
+    "own_scene_rank_1_rate": 0.1,
+    "n_scenes": 10.0
+  }
+}

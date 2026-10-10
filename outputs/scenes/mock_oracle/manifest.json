@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-10-10T18:49:43+00:00",
+  "git_commit": "8243df7676016a7072c542a34e6e291a6c1acc43",
+  "git_dirty": true,
+  "config_sha256": "28cc92c71bf2d9f6",
+  "config": {
+    "run_id": "mock_oracle",
+    "dataroot": "data/nuscenes",
+    "version": "v1.0-mini",
+    "camera": "CAM_FRONT",
+    "frames_per_view": 6,
+    "n_views": 3,
+    "scenes": null,
+    "min_visibility": 2,
+    "max_distance_m": 50.0,
+    "taxonomy": "driving",
+    "vlm": {
+      "name": "oracle",
+      "params": {}
+    },
+    "prompt": "scene_open",
+    "judge": {
+      "name": "nli",
+      "params": {
+        "model_id": "cross-encoder/nli-deberta-v3-base"
+      }
+    },
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "output_dir": "outputs/scenes",
+    "cache_dir": ".cache/vlm",
+    "seed": 0
+  },
+  "python": "3.13.0",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "vlm-eval": "0.1.0",
+    "torch": "2.14.1",
+    "transformers": "5.19.0",
+    "sentence-transformers": "6.1.0",
+    "nuscenes-devkit": "1.2.0",
+    "numpy": "1.26.4",
+    "pydantic": "2.14.0"
+  },
+  "model_signature": "mock-table|",
+  "model_revision": null,
+  "judge": "nli-deberta-v3-base"
+}

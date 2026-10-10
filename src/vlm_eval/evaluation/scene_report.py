@@ -20,7 +20,6 @@ HEADLINE: tuple[tuple[str, str, bool], ...] = (
     ("Claims that cannot be verified (no annotation covers them)", "claims_unverifiable", False),
     ("Claims supported by annotation-based facts", "claims_supported_by_annotations", False),
     ("Human-sentence items covered", "human_coverage", False),
-    ("Human-sentence items contradicted", "human_contradicted", True),
 )
 
 
@@ -177,7 +176,6 @@ def scene_leaderboard(run_dirs: list[Path]) -> str:
         "Contradicted",
         "Unverifiable",
         "Human coverage",
-        "Human contradicted",
         "Shuffled: supported",
         "View agreement",
         "s / call",

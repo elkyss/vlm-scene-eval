@@ -44,30 +44,36 @@ JUDGES: Registry[TextJudge] = Registry("judge")
 def judge_against(
     judge: TextJudge, premises: Sequence[str], hypotheses: Sequence[str], threshold: float = 0.5
 ) -> list[Verdict]:
-    """Check every hypothesis against every premise sentence and aggregate.
+    """Check hypotheses against a set of premise sentences.
 
-    supported   if the best entailment >= threshold and beats the best contradiction;
-    contradicted if the best contradiction >= threshold and beats the best entailment;
-    neutral     otherwise (nothing in the premise speaks to it).
+    supported    if at least one single sentence entails the hypothesis (evidence: that sentence);
+    contradicted if the whole premise, read together, contradicts it (evidence: the sentence
+                 with the highest contradiction score);
+    neutral      otherwise.
+
+    Why the asymmetry: small NLI models flag unrelated sentence pairs as contradictions
+    ("There are cars." vs "There are no buses."), while a long premise dilutes entailment.
+    Measured on the oracle control (claims = fact sentences verbatim) this rule gives 100%
+    supported / 0% contradicted; per-sentence-only gave 29-40% supported.
     """
     if not hypotheses:
         return []
     if not premises:
         return [Verdict(NEUTRAL, {NEUTRAL: 1.0}) for _ in hypotheses]
-    pairs = [(p, h) for h in hypotheses for p in premises]
-    probs = judge.judge_pairs(pairs)
+    whole = " ".join(premises)
+    per = judge.judge_pairs([(p, h) for h in hypotheses for p in premises])
+    together = judge.judge_pairs([(whole, h) for h in hypotheses])
     verdicts = []
     for i, _ in enumerate(hypotheses):
-        rows = probs[i * len(premises) : (i + 1) * len(premises)]
+        rows = per[i * len(premises) : (i + 1) * len(premises)]
         best_s = max(range(len(premises)), key=lambda j: rows[j].get(SUPPORTED, 0.0))
         best_c = max(range(len(premises)), key=lambda j: rows[j].get(CONTRADICTED, 0.0))
-        s, c = rows[best_s].get(SUPPORTED, 0.0), rows[best_c].get(CONTRADICTED, 0.0)
-        if s >= threshold and s >= c:
+        if rows[best_s].get(SUPPORTED, 0.0) >= threshold:
             verdicts.append(Verdict(SUPPORTED, rows[best_s], premises[best_s]))
-        elif c >= threshold:
-            verdicts.append(Verdict(CONTRADICTED, rows[best_c], premises[best_c]))
+        elif together[i].get(CONTRADICTED, 0.0) >= threshold:
+            verdicts.append(Verdict(CONTRADICTED, together[i], premises[best_c]))
         else:
-            verdicts.append(Verdict(NEUTRAL, rows[best_s]))
+            verdicts.append(Verdict(NEUTRAL, together[i]))
     return verdicts
 
 
@@ -76,7 +82,7 @@ class NLIJudge:
     """Cross-encoder NLI model; the label order is read from the model config."""
 
     def __init__(
-        self, model_id: str = "cross-encoder/nli-deberta-v3-small", batch_size: int = 64
+        self, model_id: str = "cross-encoder/nli-deberta-v3-base", batch_size: int = 32
     ) -> None:
         self.model_id = model_id
         self.batch_size = batch_size

@@ -1,0 +1,22 @@
+cache_dir: .cache/vlm
+camera: CAM_FRONT
+dataroot: data/nuscenes
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+frames_per_view: 6
+judge:
+  name: nli
+  params:
+    model_id: cross-encoder/nli-deberta-v3-base
+max_distance_m: 50.0
+min_visibility: 2
+n_views: 3
+output_dir: outputs/scenes
+prompt: scene_open
+run_id: mock_oracle
+scenes: null
+seed: 0
+taxonomy: driving
+version: v1.0-mini
+vlm:
+  name: oracle
+  params: {}
