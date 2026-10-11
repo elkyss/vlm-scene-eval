@@ -49,7 +49,7 @@ other 9 scenes.
 
 | Step | What it does | Where |
 |---|---|---|
-| 1. Load a scene | A scene is one 20 s clip of about 40 keyframes. **CAM_FRONT** frames only: it is where a driver looks, and one camera keeps the input small enough for small VLMs. The keyframes are split into 6 segments. View *v* takes the frame at position (v + 0.5)/3 in each segment, which gives 3 non-overlapping, time-ordered views of 6 frames. The rule is fixed and never looks at the labels. | `loaders/scene_loader.py` |
+| 1. Load a scene | A scene is one 20 s clip of about 40 keyframes. Default camera **CAM_FRONT**: it is where a driver looks, and one camera keeps the input small enough for small VLMs. Cameras, frames per view, views and scenes are all config settings. The keyframes are split into 6 segments. View *v* takes the frame at position (v + 0.5)/3 in each segment, which gives 3 non-overlapping, time-ordered views of 6 frames. The rule is fixed and never looks at the labels. | `loaders/scene_loader.py` |
 | 2. Run a VLM | One call per view: 6 images plus a prompt saying they are consecutive snapshots of one drive. The final description is the view that agrees most with the facts the majority of views state (self-consistency). Disagreement between views measures the model's variance. | `scene_pipeline.py`, `prompts/scene_*.txt` |
 | 3. Output | **One entry per scene**: `scenes.jsonl` and `scenes.csv` hold the final description, the chosen view, view agreement, model and prompt version, with every view's text attached. | `outputs/scenes/<run>/` |
 | 4. Evaluate | `report.md` and `scene_metrics.json` per run, plus comparisons, a leaderboard and a validation of the judge. | `evaluation/scene_*.py` |
@@ -215,7 +215,10 @@ writes text that fits any scene equally well.
 
 ## Assumptions
 
-- **Scene and camera:** a scene is one nuScenes clip. CAM_FRONT only.
+- **Scene and camera:** a scene is one nuScenes clip. Every result here uses CAM_FRONT,
+  the default. Cameras (one or several sent together), frames per view, views per scene
+  and the scene list are config settings (`loader.params`). With several cameras, objects
+  are checked on all cameras shown.
 - **Sampling protocol:** 6 frames per call (SmolVLM's context fits about 8 images) and 3
   views per scene. This is a fixed rule, not something tuned on results.
 - **Final description:** the view most consistent with the others, so it is real model
