@@ -5,7 +5,10 @@
 thresholds:
   object_coverage: {min: 0.40}                    # mentions at least 40% of visible object types
   chair_i: {max: 0.10}                            # at most 10% of object mentions invented
-  specific_claims_supported_ci_low: {min: 0.0}    # measurably about its own scene
+  # Measurably about its own scene, with the same rule as every comparison (CI above 0 AND
+  # p < 0.05), on the object-coverage gap, which is checked against the 3D boxes.
+  specific_object_coverage_ci_low: {min: 0.0}
+  specific_object_coverage_p: {max: 0.05}
   repetition_loop_rate: {max: 0.20}
 regression:                                       # vs the current baseline run
   object_coverage: {max_drop: 0.05}

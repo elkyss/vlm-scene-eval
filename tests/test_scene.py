@@ -528,3 +528,20 @@ def test_gate_reads_scene_runs(tmp_path: Path) -> None:
     assert "object_coverage" in summary  # flat scene keys
     checks = evaluate_gate({"thresholds": {"object_coverage": {"min": 0.0}}}, summary)
     assert [c.passed for c in checks] == [True]
+
+
+def test_gate_files_only_name_metrics_that_runs_produce(tmp_path: Path) -> None:
+    """Guards against stale gate keys after a metric is renamed or removed."""
+    from tests.conftest import FakeLoader
+    from tests.test_pipeline import build
+    from vlm_eval.evaluation.gate import load_gate, load_summary
+
+    root = Path(__file__).resolve().parents[1]
+    scene_run = run_fake(tmp_path, MockBackend("fixed", fixed_response="There are cars."), "g")
+    frame_run = tmp_path / "frames"
+    build(FakeLoader(tmp_path), "always_car").run(frame_run)
+    for gate_file, run in (("gates.yaml", scene_run), ("gates_frames.yaml", frame_run)):
+        spec = load_gate(root / "configs" / gate_file)
+        keys = set(spec.get("thresholds") or {}) | set(spec.get("regression") or {})
+        missing = keys - set(load_summary(run))
+        assert not missing, f"{gate_file} names metrics no run produces: {missing}"

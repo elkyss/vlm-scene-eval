@@ -150,7 +150,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **150 tests** (`make test`, also run inside Docker and in CI):
+- **151 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -350,7 +350,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/ for frame runs)
-tests/              150 tests
+tests/              151 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config
@@ -365,5 +365,6 @@ new label set needs a taxonomy YAML. A new model is usually just a different `mo
 - The DuckDB store here would become a shared warehouse table, with the same per-run
   replace semantics.
 - A model or prompt change is gated against the current baseline (`configs/gates.yaml`):
-  only annotation-checked metrics are gated. Qwen2-VL guided passes 4/4; SmolVLM open fails
-  3/4 (objects mentioned, scene specificity, repetition loops).
+  only annotation-checked metrics are gated, and scene specificity uses the same CI-and-p
+  rule on the object-coverage gap. Both Qwen2-VL runs pass 5/5. SmolVLM fails: guided 2/5,
+  open 1/5 (objects mentioned, scene specificity, repetition loops).

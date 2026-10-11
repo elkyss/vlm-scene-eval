@@ -47,6 +47,7 @@ def scene_leaderboard(run_dirs: list[Path]) -> str:
         ("Obj. coverage", "object_coverage", "pct"),
         ("Supported", "claims_supported", "pct"),
         ("Specific support (own − other scenes) [95% CI]", "specific_claims_supported", "ci"),
+        ("Specific objects (own − other scenes) [95% CI]", "specific_object_coverage", "ci"),
         ("Unverifiable", "claims_unverifiable", "pct"),
         ("Human coverage", "human_coverage", "pct"),
         ("Repetition loops", "repetition_loop_rate", "pct"),
