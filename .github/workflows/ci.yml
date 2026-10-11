@@ -9,11 +9,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install (no torch: tests use mock VLMs)
-        run: pip install -e ".[dev]"
-      - name: Lint and types
+      - name: "Install (no torch: tests use mock VLMs and a fake judge)"
+        run: pip install -c constraints.txt -e ".[dev]"
+      - name: "Lint and types"
         run: ruff check src tests && ruff format --check src tests && mypy
-      - name: Tests (real-data tests skip without nuScenes)
+      - name: "Tests (real-data tests skip without nuScenes)"
         run: pytest -q
-      - name: Gate demo on a synthetic run
+      - name: "Gate demo on a synthetic run"
         run: python scripts/ci_gate_demo.py
