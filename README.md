@@ -8,8 +8,9 @@ actually seeing the scene.
 
 **Results are committed on purpose.** `outputs/` holds every run folder (model
 descriptions, fact sheets, metrics, reports), the comparisons and the leaderboards. They
-can be read on GitHub without downloading nuScenes or running a model, and
-`vlm-eval evaluate-scenes` reproduces every number from them on CPU. Logs and the DuckDB
+can be read on GitHub without downloading nuScenes or running a model, and the
+evaluation commands (`evaluate-scenes`, `compare-scenes`, ...) reproduce every number from
+them on CPU. Logs and the DuckDB
 file are not committed.
 
 > nuScenes data and the thumbnails in `outputs/` are © Motional,
