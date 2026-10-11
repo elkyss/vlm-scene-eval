@@ -204,6 +204,21 @@ def build_judge(cfg: SceneRunConfig) -> TextJudge:
     return JUDGES.build(cfg.judge.name, **cfg.judge.params)
 
 
+def describe_scene_run(cfg: SceneRunConfig, pipeline: ScenePipeline | None = None) -> Path:
+    """Inference only: describe every scene and write the run folder (scenes, fact sheets,
+    config, manifest), with no judge or scoring. Returns the ``scenes.jsonl`` path.
+
+    This is the step that needs the VLM (and ideally a GPU); ``evaluate_scene_run`` then
+    scores the folder anywhere."""
+    from vlm_eval.manifest import save_run_metadata
+
+    pipeline = pipeline or build_scene_pipeline(cfg)
+    # The judge is only named here (its model loads lazily on first use).
+    save_run_metadata(cfg.run_dir, cfg, pipeline.backend, {"judge": build_judge(cfg).name})
+    pipeline.run(cfg.run_dir)
+    return cfg.run_dir / SCENES
+
+
 def evaluate_scene_run(run_dir: Path) -> Path:
     """Score a saved scene run from its own config (no inference); returns the report path."""
     import json

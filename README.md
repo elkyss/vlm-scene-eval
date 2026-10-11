@@ -173,7 +173,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **151 tests** (`make test`, also run inside Docker and in CI):
+- **152 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -290,27 +290,52 @@ mkdir -p data/nuscenes && tar -xzf v1.0-mini.tgz -C data/nuscenes
 Download `v1.0-mini.tgz` from <https://www.nuscenes.org/nuscenes#download> (*Full dataset
 (v1.0) → Mini*). This needs a free account.
 
-**Docker** (Python 3.12, CPU torch, pinned versions in `constraints.txt`):
+**Workflow: inference and evaluation are separate steps.** Describing scenes runs the VLM
+and is the only slow step, best on a GPU (`describe-scenes`, or `run-scenes`, which also
+scores). Everything else (`evaluate-scenes`, `compare-scenes`, `validate-judge`,
+leaderboards, gate) reads the saved run folder and runs fine on CPU. The model descriptions are committed
+in `outputs/scenes/<run>/scenes.jsonl`, so a reviewer can reproduce every number on CPU
+without running inference.
 
-```bash
-docker compose build
-```
+**Docker** (Python 3.12, CPU torch, versions pinned in `constraints.txt`). The image is
+CPU-only: right for tests and evaluation, slow for inference (see Runtime). For GPU
+inference, run `describe-scenes` locally or in an image built with CUDA torch. `data/`,
+`outputs/` and the caches are mounted from the host.
 
-```bash
-docker compose run --rm --entrypoint make app test
-```
+1. Build the image:
 
-```bash
-docker compose run --rm app run-scenes -c configs/scenes/qwen2vl_guided.yaml --set 'loader.params.scenes=[scene-1094]'
-```
+   ```bash
+   docker compose build
+   ```
+
+2. Run the tests:
+
+   ```bash
+   docker compose run --rm --entrypoint make app test
+   ```
+
+3. Re-score a committed run on CPU (no inference):
+
+   ```bash
+   docker compose run --rm app evaluate-scenes outputs/scenes/qwen2vl_guided
+   ```
+
+4. Describe scenes on CPU (slow; one scene is 3 calls):
+
+   ```bash
+   docker compose run --rm app describe-scenes -c configs/scenes/qwen2vl_guided.yaml --set 'loader.params.scenes=[scene-1094]'
+   ```
+
+Any `vlm-eval` command works the same way after `docker compose run --rm app`.
 
 **Local** (Python ≥ 3.11): `pip install -e ".[vlm,similarity,dev]"`, then the same commands
-without `docker compose run --rm app`.
+without `docker compose run --rm app`. On a Mac this uses the Apple GPU (MPS).
 
 | Command | What it does |
 |---|---|
-| `vlm-eval run-scenes -c configs/scenes/<run>.yaml` | Describe every scene (N frames × K views), write `scenes.jsonl`, evaluate, write `report.md` |
-| `vlm-eval evaluate-scenes RUN_DIR` | Re-score a saved run (no inference) |
+| `vlm-eval describe-scenes -c configs/scenes/<run>.yaml` | Inference only: describe every scene (N frames × K views), write `scenes.jsonl`, `scenes.csv`, `fact_sheets.jsonl`, config and manifest. No scoring |
+| `vlm-eval evaluate-scenes RUN_DIR` | Evaluation only: score a saved run and write `scene_metrics.json` and `report.md` (no VLM, no GPU) |
+| `vlm-eval run-scenes -c configs/scenes/<run>.yaml` | `describe-scenes` then `evaluate-scenes`, in one step |
 | `vlm-eval compare-scenes A B --out DIR` | Paired comparison of two models or prompts |
 | `vlm-eval validate-judge RUN_DIR` | Check the claim judge on claims with known truth |
 | `vlm-eval scene-leaderboard RUN_DIR...` | All runs side by side |
@@ -319,11 +344,12 @@ without `docker compose run --rm app`.
 | `vlm-eval ingest RUN_DIR...` / `vlm-eval query --example NAME` | Load runs into the DuckDB results store / run a saved SQL question |
 | `./scripts/run_all.sh` | Reproduce every result in this README |
 
-**Runtime.** About 10–13 s per 6-image call on an Apple M1 GPU, so 5–7 minutes per scene
-run (30 calls). On CPU in Docker, expect several times longer. Use
-`--set 'loader.params.scenes=[scene-1094]'` (3 calls) for a quick check. VLM answers are
-cached under a key built from the model, its settings, the prompt and the exact frames, so
-re-running a config only re-scores.
+**Runtime** (measured, one 6-image call): about 10 s on a GPU (Apple M1), about 100 s on
+CPU in Docker (SmolVLM-500M; Qwen2-VL-2B is slower). A full run is 30 calls: 5–7 minutes
+on a GPU, about an hour or more on CPU. Use `--set 'loader.params.scenes=[scene-1094]'`
+(3 calls) for a quick check. The CPU run reproduced the committed scene-1094 description
+exactly. VLM answers are cached under a key built from the model, its settings, the prompt
+and the exact frames, so re-running a config only re-scores.
 
 ## Results store (DuckDB)
 
@@ -358,7 +384,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/frames/ for the frame-level diagnostic)
-tests/              151 tests
+tests/              152 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config

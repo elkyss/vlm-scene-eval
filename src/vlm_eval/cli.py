@@ -125,6 +125,23 @@ def gate(
 # --- scene level (main deliverable) --------------------------------------------------------
 
 
+@app.command("describe-scenes")
+def describe_scenes(
+    config: Annotated[Path, typer.Option("--config", "-c", help="Scene run YAML")],
+    set_: Annotated[
+        list[str], typer.Option("--set", help="Override, e.g. scenes=[scene-0061]")
+    ] = [],  # noqa: B006
+    verbose: bool = False,
+) -> None:
+    """Inference only: one description per scene, no scoring (run evaluate-scenes later)."""
+    from vlm_eval.scene_pipeline import describe_scene_run
+
+    cfg = load_scene_config(config, _parse_overrides(set_))
+    _start(verbose, cfg.seed)
+    scenes = describe_scene_run(cfg)
+    typer.echo(f"Done. Scenes: {scenes}  Score with: vlm-eval evaluate-scenes {cfg.run_dir}")
+
+
 @app.command("run-scenes")
 def run_scenes(
     config: Annotated[Path, typer.Option("--config", "-c", help="Scene run YAML")],
@@ -133,17 +150,13 @@ def run_scenes(
     ] = [],  # noqa: B006
     verbose: bool = False,
 ) -> None:
-    """One description per scene (N frames x K views per scene), then evaluate it."""
-    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline, evaluate_scene_run
+    """describe-scenes followed by evaluate-scenes, in one step."""
+    from vlm_eval.scene_pipeline import describe_scene_run, evaluate_scene_run
 
     cfg = load_scene_config(config, _parse_overrides(set_))
     _start(verbose, cfg.seed)
-    pipeline = build_scene_pipeline(cfg)
-    save_run_metadata(cfg.run_dir, cfg, pipeline.backend, {"judge": build_judge(cfg).name})
-    pipeline.run(cfg.run_dir)
-    typer.echo(
-        f"Done. Scenes: {cfg.run_dir / 'scenes.jsonl'}  Report: {evaluate_scene_run(cfg.run_dir)}"
-    )
+    scenes = describe_scene_run(cfg)
+    typer.echo(f"Done. Scenes: {scenes}  Report: {evaluate_scene_run(cfg.run_dir)}")
 
 
 @app.command("evaluate-scenes")

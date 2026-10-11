@@ -1,4 +1,4 @@
-.PHONY: install test lint run run-mock run-frames eval gate all docker-build docker-test docker-run docker-all
+.PHONY: install test lint describe run run-mock run-frames eval gate all docker-build docker-test docker-run docker-eval docker-all
 
 CONFIG ?= configs/scenes/qwen2vl_guided.yaml
 RUN_DIR ?= outputs/scenes/qwen2vl_guided
@@ -12,6 +12,9 @@ test:               ## unit + e2e tests (real-data tests skip if data/ is missin
 
 lint:
 	ruff check src tests && ruff format --check src tests && mypy
+
+describe:           ## inference only (needs the VLM; ideally a GPU), score later with make eval
+	vlm-eval describe-scenes -c $(CONFIG)
 
 run:                ## one scene-level run (main result), e.g. make run CONFIG=configs/scenes/smolvlm_open.yaml
 	vlm-eval run-scenes -c $(CONFIG)
@@ -39,6 +42,9 @@ docker-test:
 
 docker-run:         ## e.g. make docker-run CONFIG=configs/scenes/mock_oracle.yaml
 	$(COMPOSE) app run-scenes -c $(CONFIG)
+
+docker-eval:        ## re-score a saved run in the CPU image (no inference)
+	$(COMPOSE) app evaluate-scenes $(RUN_DIR)
 
 docker-all:
 	$(COMPOSE) --entrypoint ./scripts/run_all.sh app

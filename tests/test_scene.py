@@ -34,7 +34,13 @@ from vlm_eval.gt.scene_facts import SceneFactBuilder, ego_motion_from_poses, ren
 from vlm_eval.judge import CONTRADICTED, NEUTRAL, SUPPORTED, FakeJudge, judge_against
 from vlm_eval.loaders.scene_loader import NuScenesSceneLoader, view_frame_indices
 from vlm_eval.parsing.claims import split_claims, split_reference
-from vlm_eval.scene_pipeline import ScenePipeline, ScenePrompt, combine_views, load_scene_prompt
+from vlm_eval.scene_pipeline import (
+    ScenePipeline,
+    ScenePrompt,
+    combine_views,
+    describe_scene_run,
+    load_scene_prompt,
+)
 from vlm_eval.vlm import MockBackend
 
 # --- sampling -------------------------------------------------------------------------------
@@ -297,6 +303,27 @@ def test_scene_pipeline_writes_one_entry_per_scene(tmp_path: Path) -> None:
     assert all(len(r["views"]) == 3 for r in rows)
     assert (run / "scenes.csv").read_text().count("\n") == 3
     assert (run / "report.md").exists()
+
+
+def test_describe_scenes_writes_outputs_without_scoring(tmp_path: Path) -> None:
+    from vlm_eval.config import load_scene_config
+
+    root = Path(__file__).resolve().parents[1]
+    cfg = load_scene_config(
+        root / "configs" / "scenes" / "mock_always_car.yaml",
+        {"output_dir": str(tmp_path), "cache_dir": None},
+    )
+    backend = MockBackend("fixed", fixed_response="There are cars.")
+    pipeline = ScenePipeline(
+        fake_scenes(tmp_path), FakeFacts(), backend, ScenePrompt("p", "{intro} Go."), TAX
+    )  # type: ignore[arg-type]
+    scenes = describe_scene_run(cfg, pipeline)
+    run = cfg.run_dir
+    assert scenes == run / "scenes.jsonl"
+    for name in ("scenes.jsonl", "scenes.csv", "fact_sheets.jsonl", "config.yaml", "manifest.json"):
+        assert (run / name).exists(), name
+    assert not (run / SCENE_METRICS).exists()
+    assert not (run / "report.md").exists()
 
 
 def test_oracle_beats_always_car_and_shuffled_control(tmp_path: Path) -> None:
