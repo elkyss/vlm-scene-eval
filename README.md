@@ -249,8 +249,11 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
   fact sentence or the whole fact sheet entails the claim; contradicted only if the whole
   fact sheet contradicts it.
 - **Statistics:** only 10 scenes, so every comparison gives a CI and a scene-level test.
-- **Models:** small local models only, greedy decoding, model revisions recorded
-  in each run's manifest.
+- **Models:** the system evaluates Hugging Face vision-language models, i.e. any
+  chat-template model that loads with `AutoModelForImageTextToText` and accepts several
+  images in one message. A new model is a new `model_id` in a config; tested with
+  Qwen2-VL-2B and SmolVLM-500M. Models run locally with greedy decoding, and the model
+  revision is recorded in each run's manifest.
 
 ## Limitations
 
