@@ -6,9 +6,14 @@ are**. Every claim in a description is checked against the dataset's annotations
 score is compared with controls that show what the score would be without the model
 actually seeing the scene.
 
+**Results are committed on purpose.** `outputs/` holds every run folder (model
+descriptions, fact sheets, metrics, reports), the comparisons and the leaderboards. They
+can be read on GitHub without downloading nuScenes or running a model, and
+`vlm-eval evaluate-scenes` reproduces every number from them on CPU. Logs and the DuckDB
+file are not committed.
+
 > nuScenes data and the thumbnails in `outputs/` are © Motional,
-> [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). All results are
-> committed under `outputs/`, so they can be read without running anything.
+> [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ## Summary
 
@@ -293,9 +298,9 @@ Download `v1.0-mini.tgz` from <https://www.nuscenes.org/nuscenes#download> (*Ful
 **Workflow: inference and evaluation are separate steps.** Describing scenes runs the VLM
 and is the only slow step, best on a GPU (`describe-scenes`, or `run-scenes`, which also
 scores). Everything else (`evaluate-scenes`, `compare-scenes`, `validate-judge`,
-leaderboards, gate) reads the saved run folder and runs fine on CPU. The model descriptions are committed
-in `outputs/scenes/<run>/scenes.jsonl`, so a reviewer can reproduce every number on CPU
-without running inference.
+leaderboards, gate) reads the saved run folder and runs fine on CPU. The model
+descriptions are committed in `outputs/scenes/<run>/scenes.jsonl`, so a reviewer can
+reproduce every number on CPU without running inference.
 
 **Docker** (Python 3.12, CPU torch, versions pinned in `constraints.txt`). The image is
 CPU-only: right for tests and evaluation, slow for inference (see Runtime). For GPU
