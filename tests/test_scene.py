@@ -35,6 +35,7 @@ from vlm_eval.judge import CONTRADICTED, NEUTRAL, SUPPORTED, FakeJudge, judge_ag
 from vlm_eval.loaders.scene_loader import NuScenesSceneLoader, view_frame_indices
 from vlm_eval.parsing.claims import split_claims, split_reference
 from vlm_eval.scene_pipeline import (
+    RunExistsError,
     ScenePipeline,
     ScenePrompt,
     combine_views,
@@ -324,6 +325,34 @@ def test_describe_scenes_writes_outputs_without_scoring(tmp_path: Path) -> None:
         assert (run / name).exists(), name
     assert not (run / SCENE_METRICS).exists()
     assert not (run / "report.md").exists()
+
+
+def test_describe_scenes_refuses_to_overwrite_a_different_run(tmp_path: Path) -> None:
+    from vlm_eval.config import load_scene_config
+
+    root = Path(__file__).resolve().parents[1]
+    path = root / "configs" / "scenes" / "mock_always_car.yaml"
+    cfg = load_scene_config(path, {"output_dir": str(tmp_path), "cache_dir": None})
+
+    def describe(c: object, force: bool = False) -> Path:
+        pipeline = ScenePipeline(
+            fake_scenes(tmp_path),
+            FakeFacts(),
+            MockBackend("fixed", fixed_response="There are cars."),
+            ScenePrompt("p", "{intro} Go."),
+            TAX,
+        )  # type: ignore[arg-type]
+        return describe_scene_run(c, pipeline, force=force)  # type: ignore[arg-type]
+
+    describe(cfg)
+    describe(cfg)  # same config: allowed (a re-run only re-scores)
+    one_scene = load_scene_config(
+        path,
+        {"output_dir": str(tmp_path), "cache_dir": None, "loader.params.scenes": ["scene-a"]},
+    )
+    with pytest.raises(RunExistsError, match="run_id"):
+        describe(one_scene)
+    describe(one_scene, force=True)
 
 
 def test_oracle_beats_always_car_and_shuffled_control(tmp_path: Path) -> None:

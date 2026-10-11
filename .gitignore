@@ -13,3 +13,5 @@ internal/
 # derived results store (rebuild with vlm-eval ingest)
 outputs/*.duckdb
 outputs/*.duckdb.wal
+# quick checks from the README (not results)
+outputs/scenes/quick_check/

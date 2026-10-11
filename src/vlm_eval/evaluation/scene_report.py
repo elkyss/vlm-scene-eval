@@ -103,7 +103,7 @@ def _validation_note(kinds: tuple[str, ...], validation: dict | None) -> str:
     if not kinds:
         return "not validated"
     if validation is None:
-        return "run validate-judge"
+        return "no judge validation found (run validate-judge)"
     parts = []
     for kind in kinds:
         v = validation.get(kind)

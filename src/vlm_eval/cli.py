@@ -11,7 +11,7 @@ import numpy as np
 import typer
 import yaml
 
-from vlm_eval.config import load_config, load_scene_config
+from vlm_eval.config import SceneRunConfig, load_config, load_scene_config
 from vlm_eval.evaluation.compare import compare_runs
 from vlm_eval.evaluation.gate import evaluate_gate, load_gate, load_summary
 from vlm_eval.evaluation.leaderboard import leaderboard as render_leaderboard
@@ -125,6 +125,17 @@ def gate(
 # --- scene level (main deliverable) --------------------------------------------------------
 
 
+def _describe(cfg: SceneRunConfig, force: bool) -> Path:
+    """Shared inference step of describe-scenes and run-scenes."""
+    from vlm_eval.scene_pipeline import RunExistsError, describe_scene_run
+
+    try:
+        return describe_scene_run(cfg, force=force)
+    except RunExistsError as e:
+        typer.echo(f"Error: {e}", err=True)
+        raise typer.Exit(1) from e
+
+
 @app.command("describe-scenes")
 def describe_scenes(
     config: Annotated[Path, typer.Option("--config", "-c", help="Scene run YAML")],
@@ -132,13 +143,14 @@ def describe_scenes(
         list[str], typer.Option("--set", help="Override, e.g. scenes=[scene-0061]")
     ] = [],  # noqa: B006
     verbose: bool = False,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing run made with a different config")
+    ] = False,
 ) -> None:
     """Inference only: one description per scene, no scoring (run evaluate-scenes later)."""
-    from vlm_eval.scene_pipeline import describe_scene_run
-
     cfg = load_scene_config(config, _parse_overrides(set_))
     _start(verbose, cfg.seed)
-    scenes = describe_scene_run(cfg)
+    scenes = _describe(cfg, force)
     typer.echo(f"Done. Scenes: {scenes}  Score with: vlm-eval evaluate-scenes {cfg.run_dir}")
 
 
@@ -149,23 +161,33 @@ def run_scenes(
         list[str], typer.Option("--set", help="Override, e.g. scenes=[scene-0061]")
     ] = [],  # noqa: B006
     verbose: bool = False,
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing run made with a different config")
+    ] = False,
 ) -> None:
     """describe-scenes followed by evaluate-scenes, in one step."""
-    from vlm_eval.scene_pipeline import describe_scene_run, evaluate_scene_run
+    from vlm_eval.scene_pipeline import evaluate_scene_run
 
     cfg = load_scene_config(config, _parse_overrides(set_))
     _start(verbose, cfg.seed)
-    scenes = describe_scene_run(cfg)
+    scenes = _describe(cfg, force)
     typer.echo(f"Done. Scenes: {scenes}  Report: {evaluate_scene_run(cfg.run_dir)}")
 
 
 @app.command("evaluate-scenes")
-def evaluate_scenes_cmd(run_dir: Path, verbose: bool = False) -> None:
+def evaluate_scenes_cmd(
+    run_dir: Path,
+    judge_validation: Annotated[
+        Path | None,
+        typer.Option(help="validate-judge output to cite (default: <runs>/judge_validation)"),
+    ] = None,
+    verbose: bool = False,
+) -> None:
     """Re-score a saved scene run (no inference)."""
     from vlm_eval.scene_pipeline import evaluate_scene_run
 
     _start(verbose)
-    typer.echo(f"Report: {evaluate_scene_run(run_dir)}")
+    typer.echo(f"Report: {evaluate_scene_run(run_dir, judge_validation)}")
 
 
 @app.command("compare-scenes")

@@ -1,4 +1,4 @@
-.PHONY: install test lint describe run run-mock run-frames eval gate all docker-build docker-test docker-run docker-eval docker-all
+.PHONY: install test lint describe run run-mock run-frames eval gate rescore all docker-build docker-test docker-run docker-eval docker-rescore docker-all
 
 CONFIG ?= configs/scenes/qwen2vl_guided.yaml
 RUN_DIR ?= outputs/scenes/qwen2vl_guided
@@ -31,7 +31,10 @@ eval:               ## re-score a saved scene run (no inference)
 gate:               ## release gate on a scene run (exit 1 on failure)
 	vlm-eval gate $(RUN_DIR)
 
-all:                ## every run, comparison, leaderboard and the results store
+rescore:            ## rebuild every scene-level result from the committed runs (no model, CPU)
+	./scripts/rescore.sh
+
+all:                ## full pipeline incl. inference: every run, comparison, leaderboard, results store
 	./scripts/run_all.sh
 
 docker-build:
@@ -45,6 +48,9 @@ docker-run:         ## e.g. make docker-run CONFIG=configs/scenes/mock_oracle.ya
 
 docker-eval:        ## re-score a saved run in the CPU image (no inference)
 	$(COMPOSE) app evaluate-scenes $(RUN_DIR)
+
+docker-rescore:     ## make rescore inside the CPU image
+	$(COMPOSE) --entrypoint ./scripts/rescore.sh app
 
 docker-all:
 	$(COMPOSE) --entrypoint ./scripts/run_all.sh app

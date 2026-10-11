@@ -204,7 +204,29 @@ def build_judge(cfg: SceneRunConfig) -> TextJudge:
     return JUDGES.build(cfg.judge.name, **cfg.judge.params)
 
 
-def describe_scene_run(cfg: SceneRunConfig, pipeline: ScenePipeline | None = None) -> Path:
+class RunExistsError(RuntimeError):
+    """The run folder already holds a run made with a different config."""
+
+
+def check_run_dir(cfg: SceneRunConfig, force: bool = False) -> None:
+    """Refuse to overwrite an existing run made with a different config (e.g. a committed
+    full run re-used for a one-scene check). Re-running the same config is allowed: the
+    cached answers make it a re-score."""
+    from vlm_eval.config import load_scene_config
+
+    existing = cfg.run_dir / "config.yaml"
+    if force or not (cfg.run_dir / SCENES).exists() or not existing.exists():
+        return
+    if load_scene_config(existing).model_dump(mode="json") != cfg.model_dump(mode="json"):
+        raise RunExistsError(
+            f"{cfg.run_dir} already holds a run with a different config. Use another run id "
+            "(--set run_id=NAME) or pass --force to overwrite it."
+        )
+
+
+def describe_scene_run(
+    cfg: SceneRunConfig, pipeline: ScenePipeline | None = None, force: bool = False
+) -> Path:
     """Inference only: describe every scene and write the run folder (scenes, fact sheets,
     config, manifest), with no judge or scoring. Returns the ``scenes.jsonl`` path.
 
@@ -212,6 +234,7 @@ def describe_scene_run(cfg: SceneRunConfig, pipeline: ScenePipeline | None = Non
     scores the folder anywhere."""
     from vlm_eval.manifest import save_run_metadata
 
+    check_run_dir(cfg, force)
     pipeline = pipeline or build_scene_pipeline(cfg)
     # The judge is only named here (its model loads lazily on first use).
     save_run_metadata(cfg.run_dir, cfg, pipeline.backend, {"judge": build_judge(cfg).name})
@@ -219,8 +242,16 @@ def describe_scene_run(cfg: SceneRunConfig, pipeline: ScenePipeline | None = Non
     return cfg.run_dir / SCENES
 
 
-def evaluate_scene_run(run_dir: Path) -> Path:
-    """Score a saved scene run from its own config (no inference); returns the report path."""
+def default_validation_path(run_dir: Path) -> Path:
+    """Where validate-judge writes by default: outputs/scenes/judge_validation."""
+    return run_dir.parent / "judge_validation" / "judge_validation.json"
+
+
+def evaluate_scene_run(run_dir: Path, validation_path: Path | None = None) -> Path:
+    """Score a saved scene run from its own config (no inference); returns the report path.
+
+    ``validation_path`` is the judge validation whose error rates are shown next to each
+    claim type (default: ``default_validation_path``). Without it the report says so."""
     import json
 
     from vlm_eval.config import load_scene_config
@@ -245,8 +276,12 @@ def evaluate_scene_run(run_dir: Path) -> Path:
         f"{len(views[0].frame_indices) if views else 0} frames (one VLM call per view); "
         "the final description is the view most consistent with the others."
     )
-    validation_path = run_dir.parent / "judge_validation" / "judge_validation.json"
-    validation = (
-        json.loads(validation_path.read_text())["summary"] if validation_path.exists() else None
-    )
+    validation_path = validation_path or default_validation_path(run_dir)
+    validation = None
+    if validation_path.exists():
+        validation = json.loads(validation_path.read_text())["summary"]
+    else:
+        log.warning(
+            "No judge validation at %s; the report shows no judge error rates", validation_path
+        )
     return render_scene_report(evaluation, run_dir, protocol, validation)

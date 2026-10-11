@@ -8,9 +8,8 @@ actually seeing the scene.
 
 **Results are committed on purpose.** `outputs/` holds every run folder (model
 descriptions, fact sheets, metrics, reports), the comparisons and the leaderboards. They
-can be read on GitHub without downloading nuScenes or running a model, and the
-evaluation commands (`evaluate-scenes`, `compare-scenes`, ...) reproduce every number from
-them on CPU. Logs and the DuckDB
+can be read on GitHub without downloading nuScenes or running a model, and `make rescore`
+reproduces every scene-level number from them on CPU, with no model. Logs and the DuckDB
 file are not committed.
 
 > nuScenes data and the thumbnails in `outputs/` are © Motional,
@@ -31,7 +30,7 @@ other two becomes the scene's description: one entry per scene in
 | *Always "a car and a pedestrian"* | *10%* | *42%* | *20%* | *0 pts* [−17, +17] | *17%* |
 | **Qwen2-VL-2B, guided prompt** | 4% | **56%** [44, 68] | **38%** [32, 45] | +10 pts [+4, +16] | **44%** |
 | Qwen2-VL-2B, open prompt | 4% | 51% [36, 65] | 21% [11, 31] | +11 pts [+4, +19] | 36% |
-| SmolVLM-500M, guided prompt | 7% | 30% [25, 35] | 32% [19, 46] | +6 pts [+0, +13] | 22% |
+| SmolVLM-500M, guided prompt | 7% | 30% [25, 35] | 32% [19, 46] | +6 pts [+0.2, +13] | 22% |
 | SmolVLM-500M, open prompt | 0% | 24% [20, 29] | 27% [7, 51] | −4 pts [−10, +1] | 12% |
 
 Brackets are 95% confidence intervals from a bootstrap over the 10 scenes. "Own scene −
@@ -98,7 +97,7 @@ them is trusted until it beats a control:
   9 scenes. A description that scores as well there is generic. The own-scene gap gets a
   bootstrap CI and a scene-level sign-flip test, like any comparison. The oracle gains
   45 points [+42, +48]. Qwen2-VL gains 10 [+4, +16] (p = 0.01). SmolVLM's open prompt
-  shows no gap (−4 [−10, +1]). Its guided prompt is borderline (+6 [+0, +13], but p = 0.15).
+  shows no gap (−4 [−10, +1]). Its guided prompt is borderline (+6 [+0.2, +13], but p = 0.15).
 - **What matters:** coverage of the visible object types, and of the items in the human
   annotator's sentence.
 - **Stable:** three views per scene. The report shows the chosen view next to view A and
@@ -179,7 +178,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **152 tests** (`make test`, also run inside Docker and in CI):
+- **153 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -235,6 +234,8 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
   are checked on all cameras shown.
 - **Sampling protocol:** 6 frames per call (SmolVLM's context fits about 8 images) and 3
   views per scene. This is a fixed rule, not something tuned on results.
+- **Short description:** the prompts ask for 2–3 sentences; the models write about 100
+  words on average (word counts are in each run's report).
 - **Final description:** the view most consistent with the others, so it is real model
   text. The report also shows view A and the mean of all views.
 - **Ground truth scope:** objects are judged on the frames shown. Visible means at least
@@ -257,7 +258,18 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
   Splitting is rule-based, and the judge wrongly supports 30% of false motion claims and
   18.5% of false object claims. CHAIR and coverage do not have this problem.
 - **The judge validation is optimistic:** the claims it uses are cleaner than real model
-  text.
+  text. On real descriptions the judge makes errors the validation does not show, e.g.
+  "streetlights and traffic lights visible" credited by "There are traffic cones", or
+  "lined with parked cars" contradicted although most cars are parked. This is why only
+  CHAIR and coverage are gated.
+- **Claim splitting leaves some fragments**, e.g. "The scene shows: suggesting a cloudy
+  day.", which the judge then scores as unverifiable.
+- **Strict ground truth turns some real mentions into CHAIR errors:** an object below 40%
+  visibility or beyond 50 m counts as absent (e.g. the truck in scene-1094 that the human
+  sentence lists).
+- **Gate thresholds were set after seeing these results** (e.g. Qwen2-VL open passes the
+  repetition limit of ≤ 0.20 at exactly 0.20). On a real project they would be fixed on
+  a held-out set before comparing models.
 - **About half of what the models say cannot be checked**, because nuScenes has no labels
   for buildings, trees, signs or weather beyond the scene sentence.
 - **Night and location are confounded:** all night scenes are in Holland Village.
@@ -301,7 +313,7 @@ and is the only slow step, best on a GPU (`describe-scenes`, or `run-scenes`, wh
 scores). Everything else (`evaluate-scenes`, `compare-scenes`, `validate-judge`,
 leaderboards, gate) reads the saved run folder and runs fine on CPU. The model
 descriptions are committed in `outputs/scenes/<run>/scenes.jsonl`, so a reviewer can
-reproduce every number on CPU without running inference.
+reproduce every scene-level number on CPU without running inference: `make rescore`.
 
 **Docker** (Python 3.12, CPU torch, versions pinned in `constraints.txt`). The image is
 CPU-only: right for tests and evaluation, slow for inference (see Runtime). For GPU
@@ -320,16 +332,19 @@ inference, run `describe-scenes` locally or in an image built with CUDA torch. `
    docker compose run --rm --entrypoint make app test
    ```
 
-3. Re-score a committed run on CPU (no inference):
+3. Rebuild every scene-level result from the committed runs on CPU (no model): all six
+   reports, the judge validation, the four comparisons and the leaderboard:
 
    ```bash
-   docker compose run --rm app evaluate-scenes outputs/scenes/qwen2vl_guided
+   docker compose run --rm --entrypoint ./scripts/rescore.sh app
    ```
 
-4. Describe scenes on CPU (slow; one scene is 3 calls):
+4. Describe one scene on CPU (slow: 3 calls). `run_id=quick_check` writes to
+   `outputs/scenes/quick_check` instead of the committed run; a run folder holding a
+   different config is never overwritten without `--force`:
 
    ```bash
-   docker compose run --rm app describe-scenes -c configs/scenes/qwen2vl_guided.yaml --set 'loader.params.scenes=[scene-1094]'
+   docker compose run --rm app describe-scenes -c configs/scenes/qwen2vl_guided.yaml --set run_id=quick_check --set 'loader.params.scenes=[scene-1094]'
    ```
 
 Any `vlm-eval` command works the same way after `docker compose run --rm app`.
@@ -348,12 +363,14 @@ without `docker compose run --rm app`. On a Mac this uses the Apple GPU (MPS).
 | `vlm-eval gate RUN_DIR [--baseline RUN]` | Release gate: pass/fail on annotation-checked metrics and against a baseline; exits 1 on failure (CI) |
 | `vlm-eval run` / `evaluate` / `compare` / `leaderboard` | Frame-level equivalents (diagnostic) |
 | `vlm-eval ingest RUN_DIR...` / `vlm-eval query --example NAME` | Load runs into the DuckDB results store / run a saved SQL question |
-| `./scripts/run_all.sh` | Reproduce every result in this README |
+| `./scripts/rescore.sh` (`make rescore`) | Rebuild every scene-level result from the committed runs: no model, CPU only |
+| `./scripts/run_all.sh` (`make all`) | Full pipeline including VLM inference (cached under `.cache/`; a fresh clone re-runs it) |
 
 **Runtime** (measured, one 6-image call): about 10 s on a GPU (Apple M1), about 100 s on
 CPU in Docker (SmolVLM-500M; Qwen2-VL-2B is slower). A full run is 30 calls: 5–7 minutes
-on a GPU, about an hour or more on CPU. Use `--set 'loader.params.scenes=[scene-1094]'`
-(3 calls) for a quick check. The CPU run reproduced the committed scene-1094 description
+on a GPU, about an hour or more on CPU. For a quick check, add
+`--set run_id=quick_check --set 'loader.params.scenes=[scene-1094]'` (3 calls, written to
+`outputs/scenes/quick_check`). The CPU run reproduced the committed scene-1094 description
 exactly. VLM answers are cached under a key built from the model, its settings, the prompt
 and the exact frames, so re-running a config only re-scores.
 
@@ -390,7 +407,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/frames/ for the frame-level diagnostic)
-tests/              152 tests
+tests/              153 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config
