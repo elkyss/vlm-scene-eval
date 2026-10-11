@@ -30,8 +30,11 @@ You get `outputs/scenes/<run>/` with the descriptions (`scenes.jsonl`), the full
 headline scores, every difference from the baseline with its p-value and verdict, and
 the gate checks. The command exits 1 if the gate fails, so it can run in CI. Options:
 `--prompt scene_open`, `--baseline RUN_DIR`, `--set 'loader.params.scenes=[scene-1094]'`
-for a quick one-scene check (the verdict then says it is a smoke test). Locally: `make evaluate-model MODEL=<hf id>`. Setup (data,
-Docker build) is under "Setup and run".
+for a quick one-scene check. With fewer than 6 scenes no difference can ever be
+significant (the exact sign-flip test's smallest p is 2/2ⁿ = 0.0625 at n = 5), so every
+difference is reported as inconclusive and the verdict marks the run as a smoke test.
+Locally: `make evaluate-model MODEL=<hf id>`. Setup (data, Docker build) is under "Setup
+and run".
 
 The rest of this README is the evaluator's first use: Qwen2-VL-2B against SmolVLM-500M,
 with two prompts, which answers the assignment's questions.
@@ -175,8 +178,9 @@ reports A, B, the difference, a 95% CI from a bootstrap over scenes, per-scene w
 losses, and an exact sign-flip test on per-scene differences. A difference counts only
 when **both** agree: the CI excludes 0 and p < 0.05. If only one of them says so, it is
 "borderline"; otherwise "inconclusive". With ~10 scenes a bootstrap CI alone is too
-optimistic. Testing happens at scene level because frames and claims within a scene are
-not independent. The same rule decides the own-scene vs other-scenes gap.
+optimistic. Below 6 scenes the exact test can never reach p < 0.05, so every
+difference is reported as inconclusive. Testing happens at scene level because frames and
+claims within a scene are not independent. The same rule decides the own-scene vs other-scenes gap.
 
 | Comparison | Clear differences | Inconclusive |
 |---|---|---|
@@ -199,7 +203,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **157 tests** (`make test`, also run inside Docker and in CI):
+- **161 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -433,7 +437,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/frames/ for the frame-level diagnostic)
-tests/              157 tests
+tests/              161 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config

@@ -118,16 +118,34 @@ def cluster_bootstrap_ci(
 ALPHA = 0.05
 
 
+def min_clusters(alpha: float = ALPHA) -> int:
+    """Fewest clusters (scenes) for which the exact two-sided sign-flip test can reach
+    p < alpha: its smallest possible p is 2 / 2**n (all differences share one sign), so
+    n = 6 for alpha = 0.05. With fewer, no difference can be significant."""
+    n = 1
+    while 2 / 2**n >= alpha:
+        n += 1
+    return n
+
+
 def significance(
-    ci_low: float | None, ci_high: float | None, p_value: float | None, alpha: float = ALPHA
+    ci_low: float | None,
+    ci_high: float | None,
+    p_value: float | None,
+    alpha: float = ALPHA,
+    n_clusters: int | None = None,
 ) -> str:
     """One decision rule for every difference reported (two runs, or own vs other scenes).
 
     "higher" / "lower": the 95% CI excludes 0 AND the exact sign-flip test gives p < alpha.
     "borderline": only one of the two says so (with ~10 scenes a bootstrap CI is often too
-    narrow, so the exact test is required too). "inconclusive": neither.
+    narrow, so the exact test is required too). "inconclusive": neither, or fewer clusters
+    than ``min_clusters`` (the test cannot reach p < alpha, and a bootstrap over 1-2
+    clusters collapses to a point that trivially "excludes 0").
     """
     if ci_low is None or ci_high is None:
+        return "inconclusive"
+    if n_clusters is not None and n_clusters < min_clusters(alpha):
         return "inconclusive"
     ci_says = ci_low > 0 or ci_high < 0
     p_says = p_value is not None and p_value < alpha
@@ -168,8 +186,9 @@ def paired_comparison(
         return None if sa is None or sb is None else sb - sa
 
     lo, hi = cluster_bootstrap_ci(clusters, diff, seed=seed)
-    p = sign_flip_p([d for c in clusters if (d := diff(list(c))) is not None])
-    decision = significance(lo, hi, p)
+    diffs = [d for c in clusters if (d := diff(list(c))) is not None]
+    p = sign_flip_p(diffs)
+    decision = significance(lo, hi, p, n_clusters=len(diffs))
     if decision in ("higher", "lower"):
         b_better = (decision == "higher") != lower_is_better
         verdict = "B better" if b_better else "A better"

@@ -17,13 +17,14 @@ from typing import Any
 from vlm_eval.config import SceneRunConfig, load_scene_config
 from vlm_eval.evaluation.gate import GateCheck, evaluate_gate, load_gate, load_summary
 from vlm_eval.evaluation.report import md_table
+from vlm_eval.evaluation.stats import min_clusters
 
 DEFAULT_TEMPLATE = Path("configs/scenes/qwen2vl_guided.yaml")
 DEFAULT_BASELINE = Path("outputs/scenes/qwen2vl_guided")
 DEFAULT_GATES = Path("configs/gates.yaml")
 BASELINE_DIR = "vs_baseline"
 VERDICT = "verdict.md"
-MIN_SCENES = 5  # below this a run is a smoke test: too few scenes for a verdict
+MIN_SCENES = min_clusters()  # 6: below this no difference can ever be significant
 
 # Headline metrics shown in the verdict: (summary key, label, lower is better).
 HEADLINE = (
@@ -124,8 +125,10 @@ def render_verdict(v: ModelVerdict, baseline: Path | None) -> str:
         if n < MIN_SCENES:
             parts.insert(
                 1,
-                f"> **Smoke test only: {n} scene{'s' if n != 1 else ''}.** Too few for a "
-                "verdict; differences and the specificity checks need the full set of scenes.",
+                f"> **Smoke test only: {n} scene{'s' if n != 1 else ''}.** With fewer than "
+                f"{MIN_SCENES} scenes no difference can ever be significant (the smallest "
+                "possible p of the exact sign-flip test is 2 / 2^n), so every difference is "
+                "inconclusive and the specificity checks need the full set of scenes.",
             )
         parts.append(
             f"## Against the baseline (`{baseline.name}`, same frames, "
