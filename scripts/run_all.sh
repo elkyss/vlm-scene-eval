@@ -22,7 +22,7 @@ vlm-eval scene-leaderboard $S/mock_oracle $S/mock_always_car $S/smolvlm_open $S/
 FRAME_CONFIGS=${FRAME_CONFIGS:-"mock_oracle mock_always_car smolvlm_v1 smolvlm_v2 smolvlm_v2b smolvlm_v3 qwen2vl_v2 qwen2vl_v2b qwen2vl_v3"}
 for c in $FRAME_CONFIGS; do
   echo "=== frames/$c"
-  vlm-eval run -c "configs/$c.yaml"
+  vlm-eval run -c "configs/frames/$c.yaml"
 done
 vlm-eval compare outputs/mock_always_car outputs/smolvlm_v1 --out outputs/compare_mock_always_car_vs_smolvlm_v1
 vlm-eval compare outputs/smolvlm_v1 outputs/smolvlm_v3 --out outputs/compare_smolvlm_v1_vs_v3

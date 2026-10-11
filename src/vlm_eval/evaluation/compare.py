@@ -17,7 +17,7 @@ from vlm_eval.evaluation.evaluator import join
 from vlm_eval.evaluation.metrics import EvalPair, frame_f1, frame_outcomes
 from vlm_eval.evaluation.report import fmt, md_table
 from vlm_eval.evaluation.stats import mean_or_none, paired_comparison, prf
-from vlm_eval.run_store import RunArtifacts
+from vlm_eval.run_artifacts import RunArtifacts
 from vlm_eval.taxonomy import Taxonomy
 
 Paired = tuple[EvalPair, EvalPair]

@@ -32,16 +32,39 @@ Brackets are 95% confidence intervals from a bootstrap over the 10 scenes. "Own 
 other scenes" is the gap in claims supported between a description's own scene and the
 other 9 scenes.
 
-**Three findings:**
-1. **Qwen2-VL-2B is the better describer.** On the same frames it mentions about 26 more points
-   of the visible object types than SmolVLM (CI [+15, +36], scene-level p = 0.004, guided
-   prompt). It also covers 22 more points of what the human annotator wrote.
-2. **The prompt matters.** Asking Qwen to cover place, conditions, road users and what our
-   car does raises supported claims by 17 points (CI [+7, +27], p = 0.02).
-3. **Generic text looks good on paper, and the controls expose it.** SmolVLM's descriptions
-   fit the *other* scenes as well as their own (−4 pts, CI [−10, +1]). 60% of them loop ("The first image
-   shows a car… The second image shows a car…"). A fixed sentence that never looks at the
-   image still gets 20% of its claims supported.
+**In short:** Qwen2-VL-2B, the chosen model, is clearly better than SmolVLM-500M on the
+same frames, the guided prompt beats the open one, and the controls show that SmolVLM's
+text is generic. Details in the next section.
+
+## How well did the chosen VLM do?
+
+**Qwen2-VL-2B** (chosen; local, about 10 s per 6-image call on an Apple M1 GPU) is a usable
+but shallow scene describer: good enough to search or triage drives, not to replace
+annotation. Every number below is read against the same yardsticks: the comparison model
+on the same frames, the controls, and the oracle ceiling.
+
+| Guided prompt | Qwen2-VL-2B | vs SmolVLM-500M (same frames) | Controls |
+|---|---|---|---|
+| Visible object types mentioned | **56%** | **+26 pts** [+15, +36], p = 0.004 | fixed sentence 42%, oracle 100% |
+| Invented objects (CHAIRᵢ) | 4% of mentions | −3 pts, inconclusive | fixed sentence 10% |
+| Human sentence covered | **44%** | **+22 pts** [+15, +30], p = 0.004 | fixed sentence 17%, ceiling 63% |
+| Own scene − other scenes | **+10 pts** [+4, +16], p = 0.01 | SmolVLM +6, borderline (p = 0.15) | fixed sentence 0, oracle +45 |
+| Claims supported | 38% | inconclusive | fixed sentence 20% |
+| Release gate (`configs/gates.yaml`) | passes 5/5 | SmolVLM passes 2/5 | |
+
+- **What it gets right:** it describes the drive rather than each image, rarely invents
+  objects, and is clearly better than SmolVLM on objects mentioned and on the human sentence
+  (better in 9 of 10 scenes on both, worse in none).
+- **Where it is weak:** it misses about half of the visible object types (trucks, two-wheelers and
+  buses most often), and 44% of its claims are about things nobody annotated. By claim
+  type: 62% supported on time of day and road condition, 52% on objects, 29% on motion
+  (the check the judge is least reliable on).
+- **Prompt:** the guided prompt is the one to use. It raises supported claims by 17 pts
+  over the open prompt ([+7, +27], p = 0.02); objects and human coverage don't change
+  significantly.
+
+**SmolVLM-500M**, the comparison model, mostly describes images one by one, loops (60% of
+open-prompt descriptions) and writes text that fits any scene equally well.
 
 ---
 
@@ -194,25 +217,6 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ---
 
-## How well did the chosen VLM do?
-
-**Qwen2-VL-2B** (local, about 10 s per 6-image call on a laptop GPU) is a usable but
-shallow scene describer. With the guided prompt:
-- **Objects:** it mentions 56% of the visible object types and rarely invents one (4% of
-  mentions).
-- **Claims:** 38% of its claims are confirmed by the annotations, and 44% are about
-  things nobody annotated. By type, it gets 62% on time of day and road condition (a
-  reliable check), 52% on objects, and 29% on motion (a check the judge often gets
-  wrong).
-- **Human sentence:** it covers 44% of what the annotator wrote, against a ceiling of 63%.
-- **Scene-specific:** its descriptions are measurably about their own scene, but only
-  modestly: +10 pts [+4, +16] of supported claims over the other scenes (p = 0.01).
-
-It is good enough to search or triage drives, not to replace annotation.
-
-**SmolVLM-500M**, the comparison model, mostly describes images one by one, loops, and
-writes text that fits any scene equally well.
-
 ## Assumptions
 
 - **Scene and camera:** a scene is one nuScenes clip. Every result here uses CAM_FRONT,
@@ -349,7 +353,7 @@ src/vlm_eval/
   taxonomies/       driving.yaml: object types, values, synonyms, fact-sentence wording
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
-configs/scenes/     one YAML per scene run (configs/ for frame runs)
+configs/scenes/     one YAML per scene run (configs/frames/ for the frame-level diagnostic)
 tests/              151 tests
 ```
 

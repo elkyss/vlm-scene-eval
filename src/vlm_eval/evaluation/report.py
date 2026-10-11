@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from vlm_eval.domain import MetricResult
-from vlm_eval.run_store import RunArtifacts
+from vlm_eval.run_artifacts import RunArtifacts
 
 log = logging.getLogger(__name__)
 

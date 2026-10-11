@@ -12,7 +12,7 @@ from vlm_eval.evaluation.report import MarkdownReport
 from vlm_eval.pipeline import Pipeline
 from vlm_eval.prompting import load_strategy
 from vlm_eval.registry import Registry
-from vlm_eval.run_store import RunArtifacts
+from vlm_eval.run_artifacts import RunArtifacts
 from vlm_eval.vlm import CachedBackend, MockBackend, VLMBackend, facts_to_response
 from vlm_eval.writers import CsvWriter, JsonlWriter
 
@@ -125,7 +125,7 @@ def test_registry_rejects_unknown_and_duplicates() -> None:
 def test_config_overrides(tmp_path: Path) -> None:
     root = Path(__file__).resolve().parents[1]
     cfg = load_config(
-        root / "configs" / "smolvlm_v2.yaml",
+        root / "configs" / "frames" / "smolvlm_v2.yaml",
         {"loader.params.scenes": ["scene-0061"], "run_id": "x"},
     )
     assert cfg.loader.params["scenes"] == ["scene-0061"]
@@ -169,7 +169,7 @@ def test_manifest_records_config_and_versions(tmp_path: Path) -> None:
     from vlm_eval.manifest import write_manifest
 
     root = Path(__file__).resolve().parents[1]
-    cfg = load_config(root / "configs" / "mock_oracle.yaml")
+    cfg = load_config(root / "configs" / "frames" / "mock_oracle.yaml")
     data = json.loads(write_manifest(tmp_path, cfg, {"model_revision": "abc"}).read_text())
     assert data["config"]["run_id"] == "mock_oracle"
     assert data["model_revision"] == "abc"

@@ -18,7 +18,7 @@ from vlm_eval.evaluation.report import MarkdownReport
 from vlm_eval.gt import GT_PROVIDERS, GTProvider
 from vlm_eval.loaders import LOADERS, SceneLoader
 from vlm_eval.prompting import PromptStrategy, load_strategy
-from vlm_eval.run_store import RunArtifacts, save_metrics
+from vlm_eval.run_artifacts import RunArtifacts, save_metrics
 from vlm_eval.taxonomy import load_taxonomy
 from vlm_eval.vlm import ImageSet, VLMBackend, build_backend, facts_to_response
 from vlm_eval.writers import WRITERS, ResultWriter

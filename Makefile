@@ -19,7 +19,7 @@ run:                ## one scene-level run (main result), e.g. make run CONFIG=c
 run-mock:           ## scene pipeline with the oracle: claims supported must be 100%
 	vlm-eval run-scenes -c configs/scenes/mock_oracle.yaml
 
-run-frames:         ## frame-level diagnostic run, e.g. make run-frames CONFIG=configs/qwen2vl_v3.yaml
+run-frames:         ## frame-level diagnostic run, e.g. make run-frames CONFIG=configs/frames/qwen2vl_v3.yaml
 	vlm-eval run -c $(CONFIG)
 
 eval:               ## re-score a saved scene run (no inference)

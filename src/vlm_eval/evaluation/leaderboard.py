@@ -7,7 +7,7 @@ from pathlib import Path
 from vlm_eval.evaluation.report import fmt, fmt_ci, md_table
 from vlm_eval.evaluation.scene_metrics import SceneEvaluation
 from vlm_eval.evaluation.scene_report import SCENE_METRICS
-from vlm_eval.run_store import RunArtifacts, load_metrics
+from vlm_eval.run_artifacts import RunArtifacts, load_metrics
 
 # (column label, metric, summary key, is_percentage)
 COLUMNS: tuple[tuple[str, str, str, bool], ...] = (
