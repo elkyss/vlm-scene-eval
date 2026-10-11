@@ -15,6 +15,27 @@ file are not committed.
 > nuScenes data and the thumbnails in `outputs/` are © Motional,
 > [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
+## Evaluate a model
+
+The project is an evaluator: give it a Hugging Face vision-language model and it runs the
+model on the nuScenes scenes, scores the descriptions against the annotations, compares
+them with the baseline (Qwen2-VL-2B) on the same frames, and applies the release gate.
+
+```bash
+docker compose run --rm app evaluate-model --model HuggingFaceTB/SmolVLM2-500M-Video-Instruct
+```
+
+You get `outputs/scenes/<run>/` with the descriptions (`scenes.jsonl`), the full
+`report.md`, the comparison with the baseline (`vs_baseline/`) and `verdict.md`: the
+headline scores, every difference from the baseline with its p-value and verdict, and
+the gate checks. The command exits 1 if the gate fails, so it can run in CI. Options:
+`--prompt scene_open`, `--baseline RUN_DIR`, `--set 'loader.params.scenes=[scene-1094]'`
+for a quick one-scene check (the verdict then says it is a smoke test). Locally: `make evaluate-model MODEL=<hf id>`. Setup (data,
+Docker build) is under "Setup and run".
+
+The rest of this README is the evaluator's first use: Qwen2-VL-2B against SmolVLM-500M,
+with two prompts, which answers the assignment's questions.
+
 ## Summary
 
 **Pipeline.** 10 scenes (all of nuScenes v1.0-mini). Each scene is passed to the VLM as
@@ -178,7 +199,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **153 tests** (`make test`, also run inside Docker and in CI):
+- **157 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -357,6 +378,7 @@ without `docker compose run --rm app`. On a Mac this uses the Apple GPU (MPS).
 
 | Command | What it does |
 |---|---|
+| `vlm-eval evaluate-model --model <hf id>` | Evaluate a Hugging Face VLM end to end: describe, score, compare with the baseline, gate; writes `verdict.md` |
 | `vlm-eval describe-scenes -c configs/scenes/<run>.yaml` | Inference only: describe every scene (N frames × K views), write `scenes.jsonl`, `scenes.csv`, `fact_sheets.jsonl`, config and manifest. No scoring |
 | `vlm-eval evaluate-scenes RUN_DIR` | Evaluation only: score a saved run and write `scene_metrics.json` and `report.md` (no VLM, no GPU) |
 | `vlm-eval run-scenes -c configs/scenes/<run>.yaml` | `describe-scenes` then `evaluate-scenes`, in one step |
@@ -402,6 +424,7 @@ src/vlm_eval/
   vlm/              hf_backend.py, mock.py, cache.py (content-keyed), factory.py
   prompting.py      prompt strategies; prompts/ holds versioned templates
   scene_pipeline.py load -> describe views -> combine -> write
+  model_eval.py     evaluate-model: config from a model id, verdict vs baseline + gate
   judge.py          NLI judge behind a swappable TextJudge interface
   parsing/          claim splitting, claim extraction, JSON repair
   evaluation/       scene_metrics, scene_report, scene_compare, judge_validation,
@@ -410,7 +433,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/frames/ for the frame-level diagnostic)
-tests/              153 tests
+tests/              157 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config

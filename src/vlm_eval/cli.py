@@ -174,6 +174,41 @@ def run_scenes(
     typer.echo(f"Done. Scenes: {scenes}  Report: {evaluate_scene_run(cfg.run_dir)}")
 
 
+@app.command("evaluate-model")
+def evaluate_model(
+    model: Annotated[str, typer.Option("--model", "-m", help="Hugging Face model id")],
+    prompt: Annotated[str, typer.Option(help="scene_guided or scene_open")] = "scene_guided",
+    baseline: Annotated[
+        Path | None, typer.Option(help="Scored run to compare with (same frames)")
+    ] = Path("outputs/scenes/qwen2vl_guided"),
+    gates: Annotated[Path, typer.Option(help="Gate YAML")] = Path("configs/gates.yaml"),
+    run_id: Annotated[str | None, typer.Option(help="Run name (default: from the model)")] = None,
+    set_: Annotated[
+        list[str], typer.Option("--set", help="Override, e.g. loader.params.scenes=[scene-1094]")
+    ] = [],  # noqa: B006
+    force: Annotated[
+        bool, typer.Option(help="Overwrite an existing run made with a different config")
+    ] = False,
+    verbose: bool = False,
+) -> None:
+    """Evaluate a Hugging Face VLM on the dataset: describe, score, compare with the baseline,
+    gate. Writes outputs/scenes/<run>/verdict.md; exits 1 if the gate fails."""
+    from vlm_eval.model_eval import model_config, model_verdict
+    from vlm_eval.scene_pipeline import evaluate_scene_run
+
+    cfg = model_config(model, prompt, run_id=run_id, overrides=_parse_overrides(set_))
+    _start(verbose, cfg.seed)
+    _describe(cfg, force)
+    # Cite the judge validation that sits with the baseline runs, wherever this run is written.
+    validation = (
+        baseline.parent / "judge_validation" / "judge_validation.json" if baseline else None
+    )
+    evaluate_scene_run(cfg.run_dir, validation if validation and validation.exists() else None)
+    verdict = model_verdict(cfg.run_dir, baseline, gates)
+    typer.echo((cfg.run_dir / "verdict.md").read_text())
+    raise typer.Exit(code=0 if verdict.passed else 1)
+
+
 @app.command("evaluate-scenes")
 def evaluate_scenes_cmd(
     run_dir: Path,

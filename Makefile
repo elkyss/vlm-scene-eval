@@ -1,4 +1,4 @@
-.PHONY: install test lint describe run run-mock run-frames eval gate rescore all docker-build docker-test docker-run docker-eval docker-rescore docker-all
+.PHONY: install test lint evaluate-model describe run run-mock run-frames eval gate rescore all docker-build docker-test docker-run docker-evaluate-model docker-eval docker-rescore docker-all
 
 CONFIG ?= configs/scenes/qwen2vl_guided.yaml
 RUN_DIR ?= outputs/scenes/qwen2vl_guided
@@ -12,6 +12,10 @@ test:               ## unit + e2e tests (real-data tests skip if data/ is missin
 
 lint:
 	ruff check src tests && ruff format --check src tests && mypy
+
+MODEL ?= HuggingFaceTB/SmolVLM2-500M-Video-Instruct
+evaluate-model:     ## evaluate a Hugging Face VLM end to end, e.g. make evaluate-model MODEL=org/name
+	vlm-eval evaluate-model --model $(MODEL)
 
 describe:           ## inference only (needs the VLM; ideally a GPU), score later with make eval
 	vlm-eval describe-scenes -c $(CONFIG)
@@ -45,6 +49,9 @@ docker-test:
 
 docker-run:         ## e.g. make docker-run CONFIG=configs/scenes/mock_oracle.yaml
 	$(COMPOSE) app run-scenes -c $(CONFIG)
+
+docker-evaluate-model: ## make evaluate-model inside the CPU image
+	$(COMPOSE) app evaluate-model --model $(MODEL)
 
 docker-eval:        ## re-score a saved run in the CPU image (no inference)
 	$(COMPOSE) app evaluate-scenes $(RUN_DIR)
