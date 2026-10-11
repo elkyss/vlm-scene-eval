@@ -219,7 +219,11 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## Assumptions
 
-- **Scene and camera:** a scene is one nuScenes clip. Every result here uses CAM_FRONT,
+- **What a scene is:** one nuScenes scene, i.e. one continuous 20 s drive recorded as
+  about 40 annotated keyframes (2 per second), with one human-written `scene.description`.
+  "Describe the scene" means one description of that whole drive, written from the frames
+  the model is shown (3 views × 6 frames), not from a single image.
+- **Camera:** every result here uses CAM_FRONT,
   the default. Cameras (one or several sent together), frames per view, views per scene
   and the scene list are config settings (`loader.params`). With several cameras, objects
   are checked on all cameras shown.
