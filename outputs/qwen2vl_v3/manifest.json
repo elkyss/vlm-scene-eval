@@ -1,8 +1,8 @@
 {
-  "created_utc": "2026-10-10T19:45:52+00:00",
-  "git_commit": "08bb3a6f51dd8bf74b9d4c355fa2935299ed3a6d",
+  "created_utc": "2026-10-11T15:38:57+00:00",
+  "git_commit": "4f495c4fa47a5b1f1724076933556ea8f8058a55",
   "git_dirty": true,
-  "config_sha256": "827e4589fca89070",
+  "config_sha256": "834b24d03b58c2fc",
   "config": {
     "run_id": "qwen2vl_v3",
     "loader": {
@@ -36,14 +36,14 @@
     },
     "taxonomy": "driving",
     "prompt": "v3_questionnaire",
+    "output_dir": "outputs",
+    "cache_dir": ".cache/vlm",
+    "seed": 0,
     "writers": [
       "jsonl",
       "csv"
     ],
-    "metrics": [],
-    "output_dir": "outputs",
-    "cache_dir": ".cache/vlm",
-    "seed": 0
+    "metrics": []
   },
   "python": "3.13.0",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",

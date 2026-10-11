@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from vlm_eval.evaluation.report import fmt, md_table
+from vlm_eval.evaluation.report import fmt, fmt_ci, md_table
 from vlm_eval.evaluation.scene_metrics import SceneEvaluation
 from vlm_eval.evaluation.scene_report import SCENE_METRICS
 from vlm_eval.run_store import RunArtifacts, load_metrics
@@ -41,17 +41,17 @@ def leaderboard(run_dirs: list[Path]) -> str:
 
 
 def scene_leaderboard(run_dirs: list[Path]) -> str:
-    columns = (  # (header, summary key, is percentage)
-        ("CHAIR_i", "chair_i", True),
-        ("CHAIR_s", "chair_s", True),
-        ("Obj. coverage", "object_coverage", True),
-        ("Supported", "claims_supported", True),
-        ("Specific support (own − shuffled)", "specific_claims_supported", True),
-        ("Unverifiable", "claims_unverifiable", True),
-        ("Human coverage", "human_coverage", True),
-        ("Repetition loops", "repetition_loop_rate", True),
-        ("View agreement", "view_agreement", True),
-        ("s / call", "mean_latency_s_per_call", False),
+    columns = (  # (header, summary key, format): "pct", "ci" (pct with its 95% CI) or "num"
+        ("CHAIR_i", "chair_i", "pct"),
+        ("CHAIR_s", "chair_s", "pct"),
+        ("Obj. coverage", "object_coverage", "pct"),
+        ("Supported", "claims_supported", "pct"),
+        ("Specific support (own − other scenes) [95% CI]", "specific_claims_supported", "ci"),
+        ("Unverifiable", "claims_unverifiable", "pct"),
+        ("Human coverage", "human_coverage", "pct"),
+        ("Repetition loops", "repetition_loop_rate", "pct"),
+        ("View agreement", "view_agreement", "pct"),
+        ("s / call", "mean_latency_s_per_call", "num"),
     )
     rows = []
     for run_dir in run_dirs:
@@ -61,6 +61,9 @@ def scene_leaderboard(run_dirs: list[Path]) -> str:
         ev = SceneEvaluation.model_validate_json(path.read_text())
         rows.append(
             [run_dir.name, ev.model, ev.prompt_version.split("@")[0]]
-            + [fmt(ev.summary.get(key), pct) for _, key, pct in columns]
+            + [
+                fmt_ci(ev.summary, key) if kind == "ci" else fmt(ev.summary.get(key), kind == "pct")
+                for _, key, kind in columns
+            ]
         )
     return md_table(["Run", "Model", "Prompt", *(c[0] for c in columns)], rows)

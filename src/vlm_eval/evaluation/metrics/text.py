@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from vlm_eval.domain import MetricResult
 from vlm_eval.evaluation.metrics.base import METRICS, EvalPair
 from vlm_eval.evaluation.metrics.objects import frame_f1, frame_outcomes, presence_summary
+from vlm_eval.evaluation.similarity import similarity_matrix
 from vlm_eval.evaluation.stats import mean_or_none, pearson, safe_div, spearman
 from vlm_eval.parsing.text_claims import extract_objects
 from vlm_eval.taxonomy import Taxonomy
@@ -99,20 +99,12 @@ class ReferenceSimilarityMetric:
         return MetricResult(name=self.name, summary=summary, per_sample=per_sample, notes=notes)
 
     def _cosines(self, pairs: list[EvalPair], notes: list[str]) -> list[float] | None:
-        if not self.embedding_model:
-            return None
-        try:
-            from sentence_transformers import SentenceTransformer
-        except ImportError:
-            notes.append("sentence-transformers not installed: embedding similarity skipped.")
-            return None
-        model: Any = SentenceTransformer(self.embedding_model)
-        preds = model.encode(
-            [p.pred.description or " " for p in pairs],
-            normalize_embeddings=True,
-            show_progress_bar=False,
+        sims = similarity_matrix(
+            [p.pred.description for p in pairs],
+            [p.gt.reference_text for p in pairs],
+            self.embedding_model,
         )
-        refs = model.encode(
-            [p.gt.reference_text for p in pairs], normalize_embeddings=True, show_progress_bar=False
-        )
-        return [float((a * b).sum()) for a, b in zip(preds, refs, strict=True)]
+        if sims is None:
+            notes.append("Embedding similarity skipped (no model or sentence-transformers).")
+            return None
+        return [float(sims[i, i]) for i in range(len(pairs))]

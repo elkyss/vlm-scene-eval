@@ -82,7 +82,7 @@
       "ci_low": -0.52,
       "ci_high": -0.039999999999999925,
       "sign_flip_p": 0.125,
-      "verdict": "A better"
+      "verdict": "borderline"
     },
     {
       "metric": "Presence accuracy: barrier",

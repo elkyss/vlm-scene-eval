@@ -137,13 +137,16 @@ class NuScenesGTProvider:
             objects=objects,
         )
 
-    def objects_in_view(self, sample_token: str) -> list[AnnotatedObject]:
+    def objects_in_view(
+        self, sample_token: str, camera: str | None = None
+    ) -> list[AnnotatedObject]:
+        """Annotated objects whose box projects into ``camera``'s image (default: own camera)."""
         from nuscenes.utils.geometry_utils import BoxVisibility
 
         nusc = self._nusc
         sample = nusc.get("sample", sample_token)
         _, boxes, _ = nusc.get_sample_data(
-            sample["data"][self.camera], box_vis_level=BoxVisibility.ANY
+            sample["data"][camera or self.camera], box_vis_level=BoxVisibility.ANY
         )
         objects = []
         for box in boxes:  # boxes are already in the camera frame

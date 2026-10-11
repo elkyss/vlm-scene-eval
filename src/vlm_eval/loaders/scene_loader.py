@@ -32,17 +32,22 @@ def view_frame_indices(n_frames: int, n_segments: int, n_views: int) -> list[lis
 
 @SCENE_LOADERS.register("nuscenes")
 class NuScenesSceneLoader:
+    """Every input choice is a parameter: which scenes, which cameras (several cameras are
+    sent together, time-major), frames per call and number of views per scene."""
+
     def __init__(
         self,
         dataroot: str,
         version: str = "v1.0-mini",
-        camera: str = "CAM_FRONT",
+        cameras: Sequence[str] = ("CAM_FRONT",),
         frames_per_view: int = 6,
         n_views: int = 3,
         scenes: Sequence[str] | None = None,
         nusc: Any | None = None,
     ) -> None:
-        self.camera = camera
+        if not cameras:
+            raise ValueError("at least one camera is needed")
+        self.cameras = list(cameras)
         self.frames_per_view = frames_per_view
         self.n_views = n_views
         self.scenes = set(scenes) if scenes else None
@@ -65,8 +70,11 @@ class NuScenesSceneLoader:
                         frame_indices=indices,
                         sample_tokens=[s["token"] for s in samples],
                         image_paths=[
-                            Path(nusc.get_sample_data_path(s["data"][self.camera])) for s in samples
+                            Path(nusc.get_sample_data_path(s["data"][camera]))
+                            for s in samples
+                            for camera in self.cameras
                         ],
+                        cameras=self.cameras,
                     )
                 )
             yield SceneSample(

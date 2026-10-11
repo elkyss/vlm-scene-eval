@@ -132,7 +132,7 @@
       "ci_low": -0.62,
       "ci_high": -0.060000000000000005,
       "sign_flip_p": 0.125,
-      "verdict": "A better"
+      "verdict": "borderline"
     },
     {
       "metric": "Valid structured output",

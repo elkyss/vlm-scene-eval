@@ -157,7 +157,6 @@ def test_slices_split_by_ground_truth() -> None:
 
 
 def test_gate_thresholds_and_regression() -> None:
-    from vlm_eval.domain import MetricResult
     from vlm_eval.evaluation.gate import evaluate_gate
 
     spec = {
@@ -167,8 +166,8 @@ def test_gate_thresholds_and_regression() -> None:
         },
         "regression": {"object_presence.micro_f1": {"max_drop": 0.05}},
     }
-    run = [MetricResult(name="object_presence", summary={"micro_f1": 0.6})]
-    base = [MetricResult(name="object_presence", summary={"micro_f1": 0.7})]
+    run = {"object_presence.micro_f1": 0.6}
+    base = {"object_presence.micro_f1": 0.7}
     checks = {(c.key, c.rule.split()[0]): c.passed for c in evaluate_gate(spec, run, base)}
     assert checks[("object_presence.micro_f1", ">=")] is True
     assert checks[("format.parse_success_rate", ">=")] is False  # missing metric fails closed

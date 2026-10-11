@@ -1,8 +1,8 @@
 {
-  "created_utc": "2026-10-10T19:45:26+00:00",
-  "git_commit": "08bb3a6f51dd8bf74b9d4c355fa2935299ed3a6d",
+  "created_utc": "2026-10-11T15:38:32+00:00",
+  "git_commit": "4f495c4fa47a5b1f1724076933556ea8f8058a55",
   "git_dirty": true,
-  "config_sha256": "7c1aa84c77e55eeb",
+  "config_sha256": "103513e73c8e3bf5",
   "config": {
     "run_id": "smolvlm_v3",
     "loader": {
@@ -36,14 +36,14 @@
     },
     "taxonomy": "driving",
     "prompt": "v3_questionnaire",
+    "output_dir": "outputs",
+    "cache_dir": ".cache/vlm",
+    "seed": 0,
     "writers": [
       "jsonl",
       "csv"
     ],
-    "metrics": [],
-    "output_dir": "outputs",
-    "cache_dir": ".cache/vlm",
-    "seed": 0
+    "metrics": []
   },
   "python": "3.13.0",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",

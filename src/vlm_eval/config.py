@@ -14,42 +14,40 @@ class ComponentConfig(BaseModel):
     params: dict[str, Any] = Field(default_factory=dict)
 
 
-class RunConfig(BaseModel):
+class BaseRunConfig(BaseModel):
+    """Fields every run has, frame level or scene level."""
+
     run_id: str
-    loader: ComponentConfig
-    ground_truth: ComponentConfig
+    loader: ComponentConfig  # which frames/scenes and cameras (registry name + params)
+    ground_truth: ComponentConfig  # how the reference is built (registry name + params)
     vlm: ComponentConfig
     taxonomy: str = "driving"  # name in taxonomies/ or a path to a YAML file
+    prompt: str
+    output_dir: Path
+    cache_dir: Path | None = Path(".cache/vlm")
+    seed: int = 0
+
+    @property
+    def run_dir(self) -> Path:
+        return self.output_dir / self.run_id
+
+
+class RunConfig(BaseRunConfig):
+    """Frame-level run (diagnostic): every selected frame described on its own."""
+
     prompt: str = "v2_structured"
+    output_dir: Path = Path("outputs")
     writers: list[str] = Field(default_factory=lambda: ["jsonl", "csv"])
     metrics: list[ComponentConfig] = Field(default_factory=list)
-    output_dir: Path = Path("outputs")
-    cache_dir: Path | None = Path(".cache/vlm")
-    seed: int = 0
-
-    @property
-    def run_dir(self) -> Path:
-        return self.output_dir / self.run_id
 
 
-class SceneRunConfig(BaseModel):
+class SceneRunConfig(BaseRunConfig):
     """Scene-level run: N frames per view, K views per scene, one description per scene."""
 
-    run_id: str
-    loader: ComponentConfig  # SCENE_LOADERS: which scenes, cameras, frames per view, views
-    ground_truth: ComponentConfig  # FACT_BUILDERS: how the fact sheet is built
-    taxonomy: str = "driving"
-    vlm: ComponentConfig
     prompt: str = "scene_open"
+    output_dir: Path = Path("outputs/scenes")
     judge: ComponentConfig = Field(default_factory=lambda: ComponentConfig(name="nli"))
     embedding_model: str | None = "sentence-transformers/all-MiniLM-L6-v2"
-    output_dir: Path = Path("outputs/scenes")
-    cache_dir: Path | None = Path(".cache/vlm")
-    seed: int = 0
-
-    @property
-    def run_dir(self) -> Path:
-        return self.output_dir / self.run_id
 
 
 def _load_raw(path: str | Path, overrides: dict[str, Any] | None) -> dict[str, Any]:

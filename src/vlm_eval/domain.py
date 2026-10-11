@@ -98,12 +98,21 @@ class MetricResult(BaseModel):
 
 
 class SceneView(BaseModel):
-    """One label-blind subset of a scene's keyframes, sent to the VLM in a single call."""
+    """One label-blind subset of a scene's keyframes, sent to the VLM in a single call.
+
+    ``image_paths`` is time-major: for each frame, one image per camera in ``cameras`` order.
+    """
 
     view_id: int
     frame_indices: list[int]
     sample_tokens: list[str]
     image_paths: list[Path]
+    cameras: list[str] = Field(default_factory=lambda: ["CAM_FRONT"])
+
+    @property
+    def image_ids(self) -> list[str]:
+        """Stable identity of every image sent (part of the response-cache key)."""
+        return [f"{token}:{camera}" for token in self.sample_tokens for camera in self.cameras]
 
 
 class SceneSample(BaseModel):
@@ -173,6 +182,3 @@ class SceneDescription(BaseModel):
     consensus_attributes: dict[str, str] = Field(default_factory=dict)
     view_agreement: float  # share of consensus facts that all views agree on
     views: list[ViewOutput] = Field(default_factory=list)
-
-    def view(self, view_id: int) -> ViewOutput:
-        return next(v for v in self.views if v.view_id == view_id)

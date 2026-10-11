@@ -1,8 +1,8 @@
 {
-  "created_utc": "2026-10-10T19:42:16+00:00",
-  "git_commit": "08bb3a6f51dd8bf74b9d4c355fa2935299ed3a6d",
+  "created_utc": "2026-10-11T15:32:24+00:00",
+  "git_commit": "4f495c4fa47a5b1f1724076933556ea8f8058a55",
   "git_dirty": true,
-  "config_sha256": "c2b1717c1513fa99",
+  "config_sha256": "807c81eea429c01d",
   "config": {
     "run_id": "qwen2vl_open",
     "loader": {
@@ -10,7 +10,9 @@
       "params": {
         "dataroot": "data/nuscenes",
         "version": "v1.0-mini",
-        "camera": "CAM_FRONT",
+        "cameras": [
+          "CAM_FRONT"
+        ],
         "frames_per_view": 6,
         "n_views": 3,
         "scenes": null
@@ -21,12 +23,10 @@
       "params": {
         "dataroot": "data/nuscenes",
         "version": "v1.0-mini",
-        "camera": "CAM_FRONT",
         "min_visibility": 2,
         "max_distance_m": 50
       }
     },
-    "taxonomy": "driving",
     "vlm": {
       "name": "hf",
       "params": {
@@ -34,17 +34,18 @@
         "max_new_tokens": 200
       }
     },
+    "taxonomy": "driving",
     "prompt": "scene_open",
+    "output_dir": "outputs/scenes",
+    "cache_dir": ".cache/vlm",
+    "seed": 0,
     "judge": {
       "name": "nli",
       "params": {
         "model_id": "cross-encoder/nli-deberta-v3-base"
       }
     },
-    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-    "output_dir": "outputs/scenes",
-    "cache_dir": ".cache/vlm",
-    "seed": 0
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2"
   },
   "python": "3.13.0",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",

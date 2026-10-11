@@ -39,7 +39,7 @@ def make_run(tmp: Path, mode: str) -> Path:
 
 
 def gate(run: Path, baseline: Path | None = None) -> int:
-    cmd = ["vlm-eval", "gate", str(run), "--gates", str(ROOT / "configs/gates.yaml")]
+    cmd = ["vlm-eval", "gate", str(run), "--gates", str(ROOT / "configs/gates_frames.yaml")]
     if baseline:
         cmd += ["--baseline", str(baseline)]
     return subprocess.run(cmd, check=False).returncode

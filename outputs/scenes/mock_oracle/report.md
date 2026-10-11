@@ -1,20 +1,20 @@
-# Scene-level evaluation: `mock-oracle` with prompt `scene_open@c03d290e`
+# Scene-level evaluation: `mock-oracle` with prompt `scene_open@62f61a19`
 
 10 scenes. Each scene is shown as 3 views of 6 frames (one VLM call per view); the final description is the view most consistent with the others. Claims are judged by `nli-deberta-v3-base` against the fact sheet; objects are checked against the 3D boxes (CHAIR) without a judge.
 
 ## Headline
 
-**Final** = the chosen view's description (95% CI from a bootstrap over scenes). **Macro** = mean of per-scene rates. **View A** and **mean of views** show how much the self-consistency choice changes the result. **Spread** = within-scene max-min across views. **Shuffled** = each description scored against another scene: a metric that does not get clearly worse there is not measuring content.
+**Final** = the chosen view's description (95% CI from a bootstrap over scenes). **Macro** = mean of per-scene rates. **View A** and **mean of views** show how much the self-consistency choice changes the result. **Spread** = within-scene max-min across views. **Shuffled** = each description scored against every other scene (pooled): a metric that does not get clearly worse there is not measuring content.
 
 | Metric | Final | Macro | View A | Mean of views | Spread | Shuffled |
 |---|---|---|---|---|---|---|
-| CHAIR_i: invented object mentions / all object mentions | 0.0% [0.0%, 0.0%] | 0.0% | 0.0% | 0.0% | 0.0% | 21.4% |
-| CHAIR_s: descriptions with an invented object | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 60.0% |
-| Object coverage: clearly visible classes mentioned | 100.0% [100.0%, 100.0%] | 100.0% | 100.0% | 100.0% | 0.0% | 69.0% |
-| Claims supported by the facts | 100.0% [100.0%, 100.0%] | 100.0% | 100.0% | 100.0% | 0.0% | 58.8% |
-| Claims that cannot be verified (no annotation covers them) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 9.8% |
-| Claims supported by annotation-based facts | 88.9% | 89.0% | 88.9% | 88.9% | 0.8% | 52.3% |
-| Human-sentence items covered | 62.7% [54.4%, 70.9%] | 62.0% | 61.0% | 62.1% | 4.4% | 47.5% |
+| CHAIR_i: invented object mentions / all object mentions | 0.0% [0.0%, 0.0%] | 0.0% | 0.0% | 0.0% | 0.0% | 24.9% |
+| CHAIR_s: descriptions with an invented object | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 73.3% |
+| Object coverage: clearly visible classes mentioned | 100.0% [100.0%, 100.0%] | 100.0% | 100.0% | 100.0% | 0.0% | 67.7% |
+| Claims supported by the facts | 100.0% [100.0%, 100.0%] | 100.0% | 100.0% | 100.0% | 0.0% | 55.1% |
+| Claims that cannot be verified (no annotation covers them) | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% | 9.2% |
+| Claims supported by annotation-based facts | 88.9% | 89.0% | 88.9% | 88.9% | 0.8% | 50.3% |
+| Human-sentence items covered | 62.7% [54.4%, 70.9%] | 62.0% | 61.0% | 62.1% | 4.4% | 42.9% |
 
 ## Supported claims by type
 
@@ -30,15 +30,15 @@ The judge is not equally reliable for every kind of claim. Its validation on cla
 
 ## Is the description about this scene?
 
-A generic description ("a car on a street in daylight") is supported in almost any scene. The difference between the own scene and the shuffled control shows how much of the content is specific to this scene. Zero or below means the description is no better than a generic one. For reference, the oracle control (fact sheet as description) scores about +40 points on claims supported.
+A generic description ("a car on a street in daylight") is supported in almost any scene. Each description is therefore also scored against every other scene, and the gap (own scene minus the other scenes) shows how much of the content is specific to this scene. The CI comes from a bootstrap over scenes and the p-value from a sign-flip test on the per-scene gaps, as in a comparison of two runs. A gap whose CI includes 0 is no evidence of scene-specific content. For reference, the oracle control (fact sheet as description) scores about +45 points on claims supported.
 
-| Metric | Own − shuffled |
-|---|---|
-| Claims supported: own scene minus shuffled scene | 41.2% |
-| Object coverage: own scene minus shuffled scene | 31.0% |
-| Human-sentence coverage: own scene minus shuffled scene | 15.3% |
+| Metric | Own − other scenes [95% CI] | Sign-flip p |
+|---|---|---|
+| Claims supported: own scene minus other scenes | 44.9% [41.9%, 47.8%] | 0.002 |
+| Object coverage: own scene minus other scenes | 32.3% [24.5%, 39.3%] | 0.002 |
+| Human-sentence coverage: own scene minus other scenes | 19.8% [10.6%, 30.2%] | 0.008 |
 
-**Conclusion:** the descriptions are measurably specific to their own scene on claims, objects, the human sentence (more than 5% better than on a shuffled scene).
+**Conclusion:** the descriptions are measurably specific to their own scene on claims, objects, the human sentence (95% CI above 0 and p < 0.05).
 
 ## Contradictions (indicative only)
 
@@ -47,9 +47,7 @@ A claim counts as contradicted when the NLI judge reads the whole fact sheet as 
 | Metric | Value |
 |---|---|
 | Claims contradicted | 0.0% [0.0%, 0.0%] |
-| Shuffled control: claims contradicted | 31.4% |
-| Judge check: 'supported' object claims whose object is in view (n=333) | 99.1% |
-| Judge check: 'contradicted' object claims whose object is absent (n=32) | 28.1% |
+| Shuffled control: claims contradicted | 35.7% |
 
 ## Output quality
 

@@ -115,6 +115,29 @@ def cluster_bootstrap_ci(
     return float(np.quantile(stats, alpha / 2)), float(np.quantile(stats, 1 - alpha / 2))
 
 
+ALPHA = 0.05
+
+
+def significance(
+    ci_low: float | None, ci_high: float | None, p_value: float | None, alpha: float = ALPHA
+) -> str:
+    """One decision rule for every difference reported (two runs, or own vs other scenes).
+
+    "higher" / "lower": the 95% CI excludes 0 AND the exact sign-flip test gives p < alpha.
+    "borderline": only one of the two says so (with ~10 scenes a bootstrap CI is often too
+    narrow, so the exact test is required too). "inconclusive": neither.
+    """
+    if ci_low is None or ci_high is None:
+        return "inconclusive"
+    ci_says = ci_low > 0 or ci_high < 0
+    p_says = p_value is not None and p_value < alpha
+    if ci_says and p_says:
+        return "higher" if ci_low > 0 else "lower"
+    if ci_says or p_says:
+        return "borderline"
+    return "inconclusive"
+
+
 @dataclass(frozen=True)
 class PairedComparison:
     a: float | None
@@ -123,7 +146,7 @@ class PairedComparison:
     ci_low: float | None
     ci_high: float | None
     p_value: float | None  # exact sign-flip test on per-cluster differences
-    verdict: str  # "A better" | "B better" | "inconclusive"
+    verdict: str  # "A better" | "B better" | "borderline" | "inconclusive"
 
 
 def paired_comparison(
@@ -135,7 +158,7 @@ def paired_comparison(
     """Compare paired runs A and B on a statistic, respecting clusters (scenes).
 
     CI of B - A from a bootstrap over clusters, p-value from a sign-flip test on per-cluster
-    differences; the verdict is "inconclusive" whenever the CI includes 0.
+    differences; the verdict follows ``significance`` (CI and p must agree).
     """
     items = [pair for cluster in clusters for pair in cluster]
     va, vb = stat([x for x, _ in items]), stat([y for _, y in items])
@@ -146,11 +169,12 @@ def paired_comparison(
 
     lo, hi = cluster_bootstrap_ci(clusters, diff, seed=seed)
     p = sign_flip_p([d for c in clusters if (d := diff(list(c))) is not None])
-    if lo is None or hi is None or lo <= 0 <= hi:
-        verdict = "inconclusive"
+    decision = significance(lo, hi, p)
+    if decision in ("higher", "lower"):
+        b_better = (decision == "higher") != lower_is_better
+        verdict = "B better" if b_better else "A better"
     else:
-        b_higher = lo > 0
-        verdict = "B better" if b_higher != lower_is_better else "A better"
+        verdict = decision
     return PairedComparison(
         va, vb, None if va is None or vb is None else vb - va, lo, hi, p, verdict
     )

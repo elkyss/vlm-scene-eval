@@ -1,1 +1,1 @@
-These {n_frames} images are consecutive snapshots of one drive, taken from the front camera of a car, in time order and about {spacing} seconds apart. Describe the drive in 2-3 sentences.
+{intro} Describe the drive in 2-3 sentences.

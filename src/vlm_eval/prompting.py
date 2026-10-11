@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Protocol
@@ -174,16 +175,38 @@ def load_strategy(name: str, taxonomy: Taxonomy) -> PromptStrategy:
     raise KeyError(f"Unknown prompt {name!r}. Available: {available}")
 
 
+def camera_name(channel: str) -> str:
+    """'CAM_FRONT_LEFT' -> 'front-left' (generic: strips the prefix, no dataset table)."""
+    return channel.removeprefix("CAM_").lower().replace("_", "-")
+
+
+def scene_intro(n_frames: int, spacing: int, cameras: Sequence[str]) -> str:
+    """First sentence of every scene prompt: what the images are and in which order."""
+    if len(cameras) == 1:
+        return (
+            f"These {n_frames} images are consecutive snapshots of one drive, taken from the "
+            f"{camera_name(cameras[0])} camera of a car, in time order and about {spacing} "
+            "seconds apart."
+        )
+    names = ", ".join(camera_name(c) for c in cameras)
+    return (
+        f"These {n_frames * len(cameras)} images show {n_frames} consecutive moments of one "
+        f"drive, in time order and about {spacing} seconds apart. Each moment has one image "
+        f"per camera of the car, in this order: {names}."
+    )
+
+
 @dataclass(frozen=True)
 class ScenePrompt:
-    """Prompt for one multi-frame scene call; ``{n_frames}`` and ``{spacing}`` are filled in."""
+    """Prompt for one multi-frame scene call; ``{intro}`` (what the images are: frames,
+    cameras, spacing) is filled in from the view, so any camera/frame setup is described."""
 
     name: str
     template: str
 
-    def render(self, n_frames: int, span_s: float) -> str:
+    def render(self, n_frames: int, span_s: float, cameras: Sequence[str] = ("CAM_FRONT",)) -> str:
         spacing = max(1, round(span_s / max(1, n_frames - 1)))
-        return self.template.format(n_frames=n_frames, spacing=spacing)
+        return self.template.format(intro=scene_intro(n_frames, spacing, cameras))
 
     @property
     def version(self) -> str:

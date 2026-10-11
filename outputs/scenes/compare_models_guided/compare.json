@@ -1,6 +1,6 @@
 {
-  "a": "SmolVLM-500M-Instruct / scene_guided@97a6fd64",
-  "b": "Qwen2-VL-2B-Instruct / scene_guided@97a6fd64",
+  "a": "SmolVLM-500M-Instruct / scene_guided@53a32872",
+  "b": "Qwen2-VL-2B-Instruct / scene_guided@53a32872",
   "scenes": 10,
   "metrics": [
     {

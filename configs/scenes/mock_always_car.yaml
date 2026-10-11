@@ -5,7 +5,7 @@ loader:
   params:
     dataroot: data/nuscenes
     version: v1.0-mini
-    camera: CAM_FRONT
+    cameras: [CAM_FRONT]    # several cameras are sent together, e.g. [CAM_FRONT_LEFT, CAM_FRONT, CAM_FRONT_RIGHT]
     frames_per_view: 6      # frames per VLM call (fits SmolVLM's ~8-image context)
     n_views: 3              # label-blind, non-overlapping frame subsets per scene
     scenes: null            # e.g. [scene-0061, scene-1094]
@@ -13,8 +13,7 @@ ground_truth:
   name: nuscenes
   params:
     dataroot: data/nuscenes
-    version: v1.0-mini
-    camera: CAM_FRONT
+    version: v1.0-mini      # objects are checked on whichever cameras were shown
     min_visibility: 2       # nuScenes level 2 = 40-60% visible
     max_distance_m: 50
 taxonomy: driving

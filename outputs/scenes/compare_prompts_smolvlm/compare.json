@@ -1,6 +1,6 @@
 {
-  "a": "SmolVLM-500M-Instruct / scene_open@c03d290e",
-  "b": "SmolVLM-500M-Instruct / scene_guided@97a6fd64",
+  "a": "SmolVLM-500M-Instruct / scene_open@62f61a19",
+  "b": "SmolVLM-500M-Instruct / scene_guided@53a32872",
   "scenes": 10,
   "metrics": [
     {

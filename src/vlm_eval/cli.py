@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import logging
 import random
 from pathlib import Path
@@ -14,14 +13,10 @@ import yaml
 
 from vlm_eval.config import load_config, load_scene_config
 from vlm_eval.evaluation.compare import compare_runs
-from vlm_eval.evaluation.evaluator import Evaluator
-from vlm_eval.evaluation.gate import evaluate_gate, load_gate
-from vlm_eval.evaluation.gt_audit import agreement, export_sheet
+from vlm_eval.evaluation.gate import evaluate_gate, load_gate, load_summary
 from vlm_eval.evaluation.leaderboard import leaderboard as render_leaderboard
-from vlm_eval.evaluation.report import MarkdownReport
 from vlm_eval.manifest import save_run_metadata
-from vlm_eval.pipeline import build_pipeline
-from vlm_eval.run_store import RunArtifacts, load_metrics, save_metrics
+from vlm_eval.pipeline import build_pipeline, evaluate_run
 from vlm_eval.taxonomy import load_taxonomy
 
 app = typer.Typer(add_completion=False, help=__doc__)
@@ -35,6 +30,14 @@ def _setup_logging(verbose: bool) -> None:
     )
     for noisy in ("httpx", "httpcore", "urllib3", "huggingface_hub", "sentence_transformers"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
+
+
+def _start(verbose: bool, seed: int | None = None) -> None:
+    """Common start of every command: logging, and fixed seeds for runs."""
+    _setup_logging(verbose)
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
 
 
 def _parse_overrides(items: list[str]) -> dict[str, Any]:
@@ -54,10 +57,8 @@ def run(
     verbose: bool = False,
 ) -> None:
     """Describe every selected frame with the VLM, write results and evaluate them."""
-    _setup_logging(verbose)
     cfg = load_config(config, _parse_overrides(set_))
-    random.seed(cfg.seed)
-    np.random.seed(cfg.seed)
+    _start(verbose, cfg.seed)
     pipeline = build_pipeline(cfg)
     save_run_metadata(cfg.run_dir, cfg, pipeline.backend)
     _, results = pipeline.run(cfg.run_dir)
@@ -73,14 +74,8 @@ def evaluate(
     verbose: bool = False,
 ) -> None:
     """Recompute metrics and the report from saved predictions (no inference)."""
-    _setup_logging(verbose)
-    cfg = load_config(run_dir / "config.yaml")
-    artifacts = RunArtifacts.load(run_dir)
-    results = Evaluator.from_config(cfg.metrics, load_taxonomy(cfg.taxonomy)).evaluate(
-        artifacts.ground_truth, artifacts.predictions
-    )
-    save_metrics(results, run_dir)
-    typer.echo(f"Report: {MarkdownReport().render(artifacts, results)}")
+    _start(verbose)
+    typer.echo(f"Report: {evaluate_run(run_dir)}")
 
 
 @app.command()
@@ -90,7 +85,7 @@ def compare(
     out: Annotated[Path, typer.Option(help="Output directory")] = Path("outputs/compare"),
 ) -> None:
     """Paired comparison of two runs (two VLMs or two prompts) on their shared frames."""
-    _setup_logging(False)
+    _start(False)
     taxonomy = load_taxonomy(load_config(run_a / "config.yaml").taxonomy)
     typer.echo(f"Comparison: {compare_runs(run_a, run_b, out, taxonomy)}")
 
@@ -110,12 +105,14 @@ def leaderboard(
 @app.command()
 def gate(
     run_dir: Path,
-    gates: Annotated[Path, typer.Option(help="Gate YAML")] = Path("configs/gates.yaml"),
+    gates: Annotated[Path, typer.Option(help="Gate YAML (scene runs: configs/gates.yaml)")] = Path(
+        "configs/gates.yaml"
+    ),
     baseline: Annotated[Path | None, typer.Option(help="Baseline run for regression")] = None,
 ) -> None:
     """Pass/fail a run against thresholds (and a baseline). Exits 1 on failure (for CI)."""
     checks = evaluate_gate(
-        load_gate(gates), load_metrics(run_dir), load_metrics(baseline) if baseline else None
+        load_gate(gates), load_summary(run_dir), load_summary(baseline) if baseline else None
     )
     for c in checks:
         value = "missing" if c.value is None else f"{c.value:.3f}"
@@ -128,37 +125,6 @@ def gate(
 # --- scene level (main deliverable) --------------------------------------------------------
 
 
-def _evaluate_scene_run(run_dir: Path) -> Path:
-    from vlm_eval.domain import SceneDescription, SceneFactSheet
-    from vlm_eval.evaluation.scene_metrics import evaluate_scenes
-    from vlm_eval.evaluation.scene_report import SCENE_METRICS, render_scene_report
-    from vlm_eval.scene_pipeline import FACT_SHEETS, SCENES, build_judge
-    from vlm_eval.writers import read_jsonl
-
-    cfg = load_scene_config(run_dir / "config.yaml")
-    descriptions = read_jsonl(run_dir / SCENES, SceneDescription)
-    evaluation = evaluate_scenes(
-        descriptions,
-        read_jsonl(run_dir / FACT_SHEETS, SceneFactSheet),
-        build_judge(cfg),
-        load_taxonomy(cfg.taxonomy),
-        cfg.embedding_model,
-        cfg.seed,
-    )
-    (run_dir / SCENE_METRICS).write_text(evaluation.model_dump_json(indent=2))
-    views = descriptions[0].views if descriptions else []
-    protocol = (
-        f"Each scene is shown as {len(views)} views of "
-        f"{len(views[0].frame_indices) if views else 0} frames (one VLM call per view); "
-        "the final description is the view most consistent with the others."
-    )
-    validation_path = run_dir.parent / "judge_validation" / "judge_validation.json"
-    validation = (
-        json.loads(validation_path.read_text())["summary"] if validation_path.exists() else None
-    )
-    return render_scene_report(evaluation, run_dir, protocol, validation)
-
-
 @app.command("run-scenes")
 def run_scenes(
     config: Annotated[Path, typer.Option("--config", "-c", help="Scene run YAML")],
@@ -168,23 +134,25 @@ def run_scenes(
     verbose: bool = False,
 ) -> None:
     """One description per scene (N frames x K views per scene), then evaluate it."""
-    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline
+    from vlm_eval.scene_pipeline import build_judge, build_scene_pipeline, evaluate_scene_run
 
-    _setup_logging(verbose)
     cfg = load_scene_config(config, _parse_overrides(set_))
+    _start(verbose, cfg.seed)
     pipeline = build_scene_pipeline(cfg)
     save_run_metadata(cfg.run_dir, cfg, pipeline.backend, {"judge": build_judge(cfg).name})
     pipeline.run(cfg.run_dir)
     typer.echo(
-        f"Done. Scenes: {cfg.run_dir / 'scenes.jsonl'}  Report: {_evaluate_scene_run(cfg.run_dir)}"
+        f"Done. Scenes: {cfg.run_dir / 'scenes.jsonl'}  Report: {evaluate_scene_run(cfg.run_dir)}"
     )
 
 
 @app.command("evaluate-scenes")
 def evaluate_scenes_cmd(run_dir: Path, verbose: bool = False) -> None:
     """Re-score a saved scene run (no inference)."""
-    _setup_logging(verbose)
-    typer.echo(f"Report: {_evaluate_scene_run(run_dir)}")
+    from vlm_eval.scene_pipeline import evaluate_scene_run
+
+    _start(verbose)
+    typer.echo(f"Report: {evaluate_scene_run(run_dir)}")
 
 
 @app.command("compare-scenes")
@@ -196,7 +164,7 @@ def compare_scenes(
     """Paired comparison of two scene runs on their shared scenes."""
     from vlm_eval.evaluation.scene_compare import compare_scene_runs
 
-    _setup_logging(False)
+    _start(False)
     typer.echo(f"Comparison: {compare_scene_runs(run_a, run_b, out)}")
 
 
@@ -213,7 +181,7 @@ def validate_judge_cmd(
     from vlm_eval.scene_pipeline import FACT_SHEETS, build_judge
     from vlm_eval.writers import read_jsonl
 
-    _setup_logging(False)
+    _start(False)
     cfg = load_scene_config(run_dir / "config.yaml")
     judge = build_judge(cfg)
     probes = validate_judge(
@@ -270,30 +238,6 @@ def query(
         raise typer.BadParameter(f"give SQL or --example (one of {sorted(examples)})")
     columns, rows = run_query(db, sql)
     typer.echo(md_table(columns, [list(r) for r in rows]))
-
-
-@app.command("gt-export")
-def gt_export(
-    run_dir: Annotated[Path, typer.Argument(help="Run whose frames to audit")],
-    out: Path = Path("internal/gt_audit.csv"),
-    every: Annotated[int, typer.Option(help="Keep every n-th frame")] = 4,
-) -> None:
-    """Write a sheet of automatic GT labels for manual checking."""
-    run = RunArtifacts.load(run_dir)
-    gts = run.ground_truth[::every]
-    taxonomy = load_taxonomy(load_config(run_dir / "config.yaml").taxonomy)
-    typer.echo(f"{len(gts)} frames -> {export_sheet(run.samples, gts, out, taxonomy)}")
-
-
-@app.command("gt-agreement")
-def gt_agreement(sheet: Path = Path("internal/gt_audit.csv")) -> None:
-    """Agreement between the automatic GT and the manually filled sheet."""
-    for family, row in agreement(sheet).items():
-        value = row["agreement"]
-        typer.echo(
-            f"{family:16s} n={int(row['n'] or 0):3d}  agreement="
-            f"{'-' if value is None else f'{value:.1%}'}"
-        )
 
 
 if __name__ == "__main__":

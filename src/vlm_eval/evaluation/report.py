@@ -20,6 +20,13 @@ def fmt(value: Any, pct: bool = True) -> str:
     return str(value)
 
 
+def fmt_ci(summary: dict[str, float | None], key: str) -> str:
+    """``summary[key]`` followed by its ``_ci_low`` / ``_ci_high`` interval, when present."""
+    lo, hi = summary.get(f"{key}_ci_low"), summary.get(f"{key}_ci_high")
+    ci = "" if lo is None or hi is None else f" [{fmt(lo)}, {fmt(hi)}]"
+    return fmt(summary.get(key)) + ci
+
+
 def md_table(headers: list[str], rows: list[list[Any]]) -> str:
     lines = ["| " + " | ".join(headers) + " |", "|" + "---|" * len(headers)]
     lines += ["| " + " | ".join(str(c) for c in row) + " |" for row in rows]
@@ -31,11 +38,9 @@ class MarkdownReport:
         self,
         thumbnails: bool = True,
         thumb_width: int = 480,
-        gt_audit: Path | None = None,  # internal check only, not shown by default
     ) -> None:
         self.thumbnails = thumbnails
         self.thumb_width = thumb_width
-        self.gt_audit = gt_audit
 
     def render(self, run: RunArtifacts, results: list[MetricResult]) -> Path:
         r = {m.name: m for m in results}
@@ -51,8 +56,6 @@ class MarkdownReport:
             "scene type) and `log.location` (traffic side).",
         ]
         parts.append(self._headline(r))
-        if self.gt_audit is not None and self.gt_audit.exists():
-            parts.append(self._gt_reliability())
         if "object_presence" in r:
             parts.append(self._objects(r["object_presence"]))
         if "counting" in r:
@@ -111,26 +114,6 @@ class MarkdownReport:
         add("Valid structured output", "format", "parse_success_rate")
         add("Mean latency per frame (s)", "format", "mean_latency_s", pct=False)
         return "## Headline numbers\n\n" + md_table(["Metric", "Value"], rows)
-
-    def _gt_reliability(self) -> str:
-        head = "## How far to trust the ground truth"
-        if self.gt_audit is None or not self.gt_audit.exists():
-            return head + "\n\nNo manual GT audit found (run `vlm-eval gt-export`)."
-        from vlm_eval.evaluation.gt_audit import agreement
-
-        rows = [
-            [family, int(v["n"] or 0), fmt(v["agreement"])]
-            for family, v in agreement(self.gt_audit).items()
-        ]
-        return "\n\n".join(
-            [
-                head,
-                "A sample of frames was labelled by eye and compared with the automatic GT. "
-                "Metrics on a field cannot be trusted beyond its agreement: treat low-agreement "
-                "fields as indicative only.",
-                md_table(["Field", "Labels checked", "Auto vs. manual agreement"], rows),
-            ]
-        )
 
     def _slices(self, m: MetricResult) -> str:
         parts = ["## Slices", "Headline metrics per ground-truth condition. " + " ".join(m.notes)]

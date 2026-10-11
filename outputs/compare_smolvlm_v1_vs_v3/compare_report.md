@@ -15,7 +15,7 @@
 | Presence accuracy: bus | 88.0% | 88.0% | 0.0% | [-14.0%, 14.0%] | 1.000 | inconclusive |
 | Presence accuracy: pedestrian | 74.0% | 80.0% | 6.0% | [-4.0%, 16.0%] | 0.500 | inconclusive |
 | Presence accuracy: two_wheeler | 76.0% | 82.0% | 6.0% | [-4.0%, 16.0%] | 0.531 | inconclusive |
-| Presence accuracy: traffic_cone | 88.0% | 62.0% | -26.0% | [-52.0%, -4.0%] | 0.125 | A better |
+| Presence accuracy: traffic_cone | 88.0% | 62.0% | -26.0% | [-52.0%, -4.0%] | 0.125 | borderline |
 | Presence accuracy: barrier | 84.0% | 22.0% | -62.0% | [-88.0%, -30.0%] | 0.012 | A better |
 | Accuracy: time_of_day | 2.0% | 100.0% | 98.0% | [94.0%, 100.0%] | 0.002 | B better |
 | Accuracy: road_condition | 0.0% | 60.0% | 60.0% | [36.0%, 80.0%] | 0.008 | B better |

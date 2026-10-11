@@ -112,7 +112,7 @@
       "ci_low": -0.28,
       "ci_high": -0.019999999999999907,
       "sign_flip_p": 0.15625,
-      "verdict": "A better"
+      "verdict": "borderline"
     },
     {
       "metric": "Accuracy: scene_type",

@@ -1,6 +1,6 @@
 {
-  "a": "Qwen2-VL-2B-Instruct / scene_open@c03d290e",
-  "b": "Qwen2-VL-2B-Instruct / scene_guided@97a6fd64",
+  "a": "Qwen2-VL-2B-Instruct / scene_open@62f61a19",
+  "b": "Qwen2-VL-2B-Instruct / scene_guided@53a32872",
   "scenes": 10,
   "metrics": [
     {

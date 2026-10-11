@@ -117,3 +117,16 @@ def build_pipeline(cfg: RunConfig) -> Pipeline:
         evaluator=Evaluator.from_config(cfg.metrics, taxonomy),
         report=MarkdownReport(),
     )
+
+
+def evaluate_run(run_dir: Path) -> Path:
+    """Re-score a saved frame-level run from its own config (no inference); returns the report."""
+    from vlm_eval.config import load_config
+
+    cfg = load_config(run_dir / "config.yaml")
+    artifacts = RunArtifacts.load(run_dir)
+    results = Evaluator.from_config(cfg.metrics, load_taxonomy(cfg.taxonomy)).evaluate(
+        artifacts.ground_truth, artifacts.predictions
+    )
+    save_metrics(results, run_dir)
+    return MarkdownReport().render(artifacts, results)

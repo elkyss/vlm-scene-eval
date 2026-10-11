@@ -108,22 +108,3 @@ def test_load_strategy_by_file_type() -> None:
 def test_version_changes_with_prompt_text() -> None:
     a, b = SinglePromptStrategy("a", "x", TAX), SinglePromptStrategy("a", "y", TAX)
     assert a.version != b.version
-
-
-def test_gt_audit_roundtrip(tmp_path) -> None:  # type: ignore[no-untyped-def]
-    import csv
-
-    from tests.conftest import make_gt
-    from vlm_eval.evaluation.gt_audit import agreement, export_sheet
-
-    sheet = export_sheet([], [make_gt()], tmp_path / "audit.csv", TAX)
-    rows = list(csv.DictReader(sheet.open()))
-    for row in rows:  # human agrees with everything except the pedestrian label
-        row["manual_value"] = "no" if row["field"] == "present:pedestrian" else row["auto_value"]
-    with sheet.open("w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=list(rows[0]))
-        writer.writeheader()
-        writer.writerows(rows)
-    result = agreement(sheet)
-    assert result["objects"]["agreement"] == 6 / 7
-    assert result["time_of_day"]["agreement"] == 1.0

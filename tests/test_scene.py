@@ -22,9 +22,11 @@ from vlm_eval.domain import (
 from vlm_eval.evaluation.scene_compare import compare_scene_runs
 from vlm_eval.evaluation.scene_metrics import (
     DescriptionScore,
+    SceneRow,
     aggregate,
     evaluate_scenes,
     score_description,
+    specificity,
     within_scene_spread,
 )
 from vlm_eval.evaluation.scene_report import SCENE_METRICS, render_scene_report
@@ -278,7 +280,7 @@ def run_fake(tmp: Path, backend: MockBackend, name: str) -> Path:
         scenes,
         facts,
         backend,
-        ScenePrompt("p", "Describe {n_frames} frames, {spacing}s apart."),
+        ScenePrompt("p", "{intro} Describe the drive."),
         TAX,
     )  # type: ignore[arg-type]
     descriptions, sheets = pipeline.run(tmp / name)
@@ -320,6 +322,52 @@ def test_oracle_beats_always_car_and_shuffled_control(tmp_path: Path) -> None:
     assert oracle["chair_i"] == 0.0 and car["chair_i"] == 1.0
     assert oracle["object_coverage"] == 1.0 > car["object_coverage"]
     assert oracle["shuffled_claims_supported"] < oracle["claims_supported"]
+    # The gap is own minus the pooled other scenes, the same numbers the report shows.
+    assert oracle["specific_object_coverage"] == pytest.approx(
+        oracle["object_coverage"] - oracle["shuffled_object_coverage"]
+    )
+    assert car["specific_object_coverage"] == pytest.approx(0.0)  # same text everywhere
+
+
+def test_shuffled_control_uses_every_other_scene(tmp_path: Path) -> None:
+    run = run_fake(tmp_path, MockBackend("fixed", fixed_response="There are cars."), "fixed")
+    rows = json.loads((run / SCENE_METRICS).read_text())["rows"]
+    assert all(len(r["shuffled"]) == len(rows) - 1 for r in rows)
+
+
+def _row(name: str, own_covered: bool, other_covered: list[bool]) -> SceneRow:
+    def score(covered: bool) -> DescriptionScore:
+        return DescriptionScore(labelled=["car"], covered=["car"] if covered else [])
+
+    return SceneRow(
+        scene_name=name,
+        reference_text="",
+        description="",
+        chosen_view=0,
+        view_agreement=1.0,
+        final=score(own_covered),
+        per_view=[score(own_covered)],
+        shuffled=[score(c) for c in other_covered],
+        fact_sentences=[],
+        words=0,
+        repetition_loop=False,
+        latency_s=0.0,
+    )
+
+
+def test_specificity_ci_and_p() -> None:
+    names = [f"s{i}" for i in range(6)]
+    specific = specificity([_row(n, True, [False] * 5) for n in names])
+    assert specific["specific_object_coverage"] == pytest.approx(1.0)
+    assert specific["specific_object_coverage_ci_low"] == pytest.approx(1.0)
+    assert specific["specific_object_coverage_p"] == pytest.approx(2 / 2**6)  # exact sign flip
+    generic = specificity([_row(n, True, [True] * 5) for n in names])
+    assert generic["specific_object_coverage"] == pytest.approx(0.0)
+    assert (
+        generic["specific_object_coverage_ci_low"]
+        <= 0
+        <= generic["specific_object_coverage_ci_high"]
+    )
 
 
 def test_compare_scene_runs(tmp_path: Path) -> None:
@@ -366,29 +414,6 @@ def test_scene_descriptions_model_roundtrip() -> None:
     assert SceneDescription.model_validate_json(d.model_dump_json()) == d
 
 
-def test_judge_box_check_precisions() -> None:
-    from vlm_eval.evaluation.scene_metrics import CheckedText, judge_box_check
-
-    claims = [
-        CheckedText(text="A bus.", label=SUPPORTED, object_class="bus", box_present=True),
-        CheckedText(text="A truck.", label=SUPPORTED, object_class="truck", box_present=False),
-        CheckedText(
-            text="No cones.", label=CONTRADICTED, object_class="traffic_cone", box_present=False
-        ),
-        CheckedText(text="A dog.", label=NEUTRAL, object_class="car", box_present=True),
-        CheckedText(text="It is night.", label=SUPPORTED),
-        CheckedText(
-            text="A long claim about a bus that goes on and on.",
-            label=SUPPORTED,
-            object_class="bus",
-            box_present=False,
-        ),
-    ]
-    check = judge_box_check([DescriptionScore(claims=claims)])
-    assert check["judge_support_n"] == 2 and check["judge_support_precision"] == 0.5
-    assert check["judge_contradiction_n"] == 1 and check["judge_contradiction_precision"] == 1.0
-
-
 def test_judge_validation_probes_have_known_truth() -> None:
     from vlm_eval.evaluation.judge_validation import (
         probe_claims,
@@ -416,22 +441,42 @@ def test_judge_validation_probes_have_known_truth() -> None:
 def test_specificity_verdict_wording() -> None:
     from vlm_eval.evaluation.scene_report import specificity_verdict
 
+    def gaps(**cis: tuple[float, float, float]) -> dict[str, float | None]:
+        out: dict[str, float | None] = {}
+        for key, (lo, hi, p) in cis.items():
+            out[f"specific_{key}_ci_low"], out[f"specific_{key}_ci_high"] = lo, hi
+            out[f"specific_{key}_p"] = p
+        return out
+
     generic = specificity_verdict(
-        {
-            "specific_claims_supported": -0.15,
-            "specific_object_coverage": 0.0,
-            "specific_human_coverage": 0.02,
-        }
+        gaps(
+            claims_supported=(-0.3, -0.05, 0.01),  # CI below 0 and p < 0.05
+            object_coverage=(-0.05, 0.05, 0.6),
+            human_coverage=(-0.02, 0.1, 0.4),
+        )
     )
-    assert "no evidence" in generic
+    assert "no clear evidence" in generic and "better than their own on claims" in generic
     specific = specificity_verdict(
-        {
-            "specific_claims_supported": 0.4,
-            "specific_object_coverage": 0.1,
-            "specific_human_coverage": 0.0,
-        }
+        gaps(
+            claims_supported=(0.2, 0.5, 0.002),
+            object_coverage=(0.02, 0.2, 0.15),  # CI above 0 but p = 0.15 -> borderline
+            human_coverage=(-0.1, 0.1, 0.5),
+        )
     )
-    assert "specific to their own scene on claims, objects" in specific
+    assert "specific to their own scene on claims (" in specific
+    assert "Borderline (CI and exact test disagree) on objects." in specific
+    assert "no shuffled control" in specificity_verdict({})
+
+
+def test_significance_rule() -> None:
+    from vlm_eval.evaluation.stats import significance
+
+    assert significance(0.1, 0.3, 0.01) == "higher"
+    assert significance(-0.3, -0.1, 0.01) == "lower"
+    assert significance(0.01, 0.2, 0.15) == "borderline"  # CI only
+    assert significance(-0.1, 0.2, 0.03) == "borderline"  # p only
+    assert significance(-0.1, 0.2, 0.5) == "inconclusive"
+    assert significance(None, None, 0.01) == "inconclusive"
 
 
 @pytest.mark.parametrize(
@@ -449,3 +494,37 @@ def test_claim_type(claim: str, kind: str) -> None:
     from vlm_eval.evaluation.scene_metrics import claim_type
 
     assert claim_type(claim, TAX) == kind
+
+
+def test_multi_camera_views_and_prompt(nusc) -> None:  # type: ignore[no-untyped-def]
+    cams = ["CAM_FRONT_LEFT", "CAM_FRONT", "CAM_FRONT_RIGHT"]
+    scene = next(
+        iter(NuScenesSceneLoader(str(DATAROOT), cameras=cams, scenes=["scene-1094"], nusc=nusc))
+    )
+    view = scene.views[0]
+    assert view.cameras == cams and len(view.image_paths) == 18  # 6 frames x 3 cameras
+    assert view.image_ids[:3] == [f"{view.sample_tokens[0]}:{c}" for c in cams]  # time-major
+    assert all(cam in str(p) for p, cam in zip(view.image_paths[:3], cams, strict=True))
+    text = load_scene_prompt("scene_open").render(6, 15.0, view.cameras)
+    assert "18 images" in text and "front-left, front, front-right" in text
+
+    builder = SceneFactBuilder(str(DATAROOT), nusc=nusc)
+    front_only = builder.build(
+        scene,
+        view.model_copy(
+            update={"cameras": ["CAM_FRONT"], "image_paths": view.image_paths[1::3], "view_id": 9}
+        ),
+    )
+    wide = builder.build(scene, view)
+    assert set(front_only.objects) <= set(wide.objects)  # more cameras never lose objects
+    assert sum(wide.objects.values()) >= sum(front_only.objects.values())
+
+
+def test_gate_reads_scene_runs(tmp_path: Path) -> None:
+    from vlm_eval.evaluation.gate import evaluate_gate, load_summary
+
+    run = run_fake(tmp_path, MockBackend("fixed", fixed_response="There are cars."), "gated")
+    summary = load_summary(run)
+    assert "object_coverage" in summary  # flat scene keys
+    checks = evaluate_gate({"thresholds": {"object_coverage": {"min": 0.0}}}, summary)
+    assert [c.passed for c in checks] == [True]

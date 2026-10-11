@@ -42,7 +42,7 @@
       "ci_low": -0.62,
       "ci_high": -0.05999999999999994,
       "sign_flip_p": 0.0859375,
-      "verdict": "A better"
+      "verdict": "borderline"
     },
     {
       "metric": "Presence accuracy: bus",
@@ -62,7 +62,7 @@
       "ci_low": 0.039999999999999925,
       "ci_high": 0.42000000000000004,
       "sign_flip_p": 0.078125,
-      "verdict": "B better"
+      "verdict": "borderline"
     },
     {
       "metric": "Presence accuracy: two_wheeler",

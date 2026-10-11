@@ -1775,8 +1775,8 @@
     "name": "similarity",
     "summary": {
       "mean_reference_keyword_recall": 0.606,
-      "mean_embedding_cosine": 0.3144769179821014,
-      "pearson_cosine_vs_object_f1": 0.24558460176738853,
+      "mean_embedding_cosine": 0.31447692960500717,
+      "pearson_cosine_vs_object_f1": 0.245584751112374,
       "spearman_cosine_vs_object_f1": 0.22441301484530812
     },
     "tables": {},
@@ -1784,27 +1784,27 @@
       "ca9a282c9e77460f8360f564131a8af5": {
         "object_f1": 0.8888888888888888,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.4017701745033264
+        "embedding_cosine": 0.40177008509635925
       },
       "023c4df2d451409881d8e6ea82f14704": {
         "object_f1": 1.0,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.4597364366054535
+        "embedding_cosine": 0.45973658561706543
       },
       "b26e791522294bec90f86fd72226e35c": {
         "object_f1": 0.8,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.5775324106216431
+        "embedding_cosine": 0.5775323510169983
       },
       "0cd661df01aa40c3bb3a773ba86f753a": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.4309268593788147
+        "embedding_cosine": 0.4309267997741699
       },
       "ed5fc18c31904f96a8f0dbb99ff069c0": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.507743239402771
+        "embedding_cosine": 0.5077431201934814
       },
       "3e8750f331d7499e9b5123e9eb70f2e2": {
         "object_f1": 0.8,
@@ -1814,32 +1814,32 @@
       "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
         "object_f1": 0.8571428571428571,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.2300066351890564
+        "embedding_cosine": 0.23000659048557281
       },
       "5b03af7a953245b5a3b23191ed4da62a": {
         "object_f1": 0.4,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.23720715939998627
+        "embedding_cosine": 0.23720723390579224
       },
       "6d9984d09d52479e837da2fd09e192cc": {
         "object_f1": 0.8888888888888888,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.23025847971439362
+        "embedding_cosine": 0.2302585393190384
       },
       "281b92269fd648d4b52d06ac06ca6d65": {
         "object_f1": 0.4,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.23199522495269775
+        "embedding_cosine": 0.23199531435966492
       },
       "8687ba92abd3406aa797115b874ebeba": {
         "object_f1": 0.4,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.18543019890785217
+        "embedding_cosine": 0.1854301542043686
       },
       "8bf071b1b92c4ff1bd5016bfb30de3f7": {
         "object_f1": 0.75,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.33095085620880127
+        "embedding_cosine": 0.3309508264064789
       },
       "ecd49e3c38624c77b8aac8df445d49ba": {
         "object_f1": 0.5714285714285714,
@@ -1849,102 +1849,102 @@
       "d3c0bbf933594f7184e20d761b6416f4": {
         "object_f1": 0.8571428571428571,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.35514575242996216
+        "embedding_cosine": 0.35514554381370544
       },
       "dcbe451d383e450786aaad04ab9d3790": {
         "object_f1": 0.75,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.3155478835105896
+        "embedding_cosine": 0.3155479431152344
       },
       "5991fad3280c4f84b331536c32001a04": {
         "object_f1": 1.0,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.4201565384864807
+        "embedding_cosine": 0.4201567471027374
       },
       "91d9058720eb4c25a172236e14e11085": {
         "object_f1": 0.5,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.4435601830482483
+        "embedding_cosine": 0.44356003403663635
       },
       "0d7263a5b8264cad996582d6219ef1f2": {
         "object_f1": 0.8888888888888888,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.36419057846069336
+        "embedding_cosine": 0.36419060826301575
       },
       "b2e2ffeabf91451cb31a79649bfd95df": {
         "object_f1": 0.75,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.3246326446533203
+        "embedding_cosine": 0.3246327340602875
       },
       "35833ae5808e4ef186d1fdebac3d9cf6": {
         "object_f1": 0.5,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.3237781822681427
+        "embedding_cosine": 0.323778361082077
       },
       "cd9964f8c3d34383b16e9c2997de1ed0": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.19700166583061218
+        "embedding_cosine": 0.19700174033641815
       },
       "6b7487db4612438db7d446e2832a9e2e": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.277346670627594
+        "embedding_cosine": 0.2773467004299164
       },
       "73e2b7fb98ef41aface277a968d65941": {
         "object_f1": 0.75,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.271028071641922
+        "embedding_cosine": 0.2710280120372772
       },
       "bad8a002637046178fe0f8216e5bc355": {
         "object_f1": 0.4,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.23959273099899292
+        "embedding_cosine": 0.2395927608013153
       },
       "8fe9664cec514a58b1184c4fcefda6b5": {
         "object_f1": 0.5,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.3376201391220093
+        "embedding_cosine": 0.33762016892433167
       },
       "c1676a2feac74eee8aa38ca3901787d6": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 0.6,
-        "embedding_cosine": 0.19087284803390503
+        "embedding_cosine": 0.19087283313274384
       },
       "f218a2b4fa6941f7ac3798adc72126e8": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.6,
-        "embedding_cosine": 0.21322402358055115
+        "embedding_cosine": 0.21322400867938995
       },
       "4ee219c4638949de9d994bc792fd0a69": {
         "object_f1": 0.5,
         "reference_keyword_recall": 0.4,
-        "embedding_cosine": 0.2973250150680542
+        "embedding_cosine": 0.29732513427734375
       },
       "1dba6570f0774b5cb87de6694bb338c0": {
         "object_f1": 0.5,
         "reference_keyword_recall": 0.4,
-        "embedding_cosine": 0.2533976435661316
+        "embedding_cosine": 0.253397673368454
       },
       "63c24b51feb94f14bec29022dae4975d": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.8,
-        "embedding_cosine": 0.2099827080965042
+        "embedding_cosine": 0.20998281240463257
       },
       "b5989651183643369174912bc5641d3b": {
         "object_f1": 0.5,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.3466328978538513
+        "embedding_cosine": 0.34663286805152893
       },
       "048a45dd2cf54aa5808d8ccc85731d44": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.3237110376358032
+        "embedding_cosine": 0.3237111568450928
       },
       "6ff9723a60bf4e14b328b3b19f04dc32": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.3284560739994049
+        "embedding_cosine": 0.3284561336040497
       },
       "e63b83b436a0479db7362338cdfab118": {
         "object_f1": 0.5,
@@ -1954,12 +1954,12 @@
       "b4ff30109dd14c89b24789dc5713cf8c": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.37994784116744995
+        "embedding_cosine": 0.3799477815628052
       },
       "5998b71b64c146769bde1d5430741381": {
         "object_f1": 0.5,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.4204399287700653
+        "embedding_cosine": 0.42044007778167725
       },
       "ed2e7d24f2ad41abb3d37cd9a0ca8e89": {
         "object_f1": 0.5,
@@ -1969,52 +1969,52 @@
       "083240c8c70b44e4ac6fc7f267b1518f": {
         "object_f1": 0.5,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.41235285997390747
+        "embedding_cosine": 0.4123527407646179
       },
       "17a9388ec4b04e028b4d07af2cc3a45c": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.430927038192749
+        "embedding_cosine": 0.43092697858810425
       },
       "ee9b3f38dadd40588f43ba590c4751b9": {
         "object_f1": 0.6666666666666666,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.31245744228363037
+        "embedding_cosine": 0.31245753169059753
       },
       "e6b0b282aa174a978272dc2d0a89d560": {
         "object_f1": 0.8571428571428571,
         "reference_keyword_recall": 1.0,
-        "embedding_cosine": 0.22167624533176422
+        "embedding_cosine": 0.2216763198375702
       },
       "d1136fce62f14400a069613e274f46f7": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.16615134477615356
+        "embedding_cosine": 0.16615132987499237
       },
       "0e837c21890a4515874247ceb3dbf5c3": {
         "object_f1": 0.3333333333333333,
         "reference_keyword_recall": 0.3333333333333333,
-        "embedding_cosine": 0.1964750587940216
+        "embedding_cosine": 0.19647516310214996
       },
       "c18d3bcc9297454ba52112c079cb756e": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.2153243124485016
+        "embedding_cosine": 0.21532438695430756
       },
       "4e1d1031fe9f45f981a2f598365fc645": {
         "object_f1": 0.3333333333333333,
         "reference_keyword_recall": 0.6666666666666666,
-        "embedding_cosine": 0.2598689794540405
+        "embedding_cosine": 0.25986891984939575
       },
       "a480496a5988410fbe3d8ed6c84da996": {
         "object_f1": 0.4,
         "reference_keyword_recall": 0.5,
-        "embedding_cosine": 0.3108164668083191
+        "embedding_cosine": 0.3108164072036743
       },
       "b902d29df24c4efda414a9a88ed57031": {
         "object_f1": 0.5714285714285714,
         "reference_keyword_recall": 0.5,
-        "embedding_cosine": 0.3068042993545532
+        "embedding_cosine": 0.30680418014526367
       },
       "134ae8a8f5c340f9894a414fc0966af4": {
         "object_f1": 0.5714285714285714,
@@ -2029,7 +2029,7 @@
       "abf3d91d3c28407e80e3334fe89c03cb": {
         "object_f1": 0.2857142857142857,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.23626813292503357
+        "embedding_cosine": 0.23626810312271118
       }
     },
     "notes": []

@@ -18,7 +18,7 @@
 | Presence accuracy: traffic_cone | 88.0% | 86.0% | -2.0% | [-6.0%, 0.0%] | 1.000 | inconclusive |
 | Presence accuracy: barrier | 80.0% | 76.0% | -4.0% | [-14.0%, 4.0%] | 0.750 | inconclusive |
 | Accuracy: time_of_day | 100.0% | 100.0% | 0.0% | [0.0%, 0.0%] | 1.000 | inconclusive |
-| Accuracy: road_condition | 60.0% | 46.0% | -14.0% | [-28.0%, -2.0%] | 0.156 | A better |
+| Accuracy: road_condition | 60.0% | 46.0% | -14.0% | [-28.0%, -2.0%] | 0.156 | borderline |
 | Accuracy: scene_type | 58.0% | 52.0% | -6.0% | [-16.0%, 2.0%] | 0.500 | inconclusive |
 | Accuracy: traffic_side | 58.0% | 54.0% | -4.0% | [-28.0%, 16.0%] | 0.875 | inconclusive |
 | Valid structured output | 96.0% | 100.0% | 4.0% | [0.0%, 10.0%] | 0.500 | inconclusive |

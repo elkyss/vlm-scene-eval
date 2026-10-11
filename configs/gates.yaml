@@ -1,11 +1,13 @@
-# Release gate for a scene-description model (see src/vlm_eval/evaluation/gate.py).
-# Floors are deliberately modest: they encode "usable", not "state of the art".
+# Release gate for scene-description runs (see src/vlm_eval/evaluation/gate.py).
+# Floors encode "usable as a scene describer", not "state of the art"; keys are summary keys
+# of scene_metrics.json. Only metrics checked against the annotations are gated (the judge-based
+# "claims supported" is too noisy to block a release on).
 thresholds:
-  object_presence.micro_f1: {min: 0.5}
-  object_presence.hallucination_rate: {max: 0.3}
-  attributes.time_of_day_balanced_accuracy: {min: 0.8}
-  format.parse_success_rate: {min: 0.9}
-regression:
-  object_presence.micro_f1: {max_drop: 0.05}
-  object_presence.hallucination_rate: {max_rise: 0.05}
-  attributes.mean_balanced_accuracy: {max_drop: 0.05}
+  object_coverage: {min: 0.40}                    # mentions at least 40% of visible object types
+  chair_i: {max: 0.10}                            # at most 10% of object mentions invented
+  specific_claims_supported_ci_low: {min: 0.0}    # measurably about its own scene
+  repetition_loop_rate: {max: 0.20}
+regression:                                       # vs the current baseline run
+  object_coverage: {max_drop: 0.05}
+  human_coverage: {max_drop: 0.05}
+  chair_i: {max_rise: 0.05}

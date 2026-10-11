@@ -20,7 +20,7 @@
 | Accuracy: time_of_day | 70.0% | 2.0% | -68.0% | [-90.0%, -36.0%] | 0.016 | A better |
 | Accuracy: road_condition | 90.0% | 0.0% | -90.0% | [-100.0%, -70.0%] | 0.004 | A better |
 | Accuracy: scene_type | 40.0% | 56.0% | 16.0% | [-4.0%, 38.0%] | 0.312 | inconclusive |
-| Accuracy: traffic_side | 40.0% | 6.0% | -34.0% | [-62.0%, -6.0%] | 0.125 | A better |
+| Accuracy: traffic_side | 40.0% | 6.0% | -34.0% | [-62.0%, -6.0%] | 0.125 | borderline |
 | Valid structured output | 100.0% | 100.0% | 0.0% | [0.0%, 0.0%] | 1.000 | inconclusive |
 | Mean latency (s) | 0.00 | 1.74 | 1.74 | [1.70, 1.80] | 0.002 | A better |
 

@@ -14,7 +14,8 @@ plus the human ``scene.description``.
   human sentence lists highlights only, so it is used for coverage, never for hallucinations.
 * Robustness: chosen view vs view A vs mean of views (self-consistency can flatter the chosen
   view), within-scene spread across views, and a shuffled-scene control (each description
-  scored against another scene) that every metric should clearly fail.
+  scored against every other scene) that every metric should clearly fail; the own-scene
+  gap gets a CI and a scene-level test (``specificity``).
 * Similarity (secondary): embedding cosine to scene.description and whether a description is
   closer to its own scene's sentence than to the others'.
 """
@@ -24,14 +25,19 @@ from __future__ import annotations
 import logging
 import re
 from collections.abc import Callable, Sequence
-from typing import Any
 
 import numpy as np
 from pydantic import BaseModel, Field
 
 from vlm_eval.domain import SceneDescription, SceneFactSheet
 from vlm_eval.evaluation.metrics.robustness import has_repetition_loop
-from vlm_eval.evaluation.stats import cluster_bootstrap_ci, mean_or_none, safe_div
+from vlm_eval.evaluation.similarity import similarity_matrix
+from vlm_eval.evaluation.stats import (
+    cluster_bootstrap_ci,
+    mean_or_none,
+    paired_comparison,
+    safe_div,
+)
 from vlm_eval.judge import CONTRADICTED, NEUTRAL, SUPPORTED, TextJudge, judge_against
 from vlm_eval.parsing.claims import (
     reference_hypothesis,
@@ -55,7 +61,7 @@ KEYS = (
     "human_coverage",
     "human_contradicted",
 )
-_MAX_OBJECT_CLAIM_WORDS = 6  # "A bus waits at the stop." is about the bus; longer claims mix facts
+SPECIFIC_KEYS = ("claims_supported", "object_coverage", "human_coverage")
 CI_KEYS = (
     "chair_i",
     "object_coverage",
@@ -102,7 +108,8 @@ class SceneRow(BaseModel):
     view_agreement: float
     final: DescriptionScore
     per_view: list[DescriptionScore]
-    shuffled: DescriptionScore | None = None
+    # The final description scored against every other scene (shuffled-scene control).
+    shuffled: list[DescriptionScore] = Field(default_factory=list)
     fact_sentences: list[str]
     words: int
     repetition_loop: bool
@@ -193,33 +200,6 @@ def _checked_claim(
     )
 
 
-def judge_box_check(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
-    """Automatic check of the judge against the boxes, on short claims about one object class
-    (at most ``_MAX_OBJECT_CLAIM_WORDS`` words):
-
-    * support precision: when the judge says "supported", is the object really in view?
-    * contradiction precision: when it says "contradicted", is the object really absent?
-    """
-    short = [
-        c
-        for s in scores
-        for c in s.claims
-        if c.object_class is not None and len(c.text.split()) <= _MAX_OBJECT_CLAIM_WORDS
-    ]
-    supported = [c for c in short if c.label == SUPPORTED]
-    contradicted = [c for c in short if c.label == CONTRADICTED]
-    return {
-        "judge_support_precision": safe_div(
-            sum(bool(c.box_present) for c in supported), len(supported)
-        ),
-        "judge_support_n": float(len(supported)),
-        "judge_contradiction_precision": safe_div(
-            sum(not c.box_present for c in contradicted), len(contradicted)
-        ),
-        "judge_contradiction_n": float(len(contradicted)),
-    }
-
-
 def aggregate(scores: Sequence[DescriptionScore]) -> dict[str, float | None]:
     """Micro-averaged rates (pooled counts) over a set of descriptions."""
     mentions = sum(len(s.mentioned) for s in scores)
@@ -280,21 +260,14 @@ def within_scene_spread(rows: Sequence[SceneRow], key: str) -> float | None:
 
 
 def embedding_scores(rows: Sequence[SceneRow], model_id: str | None) -> None:
-    if not model_id or len(rows) < 2:
+    """Cosine to the own scene's sentence, and its rank among all scenes' sentences."""
+    if len(rows) < 2:
         return
-    try:
-        from sentence_transformers import SentenceTransformer
-    except ImportError:
-        log.warning("sentence-transformers not installed: embedding similarity skipped")
+    sims = similarity_matrix(
+        [r.description for r in rows], [r.reference_text for r in rows], model_id
+    )
+    if sims is None:
         return
-    model: Any = SentenceTransformer(model_id)
-    desc = model.encode(
-        [r.description or " " for r in rows], normalize_embeddings=True, show_progress_bar=False
-    )
-    refs = model.encode(
-        [r.reference_text for r in rows], normalize_embeddings=True, show_progress_bar=False
-    )
-    sims = desc @ refs.T
     for i, row in enumerate(rows):
         row.embedding_cosine = float(sims[i, i])
         row.own_scene_rank = int((sims[i] > sims[i, i]).sum()) + 1
@@ -338,13 +311,16 @@ def evaluate_scenes(
             )
         )
 
-    # Shuffled-scene control: each description against the next scene's facts and sentence.
-    if len(rows) > 1:
-        for i, row in enumerate(rows):
-            other = descriptions[(i + 1) % len(descriptions)]
+    # Shuffled-scene control: each description against every other scene's facts and sentence.
+    for row in rows:
+        for other in descriptions:
+            if other.scene_name == row.scene_name:
+                continue
             other_sheet = by_key[(other.scene_name, other.chosen_view)]
-            row.shuffled = score_description(
-                row.description, other_sheet, other_sheet.reference_text, judge, taxonomy
+            row.shuffled.append(
+                score_description(
+                    row.description, other_sheet, other_sheet.reference_text, judge, taxonomy
+                )
             )
     embedding_scores(rows, embedding_model)
     return SceneEvaluation(
@@ -356,16 +332,37 @@ def evaluate_scenes(
     )
 
 
+def specificity(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None]:
+    """Is each description about its own scene? Own scene vs every other scene, with a CI.
+
+    A generic description ("a car on a street") is "supported" almost anywhere, so only the
+    gap to the other scenes shows that the content is about this scene. Each scene is a
+    cluster of (other scene, own scene) pairs, compared like two runs with
+    ``paired_comparison``: bootstrap CI over scenes and a sign-flip test on per-scene gaps.
+    Every scene has the same number of other scenes, so the pooled rates equal the plain
+    own-scene and ``shuffled_*`` rates.
+    """
+    clusters = [[(other, r.final) for other in r.shuffled] for r in rows if r.shuffled]
+    out: dict[str, float | None] = {}
+    for key in SPECIFIC_KEYS:
+        c = paired_comparison(clusters, _rate(key), seed=seed)
+        out[f"specific_{key}"] = c.diff
+        out[f"specific_{key}_ci_low"], out[f"specific_{key}_ci_high"] = c.ci_low, c.ci_high
+        out[f"specific_{key}_p"] = c.p_value
+    return out
+
+
+def _rate(key: str) -> Callable[[list[DescriptionScore]], float | None]:
+    return lambda scores: aggregate(scores)[key]
+
+
 def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None]:
     finals = [r.final for r in rows]
     summary: dict[str, float | None] = dict(aggregate(finals))
     summary.update({f"macro_{k}": v for k, v in macro(finals).items()})
 
-    def micro(key: str) -> Callable[[list[DescriptionScore]], float | None]:
-        return lambda scores: aggregate(scores)[key]
-
     for key in CI_KEYS:
-        lo, hi = cluster_bootstrap_ci([[s] for s in finals], micro(key), seed=seed)
+        lo, hi = cluster_bootstrap_ci([[s] for s in finals], _rate(key), seed=seed)
         summary[f"{key}_ci_low"], summary[f"{key}_ci_high"] = lo, hi
 
     n_views = min((len(r.per_view) for r in rows), default=0)
@@ -375,15 +372,10 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
         summary[f"view_a_{key}"] = view_a.get(key)
         summary[f"views_mean_{key}"] = mean_or_none([p[key] for p in per_view])
         summary[f"within_scene_spread_{key}"] = within_scene_spread(rows, key)
-    shuffled = [r.shuffled for r in rows if r.shuffled is not None]
+    shuffled = [s for r in rows for s in r.shuffled]
     if shuffled:
         summary.update({f"shuffled_{k}": v for k, v in aggregate(shuffled).items()})
-        # Scene specificity: how much better the description fits its own scene than another.
-        # A generic description ("a car on a street") is "supported" almost anywhere, so only
-        # the difference to the shuffled control shows that the content is about this scene.
-        for key in ("claims_supported", "object_coverage", "human_coverage"):
-            own, other = summary.get(key), summary.get(f"shuffled_{key}")
-            summary[f"specific_{key}"] = None if own is None or other is None else own - other
+        summary.update(specificity(rows, seed))
 
     summary["view_agreement"] = mean_or_none([r.view_agreement for r in rows])
     summary["empty_rate"] = safe_div(sum(not r.description for r in rows), len(rows))
@@ -393,10 +385,5 @@ def summarize(rows: Sequence[SceneRow], seed: int = 0) -> dict[str, float | None
     summary["embedding_cosine"] = mean_or_none([r.embedding_cosine for r in rows])
     ranks = [r.own_scene_rank for r in rows if r.own_scene_rank is not None]
     summary["own_scene_rank_1_rate"] = safe_div(sum(k == 1 for k in ranks), len(ranks))
-    summary.update(
-        judge_box_check(
-            [s for r in rows for s in r.per_view] + [r.shuffled for r in rows if r.shuffled]
-        )
-    )
     summary["n_scenes"] = float(len(rows))
     return summary

@@ -11,9 +11,9 @@
 | Object micro F1 | 0.0% | 63.4% | 63.4% | [55.7%, 70.8%] | 0.002 | B better |
 | Mean frame object F1 | 2.0% | 59.9% | 57.9% | [48.8%, 66.4%] | 0.002 | B better |
 | Presence accuracy: car | 12.0% | 98.0% | 86.0% | [76.0%, 94.0%] | 0.002 | B better |
-| Presence accuracy: truck | 76.0% | 42.0% | -34.0% | [-62.0%, -6.0%] | 0.086 | A better |
+| Presence accuracy: truck | 76.0% | 42.0% | -34.0% | [-62.0%, -6.0%] | 0.086 | borderline |
 | Presence accuracy: bus | 86.0% | 88.0% | 2.0% | [-16.0%, 18.0%] | 1.000 | inconclusive |
-| Presence accuracy: pedestrian | 56.0% | 80.0% | 24.0% | [4.0%, 42.0%] | 0.078 | B better |
+| Presence accuracy: pedestrian | 56.0% | 80.0% | 24.0% | [4.0%, 42.0%] | 0.078 | borderline |
 | Presence accuracy: two_wheeler | 76.0% | 82.0% | 6.0% | [-6.0%, 18.0%] | 0.562 | inconclusive |
 | Presence accuracy: traffic_cone | 84.0% | 62.0% | -22.0% | [-50.0%, 6.0%] | 0.211 | inconclusive |
 | Presence accuracy: barrier | 82.0% | 22.0% | -60.0% | [-88.0%, -26.0%] | 0.014 | A better |

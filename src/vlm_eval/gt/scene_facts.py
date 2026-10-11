@@ -125,7 +125,6 @@ class SceneFactBuilder:
         self,
         dataroot: str,
         version: str = "v1.0-mini",
-        camera: str = "CAM_FRONT",
         min_visibility: int = 2,
         max_distance_m: float = 50.0,
         taxonomy: Taxonomy | None = None,
@@ -143,13 +142,18 @@ class SceneFactBuilder:
             "turn_deg": turn_deg,
         }
         self._scene_tokens: dict[str, list[str]] = {}
-        self.camera = camera
         self.min_visibility = min_visibility
         self.max_distance_m = max_distance_m
         self._nusc = nusc or get_nuscenes(dataroot, version)
         self._built: dict[tuple[str, int], SceneFactSheet] = {}
         self._frames = NuScenesGTProvider(
-            dataroot, version, camera, min_visibility, max_distance_m, self.taxonomy, self._nusc
+            dataroot,
+            version,
+            "CAM_FRONT",
+            min_visibility,
+            max_distance_m,
+            self.taxonomy,
+            self._nusc,
         )
 
     def build(self, scene: SceneSample, view: SceneView) -> SceneFactSheet:
@@ -170,8 +174,10 @@ class SceneFactBuilder:
         instances: dict[str, set[str]] = defaultdict(set)
         states: dict[str, Counter[str]] = defaultdict(Counter)
         loose: set[str] = set()
-        for token in view.sample_tokens:
-            for obj in self._frames.objects_in_view(token):
+        # Objects seen by any camera that was shown; instance tokens count an object once
+        # even when two cameras (or several frames) see it.
+        for token, camera in ((t, c) for t in view.sample_tokens for c in view.cameras):
+            for obj in self._frames.objects_in_view(token, camera):
                 loose.add(obj.cls)
                 if obj.visibility < self.min_visibility or obj.distance_m > self.max_distance_m:
                     continue
@@ -214,7 +220,8 @@ class SceneFactBuilder:
         for token in tokens[first : last + 1]:
             sample = nusc.get("sample", token)
             pose = nusc.get(
-                "ego_pose", nusc.get("sample_data", sample["data"][self.camera])["ego_pose_token"]
+                "ego_pose",
+                nusc.get("sample_data", sample["data"][view.cameras[0]])["ego_pose_token"],
             )
             times.append(pose["timestamp"])
             positions.append(pose["translation"])

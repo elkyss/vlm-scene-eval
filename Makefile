@@ -1,7 +1,7 @@
-.PHONY: install test lint run-mock run eval compare all docker-build docker-test docker-run
+.PHONY: install test lint run run-mock run-frames eval gate all docker-build docker-test docker-run docker-all
 
-CONFIG ?= configs/smolvlm_v3.yaml
-RUN_DIR ?= outputs/smolvlm_v3
+CONFIG ?= configs/scenes/qwen2vl_guided.yaml
+RUN_DIR ?= outputs/scenes/qwen2vl_guided
 COMPOSE = docker compose run --rm
 
 install:            ## local dev install
@@ -13,16 +13,22 @@ test:               ## unit + e2e tests (real-data tests skip if data/ is missin
 lint:
 	ruff check src tests && ruff format --check src tests && mypy
 
-run-mock:           ## full pipeline with the oracle mock: every metric should be ~100%
-	vlm-eval run -c configs/mock_oracle.yaml
+run:                ## one scene-level run (main result), e.g. make run CONFIG=configs/scenes/smolvlm_open.yaml
+	vlm-eval run-scenes -c $(CONFIG)
 
-run:                ## one real run, e.g. make run CONFIG=configs/smolvlm_v1.yaml
+run-mock:           ## scene pipeline with the oracle: claims supported must be 100%
+	vlm-eval run-scenes -c configs/scenes/mock_oracle.yaml
+
+run-frames:         ## frame-level diagnostic run, e.g. make run-frames CONFIG=configs/qwen2vl_v3.yaml
 	vlm-eval run -c $(CONFIG)
 
-eval:               ## recompute metrics + report from saved predictions
-	vlm-eval evaluate $(RUN_DIR)
+eval:               ## re-score a saved scene run (no inference)
+	vlm-eval evaluate-scenes $(RUN_DIR)
 
-all:                ## every run + comparison from the README
+gate:               ## release gate on a scene run (exit 1 on failure)
+	vlm-eval gate $(RUN_DIR)
+
+all:                ## every run, comparison, leaderboard and the results store
 	./scripts/run_all.sh
 
 docker-build:
@@ -31,5 +37,8 @@ docker-build:
 docker-test:
 	$(COMPOSE) --entrypoint make app test
 
-docker-run:
-	$(COMPOSE) app run -c $(CONFIG)
+docker-run:         ## e.g. make docker-run CONFIG=configs/scenes/mock_oracle.yaml
+	$(COMPOSE) app run-scenes -c $(CONFIG)
+
+docker-all:
+	$(COMPOSE) --entrypoint ./scripts/run_all.sh app

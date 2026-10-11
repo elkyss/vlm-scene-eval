@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from vlm_eval.evaluation.report import fmt, md_table
+from vlm_eval.evaluation.report import fmt, fmt_ci, md_table
 from vlm_eval.evaluation.scene_metrics import SceneEvaluation, SceneRow
+from vlm_eval.evaluation.stats import significance
 from vlm_eval.judge import CONTRADICTED, SUPPORTED
 
 SCENE_METRICS = "scene_metrics.json"
@@ -21,40 +22,51 @@ HEADLINE: tuple[tuple[str, str, bool], ...] = (
     ("Human-sentence items covered", "human_coverage", False),
 )
 SPECIFIC: tuple[tuple[str, str], ...] = (
-    ("Claims supported: own scene minus shuffled scene", "specific_claims_supported"),
-    ("Object coverage: own scene minus shuffled scene", "specific_object_coverage"),
-    ("Human-sentence coverage: own scene minus shuffled scene", "specific_human_coverage"),
+    ("Claims supported: own scene minus other scenes", "specific_claims_supported"),
+    ("Object coverage: own scene minus other scenes", "specific_object_coverage"),
+    ("Human-sentence coverage: own scene minus other scenes", "specific_human_coverage"),
 )
 
 
-def _ci(summary: dict[str, float | None], key: str) -> str:
-    lo, hi = summary.get(f"{key}_ci_low"), summary.get(f"{key}_ci_high")
-    return "" if lo is None or hi is None else f" [{fmt(lo)}, {fmt(hi)}]"
+def _p(value: float | None) -> str:
+    return "–" if value is None else f"{value:.3f}"
 
 
-def specificity_verdict(s: dict[str, float | None], margin: float = 0.05) -> str:
-    """Plain-language conclusion of the shuffled-scene control."""
-    values = {key: s.get(key) for _, key in SPECIFIC}
-    known = {k: v for k, v in values.items() if v is not None}
-    if not known:
-        return "**Conclusion:** no shuffled control (fewer than two scenes)."
-    specific = [k for k, v in known.items() if v > margin]
-    if not specific:
-        return (
-            "**Conclusion:** the descriptions fit other scenes as well as (or better than) "
-            "their own. There is no evidence that they describe this particular scene; "
-            "treat the other scores of this run as reflecting generic text."
-        )
+def specificity_verdict(s: dict[str, float | None]) -> str:
+    """Plain-language conclusion of the shuffled-scene control, with the same decision rule
+    as a comparison of two runs (``stats.significance``: CI and exact test must agree)."""
     names = {
         "specific_claims_supported": "claims",
         "specific_object_coverage": "objects",
         "specific_human_coverage": "the human sentence",
     }
-    return (
-        "**Conclusion:** the descriptions are measurably specific to their own scene on "
-        + ", ".join(names[k] for k in specific)
-        + f" (more than {margin:.0%} better than on a shuffled scene)."
-    )
+    decisions = {
+        key: significance(s.get(f"{key}_ci_low"), s.get(f"{key}_ci_high"), s.get(f"{key}_p"))
+        for _, key in SPECIFIC
+        if s.get(f"{key}_ci_low") is not None
+    }
+    if not decisions:
+        return "**Conclusion:** no shuffled control (fewer than two scenes)."
+    by = {
+        d: [names[k] for k, v in decisions.items() if v == d]
+        for d in ("higher", "lower", "borderline")
+    }
+    if by["higher"]:
+        text = (
+            "**Conclusion:** the descriptions are measurably specific to their own scene "
+            "on " + ", ".join(by["higher"]) + " (95% CI above 0 and p < 0.05)."
+        )
+    else:
+        text = (
+            "**Conclusion:** no clear evidence that the descriptions describe this "
+            "particular scene; treat the other scores of this run as reflecting generic "
+            "text."
+        )
+    if by["borderline"]:
+        text += " Borderline (CI and exact test disagree) on " + ", ".join(by["borderline"]) + "."
+    if by["lower"]:
+        text += " They fit other scenes better than their own on " + ", ".join(by["lower"]) + "."
+    return text
 
 
 def _evidence_note(label: str, evidence: str | None) -> str:
@@ -126,7 +138,7 @@ def render_scene_report(
     headline = [
         [
             label,
-            fmt(s.get(key)) + _ci(s, key),
+            fmt_ci(s, key),
             fmt(s.get(f"macro_{key}")),
             fmt(s.get(f"view_a_{key}")),
             fmt(s.get(f"views_mean_{key}")),
@@ -171,8 +183,8 @@ def render_scene_report(
         "**Final** = the chosen view's description (95% CI from a bootstrap over scenes). "
         "**Macro** = mean of per-scene rates. **View A** and **mean of views** show how much "
         "the self-consistency choice changes the result. **Spread** = within-scene max-min "
-        "across views. **Shuffled** = each description scored against another scene: a "
-        "metric that does not get clearly worse there is not measuring content.",
+        "across views. **Shuffled** = each description scored against every other scene "
+        "(pooled): a metric that does not get clearly worse there is not measuring content.",
         md_table(
             ["Metric", "Final", "Macro", "View A", "Mean of views", "Spread", "Shuffled"], headline
         ),
@@ -184,12 +196,15 @@ def render_scene_report(
         + claim_type_table(s, validation),
         "## Is the description about this scene?\n\n"
         'A generic description ("a car on a street in daylight") is supported in almost any '
-        "scene. The difference between the own scene and the shuffled control shows how much "
-        "of the content is specific to this scene. Zero or below means the description is "
-        "no better than a generic one. For reference, the oracle control (fact sheet as "
-        "description) scores about +40 points on claims supported.\n\n"
+        "scene. Each description is therefore also scored against every other scene, and the "
+        "gap (own scene minus the other scenes) shows how much of the content is specific to "
+        "this scene. The CI comes from a bootstrap over scenes and the p-value from a "
+        "sign-flip test on the per-scene gaps, as in a comparison of two runs. A gap whose CI "
+        "includes 0 is no evidence of scene-specific content. For reference, the oracle "
+        "control (fact sheet as description) scores about +45 points on claims supported.\n\n"
         + md_table(
-            ["Metric", "Own − shuffled"], [[label, fmt(s.get(key))] for label, key in SPECIFIC]
+            ["Metric", "Own − other scenes [95% CI]", "Sign-flip p"],
+            [[label, fmt_ci(s, key), _p(s.get(f"{key}_p"))] for label, key in SPECIFIC],
         )
         + "\n\n"
         + specificity_verdict(s),
@@ -202,21 +217,11 @@ def render_scene_report(
             [
                 [
                     "Claims contradicted",
-                    fmt(s.get("claims_contradicted")) + _ci(s, "claims_contradicted"),
+                    fmt_ci(s, "claims_contradicted"),
                 ],
                 [
                     "Shuffled control: claims contradicted",
                     fmt(s.get("shuffled_claims_contradicted")),
-                ],
-                [
-                    "Judge check: 'supported' object claims whose object is in view "
-                    f"(n={int(s.get('judge_support_n') or 0)})",
-                    fmt(s.get("judge_support_precision")),
-                ],
-                [
-                    "Judge check: 'contradicted' object claims whose object is absent "
-                    f"(n={int(s.get('judge_contradiction_n') or 0)})",
-                    fmt(s.get("judge_contradiction_precision")),
                 ],
             ],
         ),

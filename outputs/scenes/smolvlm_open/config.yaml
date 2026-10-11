@@ -3,7 +3,6 @@ embedding_model: sentence-transformers/all-MiniLM-L6-v2
 ground_truth:
   name: nuscenes
   params:
-    camera: CAM_FRONT
     dataroot: data/nuscenes
     max_distance_m: 50
     min_visibility: 2
@@ -15,7 +14,8 @@ judge:
 loader:
   name: nuscenes
   params:
-    camera: CAM_FRONT
+    cameras:
+    - CAM_FRONT
     dataroot: data/nuscenes
     frames_per_view: 6
     n_views: 3

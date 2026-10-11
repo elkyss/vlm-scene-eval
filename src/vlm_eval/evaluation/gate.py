@@ -4,7 +4,8 @@ Meant for CI: before a new model or prompt ships, ``vlm-eval gate`` exits non-ze
 any metric is below its floor, above its ceiling, or regressed past the allowed
 margin compared to the current baseline.
 
-Gate file format (keys are ``<metric>.<summary key>`` from metrics.json)::
+Gate file format (keys are summary keys: ``object_coverage`` for scene runs,
+``<metric>.<summary key>`` for frame runs)::
 
     thresholds:
       object_presence.micro_f1: {min: 0.5}
@@ -16,13 +17,13 @@ Gate file format (keys are ``<metric>.<summary key>`` from metrics.json)::
 
 from __future__ import annotations
 
+import json
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import yaml
-
-from vlm_eval.domain import MetricResult
 
 
 @dataclass(frozen=True)
@@ -33,22 +34,25 @@ class GateCheck:
     passed: bool
 
 
-def _lookup(results: list[MetricResult], key: str) -> float | None:
-    metric, _, field = key.partition(".")
-    for r in results:
-        if r.name == metric:
-            return r.summary.get(field)
-    return None
+def load_summary(run_dir: Path) -> dict[str, float | None]:
+    """Flat metric summary of a run: scene runs use their summary keys as they are
+    (``object_coverage``), frame runs prefix the metric name (``object_presence.micro_f1``)."""
+    scene = run_dir / "scene_metrics.json"
+    if scene.exists():
+        summary: dict[str, float | None] = json.loads(scene.read_text())["summary"]
+        return summary
+    data = json.loads((run_dir / "metrics.json").read_text())
+    return {f"{name}.{k}": v for name, m in data.items() for k, v in m["summary"].items()}
 
 
 def evaluate_gate(
     spec: dict[str, Any],
-    results: list[MetricResult],
-    baseline: list[MetricResult] | None = None,
+    results: Mapping[str, float | None],
+    baseline: Mapping[str, float | None] | None = None,
 ) -> list[GateCheck]:
     checks = []
     for key, rule in (spec.get("thresholds") or {}).items():
-        value = _lookup(results, key)
+        value = results.get(key)
         if "min" in rule:
             checks.append(
                 GateCheck(
@@ -63,7 +67,7 @@ def evaluate_gate(
             )
     if baseline is not None:
         for key, rule in (spec.get("regression") or {}).items():
-            value, base = _lookup(results, key), _lookup(baseline, key)
+            value, base = results.get(key), baseline.get(key)
             if value is None or base is None:
                 checks.append(GateCheck(key, "regression (missing value)", value, False))
                 continue

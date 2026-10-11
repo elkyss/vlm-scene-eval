@@ -1,10 +1,10 @@
 # Scene-level comparison
 
-- **A**: `SmolVLM-500M-Instruct / scene_guided@97a6fd64`
-- **B**: `Qwen2-VL-2B-Instruct / scene_guided@97a6fd64`
+- **A**: `SmolVLM-500M-Instruct / scene_guided@53a32872`
+- **B**: `Qwen2-VL-2B-Instruct / scene_guided@53a32872`
 - 10 shared scenes
 
-Δ = B − A. The 95% CI comes from a bootstrap over scenes. Wins/losses count scenes where B is better/worse on that scene's own rate. The p-value is an exact paired sign-flip test on the per-scene differences (items within a scene are not independent, so nothing is tested at item level). With 10 scenes, a difference whose CI crosses 0 is reported as inconclusive.
+Δ = B − A. The 95% CI comes from a bootstrap over scenes. Wins/losses count scenes where B is better/worse on that scene's own rate (a metric undefined for a scene, e.g. CHAIR_i with no object mentions, is skipped). The p-value is an exact paired sign-flip test on the per-scene differences (items within a scene are not independent, so nothing is tested at item level); when only one scene or none differs, p = 1 by construction. With 10 scenes, a difference whose CI crosses 0 is reported as inconclusive.
 
 | Metric | A | B | Δ | 95% CI of Δ | B wins / losses | Sign-flip p | Verdict |
 |---|---|---|---|---|---|---|---|

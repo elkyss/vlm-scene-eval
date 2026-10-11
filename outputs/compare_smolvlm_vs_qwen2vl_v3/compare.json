@@ -92,7 +92,7 @@
       "ci_low": 0.06,
       "ci_high": 0.3604999999999973,
       "sign_flip_p": 0.125,
-      "verdict": "B better"
+      "verdict": "borderline"
     },
     {
       "metric": "Accuracy: time_of_day",
@@ -112,7 +112,7 @@
       "ci_low": 0.05999999999999994,
       "ci_high": 0.31999999999999995,
       "sign_flip_p": 0.0546875,
-      "verdict": "B better"
+      "verdict": "borderline"
     },
     {
       "metric": "Accuracy: scene_type",

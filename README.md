@@ -19,16 +19,18 @@ other two becomes the scene's description: one entry per scene in
 
 **Main results** (`outputs/scenes/leaderboard.md`):
 
-| Run | Invented objects (CHAIRᵢ) | Visible objects mentioned | Claims supported | Own scene − shuffled scene | Human sentence covered |
+| Run | Invented objects (CHAIRᵢ) | Visible objects mentioned | Claims supported | Own scene − other scenes | Human sentence covered |
 |---|---|---|---|---|---|
-| *Oracle (answers with the facts)* | *0%* | *100%* | *100%* | *+41 pts* | *63% (ceiling)* |
-| *Always "a car and a pedestrian"* | *10%* | *42%* | *20%* | *0 pts* | *17%* |
-| **Qwen2-VL-2B, guided prompt** | 4% | **56%** [44, 68] | **38%** [32, 45] | +8 pts | **44%** |
-| Qwen2-VL-2B, open prompt | 4% | 51% [36, 65] | 21% [11, 31] | +9 pts | 36% |
-| SmolVLM-500M, guided prompt | 7% | 30% [25, 35] | 32% [19, 46] | +5 pts | 22% |
-| SmolVLM-500M, open prompt | 0% | 24% [20, 29] | 27% [7, 51] | −7 pts | 12% |
+| *Oracle (answers with the facts)* | *0%* | *100%* | *100%* | *+45 pts* [+42, +48] | *63% (ceiling)* |
+| *Always "a car and a pedestrian"* | *10%* | *42%* | *20%* | *0 pts* [−17, +17] | *17%* |
+| **Qwen2-VL-2B, guided prompt** | 4% | **56%** [44, 68] | **38%** [32, 45] | +10 pts [+4, +16] | **44%** |
+| Qwen2-VL-2B, open prompt | 4% | 51% [36, 65] | 21% [11, 31] | +11 pts [+4, +19] | 36% |
+| SmolVLM-500M, guided prompt | 7% | 30% [25, 35] | 32% [19, 46] | +6 pts [+0, +13] | 22% |
+| SmolVLM-500M, open prompt | 0% | 24% [20, 29] | 27% [7, 51] | −4 pts [−10, +1] | 12% |
 
-Brackets are 95% confidence intervals from a bootstrap over the 10 scenes.
+Brackets are 95% confidence intervals from a bootstrap over the 10 scenes. "Own scene −
+other scenes" is the gap in claims supported between a description's own scene and the
+other 9 scenes.
 
 **Three findings:**
 1. **Qwen2-VL-2B is the better describer.** On the same frames it mentions about 26 more points
@@ -37,7 +39,7 @@ Brackets are 95% confidence intervals from a bootstrap over the 10 scenes.
 2. **The prompt matters.** Asking Qwen to cover place, conditions, road users and what our
    car does raises supported claims by 17 points (CI [+7, +27], p = 0.02).
 3. **Generic text looks good on paper, and the controls expose it.** SmolVLM's descriptions
-   fit *other* scenes as well as their own (−7 pts). 60% of them loop ("The first image
+   fit the *other* scenes as well as their own (−4 pts, CI [−10, +1]). 60% of them loop ("The first image
    shows a car… The second image shows a car…"). A fixed sentence that never looks at the
    image still gets 20% of its claims supported.
 
@@ -63,9 +65,11 @@ them is trusted until it beats a control:
 - **True things:** every claim is checked against facts taken from the annotations, not
   against wording (next section). CHAIRᵢ catches invented objects, and "claims supported"
   catches everything else that can be checked.
-- **About this scene:** the same description is also scored against a *different* scene.
-  A description that scores as well there is generic. The oracle gains 41 points on its
-  own scene; SmolVLM's open prompt loses 7.
+- **About this scene:** the same description is also scored against each of the *other*
+  9 scenes. A description that scores as well there is generic. The own-scene gap gets a
+  bootstrap CI and a scene-level sign-flip test, like any comparison. The oracle gains
+  45 points [+42, +48]. Qwen2-VL gains 10 [+4, +16] (p = 0.01). SmolVLM's open prompt
+  shows no gap (−4 [−10, +1]). Its guided prompt is borderline (+6 [+0, +13], but p = 0.15).
 - **What matters:** coverage of the visible object types, and of the items in the human
   annotator's sentence.
 - **Stable:** three views per scene. The report shows the chosen view next to view A and
@@ -108,7 +112,7 @@ their own scene's sentence in at most 2 of 10 scenes. That is near chance.
 | Invented objects | CHAIRᵢ / CHAIRₛ against the boxes | Up to 7% of object mentions (SmolVLM guided) |
 | Missed objects | Object coverage | SmolVLM mentions 24–30% of visible types |
 | Wrong conditions or wrong motion of our car | Claims contradicted by the fact sheet (indicative only, see "How did you test the code?") | Reported per scene |
-| Generic text that would fit any scene | Own scene − shuffled scene | SmolVLM open −7 pts |
+| Generic text that would fit any scene | Own scene − other scenes, with a CI | SmolVLM open −4 pts [−10, +1] |
 | Describing each image instead of the drive, or repetition loops ("The first image shows… The second image shows…") | Repetition detector that ignores ordinals and numbers | 60% of SmolVLM open descriptions |
 | Answers that depend on which frames were shown | Agreement between views, and spread within each scene | View agreement 43–70% for real models |
 | Leaving out what the annotator found important | Human-sentence coverage | 12–44% |
@@ -119,9 +123,11 @@ their own scene's sentence in at most 2 of 10 scenes. That is near chance.
 
 Run both on the **same views** and use `vlm-eval compare-scenes A B`. For each metric it
 reports A, B, the difference, a 95% CI from a bootstrap over scenes, per-scene wins and
-losses, and an exact sign-flip test on per-scene differences. The verdict is
-"inconclusive" whenever the CI includes 0. Testing happens at scene level because frames
-and claims within a scene are not independent.
+losses, and an exact sign-flip test on per-scene differences. A difference counts only
+when **both** agree: the CI excludes 0 and p < 0.05. If only one of them says so, it is
+"borderline"; otherwise "inconclusive". With ~10 scenes a bootstrap CI alone is too
+optimistic. Testing happens at scene level because frames and claims within a scene are
+not independent. The same rule decides the own-scene vs other-scenes gap.
 
 | Comparison | Clear differences | Inconclusive |
 |---|---|---|
@@ -144,7 +150,7 @@ example, rests on motion claims (34 of its 45 claims), where the judge is least 
 
 ## How did you test the code?
 
-- **147 tests** (`make test`, also run inside Docker and in CI):
+- **150 tests** (`make test`, also run inside Docker and in CI):
   - Unit tests per component: frame sampling, ego motion on synthetic tracks, fact
     sentences, view combination, claim splitting and claim types, the judge rule, CHAIR and coverage
     against hand-computed examples, the sign-flip test, the cache key, the run
@@ -200,7 +206,7 @@ shallow scene describer. With the guided prompt:
   wrong).
 - **Human sentence:** it covers 44% of what the annotator wrote, against a ceiling of 63%.
 - **Scene-specific:** its descriptions are measurably about their own scene, but only
-  modestly (+8 pts over a shuffled scene).
+  modestly: +10 pts [+4, +16] of supported claims over the other scenes (p = 0.01).
 
 It is good enough to search or triage drives, not to replace annotation.
 
@@ -254,11 +260,11 @@ find out what the models get right and wrong frame by frame (`outputs/<run>/`,
 - **Asking one question at a time works best for objects.** Qwen2-VL reaches 73% object F1
   this way, against 55% for a blind baseline that never looks at the image. It beats JSON
   by 14 pts [+6, +22] (p = 0.02), but costs 4× the latency and invites "yes" to leading
-  questions (barrier accuracy −38 pts [−66, −10]).
+  questions (barrier accuracy −38 pts [−66, −10], p = 0.05: borderline).
 - **A tested hypothesis that failed.** Replacing the JSON template's example values with
   `<0|1-2|3-5|6+>` placeholders made Qwen worse: object F1 −24 pts [−40, −12], p = 0.002.
-  The model picked the first option. The quality gate (`vlm-eval gate`) blocks this change
-  against the previous version.
+  The model picked the first option. The frame-level quality gate
+  (`configs/gates_frames.yaml`) blocks this change against the previous version.
 - **SmolVLM's free text cannot be told apart from the fixed sentence** (+3.7 pts
   [−3.9, +11.9], p = 0.31).
 
@@ -297,7 +303,8 @@ without `docker compose run --rm app`.
 | `vlm-eval compare-scenes A B --out DIR` | Paired comparison of two models or prompts |
 | `vlm-eval validate-judge RUN_DIR` | Check the claim judge on claims with known truth |
 | `vlm-eval scene-leaderboard RUN_DIR...` | All runs side by side |
-| `vlm-eval run` / `evaluate` / `compare` / `leaderboard` / `gate` | Frame-level equivalents and the quality gate |
+| `vlm-eval gate RUN_DIR [--baseline RUN]` | Release gate: pass/fail on annotation-checked metrics and against a baseline; exits 1 on failure (CI) |
+| `vlm-eval run` / `evaluate` / `compare` / `leaderboard` | Frame-level equivalents (diagnostic) |
 | `vlm-eval ingest RUN_DIR...` / `vlm-eval query --example NAME` | Load runs into the DuckDB results store / run a saved SQL question |
 | `./scripts/run_all.sh` | Reproduce every result in this README |
 
@@ -340,7 +347,7 @@ src/vlm_eval/
   manifest.py       run manifest
   store.py          DuckDB results store; sql/examples.sql holds saved queries
 configs/scenes/     one YAML per scene run (configs/ for frame runs)
-tests/              147 tests
+tests/              150 tests
 ```
 
 **Extending.** Datasets, models, judges and metrics are chosen by name in the config
@@ -354,4 +361,6 @@ new label set needs a taxonomy YAML. A new model is usually just a different `mo
 - Model answers would go in the same content-keyed cache, moved to an object store.
 - The DuckDB store here would become a shared warehouse table, with the same per-run
   replace semantics.
-- A model or prompt change would be gated in CI against the current baseline.
+- A model or prompt change is gated against the current baseline (`configs/gates.yaml`):
+  only annotation-checked metrics are gated. Qwen2-VL guided passes 4/4; SmolVLM open fails
+  3/4 (objects mentioned, scene specificity, repetition loops).

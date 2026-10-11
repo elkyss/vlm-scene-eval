@@ -1722,8 +1722,8 @@
     "name": "similarity",
     "summary": {
       "mean_reference_keyword_recall": 0.0,
-      "mean_embedding_cosine": 0.1472568155825138,
-      "pearson_cosine_vs_object_f1": 0.10268488212797135,
+      "mean_embedding_cosine": 0.14725681230425836,
+      "pearson_cosine_vs_object_f1": 0.10268512102870521,
       "spearman_cosine_vs_object_f1": 0.0795398016005286
     },
     "tables": {},
@@ -1731,177 +1731,177 @@
       "ca9a282c9e77460f8360f564131a8af5": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1294546127319336
+        "embedding_cosine": 0.12945465743541718
       },
       "023c4df2d451409881d8e6ea82f14704": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1294546127319336
+        "embedding_cosine": 0.12945465743541718
       },
       "b26e791522294bec90f86fd72226e35c": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1294546127319336
+        "embedding_cosine": 0.12945465743541718
       },
       "0cd661df01aa40c3bb3a773ba86f753a": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1294546127319336
+        "embedding_cosine": 0.12945465743541718
       },
       "ed5fc18c31904f96a8f0dbb99ff069c0": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1294546127319336
+        "embedding_cosine": 0.12945465743541718
       },
       "3e8750f331d7499e9b5123e9eb70f2e2": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10535605251789093
+        "embedding_cosine": 0.10535606741905212
       },
       "b6b0d9f2f2e14a3aaa2c8aedeb1edb69": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10535605251789093
+        "embedding_cosine": 0.10535606741905212
       },
       "5b03af7a953245b5a3b23191ed4da62a": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10535605251789093
+        "embedding_cosine": 0.10535606741905212
       },
       "6d9984d09d52479e837da2fd09e192cc": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10535605251789093
+        "embedding_cosine": 0.10535606741905212
       },
       "281b92269fd648d4b52d06ac06ca6d65": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10535605251789093
+        "embedding_cosine": 0.10535606741905212
       },
       "8687ba92abd3406aa797115b874ebeba": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.09782854467630386
+        "embedding_cosine": 0.09782851487398148
       },
       "8bf071b1b92c4ff1bd5016bfb30de3f7": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.09782854467630386
+        "embedding_cosine": 0.09782851487398148
       },
       "ecd49e3c38624c77b8aac8df445d49ba": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.09782854467630386
+        "embedding_cosine": 0.09782851487398148
       },
       "d3c0bbf933594f7184e20d761b6416f4": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.09782854467630386
+        "embedding_cosine": 0.09782851487398148
       },
       "dcbe451d383e450786aaad04ab9d3790": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.09782854467630386
+        "embedding_cosine": 0.09782851487398148
       },
       "5991fad3280c4f84b331536c32001a04": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1848771721124649
+        "embedding_cosine": 0.18487714231014252
       },
       "91d9058720eb4c25a172236e14e11085": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1848771721124649
+        "embedding_cosine": 0.18487714231014252
       },
       "0d7263a5b8264cad996582d6219ef1f2": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1848771721124649
+        "embedding_cosine": 0.18487714231014252
       },
       "b2e2ffeabf91451cb31a79649bfd95df": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1848771721124649
+        "embedding_cosine": 0.18487714231014252
       },
       "35833ae5808e4ef186d1fdebac3d9cf6": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1848771721124649
+        "embedding_cosine": 0.18487714231014252
       },
       "cd9964f8c3d34383b16e9c2997de1ed0": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10961124300956726
+        "embedding_cosine": 0.10961118340492249
       },
       "6b7487db4612438db7d446e2832a9e2e": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10961124300956726
+        "embedding_cosine": 0.10961118340492249
       },
       "73e2b7fb98ef41aface277a968d65941": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10961124300956726
+        "embedding_cosine": 0.10961118340492249
       },
       "bad8a002637046178fe0f8216e5bc355": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10961124300956726
+        "embedding_cosine": 0.10961118340492249
       },
       "8fe9664cec514a58b1184c4fcefda6b5": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.10961124300956726
+        "embedding_cosine": 0.10961118340492249
       },
       "c1676a2feac74eee8aa38ca3901787d6": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1744879186153412
+        "embedding_cosine": 0.17448782920837402
       },
       "f218a2b4fa6941f7ac3798adc72126e8": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1744879186153412
+        "embedding_cosine": 0.17448782920837402
       },
       "4ee219c4638949de9d994bc792fd0a69": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1744879186153412
+        "embedding_cosine": 0.17448782920837402
       },
       "1dba6570f0774b5cb87de6694bb338c0": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.21320700645446777
+        "embedding_cosine": 0.213206946849823
       },
       "63c24b51feb94f14bec29022dae4975d": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1744879186153412
+        "embedding_cosine": 0.17448782920837402
       },
       "b5989651183643369174912bc5641d3b": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.1631147414445877
+        "embedding_cosine": 0.1631147563457489
       },
       "048a45dd2cf54aa5808d8ccc85731d44": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.17355629801750183
+        "embedding_cosine": 0.1735563576221466
       },
       "6ff9723a60bf4e14b328b3b19f04dc32": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.17355629801750183
+        "embedding_cosine": 0.1735563576221466
       },
       "e63b83b436a0479db7362338cdfab118": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.17355629801750183
+        "embedding_cosine": 0.1735563576221466
       },
       "b4ff30109dd14c89b24789dc5713cf8c": {
         "object_f1": 1.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.17355629801750183
+        "embedding_cosine": 0.1735563576221466
       },
       "5998b71b64c146769bde1d5430741381": {
         "object_f1": 0.0,
@@ -1931,52 +1931,52 @@
       "e6b0b282aa174a978272dc2d0a89d560": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.2055010050535202
+        "embedding_cosine": 0.2055010348558426
       },
       "d1136fce62f14400a069613e274f46f7": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.2055010050535202
+        "embedding_cosine": 0.2055010348558426
       },
       "0e837c21890a4515874247ceb3dbf5c3": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.2055010050535202
+        "embedding_cosine": 0.2055010348558426
       },
       "c18d3bcc9297454ba52112c079cb756e": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.2055010050535202
+        "embedding_cosine": 0.2055010348558426
       },
       "4e1d1031fe9f45f981a2f598365fc645": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.2055010050535202
+        "embedding_cosine": 0.2055010348558426
       },
       "a480496a5988410fbe3d8ed6c84da996": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.12660497426986694
+        "embedding_cosine": 0.12660500407218933
       },
       "b902d29df24c4efda414a9a88ed57031": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.12660497426986694
+        "embedding_cosine": 0.12660500407218933
       },
       "134ae8a8f5c340f9894a414fc0966af4": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.12660497426986694
+        "embedding_cosine": 0.12660500407218933
       },
       "d61ef2ae3bd54793b8beec55061940f0": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.12660497426986694
+        "embedding_cosine": 0.12660500407218933
       },
       "abf3d91d3c28407e80e3334fe89c03cb": {
         "object_f1": 0.0,
         "reference_keyword_recall": 0.0,
-        "embedding_cosine": 0.12660497426986694
+        "embedding_cosine": 0.12660500407218933
       }
     },
     "notes": []

@@ -103,11 +103,11 @@ class ScenePipeline:
         outputs = []
         for view in scene.views:
             span_s = (max(view.frame_indices) - min(view.frame_indices)) * KEYFRAME_SECONDS
-            images = ImageSet.from_paths(view.sample_tokens, view.image_paths)
+            images = ImageSet.from_paths(view.image_ids, view.image_paths)
             request = VLMRequest(
                 f"{scene.scene_token}-v{view.view_id}",
                 images,
-                self.prompt.render(len(view.frame_indices), span_s),
+                self.prompt.render(len(view.frame_indices), span_s, view.cameras),
             )
             response = self.backend.generate(request)
             outputs.append(
@@ -202,3 +202,36 @@ def build_scene_pipeline(cfg: SceneRunConfig) -> ScenePipeline:
 
 def build_judge(cfg: SceneRunConfig) -> TextJudge:
     return JUDGES.build(cfg.judge.name, **cfg.judge.params)
+
+
+def evaluate_scene_run(run_dir: Path) -> Path:
+    """Score a saved scene run from its own config (no inference); returns the report path."""
+    import json
+
+    from vlm_eval.config import load_scene_config
+    from vlm_eval.evaluation.scene_metrics import evaluate_scenes
+    from vlm_eval.evaluation.scene_report import SCENE_METRICS, render_scene_report
+    from vlm_eval.writers import read_jsonl
+
+    cfg = load_scene_config(run_dir / "config.yaml")
+    descriptions = read_jsonl(run_dir / SCENES, SceneDescription)
+    evaluation = evaluate_scenes(
+        descriptions,
+        read_jsonl(run_dir / FACT_SHEETS, SceneFactSheet),
+        build_judge(cfg),
+        load_taxonomy(cfg.taxonomy),
+        cfg.embedding_model,
+        cfg.seed,
+    )
+    (run_dir / SCENE_METRICS).write_text(evaluation.model_dump_json(indent=2))
+    views = descriptions[0].views if descriptions else []
+    protocol = (
+        f"Each scene is shown as {len(views)} views of "
+        f"{len(views[0].frame_indices) if views else 0} frames (one VLM call per view); "
+        "the final description is the view most consistent with the others."
+    )
+    validation_path = run_dir.parent / "judge_validation" / "judge_validation.json"
+    validation = (
+        json.loads(validation_path.read_text())["summary"] if validation_path.exists() else None
+    )
+    return render_scene_report(evaluation, run_dir, protocol, validation)

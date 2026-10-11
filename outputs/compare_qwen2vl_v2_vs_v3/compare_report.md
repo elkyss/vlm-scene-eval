@@ -16,9 +16,9 @@
 | Presence accuracy: pedestrian | 66.0% | 82.0% | 16.0% | [8.0%, 26.0%] | 0.031 | B better |
 | Presence accuracy: two_wheeler | 78.0% | 78.0% | 0.0% | [-8.0%, 8.0%] | 1.000 | inconclusive |
 | Presence accuracy: traffic_cone | 88.0% | 94.0% | 6.0% | [-4.0%, 16.0%] | 0.500 | inconclusive |
-| Presence accuracy: barrier | 80.0% | 42.0% | -38.0% | [-66.0%, -10.0%] | 0.051 | A better |
+| Presence accuracy: barrier | 80.0% | 42.0% | -38.0% | [-66.0%, -10.0%] | 0.051 | borderline |
 | Accuracy: time_of_day | 100.0% | 100.0% | 0.0% | [0.0%, 0.0%] | 1.000 | inconclusive |
-| Accuracy: road_condition | 60.0% | 78.0% | 18.0% | [6.0%, 32.0%] | 0.055 | B better |
+| Accuracy: road_condition | 60.0% | 78.0% | 18.0% | [6.0%, 32.0%] | 0.055 | borderline |
 | Accuracy: scene_type | 58.0% | 62.0% | 4.0% | [-10.0%, 24.0%] | 0.938 | inconclusive |
 | Accuracy: traffic_side | 58.0% | 38.0% | -20.0% | [-46.0%, 6.0%] | 0.188 | inconclusive |
 | Valid structured output | 96.0% | 100.0% | 4.0% | [0.0%, 10.0%] | 0.500 | inconclusive |
